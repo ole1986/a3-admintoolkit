@@ -8,17 +8,17 @@ private['_action', '_selection'];
 // is the action which should remotely be called
 _action = _this select 0;
 
-switch (_controlId) do
+switch (_action) do
 {
     case 'tp2pos':
     {
         _selection = _this select 1;
+        systemChat format["Teleporting to %1", str _selection];
     };
     case 'givevehicle':
     {
         _selection = [lbText [1500, lbCurSel 1500], adminhelper_selectedPlayer];
         systemChat format["Giving vehicle to %1", adminhelper_selectedPlayer];
-    
     };
     default 
     {
@@ -27,4 +27,4 @@ switch (_controlId) do
     };
 };
 
-[player, _action, _selection] call AdminHelper_network_receiveRequest;
+[player, _action, _selection] remoteExecCall ['AdminHelper_network_receiveRequest', 2];

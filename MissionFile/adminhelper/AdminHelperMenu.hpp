@@ -35,7 +35,7 @@ class AdminHelperMenu {
         x = 0.768125 * safezoneW + safezoneX;
         y = 0.00 * safezoneH + safezoneY;
         w = 0.24 * safezoneW;
-        h = 0.85 * safezoneH;
+        h = 0.88 * safezoneH;
     };
     class RscAdminHelperInfo: RscText {
         idc = 1801;
