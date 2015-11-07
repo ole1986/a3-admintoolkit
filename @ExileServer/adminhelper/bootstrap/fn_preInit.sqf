@@ -17,8 +17,7 @@ private ['_code', '_function', '_file'];
 }
 forEach 
 [
-	['AdminHelper_network_receiveRequest', 'adminhelper\code\AdminHelper_network_receiveRequest.sqf'],
-    ['AdminHelper_network_sendResponse', 'adminhelper\code\AdminHelper_network_sendResponse.sqf']
+	['AdminHelper_network_receiveRequest', 'adminhelper\code\AdminHelper_network_receiveRequest.sqf']
 ];
 
 diag_log "[ADMINHELPER] Initializing";
