@@ -7,7 +7,7 @@ This tool is used to administrate Arma3 multiplayer server more easily.
 - Teleport from/to players and to map position
 - Vehicle spawning (for player)
 - Weapon/Item spawing
-- Easy to install (max 5 steps to do)
+- Easy to install (max 5 steps)
 
 ### Installation
 
