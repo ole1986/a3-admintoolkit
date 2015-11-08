@@ -80,7 +80,7 @@ try
             };
             
             _tmp = _params select 1;
-            _player addMagazine _tmp;
+            _player addMagazines  [_tmp, 3];
         };
     }; 
 }

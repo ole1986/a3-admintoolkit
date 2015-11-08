@@ -4,17 +4,25 @@
  * @version 0.1
  */
  
-private['_controlId','_players'];
+private['_controlId','_weapons', '_weaponClass', '_weaponType'];
 // listbox control
 _controlId = 1500;
 
 lbClear _controlId;
 
+// fetch all default weapons from the CfgWeapons class
+//_weapons = "(configName _x find 'Exile' >= 0)" configClasses (configFile >> "CfgWeapons");
+_weapons = "true" configClasses (configFile >> "CfgWeapons");
+
 // bind action buttons for players list
 [1602] call adminhelper_buttonEvents;
 
-lbAdd [_controlId, 'launch_NLAW_F'];
-lbAdd [_controlId, 'srifle_EBR_MRCO_pointer_F'];
-lbAdd [_controlId, 'LMG_Zafir_ARCO_F'];
+{
+    _weaponClass = configName _x;
+    _weaponType = getNumber (configFile >> "CfgWeapons" >> _weaponClass >> "Type");
+    if (_weaponType > 0 and _weaponType <= 4) then {
+        lbAdd [_controlId, _weaponClass];
+    };
+} forEach _weapons;
 
 true;

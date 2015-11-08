@@ -19,7 +19,8 @@ missionNamespace setVariable ['adminhelper_selectedPlayer', ''];
 waitUntil {!isNull (findDisplay 46)};
 
 // event handler for map click event using Alt + click to teleport the player
-player onMapSingleClick "if (_alt) then { ['tp2pos', _pos] call adminhelper_buttonAction;  }; true;";
+//['adminhelper_mapAction', 'onMapSingleClick', {if (_alt) then { [_this, _pos] call adminhelper_buttonAction; }; true} , 'tp2pos'] call BIS_fnc_addStackedEventHandler;
+player onMapSingleClick "if (_alt) then { ['tp2pos', _pos] call adminhelper_buttonAction; true; } else { false; };";
 
 // call bindEvents once mail dialog is finished,, at this time F2 key should work
-(findDisplay 46) displaySetEventHandler ["KeyDown","call adminhelper_bindEvents;"];
+(findDisplay 46) displayAddEventHandler ["KeyDown","call adminhelper_bindEvents;"];
