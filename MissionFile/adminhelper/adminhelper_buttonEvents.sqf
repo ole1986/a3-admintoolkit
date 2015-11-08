@@ -28,15 +28,14 @@ _actionCode = ' call adminhelper_buttonAction;';
     // Players
     case 1600: 
 	{
-        ctrlSetText [1701,"Teleport To"];
+        ctrlSetText [1701,"Teleport Me"];
         buttonSetAction [1701, "['tp2player']" + _actionCode];
         
         ctrlSetText [1702, "Teleport Player"];
-        buttonSetAction [1702, "['tp2player']" + _actionCode];
+        buttonSetAction [1702, "['tpplayer']" + _actionCode];
         
         ctrlSetText [1704, "Select Player"];
         buttonSetAction [1704, "adminhelper_selectedPlayer = lbText [1500, lbCurSel 1500]; ctrlSetText [1801, 'Selected Player: ' + adminhelper_selectedPlayer];"];
-        
 	};
     // Vehicles
     case 1601:
@@ -44,8 +43,14 @@ _actionCode = ' call adminhelper_buttonAction;';
         ctrlSetText [1701,"Spawn Me"];
         buttonSetAction [1701, "['getvehicle']" + _actionCode];
         
-        ctrlSetText [1702,"Spawn Player"];
+        ctrlSetText [1702,"Spawn at Player"];
         buttonSetAction [1702, "['givevehicle']" + _actionCode];
         
+    };
+    // Weapons
+    case 1602:
+    {
+        ctrlSetText [1701,"Get Weapon"];
+        buttonSetAction [1701, "['getweapon']" + _actionCode];
     };
 };

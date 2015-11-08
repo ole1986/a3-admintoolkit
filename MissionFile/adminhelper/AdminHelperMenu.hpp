@@ -82,7 +82,7 @@ class AdminHelperMenu {
         y = 0.015 * safezoneH + safezoneY;
         w = 0.0567187 * safezoneW;
         h = 0.033 * safezoneH;
-        action = "hint 'Not yet implemented';";
+        action = "call adminhelper_fetchWeapons";
     };
     class RscAdminHelperAction1: RscButton
     {

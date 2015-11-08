@@ -7,6 +7,9 @@
 // make functions available
 missionNamespace setVariable ['adminhelper_fetchPlayers', compileFinal preprocessFileLineNumbers "adminhelper\adminhelper_fetchPlayers.sqf"];
 missionNamespace setVariable ['adminhelper_fetchVehicles', compileFinal preprocessFileLineNumbers "adminhelper\adminhelper_fetchVehicles.sqf"];
+missionNamespace setVariable ['adminhelper_fetchWeapons', compileFinal preprocessFileLineNumbers "adminhelper\adminhelper_fetchWeapons.sqf"];
+missionNamespace setVariable ['adminhelper_weaponMagazine', compileFinal preprocessFileLineNumbers "adminhelper\adminhelper_weaponMagazine.sqf"];
+
 missionNamespace setVariable ['adminhelper_buttonEvents', compileFinal preprocessFileLineNumbers "adminhelper\adminhelper_buttonEvents.sqf"];
 missionNamespace setVariable ['adminhelper_buttonAction', compileFinal preprocessFileLineNumbers "adminhelper\adminhelper_buttonAction.sqf"];
 missionNamespace setVariable ['adminhelper_bindEvents', compileFinal preprocessFileLineNumbers "adminhelper\adminhelper_bindEvents.sqf"];

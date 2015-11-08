@@ -25,21 +25,11 @@ try
     // if its a moderator, check if commands is allowed
     if ( getPlayerUID _player in _moderatorList ) then {
         if !( _request in _moderatorCmds ) then {
-            throw format [ "Moderator %1 has no access to admin command %2", name _player, _request];
+            throw format [ "Moderator %1 has no access to admin command %2 with params %3 ", name _player, _request, str _params];
         };
     };
     
     switch (_request) do {
-        case "tpplayer": 
-        {
-            // Teleport to players position
-            // Example #1: [player, 'tpto', '<playername>']
-            {
-                if(name _x isEqualTo _params) exitWith {
-                    _x setPosATL (position _player);
-                };
-            } forEach allPlayers;
-        };
         case "tp2player": 
         {
             // Teleport to players position
@@ -49,6 +39,16 @@ try
                 if(name _x isEqualTo _params) exitWith {
                     _result = getPosATL _x;
                     _player setPosATL _result;
+                };
+            } forEach allPlayers;
+        };
+        case "tpplayer": 
+        {
+            // Teleport to players position
+            // Example #1: [player, 'tpto', '<playername>']
+            {
+                if(name _x isEqualTo _params) exitWith {
+                    _x setPosATL (position _player);
                 };
             } forEach allPlayers;
         };
@@ -72,6 +72,15 @@ try
                     _result = _tmp createVehicle position _x;
                 };
             } forEach allPlayers;
+        };
+        case "getweapon": {
+            _tmp = _params select 0;
+            if (_tmp != "") then {
+                _player addWeaponGlobal _tmp;
+            };
+            
+            _tmp = _params select 1;
+            _player addMagazine [_tmp, 2];
         };
     }; 
 }
