@@ -1,5 +1,5 @@
 /**
- * AdminHelper - An arma3 administration helper tool
+ * AdminToolkit - An arma3 administration helper tool
  * @author ole1986
  * @version 0.1
  */
@@ -11,7 +11,7 @@ _controlId = 1500;
 lbClear _controlId;
 
 // bind action buttons for players list
-[1600] call adminhelper_buttonEvents;
+[1600] call admintoolkit_buttonEvents;
 {
     lbAdd [_controlId, name _x];
 } forEach allPlayers;

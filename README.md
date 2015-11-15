@@ -1,4 +1,4 @@
-## AdminHelper toolkit for Arma 3 v0.1
+## AdminToolkit for Arma 3 v0.1
 
 This tool is used to administrate Arma3 multiplayer server more easily.
 

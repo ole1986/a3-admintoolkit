@@ -1,34 +1,34 @@
 /**
- * AdminHelper - An arma3 administration helper tool
+ * AdminToolkit - An arma3 administration helper tool
  * @author ole1986
  * @version 0.1
  */
  
-class AdminHelperMenu {
+class AdminToolkitMenu {
     idd = 40000;
     objects[] = {};
 	//controlsBackground[] = { MyDialogBackground };
 	controls[]=
     {
-        RscAdminHelper,
-        RscAdminHelperPlayers,
-        RscAdminHelperVehicles,
-        RscAdminHelperInfo,
-        RscAdminHelperList,
-        RscAdminHelperWeapons,
-        RscAdminHelperAction1,
-        RscAdminHelperAction4,
-        RscAdminHelperAction2,
-        RscAdminHelperAction3,
-        RscAdminHelperAction5,
-        RscAdminHelperAction6
+        RscAdminToolkit,
+        RscAdminToolkitPlayers,
+        RscAdminToolkitVehicles,
+        RscAdminToolkitInfo,
+        RscAdminToolkitList,
+        RscAdminToolkitWeapons,
+        RscAdminToolkitAction1,
+        RscAdminToolkitAction4,
+        RscAdminToolkitAction2,
+        RscAdminToolkitAction3,
+        RscAdminToolkitAction5,
+        RscAdminToolkitAction6
     };
     
     ////////////////////////////////////////////////////////
     // GUI EDITOR OUTPUT START (by ole, v1.063, #Temumy)
     ////////////////////////////////////////////////////////
 
-    class RscAdminHelper: RscFrame
+    class RscAdminToolkit: RscFrame
     {
         idc = 1800;
         style = ST_BACKGROUND;
@@ -37,7 +37,7 @@ class AdminHelperMenu {
         w = 0.24 * safezoneW;
         h = 0.88 * safezoneH;
     };
-    class RscAdminHelperInfo: RscText {
+    class RscAdminToolkitInfo: RscText {
         idc = 1801;
         x = 0.773281 * safezoneW + safezoneX;
         y = 0.050 * safezoneH + safezoneY;
@@ -46,7 +46,7 @@ class AdminHelperMenu {
         colorBackground[] = {0, 0, 0, 0};
     }
     
-    class RscAdminHelperList: RscListbox
+    class RscAdminToolkitList: RscListbox
     {
         idc = 1500;
         x = 0.773281 * safezoneW + safezoneX;
@@ -54,7 +54,7 @@ class AdminHelperMenu {
         w = 0.216563 * safezoneW;
         h = 0.682 * safezoneH;
     };
-    class RscAdminHelperPlayers: RscButton
+    class RscAdminToolkitPlayers: RscButton
     {
         idc = 1600;
         text = "Players"; //--- ToDo: Localize;
@@ -62,9 +62,9 @@ class AdminHelperMenu {
         y = 0.015 * safezoneH + safezoneY;
         w = 0.0567187 * safezoneW;
         h = 0.033 * safezoneH;
-        action = "call adminhelper_fetchPlayers";
+        action = "call admintoolkit_fetchPlayers";
     };
-    class RscAdminHelperVehicles: RscButton
+    class RscAdminToolkitVehicles: RscButton
     {
         idc = 1601;
         text = "Vehicles"; //--- ToDo: Localize;
@@ -72,9 +72,9 @@ class AdminHelperMenu {
         y = 0.015 * safezoneH + safezoneY;
         w = 0.0567187 * safezoneW;
         h = 0.033 * safezoneH;
-        action = "call adminhelper_fetchVehicles";
+        action = "call admintoolkit_fetchVehicles";
     };
-    class RscAdminHelperWeapons: RscButton
+    class RscAdminToolkitWeapons: RscButton
     {
         idc = 1602;
         text = "Weapons"; //--- ToDo: Localize;
@@ -82,9 +82,9 @@ class AdminHelperMenu {
         y = 0.015 * safezoneH + safezoneY;
         w = 0.0567187 * safezoneW;
         h = 0.033 * safezoneH;
-        action = "call adminhelper_fetchWeapons";
+        action = "call admintoolkit_fetchWeapons";
     };
-    class RscAdminHelperAction1: RscButton
+    class RscAdminToolkitAction1: RscButton
     {
         idc = 1701;
         text = ""; //--- ToDo: Localize;
@@ -94,7 +94,7 @@ class AdminHelperMenu {
         h = 0.033 * safezoneH;
         action = "";
     };
-    class RscAdminHelperAction2: RscButton
+    class RscAdminToolkitAction2: RscButton
     {
         idc = 1702;
         text = ""; //--- ToDo: Localize;
@@ -104,7 +104,7 @@ class AdminHelperMenu {
         h = 0.033 * safezoneH;
         action = "";
     };
-    class RscAdminHelperAction3: RscButton
+    class RscAdminToolkitAction3: RscButton
     {
         idc = 1703;
         text = ""; //--- ToDo: Localize;
@@ -114,7 +114,7 @@ class AdminHelperMenu {
         h = 0.033 * safezoneH;
         action = "";
     };
-    class RscAdminHelperAction4: RscButton
+    class RscAdminToolkitAction4: RscButton
     {
         idc = 1704;
         text = ""; //--- ToDo: Localize;
@@ -124,7 +124,7 @@ class AdminHelperMenu {
         h = 0.033 * safezoneH;
         action = "";
     };
-    class RscAdminHelperAction5: RscButton
+    class RscAdminToolkitAction5: RscButton
     {
         idc = 1705;
         text = ""; //--- ToDo: Localize;
@@ -134,7 +134,7 @@ class AdminHelperMenu {
         h = 0.033 * safezoneH;
         action = "";
     };
-    class RscAdminHelperAction6: RscButton
+    class RscAdminToolkitAction6: RscButton
     {
         idc = 1706;
         text = ""; //--- ToDo: Localize;

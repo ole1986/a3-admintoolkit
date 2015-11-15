@@ -1,5 +1,5 @@
 /**
- * AdminHelper - An arma3 administration helper tool
+ * AdminToolkit - An arma3 administration helper tool
  * @author ole1986
  * @version 0.1
  */
@@ -14,8 +14,8 @@ switch (_this select 1) do
 	{
         _handled = true;
         if (!dialog) then {
-            systemChat "Opening AdminHelperMenu...";
-            createDialog "AdminHelperMenu";
+            systemChat "Opening AdminToolkitMenu...";
+            createDialog "AdminToolkitMenu";
         } else {
             closeDialog 0;
         };

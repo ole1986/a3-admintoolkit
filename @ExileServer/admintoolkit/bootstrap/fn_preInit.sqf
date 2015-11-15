@@ -1,5 +1,5 @@
 /**
- * AdminHelper - An arma3 administration helper tool
+ * AdminToolkit - An arma3 administration helper tool
  * @author ole1986
  * @version 0.1
  */
@@ -17,9 +17,9 @@ private ['_code', '_function', '_file'];
 }
 forEach 
 [
-	['AdminHelper_network_receiveRequest', 'adminhelper\code\AdminHelper_network_receiveRequest.sqf']
+	['AdminToolkit_network_receiveRequest', 'admintoolkit\code\AdminToolkit_network_receiveRequest.sqf']
 ];
 
-diag_log "[ADMINHELPER] Initializing";
+diag_log "[ADMINTOOLKIT] Initializing";
 
 true

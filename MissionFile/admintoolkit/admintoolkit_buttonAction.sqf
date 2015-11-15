@@ -1,5 +1,5 @@
 /**
- * AdminHelper - An arma3 administration helper tool
+ * AdminToolkit - An arma3 administration helper tool
  * @author ole1986
  * @version 0.1
  */
@@ -17,8 +17,8 @@ switch (_action) do
     };
     case 'givevehicle':
     {
-        _selection = [lbText [1500, lbCurSel 1500], adminhelper_selectedPlayer];
-        systemChat format["Giving vehicle to %1", adminhelper_selectedPlayer];
+        _selection = [lbText [1500, lbCurSel 1500], admintoolkit_selectedPlayer];
+        systemChat format["Giving vehicle to %1", admintoolkit_selectedPlayer];
     };
     case 'godmode': {
         _selection = _this select 1;
@@ -26,7 +26,7 @@ switch (_action) do
     };
     case 'getweapon': {
         _tmp = lbText [1500, lbCurSel 1500];
-        _tmp2 = [_tmp] call adminhelper_weaponMagazine;
+        _tmp2 = [_tmp] call admintoolkit_weaponMagazine;
         
         if ( (primaryWeapon  player) == _tmp) then { _tmp = ''; };
         if ( (secondaryWeapon player) == _tmp) then { _tmp = ''; };
@@ -43,4 +43,4 @@ switch (_action) do
     };
 };
 
-[player, _action, _selection] remoteExecCall ['AdminHelper_network_receiveRequest', 2];
+[player, _action, _selection] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];

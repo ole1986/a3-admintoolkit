@@ -1,11 +1,11 @@
 /**
- * AdminHelper - An arma3 administration helper tool
+ * AdminToolkit - An arma3 administration helper tool
  * @author ole1986
  * @version 0.1
  */
  
 class CfgPatches {
-    class AdminHelper {
+    class AdminToolkit {
         requiredVersion = 0.1;
         requiredAddons[]= {};
         units[] = {};
@@ -13,9 +13,9 @@ class CfgPatches {
     };
 };
 class CfgFunctions {
-    class AdminHelper {
+    class AdminToolkit {
         class main {
-            file="adminhelper\bootstrap";
+            file="admintoolkit\bootstrap";
             class preInit { 
                 preInit = 1;
             };
@@ -28,7 +28,7 @@ class CfgFunctions {
 
 class CfgSettings
 {
-    class AdminHelper {
+    class AdminToolkit {
         /**
          * list of allowed admins using its player UID
          */

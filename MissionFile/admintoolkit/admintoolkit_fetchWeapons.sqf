@@ -1,5 +1,5 @@
 /**
- * AdminHelper - An arma3 administration helper tool
+ * AdminToolkit - An arma3 administration helper tool
  * @author ole1986
  * @version 0.1
  */
@@ -15,7 +15,7 @@ lbClear _controlId;
 _weapons = "((configName _x find '_Base' <= 0) and (configName _x find '_base' <= 0))" configClasses (configFile >> "CfgWeapons");
 
 // bind action buttons for players list
-[1602] call adminhelper_buttonEvents;
+[1602] call admintoolkit_buttonEvents;
 
 {
     _weaponClass = configName _x;

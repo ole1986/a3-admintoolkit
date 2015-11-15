@@ -21,7 +21,7 @@ _controlId = _this select 0;
     buttonSetAction [_x, ""];
  } forEach [1701, 1702, 1703, 1704, 1705, 1706];
  
-_actionCode = ' call adminhelper_buttonAction;';
+_actionCode = ' call admintoolkit_buttonAction;';
  
  switch (_controlId) do
 {
@@ -35,7 +35,7 @@ _actionCode = ' call adminhelper_buttonAction;';
         buttonSetAction [1702, "['tpplayer']" + _actionCode];
         
         ctrlSetText [1704, "Select Player"];
-        buttonSetAction [1704, "adminhelper_selectedPlayer = lbText [1500, lbCurSel 1500]; ctrlSetText [1801, 'Selected Player: ' + adminhelper_selectedPlayer];"];
+        buttonSetAction [1704, "admintoolkit_selectedPlayer = lbText [1500, lbCurSel 1500]; ctrlSetText [1801, 'Selected Player: ' + adminhelper_selectedPlayer];"];
 	};
     // Vehicles
     case 1601:
