@@ -12,7 +12,7 @@ lbClear _controlId;
 
 // fetch all default weapons from the CfgWeapons class
 //_weapons = "(configName _x find 'Exile' >= 0)" configClasses (configFile >> "CfgWeapons");
-_weapons = "true" configClasses (configFile >> "CfgWeapons");
+_weapons = "((configName _x find '_Base' <= 0) and (configName _x find '_base' <= 0))" configClasses (configFile >> "CfgWeapons");
 
 // bind action buttons for players list
 [1602] call adminhelper_buttonEvents;
