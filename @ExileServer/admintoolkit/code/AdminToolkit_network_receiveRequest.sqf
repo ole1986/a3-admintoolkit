@@ -1,14 +1,14 @@
 /**
- * AdminHelper - An arma3 administration helper tool
+ * AdminToolkit - An arma3 administration helper tool
  * @author ole1986
- * @version 0.1
+ * @version 0.2
  */
  
 private["_payload","_adminList", "_moderatorList", "_moderatorCmds","_player","_request", "_params","_result", "_tmp"];
 _payload = _this;
-_adminList = getArray(configFile >> "CfgSettings" >> "AdminHelper" >> "AdminList");
-_moderatorList = getArray(configFile >> "CfgSettings" >> "AdminHelper" >> "ModeratorList");
-_moderatorCmds = getArray(configFile >> "CfgSettings" >> "AdminHelper" >> "ModeratorCmds");
+_adminList = getArray(configFile >> "CfgSettings" >> "AdminToolkit" >> "AdminList");
+_moderatorList = getArray(configFile >> "CfgSettings" >> "AdminToolkit" >> "ModeratorList");
+_moderatorCmds = getArray(configFile >> "CfgSettings" >> "AdminToolkit" >> "ModeratorCmds");
 _result = true;
 try 
 {
@@ -20,7 +20,7 @@ try
         throw format ["Player %1 with UID %2 does not have access", name _player, getPlayerUID _player];
     };
     
-    diag_log format ["[ADMINHELPER] Calling %1 from player %2", _request, name _player];
+    diag_log format ["[ADMINTOOLKIT] Calling %1 from player %2", _request, name _player];
 
     // if its a moderator, check if commands is allowed
     if ( getPlayerUID _player in _moderatorList ) then {
@@ -86,6 +86,6 @@ try
 }
 catch
 {
-    diag_log format["[ADMINHELPER]: EXCEPTION: %1", _exception];
+    diag_log format["[ADMINTOOLKIT]: EXCEPTION: %1", _exception];
 };
 _result
