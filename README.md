@@ -12,6 +12,8 @@ This tool is used to administrate Arma3 multiplayer server more easily.
 - Weapon/Item spawing
 - Easy to install (max 5 steps)
 
+*Please note: This does not replace an AntiCheat software neither be used as cheating tool*
+
 ### Installation
 
 *Installation instruction will come soon*
