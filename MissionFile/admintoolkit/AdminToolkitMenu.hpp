@@ -1,7 +1,7 @@
 /**
  * AdminToolkit - An arma3 administration helper tool
  * @author ole1986
- * @version 0.1
+ * @version 0.2
  */
  
 class AdminToolkitMenu {
@@ -62,7 +62,7 @@ class AdminToolkitMenu {
         y = 0.015 * safezoneH + safezoneY;
         w = 0.0567187 * safezoneW;
         h = 0.033 * safezoneH;
-        action = "call admintoolkit_fetchPlayers";
+        action = """players"" call admintoolkit_openEvent";
     };
     class RscAdminToolkitVehicles: RscButton
     {
@@ -72,7 +72,7 @@ class AdminToolkitMenu {
         y = 0.015 * safezoneH + safezoneY;
         w = 0.0567187 * safezoneW;
         h = 0.033 * safezoneH;
-        action = "call admintoolkit_fetchVehicles";
+        action = """vehicles"" call admintoolkit_openEvent";
     };
     class RscAdminToolkitWeapons: RscButton
     {
@@ -82,7 +82,7 @@ class AdminToolkitMenu {
         y = 0.015 * safezoneH + safezoneY;
         w = 0.0567187 * safezoneW;
         h = 0.033 * safezoneH;
-        action = "call admintoolkit_fetchWeapons";
+        action = """weapons"" call admintoolkit_openEvent";
     };
     class RscAdminToolkitAction1: RscButton
     {

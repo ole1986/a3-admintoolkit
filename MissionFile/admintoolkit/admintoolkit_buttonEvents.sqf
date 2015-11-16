@@ -1,7 +1,7 @@
 /**
- * AdminHelper - An arma3 administration helper tool
+ * AdminToolkit - An arma3 administration helper tool
  * @author ole1986
- * @version 0.1
+ * @version 0.2
  */
  
 private['_controlId', '_actionCode'];
@@ -40,7 +40,7 @@ _actionCode = ' call admintoolkit_buttonAction;';
     // Vehicles
     case 1601:
     {
-        ctrlSetText [1701,"Spawn Me"];
+        ctrlSetText [1701,"Spawn at Me"];
         buttonSetAction [1701, "['getvehicle']" + _actionCode];
         
         ctrlSetText [1702,"Spawn at Player"];
