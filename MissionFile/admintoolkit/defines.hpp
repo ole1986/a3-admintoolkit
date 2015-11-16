@@ -132,7 +132,7 @@ class RscFrame
 	colorBackgroundDisabled[] = { 1, 1, 1, 0.5 }; 
 	colorBackgroundActive[] = {0, 0, 0, 0.5};
     colorText[] = {1,1,1,1};
-    font = "Zeppelin32";
+    font = FontM;
     sizeEx = 0.02;
     text = "";
 };
