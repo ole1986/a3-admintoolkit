@@ -10,7 +10,6 @@ This tool is used to administrate Arma3 multiplayer server more easily.
 - Teleport from/to players and to map position (by using the in-game map - hold ALT key and press LMB)
 - Vehicle spawning (for player)
 - Weapon/Item spawing
-- Easy to install (max 5 steps)
 
 *Please note: This does not replace an AntiCheat software neither be used as cheating tool*
 
