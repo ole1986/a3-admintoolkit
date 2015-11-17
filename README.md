@@ -7,7 +7,7 @@ This tool is used to administrate Arma3 multiplayer server more easily.
 
 **Core Features:**
 
-- Teleport from/to players and to map position (Alt + LMB)
+- Teleport from/to players and to map position (by using the game map, hold Alt and press LMB)
 - Vehicle spawning (for player)
 - Weapon/Item spawing
 - Easy to install (max 5 steps)
