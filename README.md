@@ -55,4 +55,11 @@ class CfgRemoteExec
  
 ### Battleye
 
-*soon*
+**remoteexec.txt**
+
++ add this `!"AdminToolkit_network_receiveRequest"` to the end of the line
+
+**scripts.txt**
+
++ add `!="displayAddEventHandler [\"KeyDown\",\"call admintoolkit_bindEvents;\"]"` at the end of `7 eventHandler [...]`
++ add `7 onMapSingleClick !="call admintoolkit_butt"` as a new line if `7 onMapSingleClick` did not exists or add it to the end of the line
