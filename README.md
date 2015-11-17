@@ -57,9 +57,9 @@ class CfgRemoteExec
 
 **remoteexec.txt**
 
-+ add this `!"AdminToolkit_network_receiveRequest"` to the end of the line
++ add `!"AdminToolkit_network_receiveRequest"` to the end of the line
 
 **scripts.txt**
 
 + add `!="displayAddEventHandler [\"KeyDown\",\"call admintoolkit_bindEvents;\"]"` at the end of `7 eventHandler [...]`
-+ add `7 onMapSingleClick !="call admintoolkit_butt"` as a new line if `7 onMapSingleClick` did not exists or add it to the end of the line
++ add `7 onMapSingleClick !="call admintoolkit_butt"` as a new line if `7 onMapSingleClick` does not exists or add it to the end of the line
