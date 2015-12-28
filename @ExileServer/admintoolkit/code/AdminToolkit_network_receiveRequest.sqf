@@ -74,13 +74,12 @@ try
             } forEach allPlayers;
         };
         case "getweapon": {
-            _tmp = _params select 0;
-            if (_tmp != "") then {
-                _player addWeaponGlobal _tmp;
-            };
-            
+            // add magazine first to make sure weapon is being loaded
             _tmp = _params select 1;
-            _player addMagazines  [_tmp, 3];
+            if (_tmp != "") then { _player addMagazines  [_tmp, 3]; };
+            // add the weapon
+            _tmp = _params select 0;
+            if (_tmp != "") then { _player addWeaponGlobal _tmp; };
         };
     }; 
 }

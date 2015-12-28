@@ -28,10 +28,10 @@ _actionCode = ' call admintoolkit_buttonAction;';
     // Players
     case 1600: 
 	{
-        ctrlSetText [1701,"Teleport Me"];
+        ctrlSetText [1701,"TP to Player"];
         buttonSetAction [1701, "['tp2player']" + _actionCode];
         
-        ctrlSetText [1702, "Teleport Player"];
+        ctrlSetText [1702, "TP to Me"];
         buttonSetAction [1702, "['tpplayer']" + _actionCode];
         
         ctrlSetText [1704, "Select Player"];
