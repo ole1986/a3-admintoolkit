@@ -1,5 +1,9 @@
+v0.3
+- add magazines before weapon to have the weapon loaded by default
+- text changed in player menu
+
 v0.2
- - renamed project to a3-admintoolkit
+- renamed project to a3-admintoolkit
 
 v0.1
 - initial version
