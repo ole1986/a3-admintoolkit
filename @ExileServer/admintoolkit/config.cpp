@@ -39,5 +39,5 @@ class CfgSettings
         ModeratorList[] = {"MODERATORSUID"};
         
         ModeratorCmds[] = {"tp2player", "getvehicle"};
-    }
+    };
 };
