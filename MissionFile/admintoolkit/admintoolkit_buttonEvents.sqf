@@ -16,11 +16,12 @@ _controlId = _this select 0;
  * 1706 = Action 6
  */
 
- {
-    ctrlSetText[_x, ""];
-    buttonSetAction [_x, ""];
- } forEach [1701, 1702, 1703, 1704, 1705, 1706];
- 
+for "_i" from 1701 to 1706 do
+{
+    ctrlSetText[_i, ""];
+    buttonSetAction [_i, ""];
+};
+
 _actionCode = ' call admintoolkit_buttonAction;';
  
  switch (_controlId) do
@@ -30,12 +31,18 @@ _actionCode = ' call admintoolkit_buttonAction;';
 	{
         ctrlSetText [1701,"TP to Player"];
         buttonSetAction [1701, "['tp2player']" + _actionCode];
+        ctrlSetText [1704, "TP to Me"];
+        buttonSetAction [1704, "['tpplayer']" + _actionCode];
         
-        ctrlSetText [1702, "TP to Me"];
-        buttonSetAction [1702, "['tpplayer']" + _actionCode];
-        
-        ctrlSetText [1704, "Select Player"];
-        buttonSetAction [1704, "admintoolkit_selectedPlayer = lbText [1500, lbCurSel 1500]; ctrlSetText [1801, 'Selected Player: ' + adminhelper_selectedPlayer];"];
+        ctrlSetText [1702, "Spec Player"];
+        buttonSetAction [1702, "['specplayer']" + _actionCode];
+        ctrlSetText [1705, "Stop Spec"];
+        buttonSetAction [1705, "['specstop']" + _actionCode];
+		
+		ctrlSetText [1703, "Godmode On"];
+        buttonSetAction [1703, "['godmodeon']" + _actionCode];
+        ctrlSetText [1706, "Godmode Off"];
+        buttonSetAction [1706, "['godmodeoff']" + _actionCode];
 	};
     // Vehicles
     case 1601:

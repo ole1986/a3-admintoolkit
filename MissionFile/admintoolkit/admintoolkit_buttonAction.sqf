@@ -17,12 +17,14 @@ switch (_action) do
     };
     case 'givevehicle':
     {
+		// selection = [vehicle, player name]
         _selection = [lbText [1500, lbCurSel 1500], admintoolkit_selectedPlayer];
         systemChat format["Giving vehicle to %1", admintoolkit_selectedPlayer];
     };
-    case 'godmode': {
-        _selection = _this select 1;
-        systemChat format["Godmode applies ONLY TO YOU: %1", str _selection];
+    case 'specstop': {
+        _selection = lbText [1500, lbCurSel 1500];
+        admintoolkit_specCam cameraEffect ["terminate","back"];
+        camDestroy admintoolkit_specCam;
     };
     case 'getweapon': {
         _tmp = lbText [1500, lbCurSel 1500];

@@ -4,13 +4,17 @@
  * @version 0.2
  */
  
-private['_buttonText','_controlId', '_list', '_weaponClass', '_weaponType'];
+private['_buttonText','_controlId', '_display', '_list', '_weaponClass', '_weaponType'];
+// admintoolkit dialog
+_display = findDisplay 40000;
 // listbox control
 _controlId = 1500;
 // parameter one of the button action call
 _buttonText = _this;
 
+// clear listbox and listbox selection event
 lbClear _controlId;
+(_display displayCtrl _controlId) ctrlSetEventHandler ['LBSelChanged', ''];
 
 switch (_buttonText) do
 {
@@ -21,6 +25,9 @@ switch (_buttonText) do
         {
             lbAdd [_controlId, name _x];
         } forEach allPlayers;
+		
+		// get the listbox control to add change event for selected player
+		(_display displayCtrl _controlId) ctrlSetEventHandler ['LBSelChanged', "admintoolkit_selectedPlayer = (_this select 0) lbText (_this select 1); ctrlSetText [1801, 'Selected Player: ' + admintoolkit_selectedPlayer];"];
     };
     case 'vehicles':
     {

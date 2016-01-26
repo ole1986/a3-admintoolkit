@@ -28,7 +28,7 @@ try
             throw format [ "Moderator %1 has no access to admin command %2 with params %3 ", name _player, _request, str _params];
         };
     };
-    
+        
     switch (_request) do {
         case "tp2player": 
         {
@@ -81,6 +81,22 @@ try
             _tmp = _params select 0;
             if (_tmp != "") then { _player addWeaponGlobal _tmp; };
         };
+		case "specplayer": {
+			{
+				if(name _x isEqualTo _params) exitWith { _tmp = _x; };
+			} forEach allPlayers;
+		
+			missionNamespace setVariable ['admintoolkit_callback', [ _request, _tmp ] ];
+			(owner _player) publicVariableClient "admintoolkit_callback";
+		};
+		case "godmodeon": {
+			missionNamespace setVariable ['admintoolkit_callback', [ 'godmode', true ] ];
+			(owner _player) publicVariableClient "admintoolkit_callback";
+		};
+		case "godmodeoff": {
+			missionNamespace setVariable ['admintoolkit_callback', [ 'godmode', false ] ];
+			(owner _player) publicVariableClient "admintoolkit_callback";
+		};
     }; 
 }
 catch
