@@ -18,17 +18,18 @@ switch (_action) do
     case 'givevehicle':
     {
 		// selection = [vehicle, player name]
-        _selection = [lbText [1500, lbCurSel 1500], admintoolkit_selectedPlayer];
-        systemChat format["Giving vehicle to %1", admintoolkit_selectedPlayer];
+        _selection = [lbText [1500, lbCurSel 1500], AdminToolkit_selectedPlayer];
+        systemChat format["Giving vehicle to %1", AdminToolkit_selectedPlayer];
     };
     case 'specstop': {
-        _selection = lbText [1500, lbCurSel 1500];
+        _selection = AdminToolkit_selectedPlayer;
         admintoolkit_specCam cameraEffect ["terminate","back"];
         camDestroy admintoolkit_specCam;
+        admintoolkit_specCam = nil;
     };
     case 'getweapon': {
         _tmp = lbText [1500, lbCurSel 1500];
-        _tmp2 = [_tmp] call admintoolkit_weaponMagazine;
+        _tmp2 = [_tmp] call AdminToolkit_weaponMagazine;
         
         if ( (primaryWeapon  player) == _tmp) then { _tmp = ''; };
         if ( (secondaryWeapon player) == _tmp) then { _tmp = ''; };

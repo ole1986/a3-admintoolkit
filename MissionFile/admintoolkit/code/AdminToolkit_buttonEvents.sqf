@@ -22,7 +22,7 @@ for "_i" from 1701 to 1706 do
     buttonSetAction [_i, ""];
 };
 
-_actionCode = ' call admintoolkit_buttonAction;';
+_actionCode = ' call AdminToolkit_buttonAction;';
  
  switch (_controlId) do
 {

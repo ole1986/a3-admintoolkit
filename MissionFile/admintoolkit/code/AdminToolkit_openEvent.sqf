@@ -20,14 +20,14 @@ switch (_buttonText) do
 {
     case 'players':
     {
-        [1600] call admintoolkit_buttonEvents;
+        [1600] call AdminToolkit_buttonEvents;
         // bind action buttons for players list
         {
             lbAdd [_controlId, name _x];
         } forEach allPlayers;
 		
 		// get the listbox control to add change event for selected player
-		(_display displayCtrl _controlId) ctrlSetEventHandler ['LBSelChanged', "admintoolkit_selectedPlayer = (_this select 0) lbText (_this select 1); ctrlSetText [1801, 'Selected Player: ' + admintoolkit_selectedPlayer];"];
+		(_display displayCtrl _controlId) ctrlSetEventHandler ['LBSelChanged', "AdminToolkit_selectedPlayer = (_this select 0) lbText (_this select 1); ctrlSetText [1801, 'Selected Player: ' + AdminToolkit_selectedPlayer];"];
     };
     case 'vehicles':
     {
@@ -35,7 +35,7 @@ switch (_buttonText) do
         _list = "(configName _x find 'Exile' >= 0)" configClasses (configFile >> "CfgVehicles");
 
         // bind action buttons for players list
-        [1601] call admintoolkit_buttonEvents;
+        [1601] call AdminToolkit_buttonEvents;
 
         {
             lbAdd [_controlId, configName _x];
@@ -46,7 +46,7 @@ switch (_buttonText) do
         _list = "((configName _x find '_Base' <= 0) and (configName _x find '_base' <= 0))" configClasses (configFile >> "CfgWeapons");
 
         // bind action buttons for players list
-        [1602] call admintoolkit_buttonEvents;
+        [1602] call AdminToolkit_buttonEvents;
 
         {
             _weaponClass = configName _x;
