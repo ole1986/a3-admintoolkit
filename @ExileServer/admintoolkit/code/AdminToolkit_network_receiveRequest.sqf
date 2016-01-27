@@ -32,8 +32,9 @@ try
 		case "playersCallback":
 		{
 			_tmp = [nil, true] AdminToolkit_network_fetchPlayer;
-			missionNamespace setVariable ['admintoolkit_callback', [ _request, _tmp ] ];
-			(owner _player) publicVariableClient "admintoolkit_callback";
+			[_request, _tmp] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
+			//missionNamespace setVariable ['admintoolkit_callback', [ _request, _tmp ] ];
+			//(owner _player) publicVariableClient "admintoolkit_callback";
 		};
         case "tp2player": 
         {
@@ -79,17 +80,20 @@ try
 		case "specplayer": {
 			_tmp = [_params] call AdminToolkit_network_fetchPlayer;
 			if(!isNil "_tmp") then {
-				missionNamespace setVariable ['admintoolkit_callback', [ _request, netId _tmp ] ];
-				(owner _player) publicVariableClient "admintoolkit_callback";
+				[_request, netId _tmp] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
+				//missionNamespace setVariable ['admintoolkit_callback', [ _request, netId _tmp ] ];
+				//(owner _player) publicVariableClient "admintoolkit_callback";
 			};
 		};
 		case "godmodeon": {
-			missionNamespace setVariable ['admintoolkit_callback', [ 'godmode', true ] ];
-			(owner _player) publicVariableClient "admintoolkit_callback";
+			["godmode", true] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
+			//missionNamespace setVariable ['admintoolkit_callback', [ 'godmode', true ] ];
+			//(owner _player) publicVariableClient "admintoolkit_callback";
 		};
 		case "godmodeoff": {
-			missionNamespace setVariable ['admintoolkit_callback', [ 'godmode', false ] ];
-			(owner _player) publicVariableClient "admintoolkit_callback";
+			["godmode", false] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
+			//missionNamespace setVariable ['admintoolkit_callback', [ 'godmode', false ] ];
+			//(owner _player) publicVariableClient "admintoolkit_callback";
 		};
     }; 
 }
@@ -97,4 +101,5 @@ catch
 {
     diag_log format["[ADMINTOOLKIT]: EXCEPTION: %1", _exception];
 };
-_result
+
+_result;

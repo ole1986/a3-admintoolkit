@@ -5,14 +5,12 @@
 
 /**
  * Used to either fetch all or only one player from allPlayers array
- * HINT: possible battleye filter required for allPlayers
  * 
  * Usage: ["playername"] call admintoolkit_fetchPlayer; // returns the player object matching "playername" or nil
  * Usage: ["playername", true] call admintoolkit_fetchPlayer; // returns the player name only matching "playername" or nil
  * Usage: [nil, true] call admintoolkit_fetchPlayer; // returns the player name only matching "playername" or nil
  * Usage: call admintoolkit_fetchPlayer; // returns the array of all player units or nil if no player is available
  */
-
 private['_match', '_nameOnly', '_result'];
 _nameOnly = false;
 _match = nil;
