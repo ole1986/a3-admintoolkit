@@ -6,7 +6,6 @@
 // make functions available
 missionNamespace setVariable ['AdminToolkit_bindEvents', compileFinal preprocessFileLineNumbers "admintoolkit\code\AdminToolkit_bindEvents.sqf"];
 //missionNamespace setVariable ['AdminToolkit_fetchPlayer', compileFinal preprocessFileLineNumbers "admintoolkit\code\AdminToolkit_fetchPlayer.sqf"];
-missionNamespace setVariable ['AdminToolkit_openEvent', compileFinal preprocessFileLineNumbers "admintoolkit\code\AdminToolkit_openEvent.sqf"];
 missionNamespace setVariable ['AdminToolkit_buttonEvents', compileFinal preprocessFileLineNumbers "admintoolkit\code\AdminToolkit_buttonEvents.sqf"];
 missionNamespace setVariable ['AdminToolkit_buttonAction', compileFinal preprocessFileLineNumbers "admintoolkit\code\AdminToolkit_buttonAction.sqf"];
 missionNamespace setVariable ['AdminToolkit_weaponMagazine', compileFinal preprocessFileLineNumbers "admintoolkit\code\AdminToolkit_weaponMagazine.sqf"];
