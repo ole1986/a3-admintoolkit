@@ -1,0 +1,5 @@
+/**
+ * AdminToolkit - postInit
+ */
+ 
+true
