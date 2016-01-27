@@ -1,7 +1,6 @@
 /**
  * AdminToolkit - An arma3 administration helper tool
  * @author ole1986
- * @version 0.2
  */
  
 private["_payload","_adminList", "_moderatorList", "_moderatorCmds","_player","_request", "_params","_result", "_tmp", "_tmp2"];
