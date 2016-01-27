@@ -17,7 +17,8 @@ private ['_code', '_function', '_file'];
 }
 forEach 
 [
-	['AdminToolkit_network_receiveRequest', 'admintoolkit\code\AdminToolkit_network_receiveRequest.sqf']
+	['AdminToolkit_network_receiveRequest', 'admintoolkit\code\AdminToolkit_network_receiveRequest.sqf'],
+	['AdminToolkit_network_fetchPlayer', 'admintoolkit\code\AdminToolkit_network_fetchPlayer.sqf']
 ];
 
 diag_log "[ADMINTOOLKIT] Initializing";

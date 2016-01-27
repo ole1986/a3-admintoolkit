@@ -22,9 +22,12 @@ switch (_buttonText) do
     {
         [1600] call AdminToolkit_buttonEvents;
         // bind action buttons for players list
+		/*_list = call AdminToolkit_fetchPlayer;
         {
             lbAdd [_controlId, name _x];
-        } forEach allPlayers;
+        } forEach _list;*/
+		
+		[player, 'playersCallback', _selection] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];
 		
 		// get the listbox control to add change event for selected player
 		(_display displayCtrl _controlId) ctrlSetEventHandler ['LBSelChanged', "AdminToolkit_selectedPlayer = (_this select 0) lbText (_this select 1); ctrlSetText [1801, 'Selected Player: ' + AdminToolkit_selectedPlayer];"];

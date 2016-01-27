@@ -5,6 +5,7 @@
  
 // make functions available
 missionNamespace setVariable ['AdminToolkit_bindEvents', compileFinal preprocessFileLineNumbers "admintoolkit\code\AdminToolkit_bindEvents.sqf"];
+//missionNamespace setVariable ['AdminToolkit_fetchPlayer', compileFinal preprocessFileLineNumbers "admintoolkit\code\AdminToolkit_fetchPlayer.sqf"];
 missionNamespace setVariable ['AdminToolkit_openEvent', compileFinal preprocessFileLineNumbers "admintoolkit\code\AdminToolkit_openEvent.sqf"];
 missionNamespace setVariable ['AdminToolkit_buttonEvents', compileFinal preprocessFileLineNumbers "admintoolkit\code\AdminToolkit_buttonEvents.sqf"];
 missionNamespace setVariable ['AdminToolkit_buttonAction', compileFinal preprocessFileLineNumbers "admintoolkit\code\AdminToolkit_buttonAction.sqf"];
@@ -20,13 +21,22 @@ waitUntil {!isNull (findDisplay 46)};
 	_params = (_this select 1) select 1;
 	
 	switch(_action) do {
+		case 'playersCallback': {
+			lbClear 1500;
+			
+			{
+				lbAdd [1500, _x];
+			} forEach _params;
+		};
 		case 'specplayer': {
-			admintoolkit_specCam = "camera" camCreate (position player);
+			// get the real player object from its netId
+			_params = objectFromNetId _params;
+			admintoolkit_specCam = "camera" camCreate (position _params);
 			admintoolkit_specCam camSetRelPos [0, -1.5, 1.7];
 			admintoolkit_specCam cameraEffect ["internal", "back"];
-			admintoolkit_specCam attachTo [player, [0,-1,1.8]];
+			admintoolkit_specCam attachTo [_params, [0,-1,1.8]];
 			
-			systemChat format["Spectating %1", name player];
+			systemChat format["Spectating %1", name _params];
 			//admintoolkit_specCam = "camera" createvehicle [0,0,0];
 			//admintoolkit_specCam camsettarget player;
 			//admintoolkit_specCam SwitchCamera "internal";

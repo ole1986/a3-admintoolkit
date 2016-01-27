@@ -4,7 +4,7 @@
  * @version 0.2
  */
  
-private["_payload","_adminList", "_moderatorList", "_moderatorCmds","_player","_request", "_params","_result", "_tmp"];
+private["_payload","_adminList", "_moderatorList", "_moderatorCmds","_player","_request", "_params","_result", "_tmp", "_tmp2"];
 _payload = _this;
 _adminList = getArray(configFile >> "CfgSettings" >> "AdminToolkit" >> "AdminList");
 _moderatorList = getArray(configFile >> "CfgSettings" >> "AdminToolkit" >> "ModeratorList");
@@ -30,27 +30,29 @@ try
     };
         
     switch (_request) do {
+		case "playersCallback":
+		{
+			_tmp = [nil, true] AdminToolkit_network_fetchPlayer;
+			missionNamespace setVariable ['admintoolkit_callback', [ _request, _tmp ] ];
+			(owner _player) publicVariableClient "admintoolkit_callback";
+		};
         case "tp2player": 
         {
             // Teleport to players position
             // Example #1: [player, 'tpto', '<playername>']
-            
-            {
-                if(name _x isEqualTo _params) exitWith {
-                    _result = getPosATL _x;
-                    _player setPosATL _result;
-                };
-            } forEach allPlayers;
+            _tmp = [_params] call AdminToolkit_network_fetchPlayer;
+			if(!isNil "_tmp") then {
+				_player setPosATL (getPosATL _tmp);
+			};
         };
         case "tpplayer": 
         {
             // Teleport to players position
             // Example #1: [player, 'tpto', '<playername>']
-            {
-                if(name _x isEqualTo _params) exitWith {
-                    _x setPosATL (position _player);
-                };
-            } forEach allPlayers;
+			_tmp = [_params] call AdminToolkit_network_fetchPlayer;
+			if(!isNil "_tmp") then {
+				_tmp setPosATL (position _player);
+			};
         };
         case "tp2pos": {
             // Teleport to coords ATL
@@ -62,16 +64,10 @@ try
              _result = _params createVehicle position _player;
         };
         case "givevehicle": {
-            
-            _tmp = _params select 1;
-            {
-                if(name _x isEqualTo _tmp) exitWith {
-                    // get vehicle parameter
-                    _tmp = _params select 0;
-                    // create the vehicle for the player
-                    _result = _tmp createVehicle position _x;
-                };
-            } forEach allPlayers;
+            _tmp = [_params select 1] call AdminToolkit_network_fetchPlayer;
+			if(!isNil "_tmp") then {
+				(_params select 0) createVehicle position _tmp;
+			};
         };
         case "getweapon": {
             // add magazine first to make sure weapon is being loaded
@@ -82,12 +78,11 @@ try
             if (_tmp != "") then { _player addWeaponGlobal _tmp; };
         };
 		case "specplayer": {
-			{
-				if(name _x isEqualTo _params) exitWith { _tmp = _x; };
-			} forEach allPlayers;
-		
-			missionNamespace setVariable ['admintoolkit_callback', [ _request, _tmp ] ];
-			(owner _player) publicVariableClient "admintoolkit_callback";
+			_tmp = [_params] call AdminToolkit_network_fetchPlayer;
+			if(!isNil "_tmp") then {
+				missionNamespace setVariable ['admintoolkit_callback', [ _request, netId _tmp ] ];
+				(owner _player) publicVariableClient "admintoolkit_callback";
+			};
 		};
 		case "godmodeon": {
 			missionNamespace setVariable ['admintoolkit_callback', [ 'godmode', true ] ];
