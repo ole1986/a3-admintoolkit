@@ -3,7 +3,7 @@
  * @author ole1986
  */
  
-private["_payload","_adminList", "_moderatorList", "_moderatorCmds","_player","_request", "_params","_result", "_tmp", "_tmp2"];
+private["_payload","_adminList", "_moderatorList", "_moderatorCmds","_player","_request", "_params","_result", "_tmp", "_session"];
 _payload = _this;
 _adminList = getArray(configFile >> "CfgSettings" >> "AdminToolkit" >> "AdminList");
 _moderatorList = getArray(configFile >> "CfgSettings" >> "AdminToolkit" >> "ModeratorList");
@@ -19,7 +19,8 @@ try
         throw format ["Player %1 with UID %2 does not have access", name _player, getPlayerUID _player];
     };
     
-    diag_log format ["[ADMINTOOLKIT] Calling %1 from player %2", _request, name _player];
+	_session = _player getVariable ['session', ''];
+    diag_log format ["[ADMINTOOLKIT] Calling %1 from player %2 (session %3)", _request, name _player, _session];
 
     // if its a moderator, check if commands is allowed
     if ( getPlayerUID _player in _moderatorList ) then {
@@ -31,8 +32,9 @@ try
     switch (_request) do {
 		case "playersCallback":
 		{
-			_tmp = [nil, true] AdminToolkit_network_fetchPlayer;
-			[_request, _tmp] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
+			_tmp = ['', true] call AdminToolkit_network_fetchPlayer;
+			
+			[_request, _session, _tmp] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
 			//missionNamespace setVariable ['admintoolkit_callback', [ _request, _tmp ] ];
 			//(owner _player) publicVariableClient "admintoolkit_callback";
 		};
@@ -79,21 +81,17 @@ try
         };
 		case "specplayer": {
 			_tmp = [_params] call AdminToolkit_network_fetchPlayer;
-			if(!isNil "_tmp") then {
-				[_request, netId _tmp] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
-				//missionNamespace setVariable ['admintoolkit_callback', [ _request, netId _tmp ] ];
-				//(owner _player) publicVariableClient "admintoolkit_callback";
+			if(!(isNil "_tmp") && (typeName _tmp == "OBJECT")) then {
+				[_request, _session, netId _tmp] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
 			};
 		};
 		case "godmodeon": {
-			["godmode", true] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
-			//missionNamespace setVariable ['admintoolkit_callback', [ 'godmode', true ] ];
-			//(owner _player) publicVariableClient "admintoolkit_callback";
+			// all clients will have their ammo set to 1 for their current weapon
+			//{player setAmmo [primaryWeapon player, 1];} remoteExecCall ["bis_fnc_call", owner _player];
+			["godmode", _session, true] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
 		};
 		case "godmodeoff": {
-			["godmode", false] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
-			//missionNamespace setVariable ['admintoolkit_callback', [ 'godmode', false ] ];
-			//(owner _player) publicVariableClient "admintoolkit_callback";
+			["godmode", _session, false] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
 		};
     }; 
 }

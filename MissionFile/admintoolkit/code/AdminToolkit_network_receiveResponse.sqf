@@ -3,11 +3,12 @@
  * @author ole1986
  */
  
-private["_request", "_params"];
+private["_request", "_params", "_session"];
 try 
 {
 	_request = _this select 0; // what to do
-    _params = _this select 1; // mixed value
+	_session = _this select 1;
+    _params = _this select 2; // mixed value
     
 	systemChat format["[ADMINTOOLKIT]: networkResponse: %1", _request];
     

@@ -13,16 +13,15 @@
  */
 private['_match', '_nameOnly', '_result'];
 _nameOnly = false;
-_match = nil;
+_match = '';
 _result = [];
-
 if(typeName _this == "ARRAY") then {
 	_match = _this select 0;
 	if(count _this > 1) then { _nameOnly = _this select 1; };
 };
 
 {
-	if(isNil "_match") then {
+	if(_match == '') then {
 		if(_nameOnly) then {
 			_result pushBack (name _x);
 		} else {
@@ -43,9 +42,9 @@ if(typeName _this == "ARRAY") then {
 if(count _result <= 0) then {
 	_result = nil;
 } else {
-	if(count _result == 1) then {
+	if((count _result == 1) && (_match != '')) then {
 		_result = _result select 0;
 	};
-}
+};
 
 _result;

@@ -11,7 +11,7 @@ _listboxId = 1500;
 _controlId = 1600;
 
 // get the IDC from the button being pressed
-if(!isNil "_this") then { _controlId = ctrlIDC _this; };
+if(typeName _this == "SCALAR") then { _controlId = _this; };
 
 /** 
  * UPPER BUTTONS

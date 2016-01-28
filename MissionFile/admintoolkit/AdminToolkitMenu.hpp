@@ -62,7 +62,7 @@ class AdminToolkitMenu {
         y = 0.015 * safezoneH + safezoneY;
         w = 0.0567187 * safezoneW;
         h = 0.033 * safezoneH;
-        action = "_this call AdminToolkit_buttonEvent";
+        action = "1600 call AdminToolkit_buttonEvents";
     };
     class RscAdminToolkitVehicles: RscButton
     {
@@ -72,7 +72,7 @@ class AdminToolkitMenu {
         y = 0.015 * safezoneH + safezoneY;
         w = 0.0567187 * safezoneW;
         h = 0.033 * safezoneH;
-        action = "_this call AdminToolkit_buttonEvent";
+        action = "1601 call AdminToolkit_buttonEvents";
     };
     class RscAdminToolkitWeapons: RscButton
     {
@@ -82,7 +82,7 @@ class AdminToolkitMenu {
         y = 0.015 * safezoneH + safezoneY;
         w = 0.0567187 * safezoneW;
         h = 0.033 * safezoneH;
-        action = "_this call AdminToolkit_buttonEvent";
+        action = "1602 call AdminToolkit_buttonEvents";
     };
     class RscAdminToolkitAction1: RscButton
     {
