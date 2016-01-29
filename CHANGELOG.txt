@@ -1,3 +1,9 @@
+v0.4
+- added server command password option in config.cpp
+- kick/ban players
+- god mode
+- spectate players
+
 v0.3
 - add magazines before weapon to have the weapon loaded by default
 - text changed in player menu

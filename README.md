@@ -1,4 +1,4 @@
-## AdminToolkit for Arma 3 v0.3 - Exile Edition -
+## AdminToolkit for Arma 3 v0.4 - Exile Edition -
 
 This tool is used to administrate Arma3 multiplayer server more easily.
 
