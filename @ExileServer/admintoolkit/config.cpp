@@ -29,15 +29,21 @@ class CfgFunctions {
 class CfgSettings
 {
     class AdminToolkit {
+		/**
+		 * Server command password required to execute kick, ban, etc...
+		 */
+		ServerCommandPassword = "";
         /**
          * list of allowed admins using its player UID
          */
-        AdminList[] = {"76561198037325738", "76561198088277918"};
+        AdminList[] = {"76561198088277918"};
         /**
          * list of admins with restricted access only
          */
-        ModeratorList[] = {"MODERATORSUID"};
-        
-        ModeratorCmds[] = {"tp2player", "getvehicle"};
+        ModeratorList[] = {"76561198037325738"};
+        /**
+		 * allowed commands for moderators
+		 */
+        ModeratorCmds[] = {"tp2player", "getvehicle", "kickplayer", "playersCallback", "specplayer", "specstop"};
     };
 };

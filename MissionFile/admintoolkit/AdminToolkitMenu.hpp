@@ -17,11 +17,13 @@ class AdminToolkitMenu {
         RscAdminToolkitList,
         RscAdminToolkitWeapons,
         RscAdminToolkitAction1,
-        RscAdminToolkitAction4,
         RscAdminToolkitAction2,
         RscAdminToolkitAction3,
+		RscAdminToolkitAction4,
         RscAdminToolkitAction5,
-        RscAdminToolkitAction6
+        RscAdminToolkitAction6,
+		RscAdminToolkitAction7,
+		RscAdminToolkitAction8
     };
     
     ////////////////////////////////////////////////////////
@@ -52,7 +54,7 @@ class AdminToolkitMenu {
         x = 0.773281 * safezoneW + safezoneX;
         y = 0.082 * safezoneH + safezoneY;
         w = 0.216563 * safezoneW;
-        h = 0.682 * safezoneH;
+        h = 0.602 * safezoneH;
     };
     class RscAdminToolkitPlayers: RscButton
     {
@@ -89,7 +91,7 @@ class AdminToolkitMenu {
         idc = 1701;
         text = ""; //--- ToDo: Localize;
         x = 0.773281 * safezoneW + safezoneX;
-        y = 0.786 * safezoneH + safezoneY;
+        y = 0.731 * safezoneH + safezoneY;
         w = 0.0567187 * safezoneW;
         h = 0.033 * safezoneH;
         action = "";
@@ -99,7 +101,7 @@ class AdminToolkitMenu {
         idc = 1702;
         text = ""; //--- ToDo: Localize;
         x = 0.855781 * safezoneW + safezoneX;
-        y = 0.786 * safezoneH + safezoneY;
+        y = 0.731 * safezoneH + safezoneY;
         w = 0.0567187 * safezoneW;
         h = 0.033 * safezoneH;
         action = "";
@@ -109,7 +111,7 @@ class AdminToolkitMenu {
         idc = 1703;
         text = ""; //--- ToDo: Localize;
         x = 0.933125 * safezoneW + safezoneX;
-        y = 0.786 * safezoneH + safezoneY;
+        y = 0.731 * safezoneH + safezoneY;
         w = 0.0567187 * safezoneW;
         h = 0.033 * safezoneH;
         action = "";
@@ -119,7 +121,7 @@ class AdminToolkitMenu {
         idc = 1704;
         text = ""; //--- ToDo: Localize;
         x = 0.773281 * safezoneW + safezoneX;
-        y = 0.841 * safezoneH + safezoneY;
+        y = 0.786 * safezoneH + safezoneY;
         w = 0.0567187 * safezoneW;
         h = 0.033 * safezoneH;
         action = "";
@@ -129,7 +131,7 @@ class AdminToolkitMenu {
         idc = 1705;
         text = ""; //--- ToDo: Localize;
         x = 0.855781 * safezoneW + safezoneX;
-        y = 0.841 * safezoneH + safezoneY;
+        y = 0.786 * safezoneH + safezoneY;
         w = 0.0567187 * safezoneW;
         h = 0.033 * safezoneH;
         action = "";
@@ -137,6 +139,26 @@ class AdminToolkitMenu {
     class RscAdminToolkitAction6: RscButton
     {
         idc = 1706;
+        text = ""; //--- ToDo: Localize;
+        x = 0.933125 * safezoneW + safezoneX;
+        y = 0.786 * safezoneH + safezoneY;
+        w = 0.0567187 * safezoneW;
+        h = 0.033 * safezoneH;
+        action = "";
+    };
+	class RscAdminToolkitAction7: RscButton
+    {
+        idc = 1707;
+        text = ""; //--- ToDo: Localize;
+        x = 0.773281 * safezoneW + safezoneX;
+        y = 0.841 * safezoneH + safezoneY;
+        w = 0.0567187 * safezoneW;
+        h = 0.033 * safezoneH;
+        action = "";
+    };
+	class RscAdminToolkitAction8: RscButton
+    {
+        idc = 1708;
         text = ""; //--- ToDo: Localize;
         x = 0.933125 * safezoneW + safezoneX;
         y = 0.841 * safezoneH + safezoneY;

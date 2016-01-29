@@ -2,12 +2,16 @@
 
 This tool is used to administrate Arma3 multiplayer server more easily.
 
+<img src="images/a3-atk-players.jpg" width="250" title="Manage players">
 <img src="images/a3-atk-vehicles.jpg" width="250" title="Spawn vehicles">
 <img src="images/a3-atk-weapons.jpg" width="250" title="Get weapons">
 
 **Core Features:**
 
 - Teleport from/to players and to map position (by using the in-game map - hold ALT key and press LMB)
+- Spectate player
+- God Mode
+- Kick/Ban players
 - Vehicle spawning (for player)
 - Weapon/Item spawing
 
@@ -44,6 +48,7 @@ class CfgRemoteExec
     class Functions
     {
         class AdminToolkit_network_receiveRequest { allowedTargets=2; }; // <- ADD THIS LINE
+		class AdminToolkit_network_receiveResponse { allowedTargets=1; }; // <- ADD THIS LINE
     };
 };
 ```

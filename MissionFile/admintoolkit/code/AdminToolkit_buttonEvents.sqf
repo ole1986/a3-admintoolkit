@@ -31,10 +31,12 @@ if(typeName _this == "SCALAR") then { _controlId = _this; };
  * 1704 = Action 4
  * 1705 = Action 5
  * 1706 = Action 6
+ * 1707 = Action 7
+ * 1708 = Action 8
  */
 
  // clear lower buttons first
-for "_i" from 1701 to 1706 do
+for "_i" from 1701 to 1708 do
 {
     ctrlSetText[_i, ""];
     buttonSetAction [_i, ""];
@@ -70,6 +72,12 @@ _actionCode = ' call AdminToolkit_buttonAction;';
         buttonSetAction [1703, "['godmodeon']" + _actionCode];
         ctrlSetText [1706, "Godmode Off"];
         buttonSetAction [1706, "['godmodeoff']" + _actionCode];
+		
+		ctrlSetText [1707, "Kick Player"];
+        buttonSetAction [1707, "['kickplayer']" + _actionCode];
+		
+		ctrlSetText [1708, "Ban Player"];
+        buttonSetAction [1708, "['banplayer']" + _actionCode];
 	};
     // Vehicles
     case 1601:

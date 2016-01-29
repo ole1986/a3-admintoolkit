@@ -30,6 +30,20 @@ try
     };
         
     switch (_request) do {
+		case "kickplayer":
+		{
+			_tmp = getText(configFile >> "CfgSettings" >> "AdminToolkit" >> "ServerCommandPassword");
+			if(_tmp != "") then {
+				_tmp serverCommand format["#exec kick ""%1""", _params];
+			};
+		};
+		case "banplayer":
+		{
+			_tmp = getText(configFile >> "CfgSettings" >> "AdminToolkit" >> "ServerCommandPassword");
+			if(_tmp != "") then {
+				_tmp serverCommand format["#exec ban ""%1""", _params];
+			};
+		};
 		case "playersCallback":
 		{
 			_tmp = ['', true] call AdminToolkit_network_fetchPlayer;
