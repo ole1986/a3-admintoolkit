@@ -35,6 +35,7 @@ Placeholder            | File
 ### Mission modifications
 
 + Copy the folder `MissionFile\admintoolkit` into your `<MissionFile>` directory
++ **add the line `[] execVM "admintoolkit\init.sqf"` in your `initPlayerLocal.sqf`**
 + Modify the `<MissionFile>\description.ext` and add the following lines
  
 ```
