@@ -67,4 +67,4 @@ class CfgRemoteExec
 
 + add `!="displayAddEventHandler [\"KeyDown\",\"call admintoolkit_bindEvents;\"]"` at the end of `7 eventHandler [...]`
 + add `7 onMapSingleClick !="call admintoolkit_butt"` as a new line if `7 onMapSingleClick` does not exists or add it to the end of the line
-+ add `objectFromNetId _params;\nadmintoolkit_specCam = \"camera\" camCreate` at the end of line `7 camCreate`
++ add `!="objectFromNetId _params;\nadmintoolkit_specCam = \"camera\" camCreate"` at the end of line `7 camCreate`
