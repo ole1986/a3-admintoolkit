@@ -1,3 +1,6 @@
+v0.5
+- concept changes: only @AdminToolkit client mod and server admintoolkit.pbo is required (plus admintoolkit.bikey for the server)
+
 v0.4
 - added server command password option in config.cpp
 - kick/ban players

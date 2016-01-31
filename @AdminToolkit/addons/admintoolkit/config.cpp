@@ -14,6 +14,9 @@ class CfgPatches
 	};
 };
 
+#include <\admintoolkit\defines.hpp>
+#include <\admintoolkit\AdminToolkitMenu.hpp>
+
 class CfgFunctions
 {
 	class AdminToolkit
@@ -39,10 +42,8 @@ class CfgRemoteExec
 	{
 		mode=1;
 		jip=0;
-		class AdminToolkit_network_receiveRequest
-		{
-			allowedTargets=2;
-		};
+		class AdminToolkit_network_receiveRequest { allowedTargets=2; };
+		class AdminToolkit_network_receiveResponse { allowedTargets=1; };
 	};
 	class Commands
 	{

@@ -1,4 +1,4 @@
-## AdminToolkit for Arma 3 v0.4 - Exile Edition -
+## AdminToolkit for Arma 3 v0.5 - Exile Edition -
 
 This tool is used to administrate Arma3 multiplayer server more easily.
 
@@ -20,47 +20,52 @@ This tool is used to administrate Arma3 multiplayer server more easily.
 ## Installation
 ### Required Tools
 
-+ PBO Manager (I use cpbo from http://www.kegetys.fi/category/gaming/armamods/)
++ (optional) PBO Manager - required to setup server password
 + Notepad++ or any other Text Editor (https://notepad-plus-plus.org/)
 
-### Prerequisite
+### Client installation
 
-Before you can start it is necessary to **unpack** the &lt;MissionFile&gt; using your favorite pbo manager
++ Copy the directory `@AdminToolkit` folder into your Arma3 game directory 
++ Load the mod through Arma 3 Launcher when you start the game
 
-Placeholder            | File
----------------------- | -------------
-&lt;MissionFile&gt;    | Exile.&lt;Mapname&gt;.pbo (E.g. Exile.Altis.pbo )
-&lt;ExileServerMod&gt; | @ExileServer Exile server mod folder located in game directory.
-
-### Mission modifications
-
-+ Copy the folder `MissionFile\admintoolkit` into your `<MissionFile>` directory
-+ **add the below into your `initPlayerLocal.sqf` 
-```
-// AdminToolkit
-[] execVM "admintoolkit\init.sqf"
-```
-+ Modify the `<MissionFile>\description.ext` and add the following lines
- 
-```
-#include "admintoolkit\defines.hpp"
-#include "admintoolkit\AdminToolkitMenu.hpp"
-```
----
-```
-class CfgRemoteExec
-{
-    class Functions
-    {
-        class AdminToolkit_network_receiveRequest { allowedTargets=2; }; // <- ADD THIS LINE
-		class AdminToolkit_network_receiveResponse { allowedTargets=1; }; // <- ADD THIS LINE
-    };
-};
-```
-
-### Server modifictions
+### Server installation
 
 + Copy the `admintoolkit.pbo` from the @ExileServer folder into your `<ExileServerMod>\addons` directory.
++ Copy the `admintoolkit.bikey` server key file into your server `keys` directory
+
+## Configuration
+
+The important configuration settings are located in `@ExileServer\admintoolkit\config.cpp`.
+If you want to use the feature of  kick/ban players you need to customize the `ServerCommandPassword` properly (check your server.cfg)
+
+```
+/**
+ * Server command password required to execute kick, ban, etc...
+ */
+ServerCommandPassword = "";
+```
+
+To setup the administrators and moderators these lines are important
+
+```
+/**
+ * list of allowed admins using its player UID
+ */
+AdminList[] = {"76561198088277918"};
+/**
+ * list of admins with restricted access only
+ */
+ModeratorList[] = {"76561198037325738"};
+```
+
+Additionally you can set the permissions a moderator has by using the below property
+
+```
+/**
+ * allowed commands for moderators (default: teleport to a player, get a vehicle, get player list, spectate a player)
+ */
+ModeratorCmds[] = {"tp2player", "getvehicle", "kickplayer", "playersCallback", "specplayer", "specstop"};
+```
  
 ### Battleye
 
@@ -70,6 +75,6 @@ class CfgRemoteExec
 
 **scripts.txt**
 
-+ add `!="displayAddEventHandler [\"KeyDown\",\"call admintoolkit_bindEvents;\"]"` at the end of `7 eventHandler [...]`
++ add `!="displayAddEventHandler [\"KeyDown\",\"call AdminToolkit_bindEvents;\"]"` at the end of `7 eventHandler [...]`
 + add `7 onMapSingleClick !="call admintoolkit_butt"` as a new line if `7 onMapSingleClick` does not exists or add it to the end of the line
 + add `!="objectFromNetId _params;\nadmintoolkit_specCam = \"camera\" camCreate"` at the end of line `7 camCreate`

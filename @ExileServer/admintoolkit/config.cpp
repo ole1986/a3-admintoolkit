@@ -1,7 +1,6 @@
 /**
  * AdminToolkit - An arma3 administration helper tool
  * @author ole1986
- * @version 0.1
  */
  
 class CfgPatches {
@@ -34,15 +33,15 @@ class CfgSettings
 		 */
 		ServerCommandPassword = "";
         /**
-         * list of allowed admins using its player UID
+         * list of allowed admins using its player UID (default: me)
          */
-        AdminList[] = {"76561198088277918"};
+        AdminList[] = {"76561198037325738"};
         /**
          * list of admins with restricted access only
          */
-        ModeratorList[] = {"76561198037325738"};
+        ModeratorList[] = {};
         /**
-		 * allowed commands for moderators
+		 * allowed commands for moderators (default: teleport to a player, get a vehicle, get player list, spectate a player)
 		 */
         ModeratorCmds[] = {"tp2player", "getvehicle", "kickplayer", "playersCallback", "specplayer", "specstop"};
     };

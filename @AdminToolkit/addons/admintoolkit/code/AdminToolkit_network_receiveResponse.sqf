@@ -10,7 +10,7 @@ try
 	_session = _this select 1;
     _params = _this select 2; // mixed value
     
-	systemChat format["[ADMINTOOLKIT]: networkResponse: %1", _request];
+	//systemChat format["[ADMINTOOLKIT]: networkResponse: %1", _request];
     
 	switch(_request) do {
 		case 'playersCallback': {
