@@ -1,4 +1,4 @@
-## AdminToolkit for Arma 3 v0.5 - Exile Edition -
+## AdminToolkit for Arma 3 v0.6 - Exile Edition -
 
 This tool is used to administrate Arma3 multiplayer server more easily.
 
@@ -13,7 +13,7 @@ This tool is used to administrate Arma3 multiplayer server more easily.
 - God Mode
 - Kick/Ban players
 - Vehicle spawning (for player)
-- Weapon/Item spawing
+- spawn Weapon/Magazine
 
 *Please note: This does not replace an AntiCheat software neither be used as cheating tool*
 

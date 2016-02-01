@@ -3,7 +3,7 @@
  * @author ole1986
  */
  
-private['_controlId', '_display','_listboxId', '_actionCode'];
+private['_controlId', '_display','_listboxId', '_actionCode', '_weaponClass', '_weaponType'];
 _display = findDisplay 40000;
 _listboxId = 1500;
 
@@ -35,12 +35,16 @@ if(typeName _this == "SCALAR") then { _controlId = _this; };
  * 1708 = Action 8
  */
 
- // clear lower buttons first
-for "_i" from 1701 to 1708 do
-{
-    ctrlSetText[_i, ""];
-    buttonSetAction [_i, ""];
+ 
+// clear lower buttons first when main buttons have been clicked (not the search)
+if(_controlId >= 1600 && _controlId <= 1699) then {
+	for "_i" from 1701 to 1708 do
+	{
+		ctrlSetText[_i, ""];
+		buttonSetAction [_i, ""];
+	};
 };
+
 
 // clear listbox and selection event
 lbClear _listboxId;
@@ -56,7 +60,7 @@ _actionCode = ' call AdminToolkit_buttonAction;';
 		[player, 'playersCallback'] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];
 		
 		// get the listbox control to add change event for selected player
-		(_display displayCtrl _listboxId) ctrlSetEventHandler ['LBSelChanged', "AdminToolkit_selectedPlayer = (_this select 0) lbText (_this select 1); ctrlSetText [1801, 'Selected Player: ' + AdminToolkit_selectedPlayer];"];
+		(_display displayCtrl _listboxId) ctrlSetEventHandler ['LBSelChanged', "AdminToolkit_selectedPlayer = (_this select 0) lbText (_this select 1); ctrlSetText [1803, 'Selected Player: ' + AdminToolkit_selectedPlayer];"];
 		
         ctrlSetText [1701,"TP to Player"];
         buttonSetAction [1701, "['tp2player']" + _actionCode];
@@ -111,7 +115,17 @@ _actionCode = ' call AdminToolkit_buttonAction;';
 		
         ctrlSetText [1701,"Get Weapon"];
         buttonSetAction [1701, "['getweapon']" + _actionCode];
+		
+		ctrlSetText [1702,"Get Ammo"];
+        buttonSetAction [1702, "['getammo']" + _actionCode];
     };
+	// Search
+	case 1802:
+	{
+		// get the text from search input
+		_list = ctrlText 1801;
+		hint _list;
+	};
 };
 
 true;

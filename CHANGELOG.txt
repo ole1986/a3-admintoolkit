@@ -1,3 +1,7 @@
+v0.6
+- added three MOD buttons below "Players, Vehicles, Weapons"
+- added "Get Ammo" button in "Weapons" section
+
 v0.5
 - concept changes: only @AdminToolkit client mod and server admintoolkit.pbo is required (plus admintoolkit.bikey for the server)
 

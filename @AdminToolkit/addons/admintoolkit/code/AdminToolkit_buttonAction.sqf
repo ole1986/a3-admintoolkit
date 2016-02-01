@@ -29,14 +29,17 @@ switch (_action) do
     case 'getweapon': {
         _tmp = lbText [1500, lbCurSel 1500];
         _tmp2 = [_tmp] call AdminToolkit_weaponMagazine;
-        
-        if ( (primaryWeapon  player) == _tmp) then { _tmp = ''; };
-        if ( (secondaryWeapon player) == _tmp) then { _tmp = ''; };
-        if ( (handgunWeapon  player) == _tmp) then { _tmp = ''; };
-        
+                
         // parameter 1: weapon class name or empty when already in inventory
         // parameter 2: compatible magazine
         _selection = [_tmp, _tmp2];
+    };
+	case 'getammo': {
+        _tmp = lbText [1500, lbCurSel 1500];
+        _tmp2 = [_tmp] call AdminToolkit_weaponMagazine;
+        
+        // parameter 1: compatible magazine
+        _selection = [_tmp2];
     };
     default 
     {

@@ -88,11 +88,15 @@ try
         case "getweapon": {
             // add magazine first to make sure weapon is being loaded
             _tmp = _params select 1;
-            if (_tmp != "") then { _player addMagazines  [_tmp, 3]; };
+            if (_tmp != "") then { _player addMagazines  [_tmp, 1]; };
             // add the weapon
             _tmp = _params select 0;
             if (_tmp != "") then { _player addWeaponGlobal _tmp; };
         };
+		case "getammo": {
+			_tmp = _params select 0;
+            if (_tmp != "") then { _player addMagazines  [_tmp, 1]; };
+		};
 		case "specplayer": {
 			_tmp = [_params] call AdminToolkit_network_fetchPlayer;
 			if(!(isNil "_tmp") && (typeName _tmp == "OBJECT")) then {
