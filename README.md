@@ -20,7 +20,7 @@ This tool is used to administrate Arma3 multiplayer server more easily.
 ## Installation
 ### Required Tools
 
-+ (optional) PBO Manager - required to setup server password
++ PBO Manager - to setup UIDs and server password in server pbo
 + Notepad++ or any other Text Editor (https://notepad-plus-plus.org/)
 
 ### Client installation
