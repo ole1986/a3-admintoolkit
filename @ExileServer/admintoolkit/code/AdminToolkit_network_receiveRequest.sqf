@@ -97,6 +97,9 @@ try
 			_tmp = _params select 0;
             if (_tmp != "") then { _player addMagazines  [_tmp, 1]; };
 		};
+		case "getitem": {
+			if (_params != "") then { _player addItem _params; };
+		};
 		case "specplayer": {
 			_tmp = [_params] call AdminToolkit_network_fetchPlayer;
 			if(!(isNil "_tmp") && (typeName _tmp == "OBJECT")) then {

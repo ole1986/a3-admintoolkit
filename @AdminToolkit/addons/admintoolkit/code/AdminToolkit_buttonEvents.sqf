@@ -4,6 +4,7 @@
  */
  
 private['_controlId', '_display','_listboxId', '_actionCode', '_weaponClass', '_weaponType'];
+disableSerialization;
 _display = findDisplay 40000;
 _listboxId = 1500;
 
@@ -11,7 +12,18 @@ _listboxId = 1500;
 _controlId = 1600;
 
 // get the IDC from the button being pressed
-if(typeName _this == "SCALAR") then { _controlId = _this; };
+if(typeName _this == "SCALAR") then {
+	_controlId = _this;
+} else {
+	// initial call
+	ctrlSetText [1603,""];
+	//buttonSetAction [1605, "1604 call AdminToolkit_buttonEvents"];
+	ctrlSetText [1604,""];
+	//buttonSetAction [1605, "1604 call AdminToolkit_buttonEvents"];
+	
+	ctrlSetText [1605,"Items"];
+	buttonSetAction [1605, "1604 call AdminToolkit_buttonEvents"];
+};
 
 /** 
  * UPPER BUTTONS
@@ -19,7 +31,9 @@ if(typeName _this == "SCALAR") then { _controlId = _this; };
  * 1600 = Player (default)
  * 1601 = Vehicles
  * 1602 = Weapons
- *
+ * 1603 = Mod 1
+ * 1604 = Mod 2
+ * 1605 = Mod 3
  */
  
 /**
@@ -103,14 +117,14 @@ _actionCode = ' call AdminToolkit_buttonAction;';
     // Weapons
     case 1602:
     {
-		_list = "((configName _x find '_Base' <= 0) and (configName _x find '_base' <= 0))" configClasses (configFile >> "CfgWeapons");
+		_list = "((getNumber(_x >> 'Type') > 0) and (getNumber(_x >> 'Type') <= 4) and (configName _x find '_Base' <= 0) and (configName _x find '_base' <= 0))" configClasses (configFile >> "CfgWeapons");
 
         {
             _weaponClass = configName _x;
-            _weaponType = getNumber (configFile >> "CfgWeapons" >> _weaponClass >> "Type");
-            if (_weaponType > 0 and _weaponType <= 4) then {
-                lbAdd [_listboxId, _weaponClass];
-            };
+            //_weaponType = getNumber (_x >> "Type");
+            //if (_weaponType > 0 and _weaponType <= 4) then {
+            lbAdd [_listboxId, _weaponClass];
+            //};
         } forEach _list;
 		
         ctrlSetText [1701,"Get Weapon"];
@@ -119,6 +133,19 @@ _actionCode = ' call AdminToolkit_buttonAction;';
 		ctrlSetText [1702,"Get Ammo"];
         buttonSetAction [1702, "['getammo']" + _actionCode];
     };
+	// Items
+	case 1604:
+	{
+		_list = "getNumber(_x >> 'Type') == 256" configClasses (configFile >> "CfgMagazines");
+		
+		{
+            _weaponClass = configName _x;
+            lbAdd [_listboxId, _weaponClass];
+        } forEach _list;
+		
+		ctrlSetText [1701,"Get Item"];
+        buttonSetAction [1701, "['getitem']" + _actionCode];
+	};
 	// Search
 	case 1802:
 	{
