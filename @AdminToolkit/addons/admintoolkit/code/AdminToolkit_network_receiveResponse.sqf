@@ -13,7 +13,7 @@ try
 	//systemChat format["[ADMINTOOLKIT]: networkResponse: %1", _request];
     
 	switch(_request) do {
-		case 'playersCallback': {
+		case 'getplayers': {
 			lbClear 1500;
 			
 			{

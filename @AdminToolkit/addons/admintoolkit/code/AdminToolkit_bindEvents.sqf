@@ -15,7 +15,7 @@ switch (_this select 1) do
         if (!dialog) then {
             systemChat "Opening AdminToolkitMenu...";
             createDialog "AdminToolkitMenu";
-            call AdminToolkit_buttonEvents;
+            [] call AdminToolkit_buttonEvents;
         } else {
             closeDialog 0;
         };

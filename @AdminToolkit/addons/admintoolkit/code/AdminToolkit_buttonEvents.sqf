@@ -3,17 +3,18 @@
  * @author ole1986
  */
  
-private['_controlId', '_display','_listboxId', '_actionCode', '_weaponClass', '_weaponType'];
+private['_controlId', '_filter', '_display','_listboxId', '_actionCode', '_weaponClass', '_className', '_weaponType'];
 disableSerialization;
 _display = findDisplay 40000;
 _listboxId = 1500;
-
+_filter = "";
 // open players by default
 _controlId = 1600;
 
 // get the IDC from the button being pressed
-if(typeName _this == "SCALAR") then {
-	_controlId = _this;
+if(count _this > 0) then {
+	_controlId = _this select 0;
+	if(count _this > 1) then { _filter = _this select 1; };
 } else {
 	// initial call
 	ctrlSetText [1603,""];
@@ -22,7 +23,7 @@ if(typeName _this == "SCALAR") then {
 	//buttonSetAction [1605, "1604 call AdminToolkit_buttonEvents"];
 	
 	ctrlSetText [1605,"Items"];
-	buttonSetAction [1605, "1604 call AdminToolkit_buttonEvents"];
+	buttonSetAction [1605, "1605 call AdminToolkit_buttonEvents"];
 };
 
 /** 
@@ -57,6 +58,8 @@ if(_controlId >= 1600 && _controlId <= 1699) then {
 		ctrlSetText[_i, ""];
 		buttonSetAction [_i, ""];
 	};
+	
+	AdminToolkit_selectedMenu = _controlId;
 };
 
 
@@ -71,7 +74,7 @@ _actionCode = ' call AdminToolkit_buttonAction;';
     // Players
     case 1600: 
 	{
-		[player, 'playersCallback'] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];
+		[player, 'getplayers'] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];
 		
 		// get the listbox control to add change event for selected player
 		(_display displayCtrl _listboxId) ctrlSetEventHandler ['LBSelChanged', "AdminToolkit_selectedPlayer = (_this select 0) lbText (_this select 1); ctrlSetText [1803, 'Selected Player: ' + AdminToolkit_selectedPlayer];"];
@@ -104,7 +107,15 @@ _actionCode = ' call AdminToolkit_buttonAction;';
         _list = "(configName _x find 'Exile' >= 0)" configClasses (configFile >> "CfgVehicles");
 
         {
-            lbAdd [_listboxId, configName _x];
+			_className = configName _x;
+			if(_filter == "") then {
+				lbAdd [_listboxId, _className];
+			} else {
+				if(_className find _filter >= 0) then 
+				{
+					lbAdd [_listboxId, _className];
+				};
+			};
         } forEach _list;
 		
         ctrlSetText [1701,"Spawn at Me"];
@@ -120,11 +131,15 @@ _actionCode = ' call AdminToolkit_buttonAction;';
 		_list = "((getNumber(_x >> 'Type') > 0) and (getNumber(_x >> 'Type') <= 4) and (configName _x find '_Base' <= 0) and (configName _x find '_base' <= 0))" configClasses (configFile >> "CfgWeapons");
 
         {
-            _weaponClass = configName _x;
-            //_weaponType = getNumber (_x >> "Type");
-            //if (_weaponType > 0 and _weaponType <= 4) then {
-            lbAdd [_listboxId, _weaponClass];
-            //};
+            _className = configName _x;
+			if(_filter == "") then {
+				lbAdd [_listboxId, _className];
+			} else {
+				if(_className find _filter >= 0) then 
+				{
+					lbAdd [_listboxId, _className];
+				};
+			};
         } forEach _list;
 		
         ctrlSetText [1701,"Get Weapon"];
@@ -134,13 +149,20 @@ _actionCode = ' call AdminToolkit_buttonAction;';
         buttonSetAction [1702, "['getammo']" + _actionCode];
     };
 	// Items
-	case 1604:
+	case 1605:
 	{
 		_list = "getNumber(_x >> 'Type') == 256" configClasses (configFile >> "CfgMagazines");
 		
 		{
-            _weaponClass = configName _x;
-            lbAdd [_listboxId, _weaponClass];
+            _className = configName _x;
+            if(_filter == "") then {
+				lbAdd [_listboxId, _className];
+			} else {
+				if(_className find _filter >= 0) then 
+				{
+					lbAdd [_listboxId, _className];
+				};
+			};
         } forEach _list;
 		
 		ctrlSetText [1701,"Get Item"];
@@ -151,7 +173,7 @@ _actionCode = ' call AdminToolkit_buttonAction;';
 	{
 		// get the text from search input
 		_list = ctrlText 1801;
-		hint _list;
+		[AdminToolkit_selectedMenu, _list] call AdminToolkit_buttonEvents;
 	};
 };
 

@@ -44,13 +44,11 @@ try
 				_tmp serverCommand format["#exec ban ""%1""", _params];
 			};
 		};
-		case "playersCallback":
+		case "getplayers":
 		{
 			_tmp = ['', true] call AdminToolkit_network_fetchPlayer;
 			
 			[_request, _session, _tmp] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
-			//missionNamespace setVariable ['admintoolkit_callback', [ _request, _tmp ] ];
-			//(owner _player) publicVariableClient "admintoolkit_callback";
 		};
         case "tp2player": 
         {

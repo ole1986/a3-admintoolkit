@@ -56,7 +56,7 @@ class AdminToolkitMenu {
 	class RscAdminToolkitSearchAction: RscButton
 	{
 		idc = 1802;
-		action = "1802 call AdminToolkit_buttonEvents";
+		action = "[1802] call AdminToolkit_buttonEvents";
 
 		text = "Search"; //--- ToDo: Localize;
 		x = 0.937456 * safezoneW + safezoneX;
@@ -86,7 +86,7 @@ class AdminToolkitMenu {
 	class RscAdminToolkitPlayers: RscButton
 	{
 		idc = 1600;
-		action = "1600 call AdminToolkit_buttonEvents";
+		action = "[1600] call AdminToolkit_buttonEvents";
 
 		text = "Players"; //--- ToDo: Localize;
 		x = 0.775034 * safezoneW + safezoneX;
@@ -97,7 +97,7 @@ class AdminToolkitMenu {
 	class RscAdminToolkitVehicles: RscButton
 	{
 		idc = 1601;
-		action = "1601 call AdminToolkit_buttonEvents";
+		action = "[1601] call AdminToolkit_buttonEvents";
 
 		text = "Vehicles"; //--- ToDo: Localize;
 		x = 0.850006 * safezoneW + safezoneX;
@@ -108,7 +108,7 @@ class AdminToolkitMenu {
 	class RscAdminToolkitWeapons: RscButton
 	{
 		idc = 1602;
-		action = "1602 call AdminToolkit_buttonEvents";
+		action = "[1602] call AdminToolkit_buttonEvents";
 
 		text = "Weapons"; //--- ToDo: Localize;
 		x = 0.924978 * safezoneW + safezoneX;
@@ -119,7 +119,7 @@ class AdminToolkitMenu {
 	class RscAdminToolkitMod1: RscButton
 	{
 		idc = 1603;
-		action = "1603 call AdminToolkit_buttonEvents";
+		action = "[1603] call AdminToolkit_buttonEvents";
 
 		text = "MOD 1"; //--- ToDo: Localize;
 		x = 0.775034 * safezoneW + safezoneX;
@@ -130,7 +130,7 @@ class AdminToolkitMenu {
 	class RscAdminToolkitMod2: RscButton
 	{
 		idc = 1604;
-		action = "1604 call AdminToolkit_buttonEvents";
+		action = "[1604] call AdminToolkit_buttonEvents";
 
 		text = "MOD 2"; //--- ToDo: Localize;
 		x = 0.850006 * safezoneW + safezoneX;
@@ -141,7 +141,7 @@ class AdminToolkitMenu {
 	class RscAdminToolkitMod3: RscButton
 	{
 		idc = 1605;
-		action = "1605 call AdminToolkit_buttonEvents";
+		action = "[1605] call AdminToolkit_buttonEvents";
 
 		text = "MOD 3"; //--- ToDo: Localize;
 		x = 0.924978 * safezoneW + safezoneX;
