@@ -9,7 +9,7 @@ missionNamespace setVariable ['AdminToolkit_selectedMenu', 0];
 	waitUntil {!isNull (findDisplay 46)};
 	
 	// it seems there need to be a delay to really make sure display 46 is availble?!
-	sleep 5;
+	sleep 3;
 
 	// event handler for map click event using Alt + click to teleport the player
 	player onMapSingleClick "if (_alt) then { ['tp2pos', _pos] call AdminToolkit_buttonAction; true; } else { false; };";

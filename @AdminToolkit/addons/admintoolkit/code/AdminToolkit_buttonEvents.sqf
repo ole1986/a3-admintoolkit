@@ -23,7 +23,7 @@ if(count _this > 0) then {
 	//buttonSetAction [1605, "1604 call AdminToolkit_buttonEvents"];
 	
 	ctrlSetText [1605,"Items"];
-	buttonSetAction [1605, "1605 call AdminToolkit_buttonEvents"];
+	buttonSetAction [1605, "[1605] call AdminToolkit_buttonEvents"];
 };
 
 /** 
@@ -111,7 +111,7 @@ _actionCode = ' call AdminToolkit_buttonAction;';
 			if(_filter == "") then {
 				lbAdd [_listboxId, _className];
 			} else {
-				if(_className find _filter >= 0) then 
+				if(toLower _className find _filter >= 0) then 
 				{
 					lbAdd [_listboxId, _className];
 				};
@@ -135,7 +135,7 @@ _actionCode = ' call AdminToolkit_buttonAction;';
 			if(_filter == "") then {
 				lbAdd [_listboxId, _className];
 			} else {
-				if(_className find _filter >= 0) then 
+				if(toLower _className find _filter >= 0) then 
 				{
 					lbAdd [_listboxId, _className];
 				};
@@ -158,7 +158,7 @@ _actionCode = ' call AdminToolkit_buttonAction;';
             if(_filter == "") then {
 				lbAdd [_listboxId, _className];
 			} else {
-				if(_className find _filter >= 0) then 
+				if(toLower _className find _filter >= 0) then 
 				{
 					lbAdd [_listboxId, _className];
 				};
@@ -173,6 +173,8 @@ _actionCode = ' call AdminToolkit_buttonAction;';
 	{
 		// get the text from search input
 		_list = ctrlText 1801;
+		ctrlSetText [1801, ""];
+		systemChat format["Searching '%1' in %2", _list, str AdminToolkit_selectedMenu];
 		[AdminToolkit_selectedMenu, _list] call AdminToolkit_buttonEvents;
 	};
 };
