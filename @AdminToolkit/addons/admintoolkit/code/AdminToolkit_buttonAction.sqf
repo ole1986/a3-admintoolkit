@@ -17,7 +17,7 @@ switch (_action) do
     case 'givevehicle':
     {
 		// selection = [vehicle, player name]
-        _selection = [lbText [1500, lbCurSel 1500], AdminToolkit_selectedPlayer];
+        _selection = [lbData [1500, lbCurSel 1500], AdminToolkit_selectedPlayer];
         systemChat format["Giving vehicle to %1", AdminToolkit_selectedPlayer];
     };
     case 'specstop': {
@@ -27,7 +27,7 @@ switch (_action) do
         admintoolkit_specCam = nil;
     };
     case 'getweapon': {
-        _tmp = lbText [1500, lbCurSel 1500];
+        _tmp = lbData [1500, lbCurSel 1500];
         _tmp2 = [_tmp] call AdminToolkit_weaponMagazine;
                 
         // parameter 1: weapon class name or empty when already in inventory
@@ -35,7 +35,7 @@ switch (_action) do
         _selection = [_tmp, _tmp2];
     };
 	case 'getammo': {
-        _tmp = lbText [1500, lbCurSel 1500];
+        _tmp = lbData [1500, lbCurSel 1500];
         _tmp2 = [_tmp] call AdminToolkit_weaponMagazine;
         
         // parameter 1: compatible magazine
@@ -43,7 +43,7 @@ switch (_action) do
     };
     default 
     {
-        _selection = lbText [1500, lbCurSel 1500];
+        _selection = lbData [1500, lbCurSel 1500];
         systemChat format["Calling %1 with param %2", _action, _selection];
     };
 };

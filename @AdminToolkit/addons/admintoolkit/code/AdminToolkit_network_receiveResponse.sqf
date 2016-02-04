@@ -18,6 +18,7 @@ try
 			
 			{
 				lbAdd [1500, _x];
+				lbSetData [1500, (lbSize 1500) - 1, _x];
 			} forEach _params;
 		};
 		case 'specplayer': {

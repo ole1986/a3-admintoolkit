@@ -3,7 +3,7 @@
  * @author ole1986
  */
  
-private['_controlId', '_filter', '_display','_listboxId', '_actionCode', '_weaponClass', '_className', '_weaponType'];
+private['_controlId', '_filter', '_display','_listboxId', '_actionCode', '_weaponClass', '_className', '_configValue', '_counter'];
 disableSerialization;
 _display = findDisplay 40000;
 _listboxId = 1500;
@@ -105,18 +105,8 @@ _actionCode = ' call AdminToolkit_buttonAction;';
     {
 		// get all Exile vehicles
         _list = "(configName _x find 'Exile' >= 0)" configClasses (configFile >> "CfgVehicles");
-
-        {
-			_className = configName _x;
-			if(_filter == "") then {
-				lbAdd [_listboxId, _className];
-			} else {
-				if(toLower _className find _filter >= 0) then 
-				{
-					lbAdd [_listboxId, _className];
-				};
-			};
-        } forEach _list;
+		
+		[_listboxId, _list, _filter] call AdminToolkit_addItems;
 		
         ctrlSetText [1701,"Spawn at Me"];
         buttonSetAction [1701, "['getvehicle']" + _actionCode];
@@ -124,23 +114,17 @@ _actionCode = ' call AdminToolkit_buttonAction;';
         ctrlSetText [1702,"Spawn at Player"];
         buttonSetAction [1702, "['givevehicle']" + _actionCode];
         
+		if(!isNil "AdminToolkit_Mod_Vehicles") then 
+		{
+			call AdminToolkit_Mod_Vehicles;
+		};
     };
     // Weapons
     case 1602:
     {
 		_list = "((getNumber(_x >> 'Type') > 0) and (getNumber(_x >> 'Type') <= 4) and (configName _x find '_Base' <= 0) and (configName _x find '_base' <= 0))" configClasses (configFile >> "CfgWeapons");
 
-        {
-            _className = configName _x;
-			if(_filter == "") then {
-				lbAdd [_listboxId, _className];
-			} else {
-				if(toLower _className find _filter >= 0) then 
-				{
-					lbAdd [_listboxId, _className];
-				};
-			};
-        } forEach _list;
+		[_listboxId, _list, _filter] call AdminToolkit_addItems;
 		
         ctrlSetText [1701,"Get Weapon"];
         buttonSetAction [1701, "['getweapon']" + _actionCode];
@@ -153,17 +137,7 @@ _actionCode = ' call AdminToolkit_buttonAction;';
 	{
 		_list = "getNumber(_x >> 'Type') == 256" configClasses (configFile >> "CfgMagazines");
 		
-		{
-            _className = configName _x;
-            if(_filter == "") then {
-				lbAdd [_listboxId, _className];
-			} else {
-				if(toLower _className find _filter >= 0) then 
-				{
-					lbAdd [_listboxId, _className];
-				};
-			};
-        } forEach _list;
+		[_listboxId, _list, _filter] call AdminToolkit_addItems;
 		
 		ctrlSetText [1701,"Get Item"];
         buttonSetAction [1701, "['getitem']" + _actionCode];
