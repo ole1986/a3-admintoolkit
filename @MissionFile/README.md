@@ -3,13 +3,11 @@
 This folder is used to extend the AdminToolkit using additional files from the MissionFile.
 All supported extensions are usually stored with `AdminToolkit_<MenuEntry>_<ModName>.sqf` in the `admintoolkit` folder.
 
-### Possible Menues
+The following menu entries can be extended
 
-The following menues can be overwritten through your MissionFile `config.cpp` 
-
-| Players  | Vehicles | Weapons  | Mod1     | Mod2     | Mod3     |
-| -------  | -------- | -------  | ----     | ----     | ----     |
-| 1600     | 1601     | 1602     | 1603     | 1604     | 1605     |
+| Players  | Vehicles  | Weapons   | Mod1     | Mod2     | Mod3     |
+| -------  | --------- | --------  | ----     | ----     | ----     |
+| IDC:1600 | IDC: 1601 | IDC:1602  | IDC:1603 | IDC:1604 | IDC:1605 |
 
 ## Example
 
