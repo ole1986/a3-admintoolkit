@@ -121,7 +121,7 @@ class AdminToolkitMenu {
 		idc = 1603;
 		action = "[1603] call AdminToolkit_buttonEvents";
 
-		text = "MOD 1"; //--- ToDo: Localize;
+		text = "AI"; //--- ToDo: Localize;
 		x = 0.775034 * safezoneW + safezoneX;
 		y = 0.07302 * safezoneH + safezoneY;
 		w = 0.0625 * safezoneW;
@@ -132,7 +132,7 @@ class AdminToolkitMenu {
 		idc = 1604;
 		action = "[1604] call AdminToolkit_buttonEvents";
 
-		text = "MOD 2"; //--- ToDo: Localize;
+		text = "Buildings"; //--- ToDo: Localize;
 		x = 0.850006 * safezoneW + safezoneX;
 		y = 0.07302 * safezoneH + safezoneY;
 		w = 0.0625 * safezoneW;
@@ -143,7 +143,7 @@ class AdminToolkitMenu {
 		idc = 1605;
 		action = "[1605] call AdminToolkit_buttonEvents";
 
-		text = "MOD 3"; //--- ToDo: Localize;
+		text = "Items"; //--- ToDo: Localize;
 		x = 0.924978 * safezoneW + safezoneX;
 		y = 0.07302 * safezoneH + safezoneY;
 		w = 0.0625 * safezoneW;

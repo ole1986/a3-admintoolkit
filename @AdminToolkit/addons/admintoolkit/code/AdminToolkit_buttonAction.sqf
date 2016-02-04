@@ -44,8 +44,8 @@ switch (_action) do
     default 
     {
         _selection = lbData [1500, lbCurSel 1500];
-        systemChat format["Calling %1 with param %2", _action, _selection];
     };
 };
 
+systemChat format["Calling %1 with params %2", _action, str _selection];
 [player, _action, _selection] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];

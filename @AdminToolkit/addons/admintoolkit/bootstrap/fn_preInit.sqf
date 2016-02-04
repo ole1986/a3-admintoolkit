@@ -24,19 +24,21 @@ forEach
 ];
 
 // used for Addon modifications
-{
-	if(isText (missionConfigFile >> 'CfgAdminToolkitCustomMod' >> _x)) then 
+if(isClass (missionConfigFile >> 'CfgAdminToolkitCustomMod')) then {
 	{
-		_file = getText (missionConfigFile >> 'CfgAdminToolkitCustomMod' >> _x);
-		_code = compileFinal preprocessFileLineNumbers _file;
-		missionNamespace setVariable [_x, _code];
-	};
-} forEach 
-[
-	['AdminToolkit_Mod_Players'],
-	['AdminToolkit_Mod_Vehicles'],
-	['AdminToolkit_Mod_Items']
-];
+		if(isText (missionConfigFile >> 'CfgAdminToolkitCustomMod' >> _x)) then 
+		{
+			_file = getText (missionConfigFile >> 'CfgAdminToolkitCustomMod' >> _x);
+			_code = compileFinal preprocessFileLineNumbers _file;
+			missionNamespace setVariable [_x, _code];
+		};
+	} forEach 
+	[
+		'AdminToolkit_Mod_Players',
+		'AdminToolkit_Mod_Vehicles',
+		'AdminToolkit_Mod_Items'
+	];
+};
 
 diag_log "AdminToolkit preInit";
 true;

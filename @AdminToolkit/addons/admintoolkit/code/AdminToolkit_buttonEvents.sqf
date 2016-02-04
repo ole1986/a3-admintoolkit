@@ -3,10 +3,11 @@
  * @author ole1986
  */
  
-private['_controlId', '_filter', '_display','_listboxId', '_actionCode', '_weaponClass', '_className', '_configValue', '_counter'];
+private['_controlId', '_filter', '_display','_listboxId', '_actionCode', '_list'];
 disableSerialization;
 _display = findDisplay 40000;
 _listboxId = 1500;
+_list = [];
 _filter = "";
 // open players by default
 _controlId = 1600;
@@ -16,14 +17,7 @@ if(count _this > 0) then {
 	_controlId = _this select 0;
 	if(count _this > 1) then { _filter = _this select 1; };
 } else {
-	// initial call
-	ctrlSetText [1603,""];
-	//buttonSetAction [1605, "1604 call AdminToolkit_buttonEvents"];
-	ctrlSetText [1604,""];
-	//buttonSetAction [1605, "1604 call AdminToolkit_buttonEvents"];
-	
-	ctrlSetText [1605,"Items"];
-	buttonSetAction [1605, "[1605] call AdminToolkit_buttonEvents"];
+	// first init
 };
 
 /** 
@@ -103,21 +97,21 @@ _actionCode = ' call AdminToolkit_buttonAction;';
     // Vehicles
     case 1601:
     {
-		// get all Exile vehicles
-        _list = "(configName _x find 'Exile' >= 0)" configClasses (configFile >> "CfgVehicles");
-		
-		[_listboxId, _list, _filter] call AdminToolkit_addItems;
-		
-        ctrlSetText [1701,"Spawn at Me"];
+		ctrlSetText [1701,"Spawn at Me"];
         buttonSetAction [1701, "['getvehicle']" + _actionCode];
         
         ctrlSetText [1702,"Spawn at Player"];
         buttonSetAction [1702, "['givevehicle']" + _actionCode];
-        
-		if(!isNil "AdminToolkit_Mod_Vehicles") then 
+		
+		// get all vehicles
+		if(!(isNil {missionNamespace getVariable "AdminToolkit_Mod_Vehicles"}) ) then 
 		{
-			call AdminToolkit_Mod_Vehicles;
+			_list = [] call AdminToolkit_Mod_Vehicles;
+		} else {
+			_list = "getText(_x >> 'VehicleClass') in ['Car', 'Armored', 'Air']" configClasses (configFile >> "CfgVehicles");
 		};
+        
+		[_listboxId, _list, _filter] call AdminToolkit_addItems;
     };
     // Weapons
     case 1602:
@@ -132,15 +126,34 @@ _actionCode = ' call AdminToolkit_buttonAction;';
 		ctrlSetText [1702,"Get Ammo"];
         buttonSetAction [1702, "['getammo']" + _actionCode];
     };
-	// Items
-	case 1605:
+	case 1603: 
 	{
-		_list = "getNumber(_x >> 'Type') == 256" configClasses (configFile >> "CfgMagazines");
+		systemChat "Not yet implemented";
+	};
+	case 1604: 
+	{
+		// get all buildins
+        _list = "getText(_x >> 'VehicleClass') in ['Objects', 'Structures']" configClasses (configFile >> "CfgVehicles");
 		
 		[_listboxId, _list, _filter] call AdminToolkit_addItems;
 		
+		systemChat "Not yet implemented";
+	};
+	// Items
+	case 1605:
+	{
 		ctrlSetText [1701,"Get Item"];
         buttonSetAction [1701, "['getitem']" + _actionCode];
+		
+		// get all items
+		if(!(isNil {missionNamespace getVariable "AdminToolkit_Mod_Items"})) then 
+		{
+			_list = [] call AdminToolkit_Mod_Items;
+		} else {
+			_list = "getNumber(_x >> 'Type') == 256" configClasses (configFile >> "CfgMagazines");
+		};
+		
+		[_listboxId, _list, _filter] call AdminToolkit_addItems;
 	};
 	// Search
 	case 1802:

@@ -3,14 +3,14 @@
  * @author ole1986
  */
  
-private['_listboxId','_list', '_filter','_counter', '_className', '_displayName'];
+private['_listboxId','_list', '_filter','_counter', '_className', '_displayName', '_skinName'];
 disableSerialization;
 // listbox IDC
 _listboxId = _this select 0;
 // array of config classes
 _list = _this select 1;
 // string filter expression
-_filter = _this select 2;
+_filter = toLower (_this select 2);
 
 _counter = 0;
 {
@@ -18,6 +18,18 @@ _counter = 0;
 	_className = configName _x;
 	// get the display name of the current class
 	_displayName = getText(_x >> "displayName");
+	_skinName = getText(_x >> "skinName");
+	if(_skinName == "") then {
+		_skinName = getText(_x >> "descriptionShort");
+	};
+	
+	if(_skinName != "") then {
+		_displayName = format["%1 - %2",_displayName, _skinName];
+	};
+	
+	if(_displayName == "") then {
+		_displayName = _className;
+	};
 	
 	if(_filter == "") then {
 		lbAdd [_listboxId, _displayName];
