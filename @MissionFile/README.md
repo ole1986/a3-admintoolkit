@@ -1,4 +1,4 @@
-# Extending AdminToolkit through MissionFile
+# Extend AdminToolkit through MissionFile
 
 This folder is used to extend the AdminToolkit using additional files from the MissionFile.
 All supported extensions are usually stored with `AdminToolkit_<MenuEntry>_<ModName>.sqf` in the `admintoolkit` folder.
