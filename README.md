@@ -33,6 +33,7 @@ This tool is used to administrate Arma3 multiplayer server.
 ### Server
 
 + Copy the `admintoolkit.pbo` from the @ExileServer folder into your `<ExileServerMod>\addons` directory.
++ Setup the `config.cpp` accordingly - see <a href="#Configuration">Configuration</a>
 + Copy the `admintoolkit.bikey` server key file into your server `keys` directory
  
 ### Addons
@@ -41,8 +42,8 @@ EXILE: <a href="@MissionFile/README.exile.md">AdminToolkit with ExileMod feature
 
 ## Configuration
 
-Before you can using the AdminToolkit it is necessary to add you as administrator.
-To do so, please find the server `config.cpp` in your `@ExileServer\admintoolkit` directory and amend it according to your requirements
+Before you can use the AdminToolkit it is necessary to add you as administrator.
+Please find the server `config.cpp` in your `@ExileServer\admintoolkit` directory and amend it according to your requirements
 
 ```
 /**
@@ -58,7 +59,7 @@ AdminList[] = {"76561198088277918"};
  */
 ModeratorList[] = {"76561198037325738"};
 /**
- * allowed commands for moderators (default: teleport to a player, get a vehicle, get player list, spectate a player)
+ * allowed commands for moderators (default: teleport to a player, get a vehicle, get player list, spectate)
  */
 ModeratorCmds[] = {"tp2player", "getvehicle", "kickplayer", "playersCallback", "specplayer", "specstop"};
 ```
