@@ -17,7 +17,16 @@ if(count _this > 0) then {
 	_controlId = _this select 0;
 	if(count _this > 1) then { _filter = _this select 1; };
 } else {
-	// first init
+	// initial call when player pressed F2 keys
+	if(isClass(missionConfigFile >> 'CfgAdminToolkitCustomMod')) then {
+		if(isArray(missionConfigFile >> 'CfgAdminToolkitCustomMod' >> 'AdminToolkit_MenuTitle')) then {
+			_list = getArray(missionConfigFile >> 'CfgAdminToolkitCustomMod' >> 'AdminToolkit_MenuTitle');
+			for "_i" from 1600 to 1605 do
+			{
+				ctrlSetText[_i, _list select _i];
+			};
+		};
+	};
 };
 
 /** 
@@ -29,9 +38,12 @@ if(count _this > 0) then {
  * 1603 = Mod 1
  * 1604 = Mod 2
  * 1605 = Mod 3
- */
- 
-/**
+ *
+ * SEARCH
+ *
+ * 1801 = Search text
+ * 1802 = Search button
+ * 
  * LOWER BUTTONS
  * 
  * 1701 = Action 1
@@ -43,7 +55,6 @@ if(count _this > 0) then {
  * 1707 = Action 7
  * 1708 = Action 8
  */
-
  
 // clear lower buttons first when main buttons have been clicked (not the search)
 if(_controlId >= 1600 && _controlId <= 1699) then {
@@ -55,7 +66,6 @@ if(_controlId >= 1600 && _controlId <= 1699) then {
 	
 	AdminToolkit_selectedMenu = _controlId;
 };
-
 
 // clear listbox and selection event
 lbClear _listboxId;
@@ -116,28 +126,39 @@ _actionCode = ' call AdminToolkit_buttonAction;';
     // Weapons
     case 1602:
     {
-		_list = "((getNumber(_x >> 'Type') > 0) and (getNumber(_x >> 'Type') <= 4) and (configName _x find '_Base' <= 0) and (configName _x find '_base' <= 0))" configClasses (configFile >> "CfgWeapons");
-
-		[_listboxId, _list, _filter] call AdminToolkit_addItems;
-		
-        ctrlSetText [1701,"Get Weapon"];
+		ctrlSetText [1701,"Get Weapon"];
         buttonSetAction [1701, "['getweapon']" + _actionCode];
 		
 		ctrlSetText [1702,"Get Ammo"];
         buttonSetAction [1702, "['getammo']" + _actionCode];
+		
+		_list = "((getNumber(_x >> 'Type') > 0) and (getNumber(_x >> 'Type') <= 4) and (configName _x find '_Base' <= 0) and (configName _x find '_base' <= 0))" configClasses (configFile >> "CfgWeapons");
+
+		[_listboxId, _list, _filter] call AdminToolkit_addItems;
     };
+	// AI
 	case 1603: 
 	{
-		systemChat "Not yet implemented";
-	};
-	case 1604: 
-	{
-		// get all buildins
-        _list = "getText(_x >> 'VehicleClass') in ['Objects', 'Structures']" configClasses (configFile >> "CfgVehicles");
+		if(!(isNil {missionNamespace getVariable "AdminToolkit_Mod_Ai"})) then 
+		{
+			_list = [] call AdminToolkit_Mod_Ai;
+		} else {
+			_list = [];
+		};
 		
 		[_listboxId, _list, _filter] call AdminToolkit_addItems;
+	};
+	// Buildings
+	case 1604: 
+	{
+		if(!(isNil {missionNamespace getVariable "AdminToolkit_Mod_Buildings"})) then 
+		{
+			_list = [] call AdminToolkit_Mod_Buildings;
+		} else {
+			_list = "getText(_x >> 'VehicleClass') in ['Objects', 'Structures']" configClasses (configFile >> "CfgVehicles");
+		};
 		
-		systemChat "Not yet implemented";
+		[_listboxId, _list, _filter] call AdminToolkit_addItems;
 	};
 	// Items
 	case 1605:
@@ -145,7 +166,6 @@ _actionCode = ' call AdminToolkit_buttonAction;';
 		ctrlSetText [1701,"Get Item"];
         buttonSetAction [1701, "['getitem']" + _actionCode];
 		
-		// get all items
 		if(!(isNil {missionNamespace getVariable "AdminToolkit_Mod_Items"})) then 
 		{
 			_list = [] call AdminToolkit_Mod_Items;
