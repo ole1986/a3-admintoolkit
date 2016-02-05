@@ -33,6 +33,16 @@ try
 			
 			[_playerObject, "dynamicTextRequest", [format ["UNLOCK PIN: %1", _tmp2], 0, 2, "#ffffff"]] call ExileServer_system_network_send_to;
 		};
+		case 'exile_getmoney': 
+		{
+			_tmp = _params select 0;
+			_tmp2 = _playerObject getVariable ["ExileMoney", 0];
+			_tmp2 = _tmp2 + _tmp;
+			_receiverPlayerObject setVariable ["ExileMoney", _tmp2];
+			
+			format["setAccountMoney:%1:%2", _tmp2, getPlayerUID _playerObject] call ExileServer_system_database_query_fireAndForget;
+			[_playerObject, "moneyReceivedRequest", [str _tmp2, 'AdminToolkit']] call ExileServer_system_network_send_to;
+		};
     }; 
 }
 catch
