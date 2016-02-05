@@ -33,7 +33,7 @@ This tool is used to administrate Arma3 multiplayer server.
 ### Server
 
 + Copy the `admintoolkit.pbo` from the @ExileServer folder into your `<ExileServerMod>\addons` directory.
-+ Setup the `config.cpp` accordingly - see <a href="#Configuration">Configuration</a>
++ Setup the `config.cpp` accordingly - see <a href="#configuration">Configuration</a>
 + Copy the `admintoolkit.bikey` server key file into your server `keys` directory
  
 ### Addons
