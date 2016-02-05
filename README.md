@@ -1,6 +1,8 @@
-## AdminToolkit for Arma 3 v0.6 - Exile Edition -
+## AdminToolkit for Arma 3 v0.7
 
-This tool is used to administrate Arma3 multiplayer server more easily.
+This tool is used to administrate Arma3 multiplayer server.
+
+**<p align="center">PRESS THE F2 KEY IN-GAME TO OPEN</p>**
 
 <img src="images/a3-atk-players.jpg" width="250" title="Manage players">
 <img src="images/a3-atk-vehicles.jpg" width="250" title="Spawn vehicles">
@@ -15,7 +17,7 @@ This tool is used to administrate Arma3 multiplayer server more easily.
 - Vehicle spawning (for player)
 - spawn Weapon/Magazine
 
-*Please note: This does not replace an AntiCheat software neither be used as cheating tool*
+*Please note: This does not replace an AntiCheat software (like battleye)*
 
 ## Installation
 ### Required Tools
@@ -23,31 +25,30 @@ This tool is used to administrate Arma3 multiplayer server more easily.
 + PBO Manager - to setup UIDs and server password in server pbo
 + Notepad++ or any other Text Editor (https://notepad-plus-plus.org/)
 
-### Client installation
+### Client
 
 + Copy the directory `@AdminToolkit` folder into your Arma3 game directory 
 + Load the mod through Arma 3 Launcher when you start the game
 
-### Server installation
+### Server
 
 + Copy the `admintoolkit.pbo` from the @ExileServer folder into your `<ExileServerMod>\addons` directory.
 + Copy the `admintoolkit.bikey` server key file into your server `keys` directory
+ 
+### Addons
+
+EXILE: <a href="@MissionFile/README.exile.md">Extending AdminToolkit with ExileMod features</a>
 
 ## Configuration
 
-The important configuration settings are located in `@ExileServer\admintoolkit\config.cpp`.
-If you want to use the feature of  kick/ban players you need to customize the `ServerCommandPassword` properly (check your server.cfg)
+Before you can using the AdminToolkit it is necessary to add you as administrator.
+To do so, please find the server `config.cpp` in your `@ExileServer\admintoolkit` directory and amend it according to your requirements
 
 ```
 /**
  * Server command password required to execute kick, ban, etc...
  */
 ServerCommandPassword = "";
-```
-
-To setup the administrators and moderators these lines are important
-
-```
 /**
  * list of allowed admins using its player UID
  */
@@ -56,17 +57,14 @@ AdminList[] = {"76561198088277918"};
  * list of admins with restricted access only
  */
 ModeratorList[] = {"76561198037325738"};
-```
-
-Additionally you can set the permissions a moderator has by using the below property
-
-```
 /**
  * allowed commands for moderators (default: teleport to a player, get a vehicle, get player list, spectate a player)
  */
 ModeratorCmds[] = {"tp2player", "getvehicle", "kickplayer", "playersCallback", "specplayer", "specstop"};
 ```
- 
+
+Moderators have limited access - The command list can optionally be customized
+
 ### Battleye
 
 **remoteexec.txt**
