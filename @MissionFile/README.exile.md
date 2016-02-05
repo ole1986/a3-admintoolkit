@@ -1,4 +1,4 @@
-# Extending AdminToolkit with ExileMod features
+# AdminToolkit with ExileMod features
 
 Please be sure you have followed the exact instruction of the AdminToolkit <a href="../README.md">README.md</a>
 It is also necessary to add you player UID in the `config.cpp` located in `@ExileServer\admintoolkit` directory
