@@ -23,7 +23,10 @@ if(count _this > 0) then {
 			_list = getArray(missionConfigFile >> 'CfgAdminToolkitCustomMod' >> 'AdminToolkit_MenuTitle');
 			for "_i" from 1600 to 1605 do
 			{
-				ctrlSetText[_i, _list select _i];
+				if((_list select _i) != '') then 
+				{
+					ctrlSetText[_i, _list select _i];
+				};
 			};
 		};
 	};
