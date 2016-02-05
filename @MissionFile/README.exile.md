@@ -7,7 +7,7 @@ It is also necessary to add you player UID in the `config.cpp` located in `@Exil
 
 + Unpack your mission file
 + Copy the folder `@MissionFile\atk` into your mission file root directory
-+ Customize the config.cpp located in your mission file as follow:
++ Customize the `config.cpp` located in your mission file as following:
 
 ```
 // add this class into config.cpp of your mission file
