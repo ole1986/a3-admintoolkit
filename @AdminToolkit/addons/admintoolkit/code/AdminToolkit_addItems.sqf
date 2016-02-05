@@ -15,16 +15,21 @@ _filter = toLower (_this select 2);
 _counter = 0;
 {
 	// get the weapon, vehicle, item CLASS name, like "B_Heli_Light_01_F"
-	_className = configName _x;
-	// get the display name of the current class
-	_displayName = getText(_x >> "displayName");
-	_skinName = getText(_x >> "skinName");
-	if(_skinName == "") then {
-		_skinName = getText(_x >> "descriptionShort");
-	};
-	
-	if(_skinName != "") then {
-		_displayName = format["%1 - %2",_displayName, _skinName];
+	if(typeName _x == "CONFIG") then {
+		_className = configName _x;
+		// get the display name of the current class
+		_displayName = getText(_x >> "displayName");
+		_skinName = getText(_x >> "skinName");
+		if(_skinName == "") then {
+			_skinName = getText(_x >> "descriptionShort");
+		};
+		
+		if(_skinName != "") then {
+			_displayName = format["%1 - %2",_displayName, _skinName];
+		};
+	} else {
+		_className = str _x;
+		_displayName = _className;
 	};
 	
 	if(_displayName == "") then {
