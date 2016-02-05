@@ -14,8 +14,7 @@ To extend the AdminToolkit with ExileMod features it is **necessary to (re)pack 
 ```
 // add this class into config.cpp of your mission file
 class CfgAdminToolkitCustomMod {
-	// Used to replace the top menu button text (optional)
-	//AdminToolkit_MenuTitle[] = {"Players", "Vehicles", "Weapons", "AI", "Buildings", "Items"};
+    AdminToolkit_ModEnable = "exile";
     AdminToolkit_Mod_Vehicles = "atk\AdminToolkit_Vehicles_Exile.sqf";
 };
 ```
