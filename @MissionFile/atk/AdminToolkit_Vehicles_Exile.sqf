@@ -7,7 +7,16 @@ private['_result'];
 disableSerialization;
 _result = [];
 
-/**
+/** 
+ * SEARCH
+ *
+ * 1801 = Search text
+ * 1802 = Search button
+ *
+ * LISTBOX
+ *
+ * 1500 = Listbox
+ *
  * LOWER BUTTONS
  * 
  * 1701 = Action 1
@@ -19,9 +28,9 @@ _result = [];
  * 1707 = Action 7
  * 1708 = Action 8
  */
- 
+
 ctrlSetText [1707,"Exile Spawn"];
-buttonSetAction [1707, "systemChat 'Not yet implemented';"];
+buttonSetAction [1707, "['exile_getvehicle'] call AdminToolkit_buttonAction;"];
 
 _result = "(configName _x find 'Exile' >= 0)" configClasses (configFile >> "CfgVehicles");
 
