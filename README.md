@@ -37,7 +37,7 @@ This tool is used to administrate Arma3 multiplayer server.
  
 ### Addons
 
-EXILE: <a href="@MissionFile/README.exile.md">Extending AdminToolkit with ExileMod features</a>
+EXILE: <a href="@MissionFile/README.exile.md">AdminToolkit with ExileMod features</a>
 
 ## Configuration
 
