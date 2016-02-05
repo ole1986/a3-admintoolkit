@@ -35,6 +35,10 @@ AdminToolkit_Ai_CustomCode = {
 	
 	_selection = toLower _selection;
 	switch (_selection) do {
+		case 'do not execute me':
+		{
+			systemChat 'You rebel, I like you';
+		};
 		case 'get scratchie prize':
 		{
 			systemChat 'getting scratchie prize...';
@@ -55,6 +59,6 @@ for "_i" from 1701 to 1707 do
 ctrlSetText [1708,"Execute"];
 buttonSetAction [1708, "call AdminToolkit_Ai_CustomCode;"];
 
-_result = ['Get Scratchie Prize', 'Buy Scratchie'];
+_result = ['Do not execute me','Get Scratchie Prize', 'Buy Scratchie'];
 
 _result;
