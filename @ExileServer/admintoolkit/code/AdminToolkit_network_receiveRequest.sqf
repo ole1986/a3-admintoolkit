@@ -3,7 +3,7 @@
  * @author ole1986
  */
  
-private["_payload","_adminList", "_moderatorList", "_moderatorCmds","_player","_request", "_params","_result", "_tmp", "_session"];
+private["_payload","_adminList", "_moderatorList", "_moderatorCmds","_player","_request", "_params","_result", "_tmp", "_mod", "_session"];
 _payload = _this;
 _adminList = getArray(configFile >> "CfgSettings" >> "AdminToolkit" >> "AdminList");
 _moderatorList = getArray(configFile >> "CfgSettings" >> "AdminToolkit" >> "ModeratorList");
@@ -111,6 +111,17 @@ try
 		};
 		case "godmodeoff": {
 			["godmode", _session, false] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
+		};
+		// used for mod extensions
+		default { 
+			if(isClass(missionConfigFile >> "CfgAdminToolkitCustomMod")) then {
+				if(isText(missionConfigFile >> "CfgAdminToolkitCustomMod" >> "AdminToolkit_ModEnable")) then {
+					_tmp = getText(missionConfigFile >> "CfgAdminToolkitCustomMod" >> "AdminToolkit_ModEnable"));
+					_tmp = toLower _tmp;
+					_mod = compile preprocessFileLineNumbers "AdminToolkit_server_" + _tmp + ".sqf";
+					[_player, _request, _params] call _mod;
+				};
+			};
 		};
     }; 
 }
