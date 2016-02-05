@@ -37,7 +37,7 @@ This tool is used to administrate Arma3 multiplayer server.
  
 ### Addons
 
-EXILE: <a href="@MissionFile/README.md">Extending AdminToolkit with ExileMod features</a>
+EXILE: <a href="@MissionFile/README.exile.md">Extending AdminToolkit with ExileMod features</a>
 
 ## Configuration
 
@@ -57,17 +57,14 @@ AdminList[] = {"76561198088277918"};
  * list of admins with restricted access only
  */
 ModeratorList[] = {"76561198037325738"};
-```
-
-Moderators have limited access, the below command list can optionally customized
-
-```
 /**
  * allowed commands for moderators (default: teleport to a player, get a vehicle, get player list, spectate a player)
  */
 ModeratorCmds[] = {"tp2player", "getvehicle", "kickplayer", "playersCallback", "specplayer", "specstop"};
 ```
- 
+
+Moderators have limited access - The command list can optionally be customized
+
 ### Battleye
 
 **remoteexec.txt**
