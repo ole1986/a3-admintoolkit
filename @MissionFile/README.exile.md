@@ -21,6 +21,7 @@ class CfgAdminToolkitCustomMod {
 
 ### Verify
 
-Once your have done all the steps you can verify it by opening the AdminToolkit (using the default keyboard key F2).
-Click on `Vehicles` and you should see a new button named "Exile Spawn".
+Once your have done all the steps you can verify it by opening the AdminToolkit (using the default keyboard key F2) and click on `Vehicles`.
+
+You should see at least a new button named "Exile Spawn".
 
