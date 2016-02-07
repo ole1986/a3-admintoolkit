@@ -4,10 +4,10 @@ This tool is used to administrate Arma3 multiplayer server.
 
 **<p align="center">PRESS THE F2 KEY IN-GAME TO OPEN</p>**
 
-<img src="images/a3-atk-players.jpg" width="250" title="Manage players">
-<img src="images/a3-atk-vehicles.jpg" width="250" title="Spawn vehicles">
-<img src="images/a3-atk-weapons.jpg" width="250" title="Spawn vehicles">
-<img src="images/a3-atk-items.jpg" width="250" title="Get weapons">
+<img src="images/a3-atk-players.jpg" width="210" title="Manage players">
+<img src="images/a3-atk-vehicles.jpg" width="210" title="Spawn vehicles">
+<img src="images/a3-atk-weapons.jpg" width="210" title="Get weapons">
+<img src="images/a3-atk-items.jpg" width="210" title="Get Items">
 
 **Core Features:**
 
