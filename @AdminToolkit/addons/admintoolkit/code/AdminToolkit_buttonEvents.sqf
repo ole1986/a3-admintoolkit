@@ -158,7 +158,7 @@ _actionCode = ' call AdminToolkit_buttonAction;';
 		{
 			_list = [] call AdminToolkit_Mod_Buildings;
 		} else {
-			_list = "getText(_x >> 'VehicleClass') in ['Objects', 'Structures']" configClasses (configFile >> "CfgVehicles");
+			_list = "(getText(_x >> 'VehicleClass') in ['Objects', 'Structures','Training', 'Structures_Industrial','Military']) and (getNumber (_x >> 'scope') == 2)" configClasses (configFile >> "CfgVehicles");
 		};
 		
 		[_listboxId, _list, _filter] call AdminToolkit_addItems;

@@ -116,9 +116,8 @@ try
 		default { 
 			if(isClass(missionConfigFile >> "CfgAdminToolkitCustomMod")) then {
 				if(isText(missionConfigFile >> "CfgAdminToolkitCustomMod" >> "AdminToolkit_ModEnable")) then {
-					_tmp = getText(missionConfigFile >> "CfgAdminToolkitCustomMod" >> "AdminToolkit_ModEnable"));
-					_tmp = toLower _tmp;
-					_mod = compile preprocessFileLineNumbers "AdminToolkit_server_" + _tmp + ".sqf";
+					_tmp = toLower getText(missionConfigFile >> "CfgAdminToolkitCustomMod" >> "AdminToolkit_ModEnable");
+					_mod = compile preprocessFileLineNumbers ("admintoolkit\code\AdminToolkit_server_" + _tmp + ".sqf");
 					[_player, _request, _params] call _mod;
 				};
 			};

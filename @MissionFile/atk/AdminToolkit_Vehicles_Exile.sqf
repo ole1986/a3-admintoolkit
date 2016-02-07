@@ -32,9 +32,9 @@ _result = [];
 ctrlSetText [1707,"Exile Spawn"];
 buttonSetAction [1707, "['exile_getvehicle'] call AdminToolkit_buttonAction;"];
 
-ctrlSetText [1707,"Exile Money"];
-buttonSetAction [1707, "[player, 'exile_getmoney', 10000] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];"];
+ctrlSetText [1708,"Exile Money"];
+buttonSetAction [1708, "[player, 'exile_getmoney', 10000] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];"];
 
-_result = "(configName _x find 'Exile' >= 0)" configClasses (configFile >> "CfgVehicles");
+_result = "(getText(_x >> 'VehicleClass') in ['ExileCars', 'ExileBikes', 'ExileChoppers','ExileBoats','ExilePlanes']) and (getNumber (_x >> 'scope') == 2)" configClasses (configFile >> "CfgVehicles");
 
 _result;
