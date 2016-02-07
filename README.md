@@ -6,6 +6,7 @@ This tool is used to administrate Arma3 multiplayer server.
 
 <img src="images/a3-atk-players.jpg" width="250" title="Manage players">
 <img src="images/a3-atk-vehicles.jpg" width="250" title="Spawn vehicles">
+<img src="images/a3-atk-weapons.jpg" width="250" title="Spawn vehicles">
 <img src="images/a3-atk-items.jpg" width="250" title="Get weapons">
 
 **Core Features:**
