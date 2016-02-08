@@ -151,18 +151,21 @@ _actionCode = ' call AdminToolkit_buttonAction;';
 		
 		[_listboxId, _list, _filter] call AdminToolkit_addItems;
 	};
-	// Buildings
+	// Item Vehicles or whatever
 	case 1604: 
 	{
-		ctrlSetText [1701,"Build"];
-        buttonSetAction [1701, "['build']" + _actionCode];
+		ctrlSetText [1701,"Spawn"];
+        buttonSetAction [1701, "['spawn']" + _actionCode];
 		
-		if(!(isNil {missionNamespace getVariable "AdminToolkit_Mod_Buildings"})) then 
+		if(!(isNil {missionNamespace getVariable "AdminToolkit_Mod_Other"})) then 
 		{
 			_list = [] call AdminToolkit_Mod_Buildings;
 		} else {
-			_list = "(getText(_x >> 'VehicleClass') in ['Objects', 'Structures','Training', 'Structures_Industrial','Military']) and (getNumber (_x >> 'scope') == 2)" configClasses (configFile >> "CfgVehicles");
+			_list ="configName _x isKindOf 'ReammoBox' and getNumber(_x >> 'scope') == 2" configClasses (configFile>>"CfgVehicles");
 		};
+		
+		// backpacks, etc...
+		// _list ="configName _x isKindOf 'Bag_Base' and getNumber(_x >> 'scope') == 2" configClasses (configFile>>"CfgVehicles");
 		
 		[_listboxId, _list, _filter] call AdminToolkit_addItems;
 	};

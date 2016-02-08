@@ -45,6 +45,7 @@ _counter = 0;
 		{
 			lbAdd [_listboxId, _displayName];
 			lbSetData [_listboxId, _counter, _className];
+			_counter = _counter + 1;
 		};
 	};
 } forEach _list;

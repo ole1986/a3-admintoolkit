@@ -41,10 +41,13 @@ switch (_action) do
         // parameter 1: compatible magazine
         _selection = [_tmp2];
     };
-	case 'build': {
+	case 'spawn': {
 		_tmp = lbData [1500, lbCurSel 1500];
-		_tmp2 = screenToWorld [0.5,0.5];
-		systemChat format["build: %1 %2", _tmp, str _tmp2];
+		//_tmp2 = screenToWorld [0.5,0.5];
+		// get player position 2m in front with current player Z axis
+		_tmp2 = player modelToWorld [0,2, (position player) select 2];
+		
+		systemChat format["spawn: %1 %2", _tmp, str _tmp2];
 		// _tmp = Building, _tmp2 = position on ground player is looking at
 		_selection = [_tmp, _tmp2];
 	};

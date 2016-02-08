@@ -114,9 +114,9 @@ try
 		case "getitem": {
 			if (_params != "") then { _player addItem _params; };
 		};
-		// Build an object at a position defined in parameter 2
+		// spawn an object at a position defined in parameter 2
 		// Example: [player, 'build', [<string className>, <array position>]]
-		case "build": {
+		case "spawn": {
 			_tmp = _params select 0;
 			_mod = _params select 1;
 			createVehicle [_tmp, _mod, [], 0, "CAN_COLLIDE"];

@@ -132,7 +132,7 @@ class AdminToolkitMenu {
 		idc = 1604;
 		action = "[1604] call AdminToolkit_buttonEvents";
 
-		text = "Buildings"; //--- ToDo: Localize;
+		text = "Other"; //--- ToDo: Localize;
 		x = 0.850006 * safezoneW + safezoneX;
 		y = 0.07302 * safezoneH + safezoneY;
 		w = 0.0625 * safezoneW;
