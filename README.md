@@ -1,4 +1,4 @@
-## AdminToolkit for Arma 3 v0.7
+## AdminToolkit for Arma 3 v0.8
 
 This tool is used to administrate Arma3 multiplayer server.
 
@@ -16,7 +16,8 @@ This tool is used to administrate Arma3 multiplayer server.
 - God Mode
 - Kick/Ban players
 - Vehicle spawning (for player)
-- spawn Weapon/Magazine
+- add items like Weapon/Magazine/
+- spawn object like Backpacks (Other), GPS, Binocular, etc... (located in Other)
 
 *Please note: This does not replace an AntiCheat software (like battleye)*
 

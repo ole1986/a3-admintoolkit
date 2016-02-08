@@ -1,3 +1,8 @@
+v0.8
+- fixed issue with search
+- replaced "Buildings" section with "Other" (Attention: properly MissionFile is affected when using addons)
+- several small fixes
+
 v0.7
 - support for extension features using AdminToolkit
 - implemented ExileMod extension (currently only pers. vehicle spawn and get money works)
