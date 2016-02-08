@@ -30,6 +30,8 @@ try
     };
         
     switch (_request) do {
+		// Kick player from server
+		// Example: [player, 'kickplayer', <string playername>]
 		case "kickplayer":
 		{
 			_tmp = getText(configFile >> "CfgSettings" >> "AdminToolkit" >> "ServerCommandPassword");
@@ -37,6 +39,8 @@ try
 				_tmp serverCommand format["#exec kick ""%1""", _params];
 			};
 		};
+		// Ban player from server
+		// Example: [player, 'banplayer', <string playername>]
 		case "banplayer":
 		{
 			_tmp = getText(configFile >> "CfgSettings" >> "AdminToolkit" >> "ServerCommandPassword");
@@ -44,45 +48,53 @@ try
 				_tmp serverCommand format["#exec ban ""%1""", _params];
 			};
 		};
+		// Receive players from server to avoid additional BE filters (client callback required)
+		// Example: [player, 'getplayers']
 		case "getplayers":
 		{
 			_tmp = ['', true] call AdminToolkit_network_fetchPlayer;
 			
 			[_request, _session, _tmp] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
 		};
+		// Teleport the player defined in parameter 0 to players position defined in parameter 2
+		// Example: [player, 'tp2player', <string playername>]
         case "tp2player": 
         {
-            // Teleport to players position
-            // Example #1: [player, 'tpto', '<playername>']
             _tmp = [_params] call AdminToolkit_network_fetchPlayer;
 			if(!isNil "_tmp") then {
 				_player setPosATL (getPosATL _tmp);
 			};
         };
+		// Teleport the selected player defined in parameter 2 to players position who has executed the command
+		// Example: [player, 'tpplayer', <string playername>]
         case "tpplayer": 
         {
-            // Teleport to players position
-            // Example #1: [player, 'tpto', '<playername>']
 			_tmp = [_params] call AdminToolkit_network_fetchPlayer;
 			if(!isNil "_tmp") then {
 				_tmp setPosATL (position _player);
 			};
         };
+		// Teleport the admin to coordinates ATL using parameter 2
+		// Example: [player, 'tp2pos', <array position>]
         case "tp2pos": {
-            // Teleport to coords ATL
-            // Example #2: [player, 'tpto', [0,0,0]]           /* teleport to coords ATL */
             _player setPosATL _params;
         };
+		// spawn a vehicle with className defined in parameter 2 near the admin
+		// Example: [player, 'getvehicle', <string vehicleClass>]
         case "getvehicle": {
-            // create a vehicle near admin
+            
              _result = _params createVehicle position _player;
         };
+		// spawn a vehicle at the position of another player
+		// Example: [player, 'givevehicle', [<string vehicleClass>, <string playername>]]
         case "givevehicle": {
             _tmp = [_params select 1] call AdminToolkit_network_fetchPlayer;
 			if(!isNil "_tmp") then {
 				(_params select 0) createVehicle position _tmp;
 			};
         };
+		// get a weapon for admin who called this command
+		// Example: [player, 'getweapon', [<string weaponClass>, <string magazineClass>]]
         case "getweapon": {
             // add magazine first to make sure weapon is being loaded
             _tmp = _params select 1;
@@ -91,24 +103,39 @@ try
             _tmp = _params select 0;
             if (_tmp != "") then { _player addWeaponGlobal _tmp; };
         };
+		// get magazines defined in parameter 2
+		// Example: [player, 'getammo', [<string magazineClass>]]
 		case "getammo": {
 			_tmp = _params select 0;
             if (_tmp != "") then { _player addMagazines  [_tmp, 1]; };
 		};
+		// add an item to admins inventory
+		// Example: [player, 'getitem', <string ItemClass>]
 		case "getitem": {
 			if (_params != "") then { _player addItem _params; };
 		};
+		// Build an object at a position defined in parameter 2
+		// Example: [player, 'createbuilding', [<string className>, <array position>]]
+		case "createbuilding": {
+			_tmp = _params select 0;
+			_mod = _params select 1;
+			createVehicle [_tmp, _mod, [], 0, "CAN_COLLIDE"];
+		};
+		// initialize the spectator mode (client callback required)
+		// Example: [player, 'specplayer', <string playname>]
 		case "specplayer": {
 			_tmp = [_params] call AdminToolkit_network_fetchPlayer;
 			if(!(isNil "_tmp") && (typeName _tmp == "OBJECT")) then {
 				[_request, _session, netId _tmp] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
 			};
 		};
+		// Enable the god mode (client callback required)
+		// Example: [player, 'godmodeon', null]
 		case "godmodeon": {
-			// all clients will have their ammo set to 1 for their current weapon
-			//{player setAmmo [primaryWeapon player, 1];} remoteExecCall ["bis_fnc_call", owner _player];
 			["godmode", _session, true] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
 		};
+		// Disable the god mode (client callback required)
+		// Example: [player, 'godmodeoff', null]
 		case "godmodeoff": {
 			["godmode", _session, false] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
 		};
