@@ -41,6 +41,13 @@ switch (_action) do
         // parameter 1: compatible magazine
         _selection = [_tmp2];
     };
+	case 'build': {
+		_tmp = lbData [1500, lbCurSel 1500];
+		_tmp2 = screenToWorld [0.5,0.5];
+		systemChat format["build: %1 %2", _tmp, str _tmp2];
+		// _tmp = Building, _tmp2 = position on ground player is looking at
+		_selection = [_tmp, _tmp2];
+	};
     default 
     {
         _selection = lbData [1500, lbCurSel 1500];

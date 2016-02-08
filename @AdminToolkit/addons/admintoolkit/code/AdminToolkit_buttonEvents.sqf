@@ -154,6 +154,9 @@ _actionCode = ' call AdminToolkit_buttonAction;';
 	// Buildings
 	case 1604: 
 	{
+		ctrlSetText [1701,"Build"];
+        buttonSetAction [1701, "['build']" + _actionCode];
+		
 		if(!(isNil {missionNamespace getVariable "AdminToolkit_Mod_Buildings"})) then 
 		{
 			_list = [] call AdminToolkit_Mod_Buildings;
