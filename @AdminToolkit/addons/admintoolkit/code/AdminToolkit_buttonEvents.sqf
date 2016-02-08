@@ -173,7 +173,8 @@ _actionCode = ' call AdminToolkit_buttonAction;';
 		{
 			_list = [] call AdminToolkit_Mod_Items;
 		} else {
-			_list = "getNumber(_x >> 'Type') == 256" configClasses (configFile >> "CfgMagazines");
+			// 256 = WeaponSlotItem, 2 = only public classes
+			_list = "(getNumber(_x >> 'Type') == 256) and (getNumber(_x >> 'scope') == 2)" configClasses (configFile >> "CfgMagazines");
 		};
 		
 		[_listboxId, _list, _filter] call AdminToolkit_addItems;
