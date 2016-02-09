@@ -20,7 +20,7 @@ class CfgAdminToolkitCustomMod {
     AdminToolkit_Mod_Vehicles = "atk\AdminToolkit_Vehicles_Demo.sqf";
 	//AdminToolkit_Mod_Weapons = "";
 	//AdminToolkit_Mod_Ai = "";
-	//AdminToolkit_Mod_Buildings = "";
+	//AdminToolkit_Mod_Custom = "";
     //AdminToolkit_Mod_Items = "";
 };
 ```
