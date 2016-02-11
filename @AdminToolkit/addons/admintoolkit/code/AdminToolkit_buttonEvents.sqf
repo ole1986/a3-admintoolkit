@@ -156,6 +156,10 @@ switch (_controlId) do
 	{
 		ctrlSetText [1701,"Spawn"];
         buttonSetAction [1701, "['spawn']" + _actionCode];
+        
+        ctrlSetText [1701,"Build"];
+        buttonSetAction [1701, "['build']" + _actionCode];
+        
 		
 		if(!(isNil {missionNamespace getVariable "AdminToolkit_Mod_Other"})) then 
 		{
