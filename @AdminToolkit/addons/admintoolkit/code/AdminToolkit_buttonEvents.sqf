@@ -76,7 +76,7 @@ lbClear _listboxId;
 
 _actionCode = ' call AdminToolkit_buttonAction;';
  
- switch (_controlId) do
+switch (_controlId) do
 {
     // Players
     case 1600: 
