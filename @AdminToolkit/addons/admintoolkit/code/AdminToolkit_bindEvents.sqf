@@ -20,11 +20,37 @@ switch (_this select 1) do
             closeDialog 0;
         };
 	};
-    // Space bar
+    // Space bar - place object
     case 0x39:
     {
         if(AdminToolkitIsBuilding isEqualTo 1) then {
             [] call AdminToolkit_moveStop;
+        };
+    };
+    // Key E - rotate left
+    case 0x12: {
+        if(AdminToolkitIsBuilding isEqualTo 1) then {
+            if(AdminToolkitBuildingRotation <= -360 ) then { AdminToolkitBuildingRotation = 0; };
+            AdminToolkitBuildingRotation = AdminToolkitBuildingRotation - 5;
+        };
+    };
+    // Key Q - rotate right
+    case 0x10: {
+        if(AdminToolkitIsBuilding isEqualTo 1) then {
+            if(AdminToolkitBuildingRotation >= 360 ) then { AdminToolkitBuildingRotation = 0; };
+            AdminToolkitBuildingRotation = AdminToolkitBuildingRotation + 5;
+        };
+    };
+    // LSHIFT - move up
+    case 0x2A: {
+        if(AdminToolkitIsBuilding isEqualTo 1) then {
+            AdminToolkitBuildingOffset set [2, (AdminToolkitBuildingOffset select 2) + 0.1];
+        };
+    };
+    // LCONTROL - move down
+    case 0x1D: {
+        if(AdminToolkitIsBuilding isEqualTo 1) then {
+            AdminToolkitBuildingOffset set [2, (AdminToolkitBuildingOffset select 2) - 0.1];
         };
     };
 };

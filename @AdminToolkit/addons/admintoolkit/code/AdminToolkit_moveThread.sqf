@@ -7,14 +7,13 @@ private['_objectOffset','_position', '_vectorUp'];
 // AdminToolkitBuildingObject = <vehicle> 
 // AdminToolkitIsBuilding = 1;
 
-_objectOffset = _this select 0;
 _position = [0, 0, 0];
 _vectorUp = [0, 0, 1];
 
 while {AdminToolkitIsBuilding isEqualTo 1} do
 {
-    _position = ASLtoATL (AGLtoASL (player modelToWorld _objectOffset));
-	_rotation = (0 + (getDir player) + 360) % 360;
+    _position = ASLtoATL (AGLtoASL (player modelToWorld AdminToolkitBuildingOffset));
+	_rotation = (AdminToolkitBuildingRotation + (getDir player) + 360) % 360;
 	_vectorDirection = [sin(_rotation), cos(_rotation), 0];
     
     AdminToolkitBuildingObject setVectorDirAndUp [_vectorDirection, _vectorUp];

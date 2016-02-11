@@ -116,6 +116,9 @@ switch (_controlId) do
         ctrlSetText [1702,"Spawn at Player"];
         buttonSetAction [1702, "['givevehicle']" + _actionCode];
 		
+        ctrlSetText [1703,"Place at Pos"];
+        buttonSetAction [1703, "['build']" + _actionCode];
+        
 		// get all vehicles
 		if(!(isNil {missionNamespace getVariable "AdminToolkit_Mod_Vehicles"}) ) then 
 		{
@@ -128,12 +131,12 @@ switch (_controlId) do
     };
     // Weapons
     case 1602:
-    {
-		ctrlSetText [1701,"Get Weapon"];
-        buttonSetAction [1701, "['getweapon']" + _actionCode];
+    {       
+		ctrlSetText [1707,"Get Weapon"];
+        buttonSetAction [1707, "['getweapon']" + _actionCode];
 		
-		ctrlSetText [1702,"Get Ammo"];
-        buttonSetAction [1702, "['getammo']" + _actionCode];
+		ctrlSetText [1708,"Get Ammo"];
+        buttonSetAction [1708, "['getammo']" + _actionCode];
 		
 		_list = "((getNumber(_x >> 'Type') > 0) and (getNumber(_x >> 'Type') <= 4) and (configName _x find '_Base' <= 0) and (configName _x find '_base' <= 0))" configClasses (configFile >> "CfgWeapons");
 
@@ -154,13 +157,9 @@ switch (_controlId) do
 	// Item Vehicles or whatever
 	case 1604: 
 	{
-		ctrlSetText [1701,"Spawn"];
-        buttonSetAction [1701, "['spawn']" + _actionCode];
-        
-        ctrlSetText [1701,"Build"];
-        buttonSetAction [1701, "['build']" + _actionCode];
-        
-		
+		ctrlSetText [1707,"Spawn"];
+        buttonSetAction [1707, "['spawn']" + _actionCode];
+              		
 		if(!(isNil {missionNamespace getVariable "AdminToolkit_Mod_Other"})) then 
 		{
 			_list = [] call AdminToolkit_Mod_Buildings;
@@ -176,8 +175,8 @@ switch (_controlId) do
 	// Items
 	case 1605:
 	{
-		ctrlSetText [1701,"Get Item"];
-        buttonSetAction [1701, "['getitem']" + _actionCode];
+		ctrlSetText [1707,"Get Item"];
+        buttonSetAction [1707, "['getitem']" + _actionCode];
 		
 		if(!(isNil {missionNamespace getVariable "AdminToolkit_Mod_Items"})) then 
 		{

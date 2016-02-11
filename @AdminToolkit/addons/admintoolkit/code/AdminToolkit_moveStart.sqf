@@ -6,9 +6,11 @@
 private['_vehicleClass','_position','_objectOffset', '_objectDistance', '_playerDir'];
 _vehicleClass = _this select 0;
 
-_objectOffset = [0, 5, 0]; 
+AdminToolkitIsBuilding = 1;
+AdminToolkitBuildingOffset = [0, 5, 0];
+AdminToolkitBuildingRotation = 0;
 
-_objectDistance = _objectOffset select 1;
+_objectDistance = AdminToolkitBuildingOffset select 1;
 _playerDir = getDir player;
 
 _position = getPosATL player;
@@ -18,8 +20,8 @@ _position = [
     (_position select 2)
 ];
 
-// TODO: check if position is properly calculated
-AdminToolkitIsBuilding = 1;
 AdminToolkitBuildingObject = createVehicle [_vehicleClass, _position, [], 0, "CAN_COLLIDE"];
 
-[_objectOffset] spawn AdminToolkit_moveThread;
+[] spawn AdminToolkit_moveThread;
+// close the AdminToolkit menu
+closeDialog 0;

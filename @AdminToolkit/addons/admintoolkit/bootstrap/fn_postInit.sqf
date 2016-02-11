@@ -4,7 +4,6 @@
 
 missionNamespace setVariable ['AdminToolkit_selectedPlayer', ''];
 missionNamespace setVariable ['AdminToolkit_selectedMenu', 0];
-missionNamespace setVariable ['AdminToolkitIsBuilding', 0];
 
 [] spawn {
 	waitUntil {!isNull (findDisplay 46)};
