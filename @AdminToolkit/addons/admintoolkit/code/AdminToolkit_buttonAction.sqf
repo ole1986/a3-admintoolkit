@@ -6,6 +6,7 @@
 private['_action', '_selection', '_tmp', '_tmp2'];
 // is the action which should remotely be called
 _action = _this select 0;
+_selection = nil;
 
 switch (_action) do
 {
@@ -51,11 +52,17 @@ switch (_action) do
 		// _tmp = Building, _tmp2 = position on ground player is looking at
 		_selection = [_tmp, _tmp2];
 	};
+    case 'build': {
+        _tmp = lbData [1500, lbCurSel 1500];
+        [_tmp] call AdminToolkit_moveStart;
+    };
     default 
     {
         _selection = lbData [1500, lbCurSel 1500];
     };
 };
 
-systemChat format["Calling %1 with params %2", _action, str _selection];
-[player, _action, _selection] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];
+if !(isNil "_selection") then {
+    systemChat format["receiveRequest: %1 with params %2", _action, str _selection];
+    [player, _action, _selection] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];
+};

@@ -20,5 +20,12 @@ switch (_this select 1) do
             closeDialog 0;
         };
 	};
+    // Space bar
+    case 0x39:
+    {
+        if(AdminToolkitIsBuilding isEqualTo 1) then {
+            [] call AdminToolkit_moveStop;
+        };
+    };
 };
 _handled;
