@@ -56,10 +56,11 @@ try {
             // _tmp = Building, _tmp2 = position on ground player is looking at
             _selection = [_tmp, _tmp2];
         };
-        case 'build': {
-            _tmp = lbData [1500, lbCurSel 1500];
-            [_tmp] call AdminToolkit_moveStart;
-        };
+        /*case 'build': {
+        
+            //_tmp = lbData [1500, lbCurSel 1500];
+            //[_tmp] call AdminToolkit_moveStart;
+        };*/
         default 
         {
             _selection = lbData [1500, lbCurSel 1500];

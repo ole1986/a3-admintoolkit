@@ -115,12 +115,18 @@ try
 			if (_params != "") then { _player addItem _params; };
 		};
 		// spawn an object at a position defined in parameter 2
-		// Example: [player, 'build', [<string className>, <array position>]]
+		// Example: [player, 'spawn', [<string className>, <array position>]]
 		case "spawn": {
 			_tmp = _params select 0;
 			_mod = _params select 1;
 			createVehicle [_tmp, _mod, [], 0, "CAN_COLLIDE"];
 		};
+        // build a vehicle and callback the object netId to its client for further action
+        // Example: [player, 'build', <string className>]
+        case "build": {
+            _tmp = createVehicle [_params, [0,0,0], [], 0, "CAN_COLLIDE"];
+            [_request, _session, netId _tmp] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
+        };
 		// initialize the spectator mode (client callback required)
 		// Example: [player, 'specplayer', <string playname>]
 		case "specplayer": {

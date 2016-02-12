@@ -3,9 +3,7 @@
  * @author ole1986
  */
  
-private['_objectOffset','_position', '_vectorUp'];
-// AdminToolkitBuildingObject = <vehicle> 
-// AdminToolkitIsBuilding = 1;
+private['_position', '_vectorUp', '_rotation', '_vectorDirection'];
 
 _position = [0, 0, 0];
 _vectorUp = [0, 0, 1];

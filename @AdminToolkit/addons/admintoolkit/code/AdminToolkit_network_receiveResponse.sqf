@@ -35,6 +35,10 @@ try
 			//admintoolkit_specCam SwitchCamera "internal";
 			//admintoolkit_specCam attachTo [player, [0,-1,1.8]];
 		};
+        case 'build': {
+            // the netId of its vehicle created from the server
+            [_params] call AdminToolkit_moveStart;
+        };
 		case 'godmode': {
 			if(_params) then { player allowDamage false; } else { player allowDamage true; };
 			systemChat format["Godmode %1", str _params];
@@ -43,5 +47,5 @@ try
 }
 catch
 {
-    systemChat format["[ADMINTOOLKIT]: EXCEPTION: %1", _exception];
+    systemChat format["[ATK-RESPONSE]: EXCEPTION: %1", _exception];
 };
