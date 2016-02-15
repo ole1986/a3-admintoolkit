@@ -3,10 +3,10 @@
  * @author ole1986
  */
  
-private[];
+private['_position'];
 
 AdminToolkitIsBuilding = 0;
-//AdminToolkitBuildingObject = objNull;
+detach AdminToolkitBuildingObject; 
 
 /*if !(isNull "AdminToolkitBuildingObject") then {
     

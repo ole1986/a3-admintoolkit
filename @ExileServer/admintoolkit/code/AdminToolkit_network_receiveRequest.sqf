@@ -124,7 +124,19 @@ try
         // build a vehicle and callback the object netId to its client for further action
         // Example: [player, 'build', <string className>]
         case "build": {
-            _tmp = createVehicle [_params, [0,0,0], [], 0, "CAN_COLLIDE"];
+            _tmp = createVehicle [_params, [0,0,1000], [], 0, "CAN_COLLIDE"];
+            _tmp setVariable ["BIS_enableRandomization", false];
+	        _tmp enableSimulationGlobal false;
+            _tmp allowDamage false;
+            _tmp removeAllEventHandlers "HandleDamage";
+            [_tmp, owner _player] spawn {
+                private['_vehicle', '_owner'];
+                _vehicle = _this select 0;
+                _owner = _this select 1;
+                _vehicle setOwner _owner; 
+                diag_log format["[ADMINTOOLKIT] Setting owner %1 on vehicle %2", str _owner, str _vehicle]; 
+            };
+            
             [_request, _session, netId _tmp] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
         };
 		// initialize the spectator mode (client callback required)

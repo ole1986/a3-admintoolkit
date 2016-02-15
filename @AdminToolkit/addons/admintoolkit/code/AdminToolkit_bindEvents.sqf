@@ -41,16 +41,28 @@ switch (_this select 1) do
             AdminToolkitBuildingRotation = AdminToolkitBuildingRotation + 5;
         };
     };
-    // LSHIFT - move up
-    case 0x2A: {
+    // PAGE UP - move up
+    case 0xC9: {
         if(AdminToolkitIsBuilding isEqualTo 1) then {
-            AdminToolkitBuildingOffset set [2, (AdminToolkitBuildingOffset select 2) + 0.1];
+            AdminToolkitBuildingOffset set [2, (AdminToolkitBuildingOffset select 2) + 0.2];
         };
     };
     // LCONTROL - move down
-    case 0x1D: {
+    case 0xD1: {
         if(AdminToolkitIsBuilding isEqualTo 1) then {
-            AdminToolkitBuildingOffset set [2, (AdminToolkitBuildingOffset select 2) - 0.1];
+            AdminToolkitBuildingOffset set [2, (AdminToolkitBuildingOffset select 2) - 0.2];
+        };
+    };
+    // HOME - move forward
+    case 0xC7: {
+        if(AdminToolkitIsBuilding isEqualTo 1) then {
+            AdminToolkitBuildingOffset set [1, (AdminToolkitBuildingOffset select 1) + 0.2];
+        };
+    };
+    // END - move backward
+    case 0xCF: {
+        if(AdminToolkitIsBuilding isEqualTo 1) then {
+            AdminToolkitBuildingOffset set [1, (AdminToolkitBuildingOffset select 1) - 0.2];
         };
     };
 };

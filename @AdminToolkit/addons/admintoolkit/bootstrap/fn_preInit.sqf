@@ -40,7 +40,7 @@ if(isClass (missionConfigFile >> 'CfgAdminToolkitCustomMod')) then {
 		'AdminToolkit_Mod_Players',
 		'AdminToolkit_Mod_Vehicles',
 		'AdminToolkit_Mod_Weapons',
-		'AdminToolkit_Mod_Ai',
+		'AdminToolkit_Mod_Custom',
 		'AdminToolkit_Mod_Other',
 		'AdminToolkit_Mod_Items'
 	];

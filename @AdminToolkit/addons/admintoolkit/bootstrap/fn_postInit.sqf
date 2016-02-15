@@ -20,5 +20,4 @@ missionNamespace setVariable ['AdminToolkit_selectedMenu', 0];
 };
 
 diag_log "AdminToolkit postInit";
- 
 true;

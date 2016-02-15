@@ -115,10 +115,7 @@ switch (_controlId) do
         
         ctrlSetText [1702,"Spawn at Player"];
         buttonSetAction [1702, "['givevehicle']" + _actionCode];
-		
-        ctrlSetText [1703,"Place at Pos"];
-        buttonSetAction [1703, "['build']" + _actionCode];
-        
+		       
 		// get all vehicles
 		if(!(isNil {missionNamespace getVariable "AdminToolkit_Mod_Vehicles"}) ) then 
 		{
@@ -142,14 +139,17 @@ switch (_controlId) do
 
 		[_listboxId, _list, _filter] call AdminToolkit_addItems;
     };
-	// AI
+	// Buildings
 	case 1603: 
 	{
-		if(!(isNil {missionNamespace getVariable "AdminToolkit_Mod_Ai"})) then 
+        ctrlSetText [1707,"Construct"];
+        buttonSetAction [1707, "['build']" + _actionCode];
+        
+		if(!(isNil {missionNamespace getVariable "AdminToolkit_Mod_Custom"})) then 
 		{
-			_list = [] call AdminToolkit_Mod_Ai;
+			_list = [] call AdminToolkit_Mod_Custom;
 		} else {
-			_list = [];
+			_list = "(configName _x isKindOf 'Building') and !(configName _x isKindOf 'ReammoBox') and (getNumber(_x >> 'scope') == 2)" configClasses (configFile>>"CfgVehicles");
 		};
 		
 		[_listboxId, _list, _filter] call AdminToolkit_addItems;
@@ -162,7 +162,7 @@ switch (_controlId) do
               		
 		if(!(isNil {missionNamespace getVariable "AdminToolkit_Mod_Other"})) then 
 		{
-			_list = [] call AdminToolkit_Mod_Buildings;
+			_list = [] call AdminToolkit_Mod_Other;
 		} else {
 			_list ="configName _x isKindOf 'ReammoBox' and getNumber(_x >> 'scope') == 2" configClasses (configFile>>"CfgVehicles");
 		};
