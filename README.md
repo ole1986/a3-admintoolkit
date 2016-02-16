@@ -1,4 +1,4 @@
-## AdminToolkit for Arma 3 v0.8
+## AdminToolkit for Arma 3 v0.9
 
 This tool is used to administrate Arma3 multiplayer server.
 
@@ -7,17 +7,27 @@ This tool is used to administrate Arma3 multiplayer server.
 <img src="images/a3-atk-players.jpg" width="210" title="Manage players">
 <img src="images/a3-atk-vehicles.jpg" width="210" title="Spawn vehicles">
 <img src="images/a3-atk-weapons.jpg" width="210" title="Get weapons">
-<img src="images/a3-atk-items.jpg" width="210" title="Get Items">
+<img src="images/a3-atk-construct.jpg" width="210" title="Construction">
 
 **Core Features:**
 
+**Players**
 - Teleport from/to players and to map position (by using the in-game map - hold ALT key and press LMB)
 - Spectate player
 - God Mode
 - Kick/Ban players
-- Vehicle spawning (for player)
-- add items like Weapon/Magazine/
-- spawn object like Backpacks (Other), GPS, Binocular, etc... (located in Other)
+
+**Vehicles**
+- Vehicle spawn for yourself or a selected player
+- (Exile Addon) Spawn persistent vehicles with PIN CODE
+
+**Weapons**
+- add weapon to inventory
+- add ammon to inventory
+
+**Construction & Others**
+- Place buildings by using **Q, E for rotation**, **PAGEUP/PAGEDOWN and HOME/END for moving** the constructions
+- spawn additional "vehicle items" like Backpacks, GPS, Binocular, etc... (located in Other)
 
 *Please note: This does not replace an AntiCheat software (like battleye)*
 
