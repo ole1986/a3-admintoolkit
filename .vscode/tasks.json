@@ -2,21 +2,8 @@
     "version": "0.1.0",
     "name": "PBO Task",
     //...
-    "suppressTaskName": true,
-    "command": "cmd",  
+    "command": "powershell",  
     "isShellCommand": true, 
     "showOutput": "always",
-    "args": ["/C"],
-    "tasks": [
-        { 
-            "taskName": "Pack PBO",
-            "isBuildCommand": true,
-            "args": [ "cpbo -y -p ${workspaceRoot}\\@ExileServer\\admintoolkit ${workspaceRoot}\\@ExileServer\\admintoolkit.pbo & cpbo -y -p ${workspaceRoot}\\@AdminToolkit\\addons\\admintoolkit ${workspaceRoot}\\@AdminToolkit\\addons\\admintoolkit.pbo"]
-        },
-        { 
-            "taskName": "Sign PBO",
-            "isBuildCommand": true,
-            "args": [ "dssignfile ${workspaceRoot}\\admintoolkit.biprivatekey ${workspaceRoot}\\@AdminToolkit\\addons\\admintoolkit.pbo"]
-        }
-    ]
+    "args": ["${workspaceRoot}\\githook-precommit.ps1 -Generate -Sign -Install"]
 }
