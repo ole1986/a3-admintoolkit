@@ -40,10 +40,9 @@ class CfgRemoteExec
 {
 	class Functions
 	{
-		mode=1;
-		jip=0;
-		class AdminToolkit_network_receiveRequest { allowedTargets=2; };
-		class AdminToolkit_network_receiveResponse { allowedTargets=1; };
+		mode = 1;
+		jip = 0;
+		class AdminToolkit_network_receiveRequest { allowedTargets = 2; };
 	};
 	class Commands
 	{
