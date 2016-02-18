@@ -42,6 +42,14 @@ This tool is used to administrate Arma3 multiplayer server.
 + Copy the directory `@AdminToolkit` folder into your Arma3 game directory 
 + Load the mod through Arma 3 Launcher when you start the game
 
+### MissionFile (**v1.56.134627 - Eden Update**)
+
++ Open the description.ext and add the below line inside `class CfgRemoteExec -> class Functions`
+
+```
+class AdminToolkit_network_receiveRequest { allowedTargets = 2; };
+```
+
 ### Server
 
 + Copy the `admintoolkit.pbo` from the @ExileServer folder into your `<ExileServerMod>\addons` directory.
