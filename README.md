@@ -9,6 +9,10 @@ This tool is used to administrate Arma3 multiplayer server.
 <img src="images/a3-atk-weapons.jpg" width="210" title="Get weapons">
 <img src="images/a3-atk-construct.jpg" width="210" title="Construction">
 
+<p align="center">
+Video<br/>
+<a href="https://www.youtube.com/watch?v=Hznh7DSM38E"><img src="http://img.youtube.com/vi/Hznh7DSM38E/0.jpg" /></a>
+</p>
 **Core Features:**
 
 **Players**
