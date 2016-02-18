@@ -11,7 +11,7 @@ This tool is used to administrate Arma3 multiplayer server.
 
 <p align="center">
 Video<br/>
-<a href="https://www.youtube.com/watch?v=Hznh7DSM38E"><img src="http://img.youtube.com/vi/Hznh7DSM38E/0.jpg" /></a>
+<a href="https://www.youtube.com/watch?v=Hznh7DSM38E" target="_blank"><img src="http://img.youtube.com/vi/Hznh7DSM38E/0.jpg" /></a>
 </p>
 **Core Features:**
 
