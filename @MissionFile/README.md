@@ -20,18 +20,23 @@ class CfgAdminToolkitCustomMod {
 };
 ```
 
-This causes the script <a href="%40MissionFile/atk/AdminToolkit_Vehicles_Demo.sqf">AdminToolkit_Vehicles_Demo.sqf</a> to be executed when user opens the `Vehicles` section.
+This causes the script <a href="atk/AdminToolkit_Vehicles_Demo.sqf">AdminToolkit_Vehicles_Demo.sqf</a> to be executed when user opens the `Vehicles` section.
 
-## Authorized server requests (bypass battleye)
+## Authorized server request (bypass battleye)
 
-Scripts defined above are usually executed from its client.<br />
+Scripts defined above are usually executed from client.
+
 To make it more secure and also make sure only authorized players (Admin/Moderator) are allowed to execute, it is recommended to build an **additional server extension script**.
 
 To achieve this it is neccessary to define the `AdminToolkit_ModEnable` property located in the `CfgAdminToolkitCustomMod` class
 
 **Example**
+```
+// define to allow server-side execution of AdminToolkit_server_myExtension.sqf
+AdminToolkit_ModEnable = "myExtension";
+```
 
-`AdminToolkit_ModEnable = "myExtension";`
+Save the below file into server's admintoolkit.pbo
 
 ```
 // File: @ExileServer\admintoolkit\code\AdminToolkit_server_myExtension.sqf
@@ -64,9 +69,9 @@ true;
 
 To pass the call it uses the arma feature known as "Remote Execution".
 
-**Example Client**
+**Example call from client**
 ```
-// supposed to print out the player name in server log
+// use the below line to call action1 from myExtension which should print out player name in server log
 [player, "myExtension_action1", []] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];
 ```
 
