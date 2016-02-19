@@ -66,7 +66,14 @@ class AdminToolkit_network_receiveRequest { allowedTargets = 2; };
  
 ### Addons
 
-EXILE: <a href="@MissionFile/README.exile.md">AdminToolkit with ExileMod features</a>
+The AdminToolkit can be extended with your addon features by using its MissionFile configuration class `CfgAdminToolkitCustomMod`.
+Implementation notes can be found in the <a href="%40MissionFile/README.md">@MissionFile/README.md</a>
+
+**List of avaible extensions**
+
+| Name     | Description                                                      | Link
+| -------- | ---------------------------------------------------------------- | ----
+| ExileMod | create persistent vehicles, receive ExileMoney and build objects | <a href="@MissionFile/README.exile.md">Installation</a>
 
 ## Configuration
 
