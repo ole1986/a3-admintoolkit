@@ -20,6 +20,7 @@ Video<br/>
 **Core Features:**
 
 **Players**
+- Setup administrators and moderators with limited access
 - Teleport from/to players and to map position (by using the in-game map - hold ALT key and press LMB)
 - Spectate player
 - God Mode
@@ -63,17 +64,6 @@ class AdminToolkit_network_receiveRequest { allowedTargets = 2; };
 + Pack the `@ExileServer\admintoolkit` folder (containing your config.cpp changes) by using the PBO Manager
 + Copy the `@ExileServer\admintoolkit.pbo` into your `@ExileServer\addons` directory from the server.
 + Copy the `admintoolkit.bikey` server key file into your server `keys` directory
- 
-### Extensions
-
-The AdminToolkit can be extended with your addon features by using the MissionFile configuration class `CfgAdminToolkitCustomMod`.
-More details can be found in the <a href="%40MissionFile/README.md">@MissionFile/README.md</a>
-
-**List of avaible extensions**
-
-| Name     | Description                                                      | Link
-| -------- | ---------------------------------------------------------------- | ----
-| ExileMod | create persistent vehicles, receive ExileMoney and build objects | <a href="@MissionFile/README.exile.md">Installation</a>
 
 ## Configuration
 
@@ -100,6 +90,17 @@ ModeratorCmds[] = {"tp2player", "getvehicle", "kickplayer", "playersCallback", "
 ```
 
 Moderators have limited access - The command list can optionally be customized
+
+## Extensions
+
+The AdminToolkit can be extended with your addon features by using the MissionFile configuration class `CfgAdminToolkitCustomMod`.
+More details can be found in the <a href="%40MissionFile/README.md">@MissionFile/README.md</a>
+
+**List of avaible extensions**
+
+| Name     | Description                                                      | Link
+| -------- | ---------------------------------------------------------------- | ----
+| ExileMod | create persistent vehicles, receive ExileMoney and build objects | <a href="@MissionFile/README.exile.md">Installation</a>
 
 ### Battleye
 
