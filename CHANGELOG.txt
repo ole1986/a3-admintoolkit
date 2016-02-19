@@ -1,3 +1,11 @@
+v1.0
+- first release
+- updated README.md with info on how to fix the "Scripting function 'admintoolkit_network_receivere...' is not allowed to be remotely executed" issue (Eden Update)
+
+v0.9
+- finalized building concept using keyboard keys
+- slightly other changes
+
 v0.8
 - fixed issue with search
 - replaced "Buildings" section with "Other" (Attention: properly MissionFile is affected when using addons)
