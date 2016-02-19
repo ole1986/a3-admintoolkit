@@ -1,6 +1,10 @@
 /**
- * AdminToolkit - An arma3 administration helper tool
- * @author ole1986
+ * AdminToolkit
+ * 
+ * Author: ole1986
+ * Website: https://github.com/ole1986/a3-admintoolkit
+ *
+ * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
  
 private['_controlId', '_filter', '_display','_listboxId', '_actionCode', '_list'];

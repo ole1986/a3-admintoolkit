@@ -1,6 +1,8 @@
 ## AdminToolkit for Arma 3 v0.9
 
-This tool is used to administrate Arma3 multiplayer server.
+A tool used to administrate Arma3 multiplayer server.
+
+<sup>*This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.*</sup>
 
 **<p align="center">PRESS THE F2 KEY IN-GAME TO OPEN</p>**
 
