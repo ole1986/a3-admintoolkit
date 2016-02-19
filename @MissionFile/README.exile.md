@@ -1,9 +1,15 @@
-# AdminToolkit with ExileMod features
+# AdminToolkit with ExileMod extension
 
-Please be sure you have followed the exact instruction of the AdminToolkit <a href="../README.md">README.md</a>
+Please make sure the following files exists is this package 
+
++ `@MissionFile\atk\AdminToolkit_Vehicles_Exile.sqf`
+
+## Installation
+
+Please make sure you have followed the exact instruction of the AdminToolkit <a href="../README.md">README.md</a>
 It is also necessary to add you player UID in the `config.cpp` located in `@ExileServer\admintoolkit` directory
 
-### Installation
+**MissionFile**
 
 + Unpack your mission file
 + Copy the folder `@MissionFile\atk` into your mission file root directory
@@ -19,9 +25,6 @@ class CfgAdminToolkitCustomMod {
 
 + Pack your mission file and upload it to your server
 
-### Verify
+**ServerFile**
 
-Once your have done all the steps you can verify it by opening the AdminToolkit (using the default keyboard key F2) and click on `Vehicles`.
-
-You should see at least a new button named "Exile Spawn".
-
+This extension is part of the AdminToolkit which includes `AdminToolkit_server_exile.sqf` - No more action required

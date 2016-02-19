@@ -96,7 +96,7 @@ Moderators have limited access - The command list can optionally be customized
 The AdminToolkit can be extended with your addon features by using the MissionFile configuration class `CfgAdminToolkitCustomMod`.
 More details can be found in the <a href="%40MissionFile/README.md">@MissionFile/README.md</a>
 
-**List of avaible extensions**
+**List of available extensions**
 
 | Name     | Description                                                      | Link
 | -------- | ---------------------------------------------------------------- | ----

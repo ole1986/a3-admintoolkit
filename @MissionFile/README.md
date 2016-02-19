@@ -1,20 +1,14 @@
 # Extending AdminToolkit features
 
-This folder is used to extend the AdminToolkit using additional files from the MissionFile.
-All supported extensions are usually stored as `AdminToolkit_<MenuEntry>_<ModName>.sqf` in the `atk` folder.
-
-## Overwrite menu
-
-Below is an example on how to imeplement a new feature into the Vehicle section
-The below class it is stored in the description.ext or config.cpp of your MissionFile
-
+Using the MissionFile you can extend and (partly) overwrite features of the AdminToolkit.<br />
+To achieve this a configuration class `CfgAdminToolkitCustomMod` is required in your `description.ext`
+ 
 ```
-// Example: Extend "Vehicles" section in AdminToolkit through config.cpp located in MissionFile
 class CfgAdminToolkitCustomMod {
 	// Used to replace the top menu button text (optional)
 	//AdminToolkit_MenuTitle[] = {"Players", "Vehicles", "Weapons", "AI", "Buildings", "Items"};
 	
-	// Used for server-side execution
+	// Used for server-side execution (optional)
 	//AdminToolkit_ModEnable = "";
 	
 	//AdminToolkit_Mod_Players = "";
@@ -26,48 +20,53 @@ class CfgAdminToolkitCustomMod {
 };
 ```
 
-By adding `AdminToolkit_Mod_Vehicles = "atk\AdminToolkit_Vehicles_Demo.sqf";` the script `AdminToolkit_Vehicles_Demo.sqf` is being called when user open the `Vehicles`.
+This causes the script <a href="%40MissionFile/atk/AdminToolkit_Vehicles_Demo.sqf">AdminToolkit_Vehicles_Demo.sqf</a> to be executed when user opens the `Vehicles` section.
 
-Below is an example of such script
+## Authorized server requests (bypass battleye)
+
+Scripts defined above are usually executed from its client.<br />
+To make it more secure and also make sure only authorized players (Admin/Moderator) are allowed to execute, it is recommended to build an **additional server extension script**.
+
+To achieve this it is neccessary to define the `AdminToolkit_ModEnable` property located in the `CfgAdminToolkitCustomMod` class
+
+**Example**
+
+`AdminToolkit_ModEnable = "myExtension";`
 
 ```
-// File: atk\AdminToolkit_Vehicles_Demo.sqf
-private['_result'];
-disableSerialization;
+// File: @ExileServer\admintoolkit\code\AdminToolkit_server_myExtension.sqf
+private['_playerObject','_request', '_params'];
+_playerObject = _this select 0;
+_request = _this select 1;
+_params = _this select 2;
 
-// _result returned the new list being added to GUI listbox
-_result = [];
+try 
+{
+    switch (_request) do {
+		case 'myExtension_action1': 
+		{
+            // output player name in server log
+			diag_log format["Player: %1", name _playerObject];
+		};
+		case 'myExtension_action2': 
+		{
+			// yet another action
+		};
+    };
+}
+catch
+{
+    diag_log format["[ADMINTOOLKIT-MOD]: EXCEPTION: %1", _exception];
+};
 
-/** 
- * SEARCH
- *
- * 1801 = Search text
- * 1802 = Search button
- *
- * LISTBOX
- *
- * 1500 = Listbox
- * 
- * LOWER BUTTONS
- * 
- * 1701 = Action 1
- * 1702 = Action 2
- * 1703 = Action 3
- * 1704 = Action 4
- * 1705 = Action 5
- * 1706 = Action 6
- * 1707 = Action 7
- * 1708 = Action 8
- */
-
-ctrlSetText [1701,"Demo 1"];
-buttonSetAction [1701, "systemChat format['You have selected %1', lbData [1500, lbCurSel 1500]]"];
-
-_result = "(configName _x find 'Hatchback' >= 0)" configClasses (configFile >> "CfgVehicles");
-
-_result;
+true;
 ```
 
-## Server-side execution
+To pass the call it uses the arma feature known as "Remote Execution".
 
-(soon)
+**Example Client**
+```
+// supposed to print out the player name in server log
+[player, "myExtension_action1", []] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];
+```
+
