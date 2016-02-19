@@ -1,10 +1,12 @@
-## AdminToolkit for Arma 3 v0.9
+## AdminToolkit for Arma 3 (Exile Edition)
+<sup>**Version 1.0** | Author: ole1986 | This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License</sup>
 
-A tool used to administrate Arma3 multiplayer server.
+This tool is used to administrate Arma3 multiplayer servers. 
+It also supports an option to overwrite the sections for additional features. 
 
-<sup>*This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.*</sup>
+More details about overwriting features can be found in the <a href="#addons">Addons</a> section
 
-**<p align="center">PRESS THE F2 KEY IN-GAME TO OPEN</p>**
+**<p align="center">PRESS THE F2 KEY TO OPEN IN-GAME</p>**
 
 <img src="images/a3-atk-players.jpg" width="210" title="Manage players">
 <img src="images/a3-atk-vehicles.jpg" width="210" title="Spawn vehicles">
@@ -29,13 +31,11 @@ Video<br/>
 
 **Weapons**
 - add weapon to inventory
-- add ammon to inventory
+- add ammo to inventory
 
 **Construction & Others**
 - Place buildings by using **Q, E for rotation**, **PAGEUP/PAGEDOWN and HOME/END for moving** the constructions
 - spawn additional "vehicle items" like Backpacks, GPS, Binocular, etc... (located in Other)
-
-*Please note: This does not replace an AntiCheat software (like battleye)*
 
 ## Installation
 ### Required Tools
@@ -45,12 +45,12 @@ Video<br/>
 
 ### Client
 
-+ Copy the directory `@AdminToolkit` folder into your Arma3 game directory 
-+ Load the mod through Arma 3 Launcher when you start the game
++ Copy the folder `@AdminToolkit` into your Arma 3 game directory (E.g. `C:\Steam\steamapps\common\Arma 3`) 
++ Load the mod through Arma 3 Launcher when you run the game
 
-### MissionFile (**v1.56.134627 - Eden Update**)
+### MissionFile (**since v1.56.134627 - Eden Update**)
 
-+ Open the description.ext and add the below line inside `class CfgRemoteExec -> class Functions`
++ Open the `description.ext` and add the below line into `class CfgRemoteExec -> class Functions`
 
 ```
 class AdminToolkit_network_receiveRequest { allowedTargets = 2; };
@@ -58,8 +58,9 @@ class AdminToolkit_network_receiveRequest { allowedTargets = 2; };
 
 ### Server
 
-+ Copy the `admintoolkit.pbo` from the @ExileServer folder into your `<ExileServerMod>\addons` directory.
-+ Setup the `config.cpp` accordingly - see <a href="#configuration">Configuration</a>
++ Open the `@ExileServer\admintoolkit` folder and setup the `config.cpp` accordingly - see <a href="#configuration">Configuration</a>
++ Pack the `@ExileServer\admintoolkit` folder (containing your config.cpp changes) by using the PBO Manager
++ Copy the `@ExileServer\admintoolkit.pbo` into your `@ExileServer\addons` directory from the server.
 + Copy the `admintoolkit.bikey` server key file into your server `keys` directory
  
 ### Addons
