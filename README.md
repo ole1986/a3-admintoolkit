@@ -1,10 +1,10 @@
-## AdminToolkit for Arma 3 (Exile Edition)
+## AdminToolkit for Arma 3
 <sup>**Version 1.0** | Author: ole1986 | This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License</sup>
 
 This tool is used to administrate Arma3 multiplayer servers. 
 It also supports an option to overwrite the sections for additional features. 
 
-More details about overwriting features can be found in the <a href="#addons">Addons</a> section
+**Also, check out the <a href="#extensions">Extensions</a> avaiable for AdminToolkit**
 
 **<p align="center">PRESS THE F2 KEY TO OPEN IN-GAME</p>**
 
@@ -64,10 +64,10 @@ class AdminToolkit_network_receiveRequest { allowedTargets = 2; };
 + Copy the `@ExileServer\admintoolkit.pbo` into your `@ExileServer\addons` directory from the server.
 + Copy the `admintoolkit.bikey` server key file into your server `keys` directory
  
-### Addons
+### Extensions
 
-The AdminToolkit can be extended with your addon features by using its MissionFile configuration class `CfgAdminToolkitCustomMod`.
-Implementation notes can be found in the <a href="%40MissionFile/README.md">@MissionFile/README.md</a>
+The AdminToolkit can be extended with your addon features by using the MissionFile configuration class `CfgAdminToolkitCustomMod`.
+More details can be found in the <a href="%40MissionFile/README.md">@MissionFile/README.md</a>
 
 **List of avaible extensions**
 
