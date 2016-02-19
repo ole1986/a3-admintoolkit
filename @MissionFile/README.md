@@ -26,7 +26,7 @@ class CfgAdminToolkitCustomMod {
 };
 ```
 
-By adding `AdminToolkit_Mod_Vehicles = "atk\AdminToolkit_Vehicles_Demo.sqf";` the script `AdminToolkit_Vehicles_Demo.sqf` is being called when user pressed the `Vehicles` button.
+By adding `AdminToolkit_Mod_Vehicles = "atk\AdminToolkit_Vehicles_Demo.sqf";` the script `AdminToolkit_Vehicles_Demo.sqf` is being called when user open the `Vehicles`.
 
 Below is an example of such script
 
