@@ -1,12 +1,12 @@
-# Extend AdminToolkit through MissionFile
+# Extending AdminToolkit features
 
 This folder is used to extend the AdminToolkit using additional files from the MissionFile.
 All supported extensions are usually stored as `AdminToolkit_<MenuEntry>_<ModName>.sqf` in the `atk` folder.
 
-## Extend the MissionFile
+## Overwrite menu
 
-Below is an example on how to imeplement a new feature to your mission file.
-Usually it is stored in the description.ext or config.cpp
+Below is an example on how to imeplement a new feature into the Vehicle section
+The below class it is stored in the description.ext or config.cpp of your MissionFile
 
 ```
 // Example: Extend "Vehicles" section in AdminToolkit through config.cpp located in MissionFile
@@ -14,7 +14,7 @@ class CfgAdminToolkitCustomMod {
 	// Used to replace the top menu button text (optional)
 	//AdminToolkit_MenuTitle[] = {"Players", "Vehicles", "Weapons", "AI", "Buildings", "Items"};
 	
-	// Used for SERVER-SIDE modifications
+	// Used for server-side execution
 	//AdminToolkit_ModEnable = "";
 	
 	//AdminToolkit_Mod_Players = "";
@@ -26,7 +26,9 @@ class CfgAdminToolkitCustomMod {
 };
 ```
 
-Below is a simple example script on how to replace list and action buttons for the `Vehicles` section
+By adding `AdminToolkit_Mod_Vehicles = "atk\AdminToolkit_Vehicles_Demo.sqf";` the script `AdminToolkit_Vehicles_Demo.sqf` is being called when user pressed the `Vehicles` button.
+
+Below is an example of such script
 
 ```
 // File: atk\AdminToolkit_Vehicles_Demo.sqf
@@ -65,3 +67,7 @@ _result = "(configName _x find 'Hatchback' >= 0)" configClasses (configFile >> "
 
 _result;
 ```
+
+## Server-side execution
+
+(soon)
