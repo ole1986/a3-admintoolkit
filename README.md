@@ -20,7 +20,7 @@ Video<br/>
 **Core Features:**
 
 **Players**
-- Setup administrators and moderators with limited access
+- Setup administrators or moderators with limited access
 - Teleport from/to players and to map position (by using the in-game map - hold ALT key and press LMB)
 - Spectate player
 - God Mode
