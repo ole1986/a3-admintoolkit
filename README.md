@@ -61,7 +61,7 @@ class AdminToolkit_network_receiveRequest { allowedTargets = 2; };
 ### Server
 
 + Open the `@ExileServer\admintoolkit` folder and setup the `config.cpp` accordingly - see <a href="#configuration">Configuration</a>
-+ Pack the `@ExileServer\admintoolkit` folder (containing your config.cpp changes) by using the PBO Manager
++ Pack the `@ExileServer\admintoolkit` folder (containing your config.cpp changes) into `admintoolkit.pbo`
 + Copy the `@ExileServer\admintoolkit.pbo` into your `@ExileServer\addons` directory from the server.
 + Copy the `admintoolkit.bikey` server key file into your server `keys` directory
 
