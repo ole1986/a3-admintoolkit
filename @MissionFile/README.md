@@ -3,9 +3,10 @@
 This folder is used to extend the AdminToolkit using additional files from the MissionFile.
 All supported extensions are usually stored as `AdminToolkit_<MenuEntry>_<ModName>.sqf` in the `atk` folder.
 
-## Example
+## Extend the MissionFile
 
-Below is an example on how to enable an Addon feature (ExileMod) in MissionFile config.cpp
+Below is an example on how to imeplement a new feature to your mission file.
+Usually it is stored in the description.ext or config.cpp
 
 ```
 // Example: Extend "Vehicles" section in AdminToolkit through config.cpp located in MissionFile
@@ -13,15 +14,15 @@ class CfgAdminToolkitCustomMod {
 	// Used to replace the top menu button text (optional)
 	//AdminToolkit_MenuTitle[] = {"Players", "Vehicles", "Weapons", "AI", "Buildings", "Items"};
 	
-	// Used th ENABLE THE MOD from server side
+	// Used for SERVER-SIDE modifications
 	//AdminToolkit_ModEnable = "";
 	
-    //AdminToolkit_Mod_Players = "";
-    AdminToolkit_Mod_Vehicles = "atk\AdminToolkit_Vehicles_Demo.sqf";
+	//AdminToolkit_Mod_Players = "";
+	AdminToolkit_Mod_Vehicles = "atk\AdminToolkit_Vehicles_Demo.sqf";
 	//AdminToolkit_Mod_Weapons = "";
 	//AdminToolkit_Mod_Custom = "";
 	//AdminToolkit_Mod_Other = "";
-    //AdminToolkit_Mod_Items = "";
+	//AdminToolkit_Mod_Items = "";
 };
 ```
 
