@@ -14,13 +14,14 @@ _listboxId = 1500;
 _list = [];
 _filter = "";
 // open players by default
-_controlId = 1600;
+_controlId = 0;
 
 // get the IDC from the button being pressed
 if(count _this > 0) then {
 	_controlId = _this select 0;
 	if(count _this > 1) then { _filter = _this select 1; };
 } else {
+    ctrlSetText [1803, 'Click on one of the buttons to open the section'];
 	// initial call when player pressed F2 keys
 	if(isClass(missionConfigFile >> 'CfgAdminToolkitCustomMod')) then {
 		if(isArray(missionConfigFile >> 'CfgAdminToolkitCustomMod' >> 'AdminToolkit_MenuTitle')) then {

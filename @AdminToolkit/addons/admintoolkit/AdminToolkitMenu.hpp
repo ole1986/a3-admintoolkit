@@ -52,6 +52,7 @@ class AdminToolkitMenu {
 		w = 0.1625 * safezoneW;
 		h = 0.04 * safezoneH;
 		colorBackground[] = {0,0,0,0.5};
+        onKeyDown = "if ((_this select 1) == 0x1C or (_this select 1) == 0x9C) then { [1802] call AdminToolkit_buttonEvents };";
 	};
 	class RscAdminToolkitSearchAction: RscButton
 	{
@@ -72,6 +73,7 @@ class AdminToolkitMenu {
 		y = 0.12006 * safezoneH + safezoneY;
 		w = 0.2125 * safezoneW;
 		h = 0.04 * safezoneH;
+        colorText[] = {1, 0, 0.4, 1};
 	};
 	class RscAdminToolkitList: RscListBox
 	{
