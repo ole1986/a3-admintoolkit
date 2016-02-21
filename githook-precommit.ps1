@@ -29,13 +29,13 @@ if($result -eq 0 -Or $Generate) {
     cpbo -y -p .\@AdminToolkit\addons\admintoolkit .\@AdminToolkit\addons\admintoolkit.pbo
 
     # SERVER: replace sensitive password with an empty string in server config.cpp
-    $content = Get-Content .\@ExileServer\admintoolkit\config.cpp
+    $content = Get-Content .\@ExileServer\admintoolkit_server\config.cpp
     $content = $content -Replace "ServerCommandPassword = ""(.*?)""","ServerCommandPassword = """""
-    Set-Content .\@ExileServer\admintoolkit\config.cpp -Value $content;
+    Set-Content .\@ExileServer\admintoolkit_server\config.cpp -Value $content;
 
     # SERVER: use cpbo to (re)create the admintoolkit.pbo file
     Write-Host "--- Generate server PBO"
-    cpbo -y -p .\@ExileServer\admintoolkit .\@ExileServer\admintoolkit.pbo
+    cpbo -y -p .\@ExileServer\admintoolkit_server .\@ExileServer\admintoolkit_server.pbo
 
     if(!$Sign) { $result = $host.ui.PromptForChoice("Confirm PBO signing", "Sign the Client PBO file?", $options, 0) }
 

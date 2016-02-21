@@ -28,17 +28,21 @@ switch (_this select 1) do
     case 0x39:
     {
         if(AdminToolkitIsBuilding isEqualTo 1) then {
-            [] call AdminToolkit_moveStop;
+           [] call AdminToolkit_moveStop;
         };
     };
-    // Key E - rotate left
+    // TAB - cancel building
+    case 0x0F: {
+        [true] call AdminToolkit_moveStop;
+    };
+    // Key E - rotate
     case 0x12: {
         if(AdminToolkitIsBuilding isEqualTo 1) then {
             if(AdminToolkitBuildingRotation <= -360 ) then { AdminToolkitBuildingRotation = 0; };
             AdminToolkitBuildingRotation = AdminToolkitBuildingRotation - 5;
         };
     };
-    // Key Q - rotate right
+    // Key Q - rotate
     case 0x10: {
         if(AdminToolkitIsBuilding isEqualTo 1) then {
             if(AdminToolkitBuildingRotation >= 360 ) then { AdminToolkitBuildingRotation = 0; };

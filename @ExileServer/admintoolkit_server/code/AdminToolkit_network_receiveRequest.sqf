@@ -143,6 +143,11 @@ try
             
             [_request, _session, netId _tmp] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
         };
+        // abort the build progress by deleting the vehicle just created
+        case "buildabort": {
+            _tmp = objectFromNetId _params;
+            deleteVehicle _tmp;
+        };
 		// initialize the spectator mode (client callback required)
 		// Example: [player, 'specplayer', <string playname>]
 		case "specplayer": {
@@ -166,7 +171,7 @@ try
 			if(isClass(missionConfigFile >> "CfgAdminToolkitCustomMod")) then {
 				if(isText(missionConfigFile >> "CfgAdminToolkitCustomMod" >> "AdminToolkit_ModEnable")) then {
 					_tmp = toLower getText(missionConfigFile >> "CfgAdminToolkitCustomMod" >> "AdminToolkit_ModEnable");
-					_mod = compile preprocessFileLineNumbers ("admintoolkit\code\AdminToolkit_server_" + _tmp + ".sqf");
+					_mod = compile preprocessFileLineNumbers ("admintoolkit_server\code\AdminToolkit_server_" + _tmp + ".sqf");
 					[_player, _request, _params] call _mod;
 				};
 			};

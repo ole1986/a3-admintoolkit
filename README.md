@@ -60,15 +60,15 @@ class AdminToolkit_network_receiveRequest { allowedTargets = 2; };
 
 ### Server
 
-+ Open the `@ExileServer\admintoolkit` folder and setup the `config.cpp` accordingly - see <a href="#configuration">Configuration</a>
-+ Pack the `@ExileServer\admintoolkit` folder (containing your config.cpp changes) into `admintoolkit.pbo`
-+ Copy the `@ExileServer\admintoolkit.pbo` into your `@ExileServer\addons` directory from the server.
++ Open the `@ExileServer\admintoolkit_server` folder and setup the `config.cpp` accordingly - see <a href="#configuration">Configuration</a>
++ Pack the `@ExileServer\admintoolkit_server` folder (containing your config.cpp changes) into `admintoolkit_server.pbo`
++ Copy the `@ExileServer\admintoolkit_server.pbo` into your `@ExileServer\addons` directory from the server.
 + Copy the `admintoolkit.bikey` server key file into your server `keys` directory
 
 ## Configuration
 
 Before you can use the AdminToolkit it is necessary to add you as administrator.
-Please find the server `config.cpp` in your `@ExileServer\admintoolkit` directory and amend it according to your requirements
+Please find the server `config.cpp` in your `@ExileServer\admintoolkit_server` directory and amend it according to your requirements
 
 ```
 /**

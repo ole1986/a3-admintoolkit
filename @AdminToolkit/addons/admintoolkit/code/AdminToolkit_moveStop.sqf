@@ -7,11 +7,12 @@
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
  
-private['_position'];
+private['_canceled'];
 
-AdminToolkitIsBuilding = 0;
-detach AdminToolkitBuildingObject; 
+_canceled = _this select 0;
 
-/*if !(isNull "AdminToolkitBuildingObject") then {
-    
-};*/
+if !(isNil "_canceled") then {
+    AdminToolkitIsBuilding = -1;
+} else {
+    AdminToolkitIsBuilding = 0;
+};

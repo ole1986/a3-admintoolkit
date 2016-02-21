@@ -18,7 +18,7 @@ class CfgPatches {
 class CfgFunctions {
     class AdminToolkit {
         class main {
-            file="admintoolkit\bootstrap";
+            file="admintoolkit_server\bootstrap";
             class preInit { 
                 preInit = 1;
             };

@@ -34,10 +34,6 @@ try
 			admintoolkit_specCam attachTo [_params, [0,-1,1.8]];
 			
 			systemChat format["Spectating %1", name _params];
-			//admintoolkit_specCam = "camera" createvehicle [0,0,0];
-			//admintoolkit_specCam camsettarget player;
-			//admintoolkit_specCam SwitchCamera "internal";
-			//admintoolkit_specCam attachTo [player, [0,-1,1.8]];
 		};
         case 'build': {
             // the netId of its vehicle created from the server
