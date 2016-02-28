@@ -1,3 +1,7 @@
+v1.1
+- fixed issue when overwriting Weapons section using missionFile configuration "AdminToolkit_Mod_Weapons"
+- added more examples in "atk" folder of the missionFile (RHS weapons, RHS vehicles)
+
 v1.0
 - first release
 - updated README.md with info on how to fix the "Scripting function 'admintoolkit_network_receivere...' is not allowed to be remotely executed" issue (Eden Update)

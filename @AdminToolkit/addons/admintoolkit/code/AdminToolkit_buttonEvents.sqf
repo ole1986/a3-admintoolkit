@@ -140,7 +140,13 @@ switch (_controlId) do
 		ctrlSetText [1708,"Get Ammo"];
         buttonSetAction [1708, "['getammo']" + _actionCode];
 		
-		_list = "((getNumber(_x >> 'Type') > 0) and (getNumber(_x >> 'Type') <= 4) and (configName _x find '_Base' <= 0) and (configName _x find '_base' <= 0))" configClasses (configFile >> "CfgWeapons");
+        // get all vehicles
+		if(!(isNil {missionNamespace getVariable "AdminToolkit_Mod_Weapons"}) ) then
+        {
+            _list = [] call AdminToolkit_Mod_Weapons;
+        } else {
+            _list = "((getNumber(_x >> 'Type') > 0) and (getNumber(_x >> 'Type') <= 4) and (configName _x find '_Base' <= 0) and (configName _x find '_base' <= 0))" configClasses (configFile >> "CfgWeapons");
+        };
 
 		[_listboxId, _list, _filter] call AdminToolkit_addItems;
     };
