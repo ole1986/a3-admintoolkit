@@ -29,11 +29,13 @@ _result = [];
  * 1708 = Action 8
  */
 
-ctrlSetText [1707,"Exile Spawn"];
-buttonSetAction [1707, "['exile_getvehicle'] call AdminToolkit_buttonAction;"];
+if (['exile_getvehicle'] call AdminToolkit_hasPermission) then {
+    [1707, "Exile Spawn", "['exile_getvehicle'] call AdminToolkit_buttonAction;"] call AdminToolkit_uiButton;
+};
 
-ctrlSetText [1708,"Exile Money"];
-buttonSetAction [1708, "[player, 'exile_getmoney', 10000] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];"];
+if (['exile_getmoney'] call AdminToolkit_hasPermission) then {
+    [1708, "Exile Money", "[player, 'exile_getmoney', 10000] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];"] call AdminToolkit_uiButton;
+};
 
 _result = "(getText(_x >> 'VehicleClass') in ['ExileCars', 'ExileBikes', 'ExileChoppers','ExileBoats','ExilePlanes']) and (getNumber (_x >> 'scope') == 2)" configClasses (configFile >> "CfgVehicles");
 

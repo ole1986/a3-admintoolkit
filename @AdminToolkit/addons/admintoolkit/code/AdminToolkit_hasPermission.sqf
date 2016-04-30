@@ -7,10 +7,8 @@
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
  
-private['_controlId', '_action', '_permissionSet', '_result'];
-
-_controlId = _this select 0;
-_action = _this select 1;
+private['_action', '_permissionSet', '_result'];
+_action = _this select 0;
 
 _result = true;
 _permissionSet = missionNamespace getVariable ['AdminToolkit_permissionSet', []];

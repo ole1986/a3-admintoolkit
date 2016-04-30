@@ -92,7 +92,7 @@ switch (_controlId) do
 		(_display displayCtrl _listboxId) ctrlSetEventHandler ['LBSelChanged', "AdminToolkit_selectedPlayer = (_this select 0) lbText (_this select 1); ctrlSetText [1803, 'Selected Player: ' + AdminToolkit_selectedPlayer];"];
 		
 		{
-			if ([_x select 0, _x select 2] call AdminToolkit_hasPermission) then {
+			if ([_x select 2] call AdminToolkit_hasPermission) then {
 				[_x select 0, _x select 1, format["['%1']%2", _x select 2, _actionCode] ] call AdminToolkit_uiButton;
 			};
 		} forEach [
@@ -110,7 +110,7 @@ switch (_controlId) do
     case 1601:
     {
 		{
-			if ([_x select 0, _x select 2] call AdminToolkit_hasPermission) then {
+			if ([_x select 2] call AdminToolkit_hasPermission) then {
 				[_x select 0, _x select 1, format["['%1']%2", _x select 2, _actionCode] ] call AdminToolkit_uiButton;
 			};
 		} forEach [
@@ -131,7 +131,7 @@ switch (_controlId) do
     case 1602:
     {
 		{
-			if ([_x select 0, _x select 2] call AdminToolkit_hasPermission) then {
+			if ([_x select 2] call AdminToolkit_hasPermission) then {
 				[_x select 0, _x select 1, format["['%1']%2", _x select 2, _actionCode] ] call AdminToolkit_uiButton;
 			};
 		} forEach [
@@ -153,7 +153,7 @@ switch (_controlId) do
 	case 1603: 
 	{
 		{
-			if ([_x select 0, _x select 2] call AdminToolkit_hasPermission) then {
+			if ([_x select 2] call AdminToolkit_hasPermission) then {
 				[_x select 0, _x select 1, format["['%1']%2", _x select 2, _actionCode] ] call AdminToolkit_uiButton;
 			};
 		} forEach [
@@ -174,7 +174,7 @@ switch (_controlId) do
 	case 1604: 
 	{
 		{
-			if ([_x select 0, _x select 2] call AdminToolkit_hasPermission) then {
+			if ([_x select 2] call AdminToolkit_hasPermission) then {
 				[_x select 0, _x select 1, format["['%1']%2", _x select 2, _actionCode] ] call AdminToolkit_uiButton;
 			};
 		} forEach [
@@ -197,7 +197,7 @@ switch (_controlId) do
 	case 1605:
 	{
 		{
-			if ([_x select 0, _x select 2] call AdminToolkit_hasPermission) then {
+			if ([_x select 2] call AdminToolkit_hasPermission) then {
 				[_x select 0, _x select 1, format["['%1']%2", _x select 2, _actionCode] ] call AdminToolkit_uiButton;
 			};
 		} forEach [

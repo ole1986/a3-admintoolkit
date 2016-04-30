@@ -146,7 +146,7 @@ try
                 _vehicle setOwner _owner; 
                 diag_log format["[ADMINTOOLKIT] Setting owner %1 on vehicle %2", str _owner, str _vehicle]; 
             };
-            
+			
             [_request, netId _tmp] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
         };
 		// remoe building which is in player cursor position
@@ -154,6 +154,9 @@ try
             _tmp = objectFromNetId _params;
             if !(isNull _tmp) then { deleteVehicle _tmp; };
         };
+		case "buildpersistent": {
+			['BUILDINGS', _params] call AdminToolkit_savePersistent;
+		};
         // abort the build progress by deleting the vehicle just created
         case "buildabort": {
             _tmp = objectFromNetId _params;

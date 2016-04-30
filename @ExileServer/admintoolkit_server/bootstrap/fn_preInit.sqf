@@ -21,7 +21,10 @@ private ['_code', '_function', '_file'];
 forEach 
 [
 	['AdminToolkit_network_receiveRequest', 'admintoolkit_server\code\AdminToolkit_network_receiveRequest.sqf'],
-	['AdminToolkit_network_fetchPlayer', 'admintoolkit_server\code\AdminToolkit_network_fetchPlayer.sqf']
+	['AdminToolkit_network_fetchPlayer', 'admintoolkit_server\code\AdminToolkit_network_fetchPlayer.sqf'],
+    ['AdminToolkit_saveInterval', 'admintoolkit_server\code\AdminToolkit_saveInterval.sqf'],
+    ['AdminToolkit_savePersistent', 'admintoolkit_server\code\AdminToolkit_savePersistent.sqf'],
+    ['AdminToolkit_loadPersistent', 'admintoolkit_server\code\AdminToolkit_loadPersistent.sqf']
 ];
 
 diag_log "[ADMINTOOLKIT] Initializing";

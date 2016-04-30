@@ -1,3 +1,7 @@
+v1.3
+- HOTFIX: fixed issue where ExileMod buttons not shown (Exile Spawn / Exile Money)
+- prepared persistent system for buildings (not yet available)
+
 v1.2
 - improved moderator permission concept (hide buttons moderator has no access to)
 - allow removing "temporary" buildings

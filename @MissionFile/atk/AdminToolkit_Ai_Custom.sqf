@@ -50,14 +50,7 @@ AdminToolkit_Ai_CustomCode = {
 	};
 };
  
-// hide all other buttons which are not used
-for "_i" from 1701 to 1707 do
-{
-	ctrlShow [_i, false];
-};
- 
-ctrlSetText [1708,"Execute"];
-buttonSetAction [1708, "call AdminToolkit_Ai_CustomCode;"];
+[1708, "Execute", "call AdminToolkit_Ai_CustomCode;"] call AdminToolkit_uiButton;
 
 _result = ['Do not execute me','Get Scratchie Prize', 'Buy Scratchie'];
 
