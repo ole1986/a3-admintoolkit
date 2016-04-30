@@ -7,16 +7,22 @@
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
  
-private["_request", "_params", "_session"];
+private["_request", "_params"];
 try 
 {
 	_request = _this select 0; // what to do
-	_session = _this select 1;
-    _params = _this select 2; // mixed value
+    _params = _this select 1; // mixed value
     
 	//systemChat format["[ADMINTOOLKIT]: networkResponse: %1", _request];
     
 	switch(_request) do {
+		case 'loginok': {
+			missionNamespace setVariable ['AdminToolkit_permissionSet', _params];
+			systemChat "AdminToolkit READY - Press F2 to open";
+		};
+		case 'loginfailed': {
+			systemChat "AdminToolkit LOGIN FAILED - Check your server config.cpp";
+		};
 		case 'getplayers': {
 			lbClear 1500;
 			

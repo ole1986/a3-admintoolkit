@@ -1,5 +1,5 @@
 ## AdminToolkit for Arma 3
-<sup>**Version 1.1** | Author: ole1986 | This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License</sup>
+<sup>**Version 1.2** | Author: ole1986 | This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License</sup>
 
 This tool is used to administrate Arma3 multiplayer servers. 
 It also supports an option to overwrite the sections for additional features. 

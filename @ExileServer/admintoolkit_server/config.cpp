@@ -45,8 +45,8 @@ class CfgSettings
          */
         ModeratorList[] = {};
         /**
-		 * allowed commands for moderators (default: teleport to a player, get a vehicle, get player list, spectate a player)
+		 * allowed commands for moderators (default: login, teleport to a player, get a vehicle, get player list, spectate a player)
 		 */
-        ModeratorCmds[] = {"tp2player", "getvehicle", "kickplayer", "playersCallback", "specplayer", "specstop"};
+        ModeratorCmds[] = {"login","getplayers","tp2player", "getvehicle", "kickplayer", "specplayer", "specstop"};
     };
 };

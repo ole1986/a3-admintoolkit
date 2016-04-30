@@ -15,6 +15,10 @@ _selection = nil;
 try {
     switch (_action) do
     {
+        case 'login':
+        {
+            _selection = '';
+        };
         case 'tp2pos':
         {
             _selection = _this select 1;
@@ -55,6 +59,10 @@ try {
             systemChat format["spawn: %1 %2", _tmp, str _tmp2];
             _selection = [_tmp, _tmp2];
         };
+        case 'buildremove': {
+            _selection = netId cursorObject;
+        };
+        
         default 
         {
             _selection = lbData [1500, lbCurSel 1500];
@@ -62,7 +70,6 @@ try {
     };
 
     if !(isNil "_selection") then {
-        systemChat format["receiveRequest: %1 with params %2", _action, str _selection];
         [player, _action, _selection] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];
     };
 } catch {

@@ -1,3 +1,9 @@
+v1.2
+- improved moderator permission concept (hide buttons moderator has no access to)
+- allow removing "temporary" buildings
+- use addStackedEventHandler to be mor compatible with other addons using "onMapSingleClick" event
+- removed unused "CfgRemoteExec" class in Client mod (CfgRemoteExec must be set in missionFile)
+
 v1.1
 - fixed issue when overwriting Weapons section using missionFile configuration "AdminToolkit_Mod_Weapons"
 - added more examples in "atk" folder of the missionFile (RHS weapons, RHS vehicles)

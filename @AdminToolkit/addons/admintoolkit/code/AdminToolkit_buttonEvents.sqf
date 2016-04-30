@@ -64,12 +64,12 @@ if(count _this > 0) then {
  * 1708 = Action 8
  */
  
-// clear lower buttons first when main buttons have been clicked (not the search)
-if(_controlId >= 1600 && _controlId <= 1699) then {
+// clear lower buttons first when main buttons have been clicked (but not the search)
+if((_controlId >= 1600 && _controlId <= 1699) or (_controlId == 0)) then {
 	for "_i" from 1701 to 1708 do
 	{
-		ctrlSetText[_i, ""];
-		buttonSetAction [_i, ""];
+		// used to hide the buttons
+		[_i, nil] call AdminToolkit_uiButton;
 	};
 	
 	AdminToolkit_selectedMenu = _controlId;
@@ -91,36 +91,32 @@ switch (_controlId) do
 		// get the listbox control to add change event for selected player
 		(_display displayCtrl _listboxId) ctrlSetEventHandler ['LBSelChanged', "AdminToolkit_selectedPlayer = (_this select 0) lbText (_this select 1); ctrlSetText [1803, 'Selected Player: ' + AdminToolkit_selectedPlayer];"];
 		
-        ctrlSetText [1701,"TP to Player"];
-        buttonSetAction [1701, "['tp2player']" + _actionCode];
-        ctrlSetText [1704, "TP to Me"];
-        buttonSetAction [1704, "['tpplayer']" + _actionCode];
-        
-        ctrlSetText [1702, "Spec Player"];
-        buttonSetAction [1702, "['specplayer']" + _actionCode];
-        ctrlSetText [1705, "Stop Spec"];
-        buttonSetAction [1705, "['specstop']" + _actionCode];
-		
-		ctrlSetText [1703, "Godmode On"];
-        buttonSetAction [1703, "['godmodeon']" + _actionCode];
-        ctrlSetText [1706, "Godmode Off"];
-        buttonSetAction [1706, "['godmodeoff']" + _actionCode];
-		
-		ctrlSetText [1707, "Kick Player"];
-        buttonSetAction [1707, "['kickplayer']" + _actionCode];
-		
-		ctrlSetText [1708, "Ban Player"];
-        buttonSetAction [1708, "['banplayer']" + _actionCode];
+		{
+			if ([_x select 0, _x select 2] call AdminToolkit_hasPermission) then {
+				[_x select 0, _x select 1, format["['%1']%2", _x select 2, _actionCode] ] call AdminToolkit_uiButton;
+			};
+		} forEach [
+			[1701, "TP To Player",'tp2player'],
+			[1704, "TP to Me", 'tpplayer'],
+			[1702, "Spec Player", 'specplayer'],
+			[1705, "Stop Spec", 'specstop'],
+			[1703, "Godmode On", 'godmodeon'],
+			[1706, "Godmode Off", 'godmodeoff'],
+			[1707, "Kick Player", 'kickplayer'],
+			[1708, "Ban Player", 'banplayer']
+		];
 	};
     // Vehicles
     case 1601:
     {
-		ctrlSetText [1701,"Spawn at Me"];
-        buttonSetAction [1701, "['getvehicle']" + _actionCode];
-        
-        ctrlSetText [1702,"Spawn at Player"];
-        buttonSetAction [1702, "['givevehicle']" + _actionCode];
-		       
+		{
+			if ([_x select 0, _x select 2] call AdminToolkit_hasPermission) then {
+				[_x select 0, _x select 1, format["['%1']%2", _x select 2, _actionCode] ] call AdminToolkit_uiButton;
+			};
+		} forEach [
+			[1701, "Spawn at Me",'getvehicle'],
+			[1702, "Spawn at Player", 'givevehicle']
+		];
 		// get all vehicles
 		if(!(isNil {missionNamespace getVariable "AdminToolkit_Mod_Vehicles"}) ) then 
 		{
@@ -129,18 +125,21 @@ switch (_controlId) do
 			_list = "getText(_x >> 'VehicleClass') in ['Car', 'Armored', 'Air']" configClasses (configFile >> "CfgVehicles");
 		};
         
-		[_listboxId, _list, _filter] call AdminToolkit_addItems;
+		[_listboxId, _list, _filter] call AdminToolkit_uiList;
     };
     // Weapons
     case 1602:
-    {       
-		ctrlSetText [1707,"Get Weapon"];
-        buttonSetAction [1707, "['getweapon']" + _actionCode];
+    {
+		{
+			if ([_x select 0, _x select 2] call AdminToolkit_hasPermission) then {
+				[_x select 0, _x select 1, format["['%1']%2", _x select 2, _actionCode] ] call AdminToolkit_uiButton;
+			};
+		} forEach [
+			[1707, "Get Weapon", 'getweapon'],
+			[1708, "Get Ammo", 'getammo']
+		];
 		
-		ctrlSetText [1708,"Get Ammo"];
-        buttonSetAction [1708, "['getammo']" + _actionCode];
-		
-        // get all vehicles
+        // get all weapons
 		if(!(isNil {missionNamespace getVariable "AdminToolkit_Mod_Weapons"}) ) then
         {
             _list = [] call AdminToolkit_Mod_Weapons;
@@ -148,14 +147,20 @@ switch (_controlId) do
             _list = "((getNumber(_x >> 'Type') > 0) and (getNumber(_x >> 'Type') <= 4) and (configName _x find '_Base' <= 0) and (configName _x find '_base' <= 0))" configClasses (configFile >> "CfgWeapons");
         };
 
-		[_listboxId, _list, _filter] call AdminToolkit_addItems;
+		[_listboxId, _list, _filter] call AdminToolkit_uiList;
     };
 	// Buildings
 	case 1603: 
 	{
-        ctrlSetText [1707,"Construct"];
-        buttonSetAction [1707, "['build']" + _actionCode];
-        
+		{
+			if ([_x select 0, _x select 2] call AdminToolkit_hasPermission) then {
+				[_x select 0, _x select 1, format["['%1']%2", _x select 2, _actionCode] ] call AdminToolkit_uiButton;
+			};
+		} forEach [
+			[1707, "Construct", 'build'],
+			[1708, "Remove Constr.", "buildremove"]
+		];
+	
 		if(!(isNil {missionNamespace getVariable "AdminToolkit_Mod_Custom"})) then 
 		{
 			_list = [] call AdminToolkit_Mod_Custom;
@@ -163,14 +168,19 @@ switch (_controlId) do
 			_list = "(configName _x isKindOf 'Building') and !(configName _x isKindOf 'ReammoBox') and (getNumber(_x >> 'scope') == 2)" configClasses (configFile>>"CfgVehicles");
 		};
 		
-		[_listboxId, _list, _filter] call AdminToolkit_addItems;
+		[_listboxId, _list, _filter] call AdminToolkit_uiList;
 	};
 	// Item Vehicles or whatever
 	case 1604: 
 	{
-		ctrlSetText [1707,"Spawn"];
-        buttonSetAction [1707, "['spawn']" + _actionCode];
-              		
+		{
+			if ([_x select 0, _x select 2] call AdminToolkit_hasPermission) then {
+				[_x select 0, _x select 1, format["['%1']%2", _x select 2, _actionCode] ] call AdminToolkit_uiButton;
+			};
+		} forEach [
+			[1707, "Spawn", 'spawn']
+		];
+			
 		if(!(isNil {missionNamespace getVariable "AdminToolkit_Mod_Other"})) then 
 		{
 			_list = [] call AdminToolkit_Mod_Other;
@@ -181,13 +191,18 @@ switch (_controlId) do
 		// backpacks, etc...
 		// _list ="configName _x isKindOf 'Bag_Base' and getNumber(_x >> 'scope') == 2" configClasses (configFile>>"CfgVehicles");
 		
-		[_listboxId, _list, _filter] call AdminToolkit_addItems;
+		[_listboxId, _list, _filter] call AdminToolkit_uiList;
 	};
 	// Items
 	case 1605:
 	{
-		ctrlSetText [1707,"Get Item"];
-        buttonSetAction [1707, "['getitem']" + _actionCode];
+		{
+			if ([_x select 0, _x select 2] call AdminToolkit_hasPermission) then {
+				[_x select 0, _x select 1, format["['%1']%2", _x select 2, _actionCode] ] call AdminToolkit_uiButton;
+			};
+		} forEach [
+			[1707, "Get Item", 'getitem']
+		];
 		
 		if(!(isNil {missionNamespace getVariable "AdminToolkit_Mod_Items"})) then 
 		{
@@ -197,7 +212,7 @@ switch (_controlId) do
 			_list = "(getNumber(_x >> 'Type') == 256) and (getNumber(_x >> 'scope') == 2)" configClasses (configFile >> "CfgMagazines");
 		};
 		
-		[_listboxId, _list, _filter] call AdminToolkit_addItems;
+		[_listboxId, _list, _filter] call AdminToolkit_uiList;
 	};
 	// Search
 	case 1802:

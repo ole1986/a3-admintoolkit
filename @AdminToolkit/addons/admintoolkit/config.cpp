@@ -41,18 +41,3 @@ class CfgFunctions
 		};
 	};
 };
-
-class CfgRemoteExec
-{
-	class Functions
-	{
-		mode = 1;
-		jip = 0;
-		class AdminToolkit_network_receiveRequest { allowedTargets = 2; };
-	};
-	class Commands
-	{
-		mode=0;
-		jip=0;
-	};
-};

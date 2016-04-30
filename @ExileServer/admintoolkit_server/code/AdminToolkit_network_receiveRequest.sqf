@@ -7,11 +7,11 @@
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
  
-private["_payload","_adminList", "_moderatorList", "_moderatorCmds","_player","_request", "_params","_result", "_tmp", "_mod", "_session"];
+private["_payload","_adminList", "_moderatorList", "_moderatorCmds","_player","_request", "_params","_result", "_tmp", "_mod"];
 _payload = _this;
 _adminList = getArray(configFile >> "CfgSettings" >> "AdminToolkit" >> "AdminList");
 _moderatorList = getArray(configFile >> "CfgSettings" >> "AdminToolkit" >> "ModeratorList");
-_moderatorCmds = getArray(configFile >> "CfgSettings" >> "AdminToolkit" >> "ModeratorCmds");
+_moderatorCmds = [];
 _result = true;
 try 
 {
@@ -20,20 +20,26 @@ try
     _params = _payload select 2; // an array of parameters
     
     if !( getPlayerUID _player in (_adminList + _moderatorList) ) then {
+		['loginfailed', ''] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
         throw format ["Player %1 with UID %2 does not have access", name _player, getPlayerUID _player];
     };
     
-	_session = _player getVariable ['session', ''];
-    diag_log format ["[ADMINTOOLKIT] Calling %1 from player %2 (session %3)", _request, name _player, _session];
+    diag_log format ["[ADMINTOOLKIT] Calling %1 from player %2", _request, name _player];
 
     // if its a moderator, check if commands is allowed
     if ( getPlayerUID _player in _moderatorList ) then {
+		_moderatorCmds = getArray(configFile >> "CfgSettings" >> "AdminToolkit" >> "ModeratorCmds");
         if !( _request in _moderatorCmds ) then {
             throw format [ "Moderator %1 has no access to admin command %2 with params %3 ", name _player, _request, str _params];
         };
     };
         
     switch (_request) do {
+		case 'login':
+		{
+			// send login ok with moderator cmdlets
+			['loginok', _moderatorCmds] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
+		};
 		// Kick player from server
 		// Example: [player, 'kickplayer', <string playername>]
 		case "kickplayer":
@@ -58,7 +64,7 @@ try
 		{
 			_tmp = ['', true] call AdminToolkit_network_fetchPlayer;
 			
-			[_request, _session, _tmp] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
+			[_request, _tmp] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
 		};
 		// Teleport the player defined in parameter 0 to players position defined in parameter 2
 		// Example: [player, 'tp2player', <string playername>]
@@ -141,30 +147,35 @@ try
                 diag_log format["[ADMINTOOLKIT] Setting owner %1 on vehicle %2", str _owner, str _vehicle]; 
             };
             
-            [_request, _session, netId _tmp] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
+            [_request, netId _tmp] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
+        };
+		// remoe building which is in player cursor position
+		case "buildremove": {
+            _tmp = objectFromNetId _params;
+            if !(isNull _tmp) then { deleteVehicle _tmp; };
         };
         // abort the build progress by deleting the vehicle just created
         case "buildabort": {
             _tmp = objectFromNetId _params;
-            deleteVehicle _tmp;
+            if !(isNull _tmp) then { deleteVehicle _tmp; };
         };
 		// initialize the spectator mode (client callback required)
 		// Example: [player, 'specplayer', <string playname>]
 		case "specplayer": {
 			_tmp = [_params] call AdminToolkit_network_fetchPlayer;
 			if(!(isNil "_tmp") && (typeName _tmp == "OBJECT")) then {
-				[_request, _session, netId _tmp] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
+				[_request, netId _tmp] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
 			};
 		};
 		// Enable the god mode (client callback required)
 		// Example: [player, 'godmodeon', null]
 		case "godmodeon": {
-			["godmode", _session, true] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
+			["godmode", true] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
 		};
 		// Disable the god mode (client callback required)
 		// Example: [player, 'godmodeoff', null]
 		case "godmodeoff": {
-			["godmode", _session, false] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
+			["godmode", false] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
 		};
 		// used for mod extensions
 		default { 
