@@ -17,10 +17,10 @@ try {
     
     // set tool into building mode
     AdminToolkitIsBuilding = 1;
-    AdminToolkitBuildingOffset = [0, 5, 0];
+    AdminToolkitBuildingOffset = [0, 5, 1];
     AdminToolkitBuildingRotation = 0;
     
-    hint parseText "Construction started<br /><br /><t color='#079C00'>Press SPACEBAR to release</t><br /><br /><t color='#900000'>Press TAB to cancel</t>";
+    hint parseText "<t size='1.5'>Building started</t><br /><br />Use Q, E, PAGEUP, PAGEDOWN, END, HOME to move and rotate<br /><t size='1.25' color='#A4FF6A'>Press SPACEBAR to release</t><br /><br /><t size='1.25' color='#FF6060'>Press TAB to abort</t>";
     
     [] spawn AdminToolkit_moveThread;
     // close the AdminToolkit menu

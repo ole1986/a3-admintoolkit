@@ -151,11 +151,35 @@ try
         };
 		// remoe building which is in player cursor position
 		case "buildremove": {
-            _tmp = objectFromNetId _params;
-            if !(isNull _tmp) then { deleteVehicle _tmp; };
+            _tmp = objectFromNetId (_params select 0);
+            if !(isNull _tmp) then {
+				['BUILDINGS', (_params select 1)] call AdminToolkit_removePersistent;
+				deleteVehicle _tmp;
+				AdminToolkit_IsPersistentSaved = nil;
+			};
         };
+		
 		case "buildpersistent": {
 			['BUILDINGS', _params] call AdminToolkit_savePersistent;
+			AdminToolkit_IsPersistentSaved = nil;
+		};
+		case "buildinfopersistent": {
+			[_request, [count AdminToolkit_Buildings, AdminToolkit_IsPersistentSaved]] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
+		};
+		case "clearpersistent": {
+			// clear buildings from server profile
+			['BUILDINGS', nil] call AdminToolkit_removePersistent;
+			[] spawn {
+				_tmp = [] call AdminToolkit_saveProfile;
+			};
+			[_request, nil] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
+		};
+		case "savepersistent": {
+			[] spawn {
+				_tmp = [] call AdminToolkit_saveProfile;
+			};
+			AdminToolkit_IsPersistentSaved = true;
+			[_request, nil] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
 		};
         // abort the build progress by deleting the vehicle just created
         case "buildabort": {

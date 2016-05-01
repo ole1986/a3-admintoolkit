@@ -13,10 +13,9 @@ _value = _this select 1;
 
 switch (_section) do {
     case "BUILDINGS": {
-        _result = ['BUILDINGS', false] call AdminToolkit_loadPersistent;
         if ((typeName _value == "ARRAY") and (count _value == 3) ) then {
             diag_log format["[ADMINTOOLKIT] Saving '%1' into '%2' ", str _value, _section];
-            _result pushBackUnique _value;
+            AdminToolkit_Buildings pushBackUnique _value;
         }
     };
     default { };

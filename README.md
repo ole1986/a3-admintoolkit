@@ -1,5 +1,5 @@
 ## AdminToolkit for Arma 3
-<sup>**Version 1.3** | Author: ole1986 | This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License</sup>
+<sup>**Version 1.4** | Author: ole1986 | This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License</sup>
 
 This tool is used to administrate Arma3 multiplayer servers. 
 It also supports an option to overwrite the sections for additional features. 
@@ -35,6 +35,7 @@ Video<br/>
 - add ammo to inventory
 
 **Construction & Others**
+- NEW: Building persistence supported (since v1.4)
 - Place buildings by using **Q, E for rotation**, **PAGEUP/PAGEDOWN and HOME/END for moving** the constructions
 - spawn additional "vehicle items" like Backpacks, GPS, Binocular, etc... (located in Other)
 

@@ -1,3 +1,6 @@
+1.4
+- NEW: support for persistence when building objects
+
 v1.3
 - HOTFIX: fixed issue where ExileMod buttons not shown (Exile Spawn / Exile Money)
 - prepared persistent system for buildings (not yet available)

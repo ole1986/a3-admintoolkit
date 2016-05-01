@@ -26,10 +26,12 @@ while {AdminToolkitIsBuilding isEqualTo 1} do
 
 // destroy the object when AdminToolkitBuildingObject is set to -1
 if(AdminToolkitIsBuilding isEqualTo -1) then {
-    hint parseText "<t color='#900000'>Construction aborted</t>";
+    hint parseText "<t size='1.5' color='#FF6060'>Construction aborted</t>";
     [player, "buildabort", netId AdminToolkitBuildingObject] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];
 } else {
-    // TODO: implement persistents incl deletion
-    //[player, "buildpersistent", [typeOf AdminToolkitBuildingObject, getPosATL AdminToolkitBuildingObject, getDir AdminToolkitBuildingObject]] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];
-    hint parseText "<t color='#079C00'>Construction placed</t>";
+    if (AdminToolkitIsBuildingPersistent) then {
+        [player, "buildpersistent", [typeOf AdminToolkitBuildingObject, getPosASL AdminToolkitBuildingObject, getDir AdminToolkitBuildingObject]] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];
+        AdminToolkitIsBuildingPersistent = nil;
+    };
+    hint parseText "<t size='1.5' color='#A4FF6A'>Construction placed</t>";
 };

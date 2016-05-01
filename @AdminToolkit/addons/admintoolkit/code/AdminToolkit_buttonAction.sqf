@@ -59,8 +59,19 @@ try {
             systemChat format["spawn: %1 %2", _tmp, str _tmp2];
             _selection = [_tmp, _tmp2];
         };
+        case 'buildpers': {
+            AdminToolkitIsBuildingPersistent = true;
+            _selection = lbData [1500, lbCurSel 1500];
+            _action = 'build';
+        };
         case 'buildremove': {
-            _selection = netId cursorObject;
+            _tmp = cursorObject;
+            if !(isNull _tmp) then {
+                _selection = [netId _tmp, getPosASL _tmp];
+            } else {
+                systemChat "No building found";
+                _selection = nil;
+            };
         };
         
         default 

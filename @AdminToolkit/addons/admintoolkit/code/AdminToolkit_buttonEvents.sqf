@@ -157,8 +157,12 @@ switch (_controlId) do
 				[_x select 0, _x select 1, format["['%1']%2", _x select 2, _actionCode] ] call AdminToolkit_uiButton;
 			};
 		} forEach [
-			[1707, "Construct", 'build'],
-			[1708, "Remove Constr.", "buildremove"]
+			[1701, "Build", 'build'],
+			[1704, "Pers. Build", 'buildpers'],
+			[1703, "Remove", "buildremove"],
+			[1706, "Status", 'buildinfopersistent'],
+			[1707, "Save Persistent", 'savepersistent'],
+			[1708, "Clear Persistent", 'clearpersistent']
 		];
 	
 		if(!(isNil {missionNamespace getVariable "AdminToolkit_Mod_Custom"})) then 
