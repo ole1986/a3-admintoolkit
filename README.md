@@ -83,11 +83,11 @@ AdminList[] = {"76561198088277918"};
 /**
  * list of admins with restricted access only
  */
-ModeratorList[] = {"76561198037325738"};
+ModeratorList[] = {""};
 /**
  * allowed commands for moderators (default: teleport to a player, get a vehicle, get player list, spectate)
  */
-ModeratorCmds[] = {"tp2player", "getvehicle", "kickplayer", "playersCallback", "specplayer", "specstop"};
+ModeratorCmds[] = {"login","getplayers","tp2player", "getvehicle", "kickplayer", "specplayer", "specstop"};
 ```
 
 Moderators have limited access - The command list can optionally be customized
