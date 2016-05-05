@@ -133,6 +133,7 @@ try
 		};
         // build a vehicle and callback the object netId to its client for further action
         // Example: [player, 'build', <string className>]
+		case "buildpers";
         case "build": {
             _tmp = createVehicle [_params, [0,0,1000], [], 0, "CAN_COLLIDE"];
             _tmp setVariable ["BIS_enableRandomization", false];

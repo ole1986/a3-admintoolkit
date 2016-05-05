@@ -24,6 +24,7 @@ forEach
 	['AdminToolkit_bindEvents', 'admintoolkit\code\AdminToolkit_bindEvents.sqf'],
 	['AdminToolkit_buttonEvents', 'admintoolkit\code\AdminToolkit_buttonEvents.sqf'],
 	['AdminToolkit_buttonAction', 'admintoolkit\code\AdminToolkit_buttonAction.sqf'],
+	['AdminToolkit_listboxChanged', 'admintoolkit\code\AdminToolkit_listboxChanged.sqf'],
 	['AdminToolkit_uiList', 'admintoolkit\code\AdminToolkit_uiList.sqf'],
 	['AdminToolkit_uiButton', 'admintoolkit\code\AdminToolkit_uiButton.sqf'],
 	['AdminToolkit_hasPermission', 'admintoolkit\code\AdminToolkit_hasPermission.sqf'],

@@ -10,5 +10,5 @@
 private['_result'];
 disableSerialization;
 
-_result = "getText(_x >> 'vehicleClass') == 'Furniture'" configClasses (configFile>>"CfgVehicles");
+_result = "(getText(_x >> 'vehicleClass') in ['Furniture', 'Structures']) and (getNumber(_x >> 'scope') > 0)" configClasses (configFile>>"CfgVehicles");
 _result;

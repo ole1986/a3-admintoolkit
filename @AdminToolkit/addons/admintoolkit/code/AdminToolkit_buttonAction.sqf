@@ -10,7 +10,6 @@
 private['_action', '_selection', '_tmp', '_tmp2'];
 // is the action which should remotely be called
 _action = _this select 0;
-_selection = nil;
 
 try {
     switch (_action) do
@@ -59,10 +58,12 @@ try {
             systemChat format["spawn: %1 %2", _tmp, str _tmp2];
             _selection = [_tmp, _tmp2];
         };
+        case 'build': {
+            _selection = lbData [1500, lbCurSel 1500];
+        };
         case 'buildpers': {
             AdminToolkitIsBuildingPersistent = true;
             _selection = lbData [1500, lbCurSel 1500];
-            _action = 'build';
         };
         case 'buildremove': {
             _tmp = cursorObject;
@@ -73,15 +74,20 @@ try {
                 _selection = nil;
             };
         };
-        
         default 
         {
             _selection = lbData [1500, lbCurSel 1500];
         };
     };
-
+    
+    if((count _this) > 1) then {
+        _selection = _this select 1;
+    };
+    
     if !(isNil "_selection") then {
         [player, _action, _selection] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];
+        AdminToolkit_lastSelection = _selection;
+        AdminToolkit_lastAction = _action;
     };
 } catch {
     systemChat format['EXCEPTION: %1', _exception];

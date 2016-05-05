@@ -20,7 +20,7 @@ try {
     AdminToolkitBuildingOffset = [0, 5, 1];
     AdminToolkitBuildingRotation = 0;
     
-    hint parseText "<t size='1.5'>Building started</t><br /><br />Use Q, E, PAGEUP, PAGEDOWN, END, HOME to move and rotate<br /><t size='1.25' color='#A4FF6A'>Press SPACEBAR to release</t><br /><br /><t size='1.25' color='#FF6060'>Press TAB to abort</t>";
+    hint parseText "<t size='1.5'>Building started</t><br /><br />Use Q, E, PAGEUP, PAGEDOWN, END, HOME to move and rotate<br /><br /><t size='1.25' color='#A4FF6A'>Press SPACEBAR to release</t><br /><t size='1.25'>Press F5 to repeat once built</t><br /><t size='1.25' color='#FF6060'>Press TAB to abort</t>";
     
     [] spawn AdminToolkit_moveThread;
     // close the AdminToolkit menu

@@ -9,6 +9,9 @@
 
 missionNamespace setVariable ['AdminToolkit_selectedPlayer', ''];
 missionNamespace setVariable ['AdminToolkit_selectedMenu', 0];
+missionNamespace setVariable ['AdminToolkit_lastSelection', ''];
+missionNamespace setVariable ['AdminToolkit_lastAction', ''];
+
 missionNamespace setVariable ['AdminToolkit_permissionSet', []];
 
 [] spawn {

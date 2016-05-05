@@ -23,6 +23,16 @@ switch (_this select 1) do
             closeDialog 0;
         };
 	};
+    // funcktion Key 5 (F5)
+    case 0x3F:
+    {
+        _handled = true;
+        // used to repeat build the same object
+        if(AdminToolkitIsBuilding <= 0 and AdminToolkit_lastSelection != '' and AdminToolkit_lastAction != '') then {
+            systemChat format["Repeating action '%1' with '%2'", AdminToolkit_lastAction, AdminToolkit_lastSelection];
+            [AdminToolkit_lastAction, AdminToolkit_lastSelection] call AdminToolkit_buttonAction;
+        };
+    };
     // Space bar - place object
     case 0x39:
     {

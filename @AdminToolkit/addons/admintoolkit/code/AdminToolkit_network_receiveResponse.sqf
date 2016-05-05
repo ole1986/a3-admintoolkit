@@ -41,6 +41,7 @@ try
 			
 			systemChat format["Spectating %1", name _params];
 		};
+		case 'buildpers';
         case 'build': {
             // the netId of its vehicle created from the server
             [_params] call AdminToolkit_moveStart;

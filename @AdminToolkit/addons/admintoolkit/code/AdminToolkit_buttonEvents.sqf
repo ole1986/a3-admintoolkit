@@ -21,7 +21,7 @@ if(count _this > 0) then {
 	_controlId = _this select 0;
 	if(count _this > 1) then { _filter = _this select 1; };
 } else {
-    ctrlSetText [1803, 'Click on one of the buttons to open the section'];
+	(_display displayCtrl 1803) ctrlSetStructuredText parseText "<t color='#FF0066'>Click on one of the buttons to open the section</t>";
 	// initial call when player pressed F2 keys
 	if(isClass(missionConfigFile >> 'CfgAdminToolkitCustomMod')) then {
 		if(isArray(missionConfigFile >> 'CfgAdminToolkitCustomMod' >> 'AdminToolkit_MenuTitle')) then {
@@ -89,7 +89,7 @@ switch (_controlId) do
 		[player, 'getplayers'] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];
 		
 		// get the listbox control to add change event for selected player
-		(_display displayCtrl _listboxId) ctrlSetEventHandler ['LBSelChanged', "AdminToolkit_selectedPlayer = (_this select 0) lbText (_this select 1); ctrlSetText [1803, 'Selected Player: ' + AdminToolkit_selectedPlayer];"];
+		(_display displayCtrl _listboxId) ctrlSetEventHandler ['LBSelChanged', "[1500, _this, 'player'] call AdminToolkit_listboxChanged"];
 		
 		{
 			if ([_x select 2] call AdminToolkit_hasPermission) then {
@@ -164,6 +164,8 @@ switch (_controlId) do
 			[1707, "Save Persistent", 'savepersistent'],
 			[1708, "Clear Persistent", 'clearpersistent']
 		];
+		
+		(_display displayCtrl _listboxId) ctrlSetEventHandler ['LBSelChanged', "[1500, _this, 'building'] call AdminToolkit_listboxChanged"];
 	
 		if(!(isNil {missionNamespace getVariable "AdminToolkit_Mod_Custom"})) then 
 		{

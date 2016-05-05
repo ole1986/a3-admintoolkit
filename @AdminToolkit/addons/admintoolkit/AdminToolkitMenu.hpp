@@ -65,7 +65,7 @@ class AdminToolkitMenu {
 		w = 0.05 * safezoneW;
 		h = 0.04 * safezoneH;
 	};
-	class RscAdminToolkitInfo: RscText
+	class RscAdminToolkitInfo: RscStructuredText
 	{
 		idc = 1803;
 
@@ -73,7 +73,6 @@ class AdminToolkitMenu {
 		y = 0.12006 * safezoneH + safezoneY;
 		w = 0.2125 * safezoneW;
 		h = 0.04 * safezoneH;
-        colorText[] = {1, 0, 0.4, 1};
 	};
 	class RscAdminToolkitList: RscListBox
 	{
