@@ -99,9 +99,10 @@ More details can be found in the <a href="%40MissionFile/README.md">@MissionFile
 
 **List of available extensions**
 
-| Name     | Description                                                      | Link
-| -------- | ---------------------------------------------------------------- | ----
-| ExileMod | create persistent vehicles, receive ExileMoney and build objects | <a href="@MissionFile/README.exile.md">Installation</a>
+| Name       | Description                                                      | Link
+| ---------- | ---------------------------------------------------------------- | ----
+| ExileMod   | create persistent vehicles, receive ExileMoney and build objects | <a href="@MissionFile/README.exile.md">Installation</a>
+| Furnitures | Example extension on how to overwrite Buildings section with only furnitures | <a href="@MissionFile/README.furniture.md">Installation</a>
 
 ### Battleye
 
