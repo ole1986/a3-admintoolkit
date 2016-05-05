@@ -1,3 +1,8 @@
+1.5
+- NEW: F5 function key to repeat actions (E.g. building persistent objects)
+- display class names and author info when selecting buildings
+- added another example on how to filter bildings being listed in listbox - http://www.exilemod.com/topic/11652-admintoolkit-for-arma-3-developer-thread/?do=findComment&comment=90567
+
 1.4
 - NEW: support for persistence when building objects
 
