@@ -1,3 +1,6 @@
+1.5b
+- fixed an issue when selecting players from the player register menu
+
 1.5
 - NEW: F5 function key to repeat actions (E.g. building persistent objects)
 - display class names and author info when selecting buildings
