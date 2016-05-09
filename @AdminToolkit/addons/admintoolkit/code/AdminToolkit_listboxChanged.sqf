@@ -21,7 +21,7 @@ switch (_section) do {
     case 'player': {
         // set the selected player globally to use it in other sections
         AdminToolkit_selectedPlayer = _lbText;
-        (_display displayCtrl 1803) ctrlSetStructuredText parseText "Selected Player: <t color='#FF0066'>" + AdminToolkit_selectedPlayer + "</t>";
+        (_display displayCtrl 1803) ctrlSetStructuredText parseText format["Selected Player: <t color='#FF0066'>%1</t>", AdminToolkit_selectedPlayer];
     };
     case 'building': {
         // display some more information when building is selected
