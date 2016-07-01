@@ -1,3 +1,6 @@
+1.5c
+- fixed money issue AdminToolkit_server_exile.sqf in ExileMod 0.9.8
+
 1.5b
 - fixed an issue when selecting players from the player register menu
 

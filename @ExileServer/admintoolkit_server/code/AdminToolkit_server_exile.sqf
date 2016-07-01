@@ -43,10 +43,11 @@ try
 			_tmp = _params;
 			_tmp2 = _playerObject getVariable ["ExileMoney", 0];
 			_tmp2 = _tmp2 + _tmp;
-			_playerObject setVariable ["ExileMoney", _tmp2];
-			
-			format["setAccountMoney:%1:%2", _tmp2, getPlayerUID _playerObject] call ExileServer_system_database_query_fireAndForget;
-			[_playerObject, "moneyReceivedRequest", [str _tmp2, 'AdminToolkit']] call ExileServer_system_network_send_to;
+			_playerObject setVariable ["ExileMoney", _tmp2, true];
+
+			format["setPlayerMoney:%1:%2", _tmp2, _player getVariable ["ExileDatabaseID", 0]] call ExileServer_system_database_query_fireAndForget;
+			[_playerObject, "toastRequest", ["SuccessTitleOnly", [format["Money %1 added!", _tmp]  ]]] call ExileServer_system_network_send_to;
+			[_playerObject, "lockerResponse", []] call ExileServer_system_network_send_to;
 		};
     }; 
 }
