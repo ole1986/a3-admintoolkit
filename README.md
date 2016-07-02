@@ -1,5 +1,5 @@
 ## AdminToolkit for Arma 3
-<sup>**Version 1.5c** | Author: ole1986 | This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License</sup>
+<sup>**Version 1.6** | Author: ole1986 | This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License</sup>
 
 This tool is used to administrate Arma3 multiplayer servers. 
 It also supports an option to overwrite the sections for additional features. 
@@ -115,4 +115,4 @@ More details can be found in the <a href="%40MissionFile/README.md">@MissionFile
 + add `!="displayAddEventHandler [\"KeyDown\",\"call AdminToolkit_bindEvents;\"]"` at the end of `7 eventHandler [...]`
 + add `!="remoteExecCall ['AdminToolkit_network_receiveRequest',"` at the end of `7 remoteexec`
 + add `7 onMapSingleClick !="call admintoolkit_butt"` as a new line if `7 onMapSingleClick` does not exists or add it to the end of the line
-+ add `!="objectFromNetId _params;\nadmintoolkit_specCam = \"camera\" camCreate"` at the end of line `7 camCreate`
++ add `!="\nAdminToolkit_camera = \"camera\" camCreate"` at the end of line `7 camCreate`

@@ -33,13 +33,9 @@ try
 		};
 		case 'specplayer': {
 			// get the real player object from its netId
+			closeDialog 0;
 			_params = objectFromNetId _params;
-			admintoolkit_specCam = "camera" camCreate (position _params);
-			admintoolkit_specCam camSetRelPos [0, -1.5, 1.7];
-			admintoolkit_specCam cameraEffect ["internal", "back"];
-			admintoolkit_specCam attachTo [_params, [0,-1,1.8]];
-			
-			systemChat format["Spectating %1", name _params];
+			[_params] call AdminToolkit_spectatePlayer;
 		};
 		case 'buildpers';
         case 'build': {

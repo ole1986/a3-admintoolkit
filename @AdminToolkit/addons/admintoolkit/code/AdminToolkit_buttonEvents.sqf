@@ -99,7 +99,7 @@ switch (_controlId) do
 			[1701, "TP To Player",'tp2player'],
 			[1704, "TP to Me", 'tpplayer'],
 			[1702, "Spec Player", 'specplayer'],
-			[1705, "Stop Spec", 'specstop'],
+			/*[1705, "Stop Spec", 'specstop'],*/
 			[1703, "Godmode On", 'godmodeon'],
 			[1706, "Godmode Off", 'godmodeoff'],
 			[1707, "Kick Player", 'kickplayer'],

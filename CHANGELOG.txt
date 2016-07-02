@@ -1,3 +1,6 @@
+1.6
+- improved spectating using WASD and Q and E to manage camera position (be filters might be amended)
+
 1.5c
 - fixed money issue AdminToolkit_server_exile.sqf in ExileMod 0.9.8
 

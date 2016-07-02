@@ -31,7 +31,8 @@ forEach
 	['AdminToolkit_weaponMagazine', 'admintoolkit\code\AdminToolkit_weaponMagazine.sqf'],
     ['AdminToolkit_moveStart', 'admintoolkit\code\AdminToolkit_moveStart.sqf'],
     ['AdminToolkit_moveThread', 'admintoolkit\code\AdminToolkit_moveThread.sqf'],
-    ['AdminToolkit_moveStop', 'admintoolkit\code\AdminToolkit_moveStop.sqf']
+    ['AdminToolkit_moveStop', 'admintoolkit\code\AdminToolkit_moveStop.sqf'],
+	['AdminToolkit_spectatePlayer', 'admintoolkit\code\AdminToolkit_spectatePlayer.sqf']
 ];
 
 // used for Addon modifications
