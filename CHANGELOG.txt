@@ -1,3 +1,9 @@
+1.7
+- tested on APEX and ExileMod 1.0.0
+- added "Exile Remove" button in "Vehicle" register to removed vehicle admin is looking at
+- new button to add "Exile Respect" points (scores) to your accout
+- NOTE: *.bisign has changed
+
 1.6
 - improved spectating using WASD and Q and E to manage camera position (be filters might be amended)
 

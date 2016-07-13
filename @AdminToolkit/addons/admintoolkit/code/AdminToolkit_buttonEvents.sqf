@@ -52,16 +52,16 @@ if(count _this > 0) then {
  * 1801 = Search text
  * 1802 = Search button
  * 
- * LOWER BUTTONS
+ * LOWER BUTTON IDC
  * 
- * 1701 = Action 1
- * 1702 = Action 2
- * 1703 = Action 3
- * 1704 = Action 4
- * 1705 = Action 5
- * 1706 = Action 6
- * 1707 = Action 7
- * 1708 = Action 8
+ * ----------------------
+ * | 1701 | 1702 | 1703 |
+ * ----------------------
+ * | 1704 | 1705 | 1706 |
+ * ----------------------
+ * ----------  ----------
+ * |  1707  |  |  1708  |
+ * ----------  ----------
  */
  
 // clear lower buttons first when main buttons have been clicked (but not the search)

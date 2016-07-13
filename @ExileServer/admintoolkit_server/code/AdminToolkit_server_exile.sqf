@@ -37,6 +37,11 @@ try
 			
 			[_playerObject, "dynamicTextRequest", [format ["UNLOCK PIN: %1", _tmp2], 0, 2, "#ffffff"]] call ExileServer_system_network_send_to;
 		};
+		case 'exile_delvehicle':
+		{
+			_params call ExileServer_object_vehicle_remove;
+			deleteVehicle _params;
+		};
 		case 'exile_getmoney': 
 		{
 			// _params = <number> - the amount to be transferred
@@ -48,6 +53,14 @@ try
 			format["setPlayerMoney:%1:%2", _tmp2, _player getVariable ["ExileDatabaseID", 0]] call ExileServer_system_database_query_fireAndForget;
 			[_playerObject, "toastRequest", ["SuccessTitleOnly", [format["Money %1 added!", _tmp]  ]]] call ExileServer_system_network_send_to;
 			[_playerObject, "lockerResponse", []] call ExileServer_system_network_send_to;
+		};
+		case 'exile_getscore':
+		{
+			_tmp = _playerObject getVariable ["ExileScore", 0];
+			_tmp = floor (_tmp + _params);
+			_playerObject setVariable ["ExileScore", _tmp];
+			format["setAccountScore:%1:%2", _tmp, (getPlayerUID _playerObject)] call ExileServer_system_database_query_fireAndForget;
+			[_playerObject, "freeResponse", [str _params]] call ExileServer_system_network_send_to;
 		};
     }; 
 }
