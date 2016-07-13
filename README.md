@@ -106,6 +106,10 @@ More details can be found in the <a href="%40MissionFile/README.md">@MissionFile
 
 ### Battleye
 
+Highly recommended to use the following Battleye Filter tool to fix all BE exceptions:
+
+http://gp.gamersinc.net/BEF.php
+
 **remoteexec.txt**
 
 + add `!"AdminToolkit_network_receiveRequest"` to the end of the line
