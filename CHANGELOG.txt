@@ -1,6 +1,6 @@
 1.7
 - tested on APEX and ExileMod 1.0.0
-- added "Exile Remove" button in "Vehicle" register to removed vehicle admin is looking at
+- added "Exile Remove" button in "Vehicle" register to removed persistent cars, helis, etc...
 - new button to add "Exile Respect" points (scores) to your accout
 - NOTE: *.bisign has changed
 
