@@ -1,3 +1,9 @@
+1.8
+- added "Repair", "Destroy", "Heal Self" options in register "Other"
+- show toast message (for Exile) when removing a vehicle
+- teleport with vehicle is now supported (on map click only)
+- fixed AdminToolkit_MenuTitle config array to customize menu title
+
 1.7
 - tested on APEX and ExileMod 1.0.0
 - added "Exile Remove" button in "Vehicle" register to removed persistent cars, helis, etc...

@@ -87,7 +87,7 @@ try
 		// Teleport the admin to coordinates ATL using parameter 2
 		// Example: [player, 'tp2pos', <array position>]
         case "tp2pos": {
-            _player setPosATL _params;
+            vehicle _player setPosATL _params;
         };
 		// spawn a vehicle with className defined in parameter 2 near the admin
 		// Example: [player, 'getvehicle', <string vehicleClass>]
