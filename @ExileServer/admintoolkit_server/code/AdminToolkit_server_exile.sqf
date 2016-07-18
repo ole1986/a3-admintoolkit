@@ -23,9 +23,9 @@ try
 			_tmp2 = format["%1%2%3%4",floor random 10, floor random 10, floor random 10, floor random 10];
 			_position = (getPos _playerObject) findEmptyPosition [10, 175, _params];
 			
-			if (_position isEqualTo []) exitWith 
+			if (_position isEqualTo []) then 
 			{
-				throw 13;[_playerObject, "toastRequest", ["SuccessTitleOnly", [format["Some Error"]  ]]] call ExileServer_system_network_send_to;
+				throw 13;
 			};
 			
 			_object = [_params, _position, (random 360), true, _tmp2] call ExileServer_object_vehicle_createPersistentVehicle;
