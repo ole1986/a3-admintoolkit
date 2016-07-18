@@ -26,11 +26,10 @@ if(count _this > 0) then {
 	if(isClass(missionConfigFile >> 'CfgAdminToolkitCustomMod')) then {
 		if(isArray(missionConfigFile >> 'CfgAdminToolkitCustomMod' >> 'AdminToolkit_MenuTitle')) then {
 			_list = getArray(missionConfigFile >> 'CfgAdminToolkitCustomMod' >> 'AdminToolkit_MenuTitle');
-			for "_i" from 1600 to 1605 do
+			for "_i" from 0 to 5 do
 			{
-				if((_list select _i) != '') then 
-				{
-					ctrlSetText[_i, _list select _i];
+				if (!( _list select _i == "")) then { 
+					ctrlSetText[(_i + 1600), _list select _i];
 				};
 			};
 		};
