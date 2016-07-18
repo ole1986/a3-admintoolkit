@@ -59,7 +59,7 @@ if (['exile_getmoney'] call AdminToolkit_hasPermission) then {
 };
 
 if (['exile_getheal'] call AdminToolkit_hasPermission) then {
-    [1705, "Heal Self", "[player, 'exile_getheal', 0] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];"] call AdminToolkit_uiButton;
+    [1705, "Heal Self", "[player, 'exile_getheal'] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];"] call AdminToolkit_uiButton;
 };
 
 if (['exile_getscore'] call AdminToolkit_hasPermission) then {
@@ -68,7 +68,7 @@ if (['exile_getscore'] call AdminToolkit_hasPermission) then {
 
 /*no free button ;(
 if (['exile_kill'] call AdminToolkit_hasPermission) then {
-    [1702, "Kill Player", "[player, 'exile_kill', 100] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];"] call AdminToolkit_uiButton;
+    [1702, "Kill Player", "[player, 'exile_kill'] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];"] call AdminToolkit_uiButton;
 };
 */
 
