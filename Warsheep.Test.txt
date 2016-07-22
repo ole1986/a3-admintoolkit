@@ -1,3 +1,0 @@
-This is just a test for the concept-change branch.
-I just will see if they synced correctly with my github desktop :) 
-This file Can removed ( i will sync my branche with the master back, after the test)
