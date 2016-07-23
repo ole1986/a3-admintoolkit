@@ -21,14 +21,14 @@ switch (_section) do {
     case 'player': {
         // set the selected player globally to use it in other sections
         AdminToolkit_selectedPlayer = _lbText;
-        (_display displayCtrl 1803) ctrlSetStructuredText parseText format["Selected Player: <t color='#FF0066'>%1</t>", AdminToolkit_selectedPlayer];
+        (_display displayCtrl RscAdminToolkitActionLabel_IDC) ctrlSetStructuredText parseText format["Selected Player: <t color='#FF0066'>%1</t>", AdminToolkit_selectedPlayer];
     };
-    case 'building': {
+    case 'buildings': {
         // display some more information when building is selected
         _tmp = getText(configFile >> "CfgVehicles" >> _lbValue >> "author");
         _tmp2 = getText(configFile >> "CfgVehicles" >> _lbValue >> "vehicleClass");
         
-        (_display displayCtrl 1803) ctrlSetStructuredText parseText format["<t color='#FF0066'>%1</t> (%3)<br /><t size='0.8'>Author: %2</t>", _lbValue, _tmp, _tmp2];
+        (_display displayCtrl RscAdminToolkitActionLabel_IDC) ctrlSetStructuredText parseText format["<t color='#FF0066'>%1</t> (%3)<br /><t size='0.8'>Author: %2</t>", _lbValue, _tmp, _tmp2];
     };
     default { _result = nil; };
 };

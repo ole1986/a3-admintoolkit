@@ -18,7 +18,7 @@ switch (_this select 1) do
         _handled = true;
         if (!dialog) then {
             createDialog "AdminToolkitMenu";
-            [] call AdminToolkit_buttonEvents;
+            call AdminToolkit_initMenu;
         } else {
             closeDialog 0;
         };

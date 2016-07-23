@@ -7,9 +7,11 @@
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
  
-private['_action', '_selection', '_tmp', '_tmp2'];
+private['_action', '_selection', '_tmp', '_tmp2', '_IDC'];
 // is the action which should remotely be called
 _action = _this select 0;
+
+_IDC = RscAdminToolkitList_IDC;
 
 try {
     switch (_action) do
@@ -26,10 +28,10 @@ try {
         {
             if(AdminToolkit_selectedPlayer == '') then { throw "No player selected"; };
             
-            _selection = [lbData [1500, lbCurSel 1500], AdminToolkit_selectedPlayer];
+            _selection = [lbData [_IDC, lbCurSel _IDC], AdminToolkit_selectedPlayer];
         };
         case 'getweapon': {
-            _tmp = lbData [1500, lbCurSel 1500];
+            _tmp = lbData [_IDC, lbCurSel _IDC];
             _tmp2 = [_tmp] call AdminToolkit_weaponMagazine;
                     
             // parameter 1: weapon class name or empty when already in inventory
@@ -37,25 +39,25 @@ try {
             _selection = [_tmp, _tmp2];
         };
         case 'getammo': {
-            _tmp = lbData [1500, lbCurSel 1500];
+            _tmp = lbData [_IDC, lbCurSel _IDC];
             _tmp2 = [_tmp] call AdminToolkit_weaponMagazine;
             
             // parameter 1: compatible magazine
             _selection = [_tmp2];
         };
         case 'spawn': {
-            _tmp = lbData [1500, lbCurSel 1500];
+            _tmp = lbData [_IDC, lbCurSel _IDC];
             _tmp2 = player modelToWorld [0,2, (position player) select 2];
             
             systemChat format["spawn: %1 %2", _tmp, str _tmp2];
             _selection = [_tmp, _tmp2];
         };
         case 'build': {
-            _selection = lbData [1500, lbCurSel 1500];
+            _selection = lbData [_IDC, lbCurSel _IDC];
         };
         case 'buildpers': {
             AdminToolkitIsBuildingPersistent = true;
-            _selection = lbData [1500, lbCurSel 1500];
+            _selection = lbData [_IDC, lbCurSel _IDC];
         };
         case 'buildremove': {
             _tmp = cursorObject;
@@ -68,7 +70,7 @@ try {
         };
         default 
         {
-            _selection = lbData [1500, lbCurSel 1500];
+            _selection = lbData [_IDC, lbCurSel _IDC];
         };
     };
     
