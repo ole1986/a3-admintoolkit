@@ -24,11 +24,11 @@ try
 			systemChat "AdminToolkit LOGIN FAILED - Check your server config.cpp";
 		};
 		case 'getplayers': {
-			lbClear 1500;
+			lbClear RscAdminToolkitList_IDC;
 			
 			{
-				lbAdd [1500, _x];
-				lbSetData [1500, (lbSize 1500) - 1, _x];
+				lbAdd [RscAdminToolkitList_IDC, _x];
+				lbSetData [RscAdminToolkitList_IDC, (lbSize RscAdminToolkitList_IDC) - 1, _x];
 			} forEach _params;
 		};
 		case 'specplayer': {

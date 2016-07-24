@@ -7,31 +7,9 @@ private['_result'];
 disableSerialization;
 _result = [];
 
-/** 
- * SEARCH
- *
- * 1801 = Search text
- * 1802 = Search button
- *
- * LISTBOX
- *
- * 1500 = Listbox
- *
- * LOWER BUTTONS
- * 
- * 1701 = Action 1
- * 1702 = Action 2
- * 1703 = Action 3
- * 1704 = Action 4
- * 1705 = Action 5
- * 1706 = Action 6
- * 1707 = Action 7
- * 1708 = Action 8
- */
-
 AdminToolkit_Ai_CustomCode = {
 	private['_selection'];
-	_selection = lbData [1500, lbCurSel 1500];
+	_selection = lbData [RscAdminToolkitList_IDC, lbCurSel RscAdminToolkitList_IDC];
 	
 	_selection = toLower _selection;
 	switch (_selection) do {
