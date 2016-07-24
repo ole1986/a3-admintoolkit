@@ -206,12 +206,16 @@ try
 			["godmode", false] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
 		};
 		// used for mod extensions
-		default { 
-			if(isClass(missionConfigFile >> "CfgAdminToolkitCustomMod")) then {
-				if(isText(missionConfigFile >> "CfgAdminToolkitCustomMod" >> "AdminToolkit_ModEnable")) then {
-					_tmp = toLower getText(missionConfigFile >> "CfgAdminToolkitCustomMod" >> "AdminToolkit_ModEnable");
-					_mod = compile preprocessFileLineNumbers ("admintoolkit_server\code\AdminToolkit_server_" + _tmp + ".sqf");
-					[_player, _request, _params] call _mod;
+		default {
+			// load additional extension entries into the main menu (if available)
+			if(isClass(missionConfigFile >> 'CfgAdminToolkitCustomMod')) then {
+				if(isArray(missionConfigFile >> 'CfgAdminToolkitCustomMod' >> 'Extensions')) then {
+					_extensions = getArray(missionConfigFile >> 'CfgAdminToolkitCustomMod' >> 'Extensions');
+					{
+						_tmp = _x select 1;
+						_mod = compileFinal preprocessFileLineNumbers format["admintoolkit_server\ext\%1.sqf", _tmp];
+						[_player, _request, _params] call _mod;
+					} forEach _extensions;
 				};
 			};
 		};

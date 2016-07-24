@@ -133,7 +133,7 @@ class AdminToolkitMenu {
 	class RscAdminToolkitExecute: RscButton
 	{
 		idc = 1995;
-		action = "call AdminToolkit_actionEvents";
+		action = "";
 
 		text = "Run action"; //--- ToDo: Localize;
 		x = 0.8875 * safezoneW + safezoneX;

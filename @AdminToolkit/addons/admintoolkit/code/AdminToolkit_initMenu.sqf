@@ -16,7 +16,7 @@ _display = findDisplay 40000;
 
 // load the default menu into main menu combo box
 {
-	lbAdd [RscAdminToolkitMainMenu_IDC, _x];
+	[_x] call AdminToolkit_addMenu;
 } forEach AdminToolkit_MainMenu;
 
 // load additional extension entries into the main menu (if available)
@@ -25,12 +25,14 @@ if(isClass(missionConfigFile >> 'CfgAdminToolkitCustomMod')) then {
 	if(isArray(missionConfigFile >> 'CfgAdminToolkitCustomMod' >> 'Extensions')) then {
 		_extensions = getArray(missionConfigFile >> 'CfgAdminToolkitCustomMod' >> 'Extensions');
 		{
-			lbAdd [RscAdminToolkitMainMenu_IDC, _x];
+			_x call AdminToolkit_addMenu;
 		} forEach _extensions;
 	};
 };
 
 // add the event handler for the main menu
 (_display displayCtrl RscAdminToolkitMainMenu_IDC) ctrlSetEventHandler ["LBSelChanged","call AdminToolkit_menuEvents"];
+(_display displayCtrl RscAdminToolkitActionMenu_IDC) ctrlSetEventHandler ["LBSelChanged","AdminToolkit_Action = (_this select 0) lbData (_this select 1)"];
+
 
 (_display displayCtrl RscAdminToolkitInfo_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Choose an item from the Main Menu</t>";

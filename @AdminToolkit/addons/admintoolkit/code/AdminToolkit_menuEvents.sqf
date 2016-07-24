@@ -7,13 +7,14 @@
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
 
-private['_filter','_display','_menuIndex', '_menuName', '_list'];
+private['_filter','_display','_menuIndex', '_menuName', '_menuData', '_list'];
 disableSerialization;
 _display = findDisplay 40000;
 
 // receive the selected index and name from the Main Menu combobox
 _menuIndex = lbCurSel RscAdminToolkitMainMenu_IDC;
 _menuName = lbText [RscAdminToolkitMainMenu_IDC, _menuIndex];
+_menuData = lbData [RscAdminToolkitMainMenu_IDC, _menuIndex];
 
 // ### Search filter
 _filter = ctrlText RscAdminToolkitSearch_IDC;
@@ -24,6 +25,7 @@ if(_filter != "") then {
 	systemChat format["Searching for '%1' in %2", _filter, _menuName];	
 };
 
+AdminToolkit_Action = "";
 // clear listbox and selection event
 lbClear RscAdminToolkitList_IDC;
 // clear the action menu as well
@@ -32,6 +34,8 @@ lbClear RscAdminToolkitActionMenu_IDC;
 (_display displayCtrl RscAdminToolkitList_IDC) ctrlSetEventHandler ['LBSelChanged', ''];
 
 (_display displayCtrl RscAdminToolkitInfo_IDC) ctrlSetStructuredText parseText format["Menu %1 selected", _menuName];
+
+[] call AdminToolkit_onExecute;
 
 _menuName = toLower _menuName;
 
@@ -44,9 +48,7 @@ switch (_menuName) do {
 		(_display displayCtrl RscAdminToolkitList_IDC) ctrlSetEventHandler ['LBSelChanged', "[RscAdminToolkitList_IDC, _this, 'player'] call AdminToolkit_listboxChanged"];
 
 		{
-			if ([_x select 1] call AdminToolkit_hasPermission) then {
-				_x call AdminToolkit_addAction;
-			};
+			_x call AdminToolkit_addAction;
 		} forEach [
 			["TP To Player",'tp2player'],
 			["TP to Me", 'tpplayer'],
@@ -59,9 +61,7 @@ switch (_menuName) do {
 	};
 	case "vehicles": {
 		{
-			if ([_x select 1] call AdminToolkit_hasPermission) then {
-				_x call AdminToolkit_addAction;
-			};
+			_x call AdminToolkit_addAction;
 		} forEach [
 			["Spawn at Me",'getvehicle'],
 			["Spawn at Player", 'givevehicle']
@@ -72,9 +72,7 @@ switch (_menuName) do {
 	};
 	case "weapons": {
 		{
-			if ([_x select 1] call AdminToolkit_hasPermission) then {
-				_x call AdminToolkit_addAction;
-			};
+			_x call AdminToolkit_addAction;
 		} forEach [
 			["Get Weapon", 'getweapon'],
 			["Get Ammo", 'getammo']
@@ -85,9 +83,7 @@ switch (_menuName) do {
 	};
 	case "buildings": {
 		{
-			if ([_x select 1] call AdminToolkit_hasPermission) then {
-				_x call AdminToolkit_addAction;
-			};
+			_x call AdminToolkit_addAction;
 		} forEach [
 			["Build (temporary)", 'build'],
 			["Build (persistent)", 'buildpers'],
@@ -105,9 +101,7 @@ switch (_menuName) do {
 	};
 	case "other": {
 		{
-			if ([_x select 1] call AdminToolkit_hasPermission) then {
-				_x call AdminToolkit_addAction;
-			};
+			_x call AdminToolkit_addAction;
 		} forEach [
 			["Spawn", 'spawn']
 		];
@@ -117,9 +111,7 @@ switch (_menuName) do {
 	};
 	case "items": {
 		{
-			if ([_x select 1] call AdminToolkit_hasPermission) then {
-				_x call AdminToolkit_addAction;
-			};
+			_x call AdminToolkit_addAction;
 		} forEach [
 			["Get Item", 'getitem']
 		];
@@ -128,7 +120,12 @@ switch (_menuName) do {
 		[RscAdminToolkitList_IDC, _list, _filter] call AdminToolkit_uiList;
 	};
 	default {
-		systemChat "Invalid menu request";
+		systemChat format["Verifing mod command for %1 (%2)", _menuName, _menuData];
+		if(!(isNil "_menuData")) then {
+			_list = call (missionNamespace getVariable[_menuData, nil]);
+			[RscAdminToolkitList_IDC, _list, _filter] call AdminToolkit_uiList;
+		};
+		
 	};
 };
 

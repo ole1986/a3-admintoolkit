@@ -10,9 +10,11 @@
 private['_name'];
 
 missionNamespace setVariable ['AdminToolkit_MainMenu', ['Players', 'Vehicles', 'Weapons', 'Buildings', 'Other', 'Items']];
+missionNamespace setVariable ['AdminToolkit_Action', ''];
+missionNamespace setVariable ['AdminToolkit_Params', ''];
+
 
 missionNamespace setVariable ['AdminToolkit_selectedPlayer', ''];
-missionNamespace setVariable ['AdminToolkit_selectedMenu', ''];
 missionNamespace setVariable ['AdminToolkit_lastSelection', ''];
 missionNamespace setVariable ['AdminToolkit_lastAction', ''];
 missionNamespace setVariable ['AdminToolkit_camera', nil];

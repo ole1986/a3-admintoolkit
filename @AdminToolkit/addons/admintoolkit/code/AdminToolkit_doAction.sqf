@@ -9,7 +9,7 @@
  
 private['_action', '_selection', '_tmp', '_tmp2', '_IDC'];
 // is the action which should remotely be called
-_action = _this select 0;
+_action = AdminToolkit_Action;
 
 _IDC = RscAdminToolkitList_IDC;
 
