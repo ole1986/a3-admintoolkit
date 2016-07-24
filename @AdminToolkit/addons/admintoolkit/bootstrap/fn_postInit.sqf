@@ -36,7 +36,7 @@ missionNamespace setVariable ['AdminToolkit_permissionSet', []];
 	sleep 3;
 
 	// event handler for map click event using Alt + click to teleport the player - more compatible with other addons
-	["atkTeleport", "onMapSingleClick", { if (_alt) then { ['tp2pos', _pos] call AdminToolkit_doAction; true; } else { false; }; }] call BIS_fnc_addStackedEventHandler;
+	["atkTeleport", "onMapSingleClick", { if (_alt) then { AdminToolkit_Action = "tp2pos"; ['tp2pos', _pos] call AdminToolkit_doAction; true; } else { false; }; }] call BIS_fnc_addStackedEventHandler;
 
 	// call bindEvents once mail dialog is finished,, at this time F2 key should work
 	(findDisplay 46) displayAddEventHandler ["KeyDown","call AdminToolkit_bindKeyEvents;"];
