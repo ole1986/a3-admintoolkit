@@ -5,7 +5,7 @@ To achieve this a configuration class `CfgAdminToolkitCustomMod` is required in 
  
 ```
 class CfgAdminToolkitCustomMod {
-	Extensions[][] = {
+	Extensions[] = {
 		/* Title, SQF file (located in atk folder) */
 		{"Exile Mod","ExileMod"}
 	};
