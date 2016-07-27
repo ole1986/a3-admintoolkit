@@ -10,16 +10,21 @@
 private['_name'];
 
 missionNamespace setVariable ['AdminToolkit_MainMenu', ['Players', 'Vehicles', 'Weapons', 'Buildings', 'Other', 'Items']];
-missionNamespace setVariable ['AdminToolkit_Action', ''];
-missionNamespace setVariable ['AdminToolkit_Params', ''];
+// The current Menu selection
+missionNamespace setVariable ['AdminToolkit_MenuIndex', nil];
+// The current selected action
+missionNamespace setVariable ['AdminToolkit_Action', nil];
+// the current parameters being executed (dependent on the action)
+missionNamespace setVariable ['AdminToolkit_Params', nil];
+// The current selected player (also used in spectator mode)
+missionNamespace setVariable ['AdminToolkit_Player', nil];
 
 
-missionNamespace setVariable ['AdminToolkit_selectedPlayer', ''];
 missionNamespace setVariable ['AdminToolkit_lastSelection', ''];
 missionNamespace setVariable ['AdminToolkit_lastAction', ''];
 missionNamespace setVariable ['AdminToolkit_camera', nil];
 missionNamespace setVariable ['AdminToolkit_cameraKeyDownId', nil];
-missionNamespace setVariable ['AdminToolkit_player', nil];
+
 missionNamespace setVariable ['AdminToolkit_permissionSet', []];
 
 {
@@ -36,7 +41,7 @@ missionNamespace setVariable ['AdminToolkit_permissionSet', []];
 	sleep 3;
 
 	// event handler for map click event using Alt + click to teleport the player - more compatible with other addons
-	["atkTeleport", "onMapSingleClick", { if (_alt) then { AdminToolkit_Action = "tp2pos"; ['tp2pos', _pos] call AdminToolkit_doAction; true; } else { false; }; }] call BIS_fnc_addStackedEventHandler;
+	["atkTeleport", "onMapSingleClick", { if (_alt) then { ['tp2pos', _pos] call AdminToolkit_doAction; true; } else { false; }; }] call BIS_fnc_addStackedEventHandler;
 
 	// call bindEvents once mail dialog is finished,, at this time F2 key should work
 	(findDisplay 46) displayAddEventHandler ["KeyDown","call AdminToolkit_bindKeyEvents;"];

@@ -28,6 +28,7 @@ forEach
 	['AdminToolkit_doAction', 'admintoolkit\code\AdminToolkit_doAction.sqf'],
 	['AdminToolkit_onExecute', 'admintoolkit\code\AdminToolkit_onExecute.sqf'],
 	['AdminToolkit_listboxChanged', 'admintoolkit\code\AdminToolkit_listboxChanged.sqf'],
+	['AdminToolkit_actionChanged', 'admintoolkit\code\AdminToolkit_actionChanged.sqf'],
 	['AdminToolkit_uiList', 'admintoolkit\code\AdminToolkit_uiList.sqf'],
 	['AdminToolkit_addAction', 'admintoolkit\code\AdminToolkit_addAction.sqf'],
 	['AdminToolkit_hasPermission', 'admintoolkit\code\AdminToolkit_hasPermission.sqf'],

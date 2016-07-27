@@ -16,6 +16,8 @@ _menuIndex = lbCurSel RscAdminToolkitMainMenu_IDC;
 _menuName = lbText [RscAdminToolkitMainMenu_IDC, _menuIndex];
 _menuData = lbData [RscAdminToolkitMainMenu_IDC, _menuIndex];
 
+AdminToolkit_MenuIndex = _menuIndex;
+
 // ### Search filter
 _filter = ctrlText RscAdminToolkitSearch_IDC;
 if(_filter != "") then {
@@ -25,15 +27,11 @@ if(_filter != "") then {
 	systemChat format["Searching for '%1' in %2", _filter, _menuName];	
 };
 
-AdminToolkit_Action = "";
+AdminToolkit_Action = nil;
 // clear listbox and selection event
 lbClear RscAdminToolkitList_IDC;
 // clear the action menu as well
 lbClear RscAdminToolkitActionMenu_IDC;
-// clear on selection event for the list
-(_display displayCtrl RscAdminToolkitList_IDC) ctrlSetEventHandler ['LBSelChanged', ''];
-
-(_display displayCtrl RscAdminToolkitInfo_IDC) ctrlSetStructuredText parseText format["Menu %1 selected", _menuName];
 
 [] call AdminToolkit_onExecute;
 
@@ -43,9 +41,6 @@ switch (_menuName) do {
 	case "players": {
 		// get player list from server while doing a receiveRequest
 		[player, 'getplayers'] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];
-
-		// setup the event onLbSelChanged for the listbox to globally select a player
-		(_display displayCtrl RscAdminToolkitList_IDC) ctrlSetEventHandler ['LBSelChanged', "[RscAdminToolkitList_IDC, _this, 'player'] call AdminToolkit_listboxChanged"];
 
 		{
 			_x call AdminToolkit_addAction;
@@ -93,9 +88,6 @@ switch (_menuName) do {
 			["Save Persistent", 'savepersistent'],
 			["Clear Persistent", 'clearpersistent']
 		];
-
-		// use the listbox event to display more details about the build when selected
-		(_display displayCtrl RscAdminToolkitList_IDC) ctrlSetEventHandler ['LBSelChanged', "[RscAdminToolkitList_IDC, _this, 'buildings'] call AdminToolkit_listboxChanged"];
 
 		_list = "(configName _x isKindOf 'Building') and !(configName _x isKindOf 'ReammoBox') and (getNumber(_x >> 'scope') == 2)" configClasses (configFile>>"CfgVehicles");
 		[RscAdminToolkitList_IDC, _list, _filter] call AdminToolkit_uiList;

@@ -30,9 +30,20 @@ if(isClass(missionConfigFile >> 'CfgAdminToolkitCustomMod')) then {
 	};
 };
 
+if(!isNil "AdminToolkit_MenuIndex") then {
+	lbSetCurSel [RscAdminToolkitMainMenu_IDC, AdminToolkit_MenuIndex];
+	call AdminToolkit_menuEvents;
+} else {
+	(_display displayCtrl RscAdminToolkitInfo_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Choose an item from the Main Menu</t>";
+};
+
+AdminToolkit_Player = nil;
+
 // add the event handler for the main menu
 (_display displayCtrl RscAdminToolkitMainMenu_IDC) ctrlSetEventHandler ["LBSelChanged","call AdminToolkit_menuEvents"];
-(_display displayCtrl RscAdminToolkitActionMenu_IDC) ctrlSetEventHandler ["LBSelChanged","AdminToolkit_Action = (_this select 0) lbData (_this select 1)"];
+(_display displayCtrl RscAdminToolkitActionMenu_IDC) ctrlSetEventHandler ["LBSelChanged","call AdminToolkit_actionChanged"];
 
+// setup the event onLbSelChanged for the centered listbox
+(_display displayCtrl RscAdminToolkitList_IDC) ctrlSetEventHandler ['LBSelChanged', "call AdminToolkit_listboxChanged"];
 
-(_display displayCtrl RscAdminToolkitInfo_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Choose an item from the Main Menu</t>";
+(_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "";

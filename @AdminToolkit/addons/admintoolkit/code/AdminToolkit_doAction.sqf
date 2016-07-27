@@ -8,12 +8,18 @@
  */
  
 private['_action', '_selection', '_tmp', '_tmp2', '_IDC'];
-// is the action which should remotely be called
-_action = AdminToolkit_Action;
-
-_IDC = RscAdminToolkitList_IDC;
 
 try {
+    if(count _this > 0) then {
+        _action = _this select 0;
+    } else {
+        _action = AdminToolkit_Action;    
+    };
+
+    if(isNil "_action") throw "NO ACTION SELECTED";
+    
+    _IDC = RscAdminToolkitList_IDC;
+
     switch (_action) do
     {
         case 'login':
@@ -21,8 +27,9 @@ try {
             _selection = '';
         };
         case 'message': {
-            if(AdminToolkit_selectedPlayer == '') then { throw "No player selected"; };
-            _selection = [AdminToolkit_selectedPlayer, AdminToolkit_Params];
+            if(isNil "AdminToolkit_Player") then { throw "No player selected"; };
+
+            _selection = [AdminToolkit_Player, AdminToolkit_Params];
         };
         case 'tp2pos':
         {
@@ -30,9 +37,9 @@ try {
         };
         case 'givevehicle':
         {
-            if(AdminToolkit_selectedPlayer == '') then { throw "No player selected"; };
+            if(isNil "AdminToolkit_Player") then { throw "No player selected"; };
             
-            _selection = [lbData [_IDC, lbCurSel _IDC], AdminToolkit_selectedPlayer];
+            _selection = [lbData [_IDC, lbCurSel _IDC], AdminToolkit_Player];
         };
         case 'getweapon': {
             _tmp = lbData [_IDC, lbCurSel _IDC];
