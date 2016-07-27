@@ -27,6 +27,8 @@ switch (_this select 1) do
     case 0x3F:
     {
         _handled = true;
+        systemChat "ATK: Repeat action is broken - need workaround";
+
         // used to repeat building the same object
         if(AdminToolkitIsBuilding <= 0 and AdminToolkit_lastSelection != '' and AdminToolkit_lastAction != '') then {
             systemChat format["Repeating action '%1' with '%2'", AdminToolkit_lastAction, AdminToolkit_lastSelection];
