@@ -50,6 +50,7 @@ switch (_menuName) do {
 		{
 			_x call AdminToolkit_addAction;
 		} forEach [
+			["Send Message", "message"],
 			["TP To Player",'tp2player'],
 			["TP to Me", 'tpplayer'],
 			["Spec Player", 'specplayer'],

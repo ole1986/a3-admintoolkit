@@ -20,6 +20,10 @@ try {
         {
             _selection = '';
         };
+        case 'message': {
+            if(AdminToolkit_selectedPlayer == '') then { throw "No player selected"; };
+            _selection = [AdminToolkit_selectedPlayer, AdminToolkit_Params];
+        };
         case 'tp2pos':
         {
             _selection = _this select 1;

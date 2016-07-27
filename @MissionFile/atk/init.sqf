@@ -10,6 +10,11 @@
     _code = compileFinal preprocessFileLineNumbers 'atk\AdminToolkit_showMessage.sqf';
     missionNamespace setVariable ['AdminToolkit_showMessage', _code];
 
+    if(isNil "AdminToolkit_receiveResponse") then {
+        _code = compileFinal preprocessFileLineNumbers 'atk\AdminToolkit_receiveResponse.sqf';
+        missionNamespace setVariable ['AdminToolkit_receiveResponse', _code];
+    };
+
     disableSerialization;
     waitUntil {!isNull (findDisplay 46)};
 
@@ -19,5 +24,5 @@
     _control ctrlSetPosition [0,0, 1,1];
     _control ctrlCommit 0;
     missionNamespace setVariable ['RscAdminToolkitMessage_IDC', _controlIDC];
-    ["AdminToolkit", "This server is using AdminToolkit"] call AdminToolkit_showMessage;
+    ["AdminToolkit", "This server is using the AdminToolkit"] call AdminToolkit_showMessage;
 };

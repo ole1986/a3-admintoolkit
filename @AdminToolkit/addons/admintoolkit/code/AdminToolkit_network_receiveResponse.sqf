@@ -23,12 +23,15 @@ try
 		case 'loginfailed': {
 			systemChat "AdminToolkit LOGIN FAILED - Check your server config.cpp";
 		};
+		case 'message': {
+			_params call AdminToolkit_showMessage;
+		};
 		case 'getplayers': {
 			lbClear RscAdminToolkitList_IDC;
 			
 			{
-				lbAdd [RscAdminToolkitList_IDC, _x];
-				lbSetData [RscAdminToolkitList_IDC, (lbSize RscAdminToolkitList_IDC) - 1, _x];
+				_tmp = lbAdd [RscAdminToolkitList_IDC, _x];
+				lbSetData [RscAdminToolkitList_IDC, _tmp, _x];
 			} forEach _params;
 		};
 		case 'specplayer': {

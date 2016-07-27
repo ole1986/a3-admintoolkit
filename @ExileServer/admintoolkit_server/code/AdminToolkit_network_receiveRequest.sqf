@@ -40,6 +40,10 @@ try
 			// send login ok with moderator cmdlets
 			['loginok', _moderatorCmds] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
 		};
+		case 'message': {
+			_tmp = [_params select 0] call AdminToolkit_network_fetchPlayer;
+			['message', [_params select 1, format["<t size='1.5'>Sender: %1</t>", name _player]]] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _tmp];
+		};
 		// Kick player from server
 		// Example: [player, 'kickplayer', <string playername>]
 		case "kickplayer":
