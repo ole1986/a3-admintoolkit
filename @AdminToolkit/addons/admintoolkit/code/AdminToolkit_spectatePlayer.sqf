@@ -19,7 +19,7 @@ if (!isNil "AdminToolkit_camera") then {
     
     systemChat "Spectating stopped";
  } else {
-    AdminToolkit_Player = _this select 0;
+    AdminToolkit_Player = vehicle (_this select 0);
 
     systemChat format["Spectating %1", name AdminToolkit_Player];
     systemChat "Q = First person, E = 3rd person";
