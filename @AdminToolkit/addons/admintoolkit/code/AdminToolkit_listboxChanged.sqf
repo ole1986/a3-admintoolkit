@@ -19,6 +19,8 @@ _index = lbCurSel RscAdminToolkitList_IDC;
 _text = lbText [RscAdminToolkitList_IDC, _index];
 _value = lbData [RscAdminToolkitList_IDC, _index];
 
+AdminToolkit_Selection = _value;
+
 switch (_menuName) do {
     case 'players': {
         // set the selected player globally to use it in other sections
