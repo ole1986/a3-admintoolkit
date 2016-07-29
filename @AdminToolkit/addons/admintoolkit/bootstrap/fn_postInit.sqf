@@ -12,6 +12,8 @@ private['_name'];
 missionNamespace setVariable ['AdminToolkit_MainMenu', ['Players', 'Vehicles', 'Weapons', 'Buildings', 'Other', 'Items']];
 // The current Menu selection
 missionNamespace setVariable ['AdminToolkit_MenuIndex', nil];
+// take the selection from list
+missionNamespace setVariable ['AdminToolkit_Selection', nil];
 // The current selected action
 missionNamespace setVariable ['AdminToolkit_Action', nil];
 // the current parameters being executed (dependent on the action)
