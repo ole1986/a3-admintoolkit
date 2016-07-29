@@ -22,3 +22,16 @@ class CfgAdminToolkitCustomMod {
 	};
 };
 ```
+
+**Extensions**
+
+This property is used to load additional extensions located in the MissionFile `atk` folder.
+From server it will also include the same file in `ext` folder to execute global commands.
+
+**QuickButtons**
+
+Allows you to overwrite the four quick buttons with some custom commands
+
+
+
+
