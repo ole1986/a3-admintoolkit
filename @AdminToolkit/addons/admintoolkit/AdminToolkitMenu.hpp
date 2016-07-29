@@ -14,13 +14,18 @@ class AdminToolkitMenu {
 		RscAdminToolkitActionLabel,
 		RscAdminToolkitParam,
 		RscAdminToolkitParamLabel,
+		RscAdminToolkitQuick1,
+		RscAdminToolkitQuick2,
+		RscAdminToolkitQuick3,
+		RscAdminToolkitQuick4,
 		RscAdminToolkitExecute,
 		RscAdminToolkitRepeat
+		
 	};
 	////////////////////////////////////////////////////////
-	// GUI EDITOR OUTPUT START (by ole, v1.063, #Norana)
+	// GUI EDITOR OUTPUT START (by ole, v1.063, #Tupyxi)
 	////////////////////////////////////////////////////////
-
+	
 	class RscAdminToolkitTitle: RscStructuredText
 	{
 		idc = 1900;
@@ -33,14 +38,13 @@ class AdminToolkitMenu {
 		colorText[] = {0.8,0.15,0.3,1};
 		colorBackground[] = {-1,-1,-1,0};
 	};
-	class RscAdminToolkitMainMenu: RscCombo
+	class RscAdminToolkitMainMenu: RscListbox
 	{
 		idc = 1910;
-
 		x = 0.775 * safezoneW + safezoneX;
 		y = 0.06 * safezoneH + safezoneY;
 		w = 0.2125 * safezoneW;
-		h = 0.04 * safezoneH;
+		h = 0.1 * safezoneH;
 		colorText[] = {0.8,0.15,0.3,1};
 		colorBackground[] = {0,0,0,0.7};
 	};
@@ -50,7 +54,7 @@ class AdminToolkitMenu {
 
 		text = "# RscAdminToolkitInfo #"; //--- ToDo: Localize;
 		x = 0.775 * safezoneW + safezoneX;
-		y = 0.12 * safezoneH + safezoneY;
+		y = 0.18 * safezoneH + safezoneY;
 		w = 0.2125 * safezoneW;
 		h = 0.02 * safezoneH;
 		colorBackground[] = {-1,-1,-1,0};
@@ -61,7 +65,7 @@ class AdminToolkitMenu {
 		onKeyDown = "if ((_this select 1) == 0x1C or (_this select 1) == 0x9C) then { call AdminToolkit_menuEvents };";
 
 		x = 0.775 * safezoneW + safezoneX;
-		y = 0.16 * safezoneH + safezoneY;
+		y = 0.22 * safezoneH + safezoneY;
 		w = 0.1625 * safezoneW;
 		h = 0.04 * safezoneH;
 		colorBackground[] = {0,0,0,0.7};
@@ -73,7 +77,7 @@ class AdminToolkitMenu {
 
 		text = "Search"; //--- ToDo: Localize;
 		x = 0.9375 * safezoneW + safezoneX;
-		y = 0.16 * safezoneH + safezoneY;
+		y = 0.22 * safezoneH + safezoneY;
 		w = 0.05 * safezoneW;
 		h = 0.04 * safezoneH;
 	};
@@ -82,9 +86,9 @@ class AdminToolkitMenu {
 		idc = 1950;
 
 		x = 0.775 * safezoneW + safezoneX;
-		y = 0.2 * safezoneH + safezoneY;
+		y = 0.26 * safezoneH + safezoneY;
 		w = 0.2125 * safezoneW;
-		h = 0.38 * safezoneH;
+		h = 0.36 * safezoneH;
 		colorBackground[] = {0,0,0,0.7};
 	};
 	class RscAdminToolkitActionMenu: RscCombo
@@ -92,7 +96,7 @@ class AdminToolkitMenu {
 		idc = 1960;
 
 		x = 0.775 * safezoneW + safezoneX;
-		y = 0.66 * safezoneH + safezoneY;
+		y = 0.7 * safezoneH + safezoneY;
 		w = 0.2125 * safezoneW;
 		h = 0.04 * safezoneH;
 		colorBackground[] = {0,0,0,0.7};
@@ -103,7 +107,7 @@ class AdminToolkitMenu {
 
 		text = "# RscAdminToolkitActionLabel #"; //--- ToDo: Localize;
 		x = 0.775 * safezoneW + safezoneX;
-		y = 0.6 * safezoneH + safezoneY;
+		y = 0.64 * safezoneH + safezoneY;
 		w = 0.2125 * safezoneW;
 		h = 0.04 * safezoneH;
 		colorBackground[] = {-1,-1,-1,0};
@@ -114,7 +118,7 @@ class AdminToolkitMenu {
 		onKeyDown = "";
 
 		x = 0.775 * safezoneW + safezoneX;
-		y = 0.76 * safezoneH + safezoneY;
+		y = 0.8 * safezoneH + safezoneY;
 		w = 0.2125 * safezoneW;
 		h = 0.04 * safezoneH;
 		colorBackground[] = {0,0,0,0.7};
@@ -125,10 +129,58 @@ class AdminToolkitMenu {
 
 		text = "# RscAdminToolkitParamLabel #"; //--- ToDo: Localize;
 		x = 0.775 * safezoneW + safezoneX;
-		y = 0.72 * safezoneH + safezoneY;
+		y = 0.76 * safezoneH + safezoneY;
 		w = 0.2125 * safezoneW;
 		h = 0.02 * safezoneH;
 		colorBackground[] = {-1,-1,-1,0};
+	};
+	class RscAdminToolkitQuick1: RscButton
+	{
+		idc = 1991;
+		action = "systemChat 'Not yet implemented'";
+
+		text = "QUICK 1"; //--- ToDo: Localize;
+		x = 0.775 * safezoneW + safezoneX;
+		y = 0.86 * safezoneH + safezoneY;
+		w = 0.05 * safezoneW;
+		h = 0.04 * safezoneH;
+		colorBackground[] = {0,0,0,0.8};
+	};
+	class RscAdminToolkitQuick2: RscButton
+	{
+		idc = 1992;
+		action = "systemChat 'Not yet implemented'";
+
+		text = "QUICK 2"; //--- ToDo: Localize;
+		x = 0.825 * safezoneW + safezoneX;
+		y = 0.86 * safezoneH + safezoneY;
+		w = 0.05 * safezoneW;
+		h = 0.04 * safezoneH;
+		colorBackground[] = {0,0,0,0.8};
+	};
+	class RscAdminToolkitQuick3: RscButton
+	{
+		idc = 1993;
+		action = "systemChat 'Not yet implemented'";
+
+		text = "QUICK 3"; //--- ToDo: Localize;
+		x = 0.8875 * safezoneW + safezoneX;
+		y = 0.86 * safezoneH + safezoneY;
+		w = 0.05 * safezoneW;
+		h = 0.04 * safezoneH;
+		colorBackground[] = {0,0,0,0.8};
+	};
+	class RscAdminToolkitQuick4: RscButton
+	{
+		idc = 1994;
+		action = "systemChat 'Not yet implemented'";
+
+		text = "QUICK 4"; //--- ToDo: Localize;
+		x = 0.9375 * safezoneW + safezoneX;
+		y = 0.86 * safezoneH + safezoneY;
+		w = 0.05 * safezoneW;
+		h = 0.04 * safezoneH;
+		colorBackground[] = {0,0,0,0.8};
 	};
 	class RscAdminToolkitExecute: RscButton
 	{
@@ -137,10 +189,10 @@ class AdminToolkitMenu {
 
 		text = "Run action"; //--- ToDo: Localize;
 		x = 0.8875 * safezoneW + safezoneX;
-		y = 0.82 * safezoneH + safezoneY;
+		y = 0.94 * safezoneH + safezoneY;
 		w = 0.1 * safezoneW;
 		h = 0.04 * safezoneH;
-		colorBackground[] = {0,0,0,0.7};
+		colorBackground[] = {0,0,0,0.8};
 	};
 	class RscAdminToolkitRepeat: RscButton
 	{
@@ -149,10 +201,10 @@ class AdminToolkitMenu {
 
 		text = "Repeat last action"; //--- ToDo: Localize;
 		x = 0.775 * safezoneW + safezoneX;
-		y = 0.82 * safezoneH + safezoneY;
+		y = 0.94 * safezoneH + safezoneY;
 		w = 0.1 * safezoneW;
 		h = 0.04 * safezoneH;
-		colorBackground[] = {0,0,0,0.7};
+		colorBackground[] = {0,0,0,0.8};
 	};
 	////////////////////////////////////////////////////////
 	// GUI EDITOR OUTPUT END

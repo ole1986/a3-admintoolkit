@@ -7,7 +7,7 @@
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
  
-private['_display', '_extensions'];
+private['_display', '_extensions', '_IDC', '_i'];
 disableSerialization;
 _display = findDisplay 40000;
 
@@ -28,6 +28,18 @@ if(isClass(missionConfigFile >> 'CfgAdminToolkitCustomMod')) then {
 			_x call AdminToolkit_addMenu;
 		} forEach _extensions;
 	};
+
+	// quick access buttons QUICK 1 - 4 ( RscAdminToolkitQuickX_IDC )
+	if(isArray(missionConfigFile >> 'CfgAdminToolkitCustomMod' >> 'QuickButtons')) then {
+		_i = 1;
+		_extensions = getArray(missionConfigFile >> 'CfgAdminToolkitCustomMod' >> 'QuickButtons');
+		{
+			_IDC = missionNamespace getVariable format["RscAdminToolkitQuick%1_IDC", _i];
+			ctrlSetText [_IDC, _x select 0];
+			buttonSetAction [_IDC, _x select 1];	
+			_i = _i + 1;
+		} forEach _extensions;
+	};
 };
 
 if(!isNil "AdminToolkit_MenuIndex") then {
@@ -37,6 +49,7 @@ if(!isNil "AdminToolkit_MenuIndex") then {
 	(_display displayCtrl RscAdminToolkitInfo_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Choose an item from the Main Menu</t>";
 };
 
+AdminToolkit_Selection = nil;
 AdminToolkit_Player = nil;
 
 // add the event handler for the main menu
@@ -47,3 +60,4 @@ AdminToolkit_Player = nil;
 (_display displayCtrl RscAdminToolkitList_IDC) ctrlSetEventHandler ['LBSelChanged', "call AdminToolkit_listboxChanged"];
 
 (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "";
+(_display displayCtrl RscAdminToolkitParam_IDC) ctrlSetEventHandler ['KillFocus', "AdminToolkit_Params = ctrlText RscAdminToolkitParam_IDC"];

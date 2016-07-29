@@ -5,9 +5,20 @@ To achieve this a configuration class `CfgAdminToolkitCustomMod` is required in 
  
 ```
 class CfgAdminToolkitCustomMod {
+	/* Load the any additional sqf file as mod */
 	Extensions[] = {
 		/* Title, SQF file (located in atk folder) */
 		{"Exile Mod","ExileMod"}
+	};
+
+	/* 4 Quick buttons allowing to add any action you want - See example below*/
+	QuickButtons[] = {
+		/* send a chat message to selected player containing 'Test 123' */
+		{"Chat", "['message', [AdminToolkit_Player, 'Test 123']] call AdminToolkit_doAction"},
+		/* send a message to everyone using the parameter text field */
+		{"Msg To All", "['messageall', AdminToolkit_Params] call AdminToolkit_doAction"},
+		/* Quickly get a Helicopter */
+		{"Heli", "['getvehicle', 'B_Heli_Light_01_armed_F'] call AdminToolkit_doAction"},
 	};
 };
 ```
