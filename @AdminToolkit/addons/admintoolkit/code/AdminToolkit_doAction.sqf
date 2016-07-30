@@ -89,8 +89,7 @@ try {
     if !(isNil "_selection") then {
         [player, _action, _selection] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];
         systemChat format["Command '%1' executed", _action];
-        AdminToolkit_lastSelection = _selection;
-        AdminToolkit_lastAction = _action;
+        AdminToolkit_LastAction = [_action, _selection];
     };
 } catch {
     systemChat format['EXCEPTION: %1', _exception];
