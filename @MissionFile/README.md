@@ -10,12 +10,19 @@ class CfgAdminToolkitCustomMod {
 	 * 
 	 * ExcludeMenu[] = {"Players", "Vehicles", "Weapons" , "Other"};
 	 */
-	ExcludeMenu[] = {"Other"};
+	ExcludeMenu[] = {
+		"Players",
+		"Weapons",
+		"Other"
+	};
 	
 	/* Load any additional sqf file as mod */
 	Extensions[] = {
 		/* Title, SQF file (located in atk folder) */
-		{"Exile Mod","ExileMod"}
+		{"Exile Mod","ExileMod"}; //will be deleted later
+		{"Exile Mod Players","ExileModPlayer"};
+		{"Exile Mod Vehicles","ExileModVehicle"};
+		{"Exile Mod Buildings","ExileModBuild"}
 	};
 
 	/* 4 Quick buttons allowing to add any action you want - See example below*/
@@ -26,8 +33,8 @@ class CfgAdminToolkitCustomMod {
 		{"Msg To All", "['messageall', AdminToolkit_Params] call AdminToolkit_doAction"};
 		/* Quickly get a Helicopter */
 		{"Heli", "['getvehicle', 'B_Heli_Light_01_armed_F'] call AdminToolkit_doAction"};
-		/*1 button*/
-		{"Empty", "['message', [player, 'No function give to this at the moment'] call AdminToolkit_doAction"}
+		/*4 button*/
+		{"Empty", "['Command', 'Variable'] call AdminToolkit_doAction"}
 	};
 };
 ```
