@@ -197,9 +197,9 @@ class AdminToolkitMenu {
 	class RscAdminToolkitRepeat: RscButton
 	{
 		idc = 1996;
-		action = "systemChat 'Not yet implemented'";
+		action = "AdminToolkit_LastAction call AdminToolkit_doAction;";
 
-		text = "Repeat last action"; //--- ToDo: Localize;
+		text = "Repeat action (F5)"; //--- ToDo: Localize;
 		x = 0.775 * safezoneW + safezoneX;
 		y = 0.94 * safezoneH + safezoneY;
 		w = 0.1 * safezoneW;
