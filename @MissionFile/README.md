@@ -5,7 +5,14 @@ To achieve this a configuration class `CfgAdminToolkitCustomMod` is required in 
  
 ```
 class CfgAdminToolkitCustomMod {
-	/* Load the any additional sqf file as mod */
+	/* Exclude some main menu items
+	 * To only show the menus loaded from an extension, use:
+	 * 
+	 * ExcludeMenu[] = {"Players", "Vehicles", "Weapons" , "Other"};
+	 */
+	ExcludeMenu[] = {"Other"};
+	
+	/* Load any additional sqf file as mod */
 	Extensions[] = {
 		/* Title, SQF file (located in atk folder) */
 		{"Exile Mod","ExileMod"}

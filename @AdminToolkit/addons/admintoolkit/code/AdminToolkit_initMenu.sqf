@@ -14,9 +14,13 @@ _display = findDisplay 40000;
 // show the title of its tool
 (_display displayCtrl RscAdminToolkitTitle_IDC) ctrlSetStructuredText parseText "<t color='#c72651'>AdminToolkit Main Menu</t>";
 
+_extensions = getArray(missionConfigFile >> 'CfgAdminToolkitCustomMod' >> 'ExcludeMenu');
+
 // load the default menu into main menu combo box
 {
-	[_x] call AdminToolkit_addMenu;
+	if (_extensions find _x == -1) then {
+		[_x] call AdminToolkit_addMenu;
+	};
 } forEach AdminToolkit_MainMenu;
 
 // load additional extension entries into the main menu (if available)
