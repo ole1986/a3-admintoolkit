@@ -99,7 +99,7 @@ switch (_menuName) do {
 			["Spawn", 'spawn']
 		];
 
-		_list ="configName _x isKindOf 'ReammoBox' and getNumber(_x >> 'scope') == 2" configClasses (configFile>>"CfgVehicles");
+		_list ="((configName _x isKindOf 'ReammoBox') and (getNumber(_x >> 'scope') == 2))" configClasses (configFile >> "CfgVehicles");
 		[RscAdminToolkitList_IDC, _list, _filter] call AdminToolkit_uiList;
 	};
 	case "items": {
