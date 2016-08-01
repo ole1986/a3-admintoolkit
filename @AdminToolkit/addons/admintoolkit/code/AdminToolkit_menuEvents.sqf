@@ -63,7 +63,7 @@ switch (_menuName) do {
 			["Spawn at Player", 'givevehicle']
 		];
 
-		_list = "getText(_x >> 'VehicleClass') in ['Car', 'Armored', 'Air']" configClasses (configFile >> "CfgVehicles");
+		_list = "((getText(_x >> 'VehicleClass') in ['Car', 'Armored', 'Air']) and (getNumber(_x >> 'scope') == 2))" configClasses (configFile >> "CfgVehicles");
 		[RscAdminToolkitList_IDC, _list, _filter] call AdminToolkit_uiList;
 	};
 	case "weapons": {
@@ -74,7 +74,7 @@ switch (_menuName) do {
 			["Get Ammo", 'getammo']
 		];
 
-		_list = "((getNumber(_x >> 'Type') > 0) and (getNumber(_x >> 'Type') <= 4) and (configName _x find '_Base' <= 0) and (configName _x find '_base' <= 0))" configClasses (configFile >> "CfgWeapons");
+		_list = "((getNumber(_x >> 'Type') > 0) and (getNumber(_x >> 'Type') <= 4) and (configName _x find '_Base' <= 0) and (configName _x find '_base' <= 0) and (getNumber(_x >> 'scope') == 2))" configClasses (configFile >> "CfgWeapons");
 		[RscAdminToolkitList_IDC, _list, _filter] call AdminToolkit_uiList;
 	};
 	case "buildings": {
