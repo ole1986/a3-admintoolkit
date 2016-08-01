@@ -90,6 +90,8 @@ class AdminToolkitMenu {
 		w = 0.2125 * safezoneW;
 		h = 0.36 * safezoneH;
 		colorBackground[] = {0,0,0,0.7};
+		rowHeight = 0.1;
+		/*sizeEx = 4;*/
 	};
 	class RscAdminToolkitActionMenu: RscCombo
 	{
