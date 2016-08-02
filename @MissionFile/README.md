@@ -1,8 +1,12 @@
 # Extending AdminToolkit features
 
-Using the MissionFile you can extend and (partly) overwrite features of the AdminToolkit.<br />
-To achieve this a configuration class `CfgAdminToolkitCustomMod` is required in your `description.ext`
- 
+The AdminToolkit takes advantage of the MissionFile allowing you the add additional features (extensions) or commands.
+To achieve this, the configuration class `CfgAdminToolkitCustomMod` is required in your  `description.ext` or `config.cpp` (depends on the setup)
+
+Below you can find the skeleton of the `CfgAdminToolkitCustomMod` config class containing some quick button examples.
+
+For a working extension setup, please refer to the <a href="README.ExileMod.md">ExileMod extension readme</a>
+
 ```
 class CfgAdminToolkitCustomMod {
 	/* Exclude some main menu items
@@ -18,7 +22,6 @@ class CfgAdminToolkitCustomMod {
 		 * Usage: "<Your Mod Title>", "<YourModFileWithoutExt>.sqf"
 		 */
 		/* Example for "ExileMod" using the "atk\ExileMod.sqf" */
-		{"Exile Mod","ExileMod"}
 	};
 
 	/* 4 Quick buttons allowing to add any action you want - See example below*/
@@ -35,24 +38,17 @@ class CfgAdminToolkitCustomMod {
 };
 ```
 
-#Initialization AdminToolkit Message
-Using the MissionFile you need to activate the AdminTollkit Message.<br />
-Its required in your `initPlayerLocal.sqf`
-```
-[] execVM "atk\init.sqf"; 
-```
+**ExcludeMenu[]**
 
-**Extensions**
+This property is used to hide the default menu entries.
+Useful when you only want to display your extension.
+
+
+**Extensions[]**
 
 This property is used to load additional extensions located in the MissionFile `atk` folder.
 From server it will also include the same file in `ext` folder to execute global commands.
 
-**QuickButtons**
+**QuickButtons[]**
 
 Allows you to overwrite the four quick buttons with some custom commands
-
-**initPlayerLocal**
-
-
-
-
