@@ -28,7 +28,7 @@ try
 
     // if its a moderator, check if commands is allowed
     if ( getPlayerUID _player in _moderatorList ) then {
-		_moderatorCmds = getArray(configFile >> "CfgSettings" >> "AdminToolkit" >> "ModeratorCmds");
+		_moderatorCmds = getArray(configFile >> "CfgSettings" >> "AdminToolkit" >> "ModeratorCmds") + getArray(configFile >> "CfgSettings" >> "AdminToolkit" >> "ModeratorExtCmds");
         if !( _request in _moderatorCmds ) then {
             throw format [ "Moderator %1 has no access to admin command %2 with params %3 ", name _player, _request, str _params];
         };

@@ -45,8 +45,45 @@ class CfgSettings
          */
         ModeratorList[] = {};
         /**
-		 * allowed commands for moderators (default: login, teleport to a player, get a vehicle, get player list, spectate a player)
+		 * allowed commands for moderators (customize it if neccessary)
 		 */
-        ModeratorCmds[] = {"login","getplayers","tp2player", "getvehicle", "kickplayer", "specplayer", "specstop"};
+        ModeratorCmds[] = { "login", /* Login as moderator  - required */
+                            "message", /* send single messages to a player */
+                            "messageall", /* send global messages */
+                            "kickplayer", /* kick a player */
+                            "banplayer", /* kick and ban a player */
+                            "getplayers", /* get player list - required for player actions */
+                            "tp2player", /* teleport me to a players position */
+                            "tpplayer", /* teleport the player to my position */
+                            "tp2pos", /* teleport to any location at the map (using ALT + LMB whem map is opened) */
+                            "getvehicle", /* get me a vehicle */
+                            "givevehicle", /* give a vehicle to a selected player */
+                            "getweapon", /* get me a weapon */
+                            "getammo", /* get me ammo */
+                            "getitem", /* get me any other item */
+                            "spawn", /* span vehicles */
+                            "buildpers", /* build a persistent object */
+                            "build", /* build a temp object */
+                            "buildremove", /* remove tempory/pers. objects */
+                            "buildpersistent", /* save the persistent buildings - neccessary?! */
+                            "buildinfopersistent", /* get some info */
+                            "buildabort", /* abourt the building process - should always be in that list when building is allowed */
+                            "clearpersistent", /* Cleanup all persistent buildings */
+                            "savepersistent", /* ??? */
+                            "specplayer",  /* allow spectating other players */
+                            "godmodeon", /* allow godmode */
+                            "godmodeoff" /* allow disable its godmode once enabled - huh?! */
+                            };
+        /**
+         * Used for server commands achieved from extensions
+         */
+        ModeratorExtCmds[] = {  "exile_getvehicle",
+                                "exile_repvehicle",
+                                "exile_destvehicle", 
+                                "exile_delvehicle",
+                                "exile_getheal", 
+                                "exile_kill", 
+                                "exile_getmoney",
+                                "exile_getscore"};
     };
 };
