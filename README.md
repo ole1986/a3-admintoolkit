@@ -75,7 +75,7 @@ class AdminToolkit_network_receiveRequest { allowedTargets = 2; };
 [] execVM "atk\init.sqf"; 
 ```
 
-For additional extension implementation, please follow the instructions in the README.&lt;Extension&gt;.md file
+For extension related implementations, please follow their instructions (usually in a readme file). Possible extensions are listed below.
 
 ## Configuration
 
