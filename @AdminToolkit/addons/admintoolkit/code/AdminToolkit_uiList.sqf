@@ -36,7 +36,9 @@ _picture = "";
 	if((_filter != "") and (toLower _displayName find _filter >= 0)) then {
 		_index = lbAdd [_listboxId, _displayName];
 	} else {
-		_index = lbAdd [_listboxId, _displayName];
+		if(_filter == "") then { 
+			_index = lbAdd [_listboxId, _displayName];
+		};
 	};
 
 	if(!isNil "_index") then {
