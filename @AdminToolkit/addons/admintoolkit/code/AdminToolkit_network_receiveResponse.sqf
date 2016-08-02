@@ -16,6 +16,7 @@ try
 	//systemChat format["[ADMINTOOLKIT]: networkResponse: %1", _request];
     
 	switch(_request) do {
+	//system
 		case 'loginok': {
 			missionNamespace setVariable ['AdminToolkit_permissionSet', _params];
 			systemChat "AdminToolkit READY - Press F2 to open";
@@ -23,9 +24,7 @@ try
 		case 'loginfailed': {
 			systemChat "AdminToolkit LOGIN FAILED - Check your server config.cpp";
 		};
-		case 'message': {
-			_params call AdminToolkit_showMessage;
-		};
+	//player	
 		case 'getplayers': {
 			lbClear RscAdminToolkitList_IDC;
 			
@@ -34,12 +33,21 @@ try
 				lbSetData [RscAdminToolkitList_IDC, _tmp, _x];
 			} forEach _params;
 		};
+		case 'message': {
+			_params call AdminToolkit_showMessage;
+		};
 		case 'specplayer': {
 			// get the real player object from its netId
 			closeDialog 0;
 			_params = objectFromNetId _params;
 			[_params] call AdminToolkit_spectatePlayer;
 		};
+	//self
+		case 'godmode': {
+			if(_params) then { player allowDamage false; } else { player allowDamage true; };
+			systemChat format["Godmode %1", str _params];
+		};
+	//Building
 		case 'buildpers';
         case 'build': {
             // the netId of its vehicle created from the server
@@ -58,10 +66,6 @@ try
 		};
 		case 'savepersistent': {
 			hint parseText "<t size='1.25'>AdminToolkit</t><br /><br />Persistent objects saved<br />";
-		};
-		case 'godmode': {
-			if(_params) then { player allowDamage false; } else { player allowDamage true; };
-			systemChat format["Godmode %1", str _params];
 		};
 	};
 }
