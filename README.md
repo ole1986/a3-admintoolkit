@@ -11,6 +11,7 @@ It also supports an option to overwrite the sections for additional features.
 <img src="images/a3-atk-newdesign.png" width="210" title="New design">
 <img src="images/a3-atk-players.png" width="210" title="Manage players">
 <img src="images/a3-atk-vehicles.png" width="210" title="Spawn vehicles">
+<img src="images/a3-atk-weapons.png" width="210" title="Weapons">
 
 <p align="center">
 Video<br/>
