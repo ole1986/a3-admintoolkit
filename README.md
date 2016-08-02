@@ -22,7 +22,7 @@ Video<br/>
 **Players**
 - Setup administrators or moderators with limited access
 - Teleport from/to players and to map position (by using the in-game map - hold ALT key and press LMB)
-- Spectate player
+- Spectate player using WASD plus Q and E keys  <sup>improved since version 1.6</sup>
 - God Mode
 - Kick/Ban players
 
@@ -39,6 +39,9 @@ Video<br/>
 - Place buildings by using **Q, E for rotation**, **PAGEUP/PAGEDOWN and HOME/END for moving** the constructions
 - spawn additional "vehicle items" like Backpacks, GPS, Binocular, etc... (located in Other)
 
+**Extension support**
+- allows you to extend and overwrite features with your own extension file(s) - <a href="#extensions">Read more</a> 
+
 ## Installation
 
 ### Required Tools
@@ -51,14 +54,6 @@ Video<br/>
 + Copy the folder `@AdminToolkit` into your Arma 3 game directory (E.g. `C:\Steam\steamapps\common\Arma 3`) 
 + Load the mod through Arma 3 Launcher when you run the game
 
-### MissionFile (**since v1.56.134627 - Eden Update**)
-
-+ Open the `description.ext` and add the below line into `class CfgRemoteExec -> class Functions`
-
-```
-class AdminToolkit_network_receiveRequest { allowedTargets = 2; };
-```
-
 ### Server
 
 + Open the `@ExileServer\admintoolkit_server` folder and setup the `config.cpp` accordingly - see <a href="#configuration">Configuration</a>
@@ -66,9 +61,25 @@ class AdminToolkit_network_receiveRequest { allowedTargets = 2; };
 + Copy the `@ExileServer\admintoolkit_server.pbo` into your `@ExileServer\addons` directory from the server.
 + Copy the `admintoolkit.bikey` server key file into your server `keys` directory
 
+### MissionFile
+
++ Open the `description.ext` and add the below line into `class CfgRemoteExec -> class Functions`
+
+```
+class AdminToolkit_network_receiveRequest { allowedTargets = 2; };
+```
+
++ Add the below line at the beginning of the file `initPlayerLocal.sqf`
+
+```
+[] execVM "atk\init.sqf"; 
+```
+
+For additional extension implementation, please follow the instructions in the README.&lt;Extension&gt;.md file
+
 ## Configuration
 
-Before you can use the AdminToolkit it is necessary to add you as administrator.
+Before you can use the AdminToolkit it is necessary to **add you as administrator**.
 Please find the server `config.cpp` in your `@ExileServer\admintoolkit_server` directory and amend it according to your requirements
 
 ```
@@ -79,44 +90,28 @@ ServerCommandPassword = "";
 /**
  * list of allowed admins using its player UID
  */
-AdminList[] = {"76561198088277918"};
+AdminList[] = {"yourPlayerUIDHere"};
 /**
  * list of admins with restricted access only
  */
 ModeratorList[] = {""};
-/**
- * allowed commands for moderators (default: teleport to a player, get a vehicle, get player list, spectate)
- */
-ModeratorCmds[] = {"login","getplayers","tp2player", "getvehicle", "kickplayer", "specplayer", "specstop"};
 ```
 
-Moderators have limited access - The command list can optionally be customized
+Moderators can have restricted access - help yourself and read the config.cpp carefully to customize the permissions
 
-## Extensions
+## Extending the AdminToolkit
 
-The AdminToolkit can be extended with your addon features by using the MissionFile configuration class `CfgAdminToolkitCustomMod`.
-More details can be found in the <a href="%40MissionFile/README.md">@MissionFile/README.md</a>
+The AdminToolkit can be extended by using the MissionFile configuration class `CfgAdminToolkitCustomMod`.
+For more details, please refer to the <a href="%40MissionFile/README.md">@MissionFile/README.md</a>
 
-**List of available extensions**
+**Below is a list of available extensions**
 
-| Name       | Description                                                      | Link
-| ---------- | ---------------------------------------------------------------- | ----
-| ExileMod   | create persistent vehicles, receive ExileMoney and build objects | <a href="@MissionFile/README.exile.md">Installation</a>
-| Furnitures | Example extension on how to overwrite Buildings section with only furnitures | <a href="@MissionFile/README.furniture.md">Installation</a>
+| Name       | Description                                                                  | Autor(s)  | Links                                           
+| ---------- | ---------------------------------------------------------------------------- | --------- | --- 
+| ExileMod   | create persistent vehicles, receive ExileMoney and build objects, etc...     | ole       | <a href="tree/exilemod/@MissionFile/README.ExileMod.md">README</a>
 
 ### Battleye
 
-Highly recommended to use the following Battleye Filter tool to fix all BE exceptions:
+Please use the below tool setup all Battleye exceptions:
 
 http://gp.gamersinc.net/BEF.php
-
-**remoteexec.txt**
-
-+ add `!"AdminToolkit_network_receiveRequest"` to the end of the line
-
-**scripts.txt**
-
-+ add `!="displayAddEventHandler [\"KeyDown\",\"call AdminToolkit_bindEvents;\"]"` at the end of `7 eventHandler [...]`
-+ add `!="remoteExecCall ['AdminToolkit_network_receiveRequest',"` at the end of `7 remoteexec`
-+ add `7 onMapSingleClick !="call admintoolkit_butt"` as a new line if `7 onMapSingleClick` does not exists or add it to the end of the line
-+ add `!="\nAdminToolkit_camera = \"camera\" camCreate"` at the end of line `7 camCreate`
