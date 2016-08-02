@@ -4,7 +4,7 @@
 This tool is used to administrate Arma3 multiplayer servers. 
 It also supports an option to overwrite the sections for additional features. 
 
-**Also, check out the <a href="#extensions">Extensions</a> avaiable for AdminToolkit**
+**<p align="center"><a href="#installation">Installation</a> <a href="#extending-the-admintoolkit">Extensions</a></p>**
 
 **<p align="center">PRESS THE F2 KEY TO OPEN IN-GAME</p>**
 
