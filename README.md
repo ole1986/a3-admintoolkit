@@ -40,7 +40,7 @@ Video<br/>
 - spawn additional "vehicle items" like Backpacks, GPS, Binocular, etc... (located in Other)
 
 **Extension support**
-- allows you to extend and overwrite features with your own extension file(s) - <a href="#extensions">Read more</a> 
+- allows you to extend and overwrite features with your own extension file(s)
 
 ## Installation
 
