@@ -35,6 +35,13 @@ class CfgAdminToolkitCustomMod {
 };
 ```
 
+#Initialization AdminToolkit Message
+Using the MissionFile you need to activate the AdminTollkit Message.<br />
+Its required in your `initPlayerLocal.sqf`
+```
+[] execVM "atk\init.sqf"; 
+```
+
 **Extensions**
 
 This property is used to load additional extensions located in the MissionFile `atk` folder.
@@ -43,6 +50,8 @@ From server it will also include the same file in `ext` folder to execute global
 **QuickButtons**
 
 Allows you to overwrite the four quick buttons with some custom commands
+
+**initPlayerLocal**
 
 
 

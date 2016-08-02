@@ -13,17 +13,18 @@ It is also necessary to add your player UID in the `config.cpp` located in `@Exi
 
 + Unpack your mission file
 + Copy the folder `@MissionFile\atk` into your MissionFile root directory
-+ Customize the `descritption.ext` or `config.cpp` located in your MissionFile as follow:
++ Customize the `descritption.ext`  located in your MissionFile as follow:
 
 ```
-// add this class into the config.cpp of your mission file
-class CfgAdminToolkitCustomMod {
-    /* Load the any additional sqf file as mod */
-    Extensions[] = {
-        /* Title, SQF file name (located in atk folder) */
-        {"Exile Mod","ExileMod"}
-    };
-};
+// add this class into the descritption.ext of your mission file
+/* Load an additional sqf file as MOD */
+Extensions[] = {
+		/**
+		 * Usage: "<Your Mod Title>", "<YourModFileWithoutExt>.sqf"
+		 */
+		/* Example for "ExileMod" using the "atk\ExileMod.sqf" */
+		{"Exile Mod","ExileMod"}
+	};
 ```
 
 + Pack your mission file and upload it to your server
