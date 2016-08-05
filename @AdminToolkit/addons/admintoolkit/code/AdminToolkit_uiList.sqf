@@ -44,7 +44,7 @@ _picture = "";
 	if(!isNil "_index") then {
 		lbSetData [_listboxId, _index, _className];
 
-		if(_picture != "") then {
+		if((_picture != "") and (_picture != "picturestaticobject")) then {
 			lbSetPictureRight [_listboxId, _index, _picture];
 		};
 	};
