@@ -2,6 +2,8 @@
 
 **PLEASE NOTE: This README is ONLY important for Extension configuration or development**
 
+**PLEASE NOTE: Make sure you have read the README.&lt;ExtensionName&gt;.sqf for extensions installation instruction**
+
 The AdminToolkit takes advantage of the MissionFile concept allowing you to add additional features.
 
 - Extending the Menu Menu
