@@ -7,11 +7,11 @@
 [] spawn {
     private['_control', '_controlIDC', '_code'];
 
-    _code = compileFinal preprocessFileLineNumbers 'atk\AdminToolkit_showMessage.sqf';
+    _code = compileFinal preprocessFileLineNumbers 'atk\system\AdminToolkit_showMessage.sqf';
     missionNamespace setVariable ['AdminToolkit_showMessage', _code];
 
     if(isNil "AdminToolkit_receiveResponse") then {
-        _code = compileFinal preprocessFileLineNumbers 'atk\AdminToolkit_receiveResponse.sqf';
+        _code = compileFinal preprocessFileLineNumbers 'atk\system\AdminToolkit_receiveResponse.sqf';
         missionNamespace setVariable ['AdminToolkit_receiveResponse', _code];
     };
 

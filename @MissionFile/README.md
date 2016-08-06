@@ -21,7 +21,7 @@ class CfgAdminToolkitCustomMod {
 		/**
 		 * Usage: "<Your Mod Title>", "<YourModFileWithoutExt>.sqf"
 		 */
-		/* Example for "ExileMod" using the "atk\ExileMod.sqf" */
+		/* Example for "ExileMod" using the "atk\extensions\ExileMod.sqf" */
 	};
 
 	/* 4 Quick buttons allowing to add any action you want - See example below*/
@@ -46,8 +46,8 @@ Useful when you only want to display your extension.
 
 **Extensions[]**
 
-This property is used to load additional extensions located in the MissionFile `atk` folder.
-From server it will also include the same file in `ext` folder to execute global commands.
+This property is used to load additional extensions (*.sqf files) located in the MissionFile `atk\extensions` folder.
+On server side it will also include the same file from its `extensions` folder to execute global commands.
 
 **QuickButtons[]**
 

@@ -18,7 +18,7 @@ if(count _this > 1) then {
     _size = lbSize RscAdminToolkitMainMenu_IDC;
     _ext = _this select 1;
     // initialize the extension from atk folder
-    _code = compileFinal preprocessFileLineNumbers format["atk\%1.sqf", _ext];
+    _code = compileFinal preprocessFileLineNumbers format["atk\extension\%1.sqf", _ext];
     missionNamespace setVariable [format["AdminToolkit_mod%1",str _size], _code];
 
     lbSetData [RscAdminToolkitMainMenu_IDC, _index, format["AdminToolkit_mod%1",str _size]];
