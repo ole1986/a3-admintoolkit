@@ -54,12 +54,13 @@ Video<br/>
 + Copy the folder `@AdminToolkit` into your Arma 3 game directory (E.g. `C:\Steam\steamapps\common\Arma 3`) 
 + Load the mod through Arma 3 Launcher when you run the game
 
-### Server
+### Server (**UPDATED**)
 
-+ Open the `@ExileServer\admintoolkit_server` folder and setup the `config.cpp` accordingly - see <a href="#configuration">Configuration</a>
-+ Pack the `@ExileServer\admintoolkit_server` folder (containing your config.cpp changes) into `admintoolkit_server.pbo`
-+ Copy the `@ExileServer\admintoolkit_server.pbo` into your `@ExileServer\addons` directory from the server.
-+ Copy the `admintoolkit.bikey` server key file into your server `keys` directory
++ Copy the @AdminToolkitServer folder into your servers root directory
++ Unpack the @AdminToolkitServer\addons\admintoolkit_servercfg.pbo and customize the containing config.cpp accordingly - see <a href="#configuration">Configuration</a>
++ Pack the folder @AdminToolkitServer\addons\admintoolkit_servercfg into admintoolkit_servercfg.pbo and overwrite 
++ Copy the `admintoolkit.bikey` server key file into the `keys` folder of your servers root directory
++ **Enable the AdminToolkit using -servermod=@AdminToolkitServer**
 
 ### MissionFile
 

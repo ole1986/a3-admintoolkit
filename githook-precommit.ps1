@@ -26,16 +26,17 @@ if(!$Generate) {
 if($result -eq 0 -Or $Generate) {
     # CLIENT: use cpbo to (re)create the admintoolkit.pbo file
     Write-Host "--- Generate client PBO"
-    cpbo -y -p .\@AdminToolkit\addons\admintoolkit .\@AdminToolkit\addons\admintoolkit.pbo
+    cpbo -y -p .\source\admintoolkit .\@AdminToolkit\addons\admintoolkit.pbo
 
     # SERVER: replace sensitive password with an empty string in server config.cpp
-    $content = Get-Content .\@ExileServer\admintoolkit_server\config.cpp
+    $content = Get-Content .\source\admintoolkit_servercfg\config.cpp
     $content = $content -Replace "ServerCommandPassword = ""(.*?)""","ServerCommandPassword = """""
-    Set-Content .\@ExileServer\admintoolkit_server\config.cpp -Value $content;
+    Set-Content .\source\admintoolkit_servercfg\config.cpp -Value $content;
 
     # SERVER: use cpbo to (re)create the admintoolkit.pbo file
-    Write-Host "--- Generate server PBO"
-    cpbo -y -p .\@ExileServer\admintoolkit_server .\@ExileServer\admintoolkit_server.pbo
+    Write-Host "--- Generate admintoolkit_server.pbo and admintoolkit_servercfg.pbo"
+    cpbo -y -p .\source\admintoolkit_server .\@AdminToolkitServer\addons\admintoolkit_server.pbo
+	cpbo -y -p .\source\admintoolkit_servercfg .\@AdminToolkitServer\addons\admintoolkit_servercfg.pbo
 
     if(!$Sign) { $result = $host.ui.PromptForChoice("Confirm PBO signing", "Sign the Client PBO file?", $options, 0) }
 
@@ -50,10 +51,15 @@ if($result -eq 0 -Or $Generate) {
 
     if($result -eq 0 -Or $Install) {
         Write-Host "--- Installing client PBO (with bisign)"
-        New-Item -path $AddonFolder\addons -type directory -Force | Out-Null
-        Copy-Item .\@AdminToolkit\mod.cpp -Destination $AddonFolder -Force
-        Copy-Item .\@AdminToolkit\addons\admintoolkit.* -Destination $AddonFolder\addons -Force
-        Write-Host "Done"
+        $arma3 = Get-Process arma3 -ErrorAction SilentlyContinue
+        if (!$arma3) {
+            New-Item -path $AddonFolder\addons -type directory -Force | Out-Null
+            Copy-Item .\@AdminToolkit\mod.cpp -Destination $AddonFolder -Force
+            Copy-Item .\@AdminToolkit\addons\admintoolkit.* -Destination $AddonFolder\addons -Force
+            Write-Host "Done"
+        } else {
+            Write-Host -ForegroundColor Red "WARNING: Arma 3 is currently running - CLIENT PBO NOT UPDATED"
+        }
     }
 }
 

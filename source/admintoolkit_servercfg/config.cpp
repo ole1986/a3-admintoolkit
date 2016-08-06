@@ -8,24 +8,11 @@
  */
  
 class CfgPatches {
-    class AdminToolkit {
+    class admintoolkit_servercfg {
         requiredVersion = 0.1;
         requiredAddons[]= {};
         units[] = {};
         weapons[] = {};
-    };
-};
-class CfgFunctions {
-    class AdminToolkit {
-        class main {
-            file="admintoolkit_server\bootstrap";
-            class preInit { 
-                preInit = 1;
-            };
-            class postInit {
-                postInit = 1;
-            };
-        };
     };
 };
 
