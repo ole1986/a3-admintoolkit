@@ -67,24 +67,17 @@ Allows you to overwrite the four quick buttons with some custom commands
 This is a Step-by-step guide on how to build your own extension.
 In this guide you will learn how to add a new Menu entry, add new action commands, pass them to the server and finally execute custom code (from server)
 
-Lets begin with the MissionFile `config.cpp`.
-
-Make sure you have copied the above mentioned `CfgAdminToolkitCustomMod` into the config.cpp.
-
-Now, add the following line into the Extensions[] property: `{"My Extension", "MyExtension"}`
-
-So, the property will look the following:
+- First, make sure you have copied the above mentioned `CfgAdminToolkitCustomMod` into the config.cpp.
+- Now, add the following line into the Extensions[] property: `{"My Extension", "MyExtension"}`
 
 ```
 Extensions[] = {
+	/* add a new menu entry called My Extension into manu menu */
 	{"My Extension", "MyExtension"}
 };
 ```
 
-This will cause the AdminTool to add the menu entry "My Extension" into the MainMenu. 
-Once the menu is selected, it searches for the sqf file "MyExtension.sqf" in `atk\extension\MyExtension.sqf`.
-
-So, lets create this now:
+- Once the menu is selected, it searches for the sqf file "MyExtension.sqf" in `atk\extension\MyExtension.sqf`. So, lets create this now:
 
 ```
 // atk\extension\MyExtension.sqf (located in MissionFile)
@@ -128,7 +121,7 @@ _result;
 As you can see, we have added to actions- The first (myext_hellotomyself) is a local call to showMessage only.
 The second (and more interesting) action is passed to the server.
 
-We now need to setup the server to accept the action "myext_helloserver".
+- Now we need to setup the server to accept the action "myext_helloserver".
 
 ```
 // extension\MyExtension.sqf (located in admintoolkit_servercfg.pbo)
