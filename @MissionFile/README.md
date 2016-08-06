@@ -10,7 +10,7 @@ The AdminToolkit takes advantage of the MissionFile concept allowing you to add 
 - (...)
 
 <p align="center">
-	<a href="#build">Build your own Extension (Guide)</a>
+	<a href="#build-your-own-extension">Build your own Extension (Guide)</a>
 </p>
 
 To achieve this, the configuration class `CfgAdminToolkitCustomMod` is required in your `config.cpp` located in your MissionFile.
