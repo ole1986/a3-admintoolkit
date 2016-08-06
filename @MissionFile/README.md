@@ -1,11 +1,20 @@
 # Extending AdminToolkit features
 
-The AdminToolkit takes advantage of the MissionFile allowing you the add additional features (extensions) or commands.
-To achieve this, the configuration class `CfgAdminToolkitCustomMod` is required in your  `description.ext` or `config.cpp` (depends on the setup)
+**PLEASE NOTE: This README is ONLY important for Extension configuration or development**
 
-Below you can find the skeleton of the `CfgAdminToolkitCustomMod` config class containing some quick button examples.
+The AdminToolkit takes advantage of the MissionFile concept allowing you to add additional features.
 
-For a working extension setup, please refer to the <a href="README.ExileMod.md">ExileMod extension readme</a>
+- Extending the Menu Menu
+- adding additional action command (client/server side)
+- customize QuickButton actions
+- (...)
+
+<p align="center">
+	<a href="#build">Build your own Extension (Guide)</a>
+</p>
+
+To achieve this, the configuration class `CfgAdminToolkitCustomMod` is required in your `config.cpp` located in your MissionFile.
+Below is an excerpt of the current `CfgAdminToolkitCustomMod`.
 
 ```
 class CfgAdminToolkitCustomMod {
@@ -52,3 +61,86 @@ On server side it will also include the same file from its `extensions` folder t
 **QuickButtons[]**
 
 Allows you to overwrite the four quick buttons with some custom commands
+
+## Build your own extension
+
+This is a Step-by-step guide on how to build your own extension.
+In this guide you will learn how to add a new Menu entry, add new action commands, pass them to the server and finally execute custom code (from server)
+
+Lets begin with the MissionFile `config.cpp`.
+
+Make sure you have copied the above mentioned `CfgAdminToolkitCustomMod` into the config.cpp.
+
+Now, add the following line into the Extensions[] property: `{"My Extension", "MyExtension"}`
+
+So, the property will look the following:
+
+```
+Extensions[] = {
+	{"My Extension", "MyExtension"}
+};
+```
+
+This will cause the AdminTool to add the menu entry "My Extension" into the MainMenu. 
+Once the menu is selected, it searches for the sqf file "MyExtension.sqf" in `atk\extension\MyExtension.sqf`.
+
+So, lets create this now:
+
+```
+// atk\extension\MyExtension.sqf (located in MissionFile)
+private['_result'];
+disableSerialization;
+
+// add action command 'myext_hellotomyself' with the title 'Hello To Myself'
+// the third parameter "false" skips the permission check - so admin AND moderator is allowed to execute
+// NOTE: every action will be passed to the server with the command as unique identifier
+['Hello To Myself', 'myext_hellotomyself', false] call AdminToolkit_addAction;
+
+// add action to send something to server (REQUIRES SERVER SQF - Read more below!!! )
+['Hello Server', 'myext_helloserver', false] call AdminToolkit_addAction;
+
+
+// the callback, when "Run action" has been pressed
+MyExtensionCallback = {
+	// AdminToolkit_Action is the current selected action
+	// AdminToolkit_Selection is the current selection from the list (either "Item 1" or "Item 2" - defined below)
+	// AdminToolkit_Params is the textbox where admin/moderator can enter addtional "parameters"
+
+	if(AdminToolkit_Action == "myext_hellotomyself") then {
+		// when myext_hellotomyself is the action, show a message to myself
+		[format["Hello %1", name player]] call AdminToolkit_showMessage;
+	};
+
+	if(AdminToolkit_Action == "myext_helloserver") then {
+		// REQUIRES SERVER SQF - Read more below!!!
+		['myext_helloserver', 'some secret text to the server'] call AdminToolkit_doAction;
+	};
+};
+
+// when admin/moderator pressed the "Run action" button call the "MyExtensionCallback" code
+["MyExtensionCallback"] call AdminToolkit_onExecute;
+
+// show two list items when menu is selected
+_result = ["Item 1", "Item 2"];
+_result;
+```
+
+As you can see, we have added to actions- The first (myext_hellotomyself) is a local call to showMessage only.
+The second (and more interesting) action is passed to the server.
+
+We now need to setup the server to accept the action "myext_helloserver".
+
+```
+// extension\MyExtension.sqf (located in admintoolkit_servercfg.pbo)
+
+private['_playerObject','_request', '_params'];
+_playerObject = _this select 0;
+_request = _this select 1; // is supposed to be the action command (myext_helloserver)
+_params = _this select 2; // is the text: "some secret text to the server"
+
+
+// to keep it simple output every action and parameter into servers log file (so check the log once you execute your custom action)
+
+diag_log format["[ADMINTOOLKIT-MYEXTENSION]: The action is %1 and the parameter is %2", _request, str _params];
+```
+
