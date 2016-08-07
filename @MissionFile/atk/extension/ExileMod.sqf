@@ -14,13 +14,13 @@ disableSerialization;
 ExileModExec = {
     switch (AdminToolkit_Action) do {
         case "exile_repvehicle": {
-            [player, 'exile_repvehicle', cursorObject] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];
+            ['exile_repvehicle', cursorObject] call AdminToolkit_doAction;
         };
         case "exile_destvehicle": {
-            [player, 'exile_destvehicle', cursorObject] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];
+            ['exile_destvehicle', cursorObject] call AdminToolkit_doAction;
         };
         case "exile_delvehicle": {
-            [player, 'exile_delvehicle', cursorObject] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];
+            ['exile_delvehicle', cursorObject] call AdminToolkit_doAction;
         };
         case "exile_getvehicle": {
             [AdminToolkit_Action] call AdminToolkit_doAction;
@@ -29,13 +29,13 @@ ExileModExec = {
             [AdminToolkit_Action] call AdminToolkit_doAction;
         };
         case "exile_getmoney": {
-            [player, 'exile_getmoney', 10000] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];
+            ['exile_getmoney', 10000] call AdminToolkit_doAction;
         };
         case "exile_getheal": {
-            [player, 'exile_getheal'] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];
+            ['exile_getheal', ""] call AdminToolkit_doAction;
         };
         case "exile_getscore": {
-            [player, 'exile_getscore', 1000] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];
+            ['exile_getscore', 1000] call AdminToolkit_doAction;
         };
         default {
             systemChat format["Unknown action %1", AdminToolkit_Action];

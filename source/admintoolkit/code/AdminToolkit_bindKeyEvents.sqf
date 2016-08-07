@@ -27,11 +27,8 @@ switch (_this select 1) do
     case 0x3F:
     {
         _handled = true;
-        // used to repeat building the same object
-        if((AdminToolkitIsBuilding <= 0) and (count AdminToolkit_LastAction > 1)) then {
-            systemChat format["Repeating action '%1' with '%2'", AdminToolkit_LastAction select 0, AdminToolkit_LastAction select 1];
-            AdminToolkit_LastAction call AdminToolkit_doAction;
-        };
+        systemChat format["Repeating action '%1' with '%2'", AdminToolkit_LastAction select 0, AdminToolkit_LastAction select 1];
+        AdminToolkit_LastAction call AdminToolkit_doAction;
     };
     // Space bar - place object
     case 0x39:
