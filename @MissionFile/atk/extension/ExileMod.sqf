@@ -1,15 +1,18 @@
 private['_result'];
 disableSerialization;
 
-['Repair', 'exile_repvehicle'] call AdminToolkit_addAction;
-['Destroy', 'exile_destvehicle'] call AdminToolkit_addAction;
-['Remove', 'exile_delvehicle'] call AdminToolkit_addAction;
-['Perm Spawn', 'exile_getvehicle'] call AdminToolkit_addAction;
-['Temporary Spawn', 'getvehicle'] call AdminToolkit_addAction;
-
-['Get Money', 'exile_getmoney'] call AdminToolkit_addAction;
-['Get Respect', 'exile_getscore'] call AdminToolkit_addAction;
-['Heal Me', 'exile_getheal'] call AdminToolkit_addAction;
+{
+    _x call AdminToolkit_addAction;
+} forEach [
+    ['Repair', 'exile_repvehicle'],
+    ['Destroy', 'exile_destvehicle'],
+    ['Remove', 'exile_delvehicle'],
+    ['Perm Spawn', 'exile_getvehicle'],
+    ['Temporary Spawn', 'getvehicle'],
+    ['Get Money', 'exile_getmoney'],
+    ['Get Respect', 'exile_getscore'],
+    ['Heal Me', 'exile_getheal']
+];
 
 ExileModExec = {
     switch (AdminToolkit_Action) do {

@@ -1,4 +1,5 @@
-# AdminToolkit with ExileMod extensions
+# ExileMod extensions for AdminToolkit
+<sup>Version: 0.1 | Author: ole1986 | Last update: 2016-08-08</sup>
 
 Before you start, please make sure the following file(s) exist in is this package 
 
