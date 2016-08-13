@@ -25,8 +25,13 @@ _picture = "";
 		_displayName = getText(_x >> "displayName");
 		_picture = getText(_x >> "Picture");
 	} else {
-		_className = str _x;
-		_displayName = _className;
+		if(typeName _x == "ARRAY") then {
+			_displayName = _x select 0;
+			_className = _x select 1;
+		} else {
+			_className = str _x;
+			_displayName = _className;
+		};
 	};
 	
 	if(_displayName == "") then {
