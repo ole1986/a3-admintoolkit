@@ -30,9 +30,9 @@ class CfgAdminToolkitCustomMod {
 	/* Load an additional sqf file as MOD */
 	Extensions[] = {
 		/**
-		 * Usage: "<Your Mod Title>", "<YourModFileWithoutExt>.sqf"
-		 */
-		/* Example for "ExileMod" using the "atk\extensions\ExileMod.sqf" */
+		* Usage: {"<Your Mod Title>", "<YourModFile>"}
+		* add a new menu entry called My Extension into main menu */
+		{"My Extension", "MyExtension"}
 	};
 
 	/* 4 Quick buttons allowing to add any action you want - See example below*/
@@ -74,7 +74,7 @@ In this guide you will learn how to add a new Menu entry, add new action command
 
 ```
 Extensions[] = {
-	/* add a new menu entry called My Extension into manu menu */
+	/* add a new menu entry called My Extension into main menu */
 	{"My Extension", "MyExtension"}
 };
 ```
