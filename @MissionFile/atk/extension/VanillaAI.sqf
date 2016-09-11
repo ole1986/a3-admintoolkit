@@ -6,7 +6,7 @@ disableSerialization;
 } forEach [
     ['New Enemy AI', 'vai_enemy'],
     ['New Friendly AI', 'vai_friend'],
-    ['Attack selected Player', 'vai_attack'],
+    ['Attack Target', 'vai_attack'],
     ['Delete selected AI', 'vai_delete']
 ];
 
