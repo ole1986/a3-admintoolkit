@@ -50,7 +50,8 @@ if(!isNil "AdminToolkit_MenuIndex") then {
 	lbSetCurSel [RscAdminToolkitMainMenu_IDC, AdminToolkit_MenuIndex];
 	call AdminToolkit_menuEvents;
 } else {
-	(_display displayCtrl RscAdminToolkitInfo_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Choose an item from the Main Menu</t>";
+	// display some hints
+	(_display displayCtrl RscAdminToolkitInfo_IDC) ctrlSetStructuredText parseText (AdminToolkit_Hints select floor random count AdminToolkit_Hints);
 };
 
 AdminToolkit_Selection = nil;

@@ -10,10 +10,10 @@ class AdminToolkitMenu {
 		RscAdminToolkitSearch,
 		RscAdminToolkitSearchAction,
 		RscAdminToolkitList,
-		RscAdminToolkitActionMenu,
 		RscAdminToolkitActionLabel,
-		RscAdminToolkitParam,
+		RscAdminToolkitActionMenu,
 		RscAdminToolkitParamLabel,
+		RscAdminToolkitParam,
 		RscAdminToolkitQuick1,
 		RscAdminToolkitQuick2,
 		RscAdminToolkitQuick3,
@@ -93,19 +93,9 @@ class AdminToolkitMenu {
 		rowHeight = 0.1;
 		/*sizeEx = 4;*/
 	};
-	class RscAdminToolkitActionMenu: RscCombo
-	{
-		idc = 1960;
-
-		x = 0.775 * safezoneW + safezoneX;
-		y = 0.7 * safezoneH + safezoneY;
-		w = 0.2125 * safezoneW;
-		h = 0.04 * safezoneH;
-		colorBackground[] = {0,0,0,0.7};
-	};
 	class RscAdminToolkitActionLabel: RscStructuredText
 	{
-		idc = 1970;
+		idc = 1960;
 
 		text = "# RscAdminToolkitActionLabel #"; //--- ToDo: Localize;
 		x = 0.775 * safezoneW + safezoneX;
@@ -114,27 +104,37 @@ class AdminToolkitMenu {
 		h = 0.04 * safezoneH;
 		colorBackground[] = {-1,-1,-1,0};
 	};
-	class RscAdminToolkitParam: RscEdit
+	class RscAdminToolkitActionMenu: RscListbox
 	{
-		idc = 1980;
-		onKeyDown = "";
+		idc = 1970;
 
 		x = 0.775 * safezoneW + safezoneX;
-		y = 0.8 * safezoneH + safezoneY;
+		y = 0.7 * safezoneH + safezoneY;
 		w = 0.2125 * safezoneW;
-		h = 0.04 * safezoneH;
+		h = 0.1 * safezoneH;
 		colorBackground[] = {0,0,0,0.7};
 	};
 	class RscAdminToolkitParamLabel: RscStructuredText
 	{
-		idc = 1990;
+		idc = 1980;
 
 		text = "# RscAdminToolkitParamLabel #"; //--- ToDo: Localize;
 		x = 0.775 * safezoneW + safezoneX;
-		y = 0.76 * safezoneH + safezoneY;
+		y = 0.80 * safezoneH + safezoneY;
 		w = 0.2125 * safezoneW;
 		h = 0.02 * safezoneH;
 		colorBackground[] = {-1,-1,-1,0};
+	};
+	class RscAdminToolkitParam: RscEdit
+	{
+		idc = 1990;
+		onKeyDown = "";
+
+		x = 0.775 * safezoneW + safezoneX;
+		y = 0.82 * safezoneH + safezoneY;
+		w = 0.2125 * safezoneW;
+		h = 0.04 * safezoneH;
+		colorBackground[] = {0,0,0,0.7};
 	};
 	class RscAdminToolkitQuick1: RscButton
 	{
@@ -143,7 +143,7 @@ class AdminToolkitMenu {
 
 		text = "QUICK 1"; //--- ToDo: Localize;
 		x = 0.775 * safezoneW + safezoneX;
-		y = 0.86 * safezoneH + safezoneY;
+		y = 0.88 * safezoneH + safezoneY;
 		w = 0.05 * safezoneW;
 		h = 0.04 * safezoneH;
 		colorBackground[] = {0,0,0,0.8};
@@ -155,7 +155,7 @@ class AdminToolkitMenu {
 
 		text = "QUICK 2"; //--- ToDo: Localize;
 		x = 0.825 * safezoneW + safezoneX;
-		y = 0.86 * safezoneH + safezoneY;
+		y = 0.88 * safezoneH + safezoneY;
 		w = 0.05 * safezoneW;
 		h = 0.04 * safezoneH;
 		colorBackground[] = {0,0,0,0.8};
@@ -167,7 +167,7 @@ class AdminToolkitMenu {
 
 		text = "QUICK 3"; //--- ToDo: Localize;
 		x = 0.8875 * safezoneW + safezoneX;
-		y = 0.86 * safezoneH + safezoneY;
+		y = 0.88 * safezoneH + safezoneY;
 		w = 0.05 * safezoneW;
 		h = 0.04 * safezoneH;
 		colorBackground[] = {0,0,0,0.8};
@@ -179,7 +179,7 @@ class AdminToolkitMenu {
 
 		text = "QUICK 4"; //--- ToDo: Localize;
 		x = 0.9375 * safezoneW + safezoneX;
-		y = 0.86 * safezoneH + safezoneY;
+		y = 0.88 * safezoneH + safezoneY;
 		w = 0.05 * safezoneW;
 		h = 0.04 * safezoneH;
 		colorBackground[] = {0,0,0,0.8};

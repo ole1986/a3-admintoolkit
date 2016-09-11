@@ -20,6 +20,12 @@ switch (_value) do {
     case 'message': {
         (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Enter some message below:</t>";
     };
+    case 'godmodeon': {
+        (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>IMPORTANT: Godmode works only for you</t>";
+    };
+    case 'godmodeoff': {
+        (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>IMPORTANT: Godmode works only for you</t>";
+    };
     default {
         (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "";
     };

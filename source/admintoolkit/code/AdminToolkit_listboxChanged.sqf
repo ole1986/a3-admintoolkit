@@ -26,6 +26,7 @@ switch (_menuName) do {
         // set the selected player globally to use it in other sections
         AdminToolkit_Player = _text;
         (_display displayCtrl RscAdminToolkitInfo_IDC) ctrlSetStructuredText parseText format["Player: <t color='#FF0066'>%1</t> selected", AdminToolkit_Player];
+        (_display displayCtrl RscAdminToolkitActionLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Choice action for selected player</t>";
     };
     case 'buildings': {
         // display some more information when building is selected
@@ -33,8 +34,5 @@ switch (_menuName) do {
         _tmp2 = getText(configFile >> "CfgVehicles" >> _value >> "vehicleClass");
         
         (_display displayCtrl RscAdminToolkitActionLabel_IDC) ctrlSetStructuredText parseText format["<t color='#FF0066'>%1</t> (%3)<br /><t size='0.8'>Author: %2</t>", _value, _tmp, _tmp2];
-    };
-    default {
-        (_display displayCtrl RscAdminToolkitActionLabel_IDC) ctrlSetStructuredText parseText "";
     };
 };
