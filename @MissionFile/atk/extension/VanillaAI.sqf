@@ -1,6 +1,7 @@
 private['_result', '_object', '_tmp'];
 disableSerialization;
 
+// Use the foreach to add some actions into the action list, once EXTENSION is selected
 {
     _x call AdminToolkit_addAction;
 } forEach [
@@ -10,8 +11,8 @@ disableSerialization;
     ['Delete selected AI', 'vai_delete']
 ];
 
-
-VanillaAIExec = {
+// overwrite the OnExecute code from AdminToolkit_OnExecute
+AdminToolkit_OnExecute = {
     switch (AdminToolkit_Action) do {
         case "vai_enemy": {
             ['vai_enemy', ""] call AdminToolkit_doAction;
@@ -34,8 +35,6 @@ VanillaAIExec = {
 
 };
 
-["VanillaAIExec"] call AdminToolkit_onExecute;
-
 VanillaAI_UnitList = {
     private['_names', '_object'];
     _names = [];
@@ -53,7 +52,6 @@ VanillaAI_UnitList = {
     lbClear RscAdminToolkitList_IDC;
     [RscAdminToolkitList_IDC, _names, ""] call AdminToolkit_uiList;
 };
-
 
 _result = [VanillaAI_Units] call VanillaAI_UnitList;
 _result;

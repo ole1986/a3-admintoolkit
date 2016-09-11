@@ -26,7 +26,6 @@ forEach
 	['AdminToolkit_menuEvents', 'admintoolkit\code\AdminToolkit_menuEvents.sqf'],
 	['AdminToolkit_addMenu', 'admintoolkit\code\AdminToolkit_addMenu.sqf'],
 	['AdminToolkit_doAction', 'admintoolkit\code\AdminToolkit_doAction.sqf'],
-	['AdminToolkit_onExecute', 'admintoolkit\code\AdminToolkit_onExecute.sqf'],
 	['AdminToolkit_listboxChanged', 'admintoolkit\code\AdminToolkit_listboxChanged.sqf'],
 	['AdminToolkit_actionChanged', 'admintoolkit\code\AdminToolkit_actionChanged.sqf'],
 	['AdminToolkit_uiList', 'admintoolkit\code\AdminToolkit_uiList.sqf'],
