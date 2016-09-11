@@ -8,3 +8,5 @@ if(count _this > 0) then {
 };
 
 buttonSetAction [RscAdminToolkitExecute_IDC, _codeStr];
+// allow user to execute action using dbl-click
+((findDisplay 40000) displayCtrl RscAdminToolkitActionMenu_IDC) ctrlSetEventHandler ["LBDblClick",_codeStr];

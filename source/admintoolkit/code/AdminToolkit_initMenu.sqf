@@ -51,7 +51,7 @@ if(!isNil "AdminToolkit_MenuIndex") then {
 	call AdminToolkit_menuEvents;
 } else {
 	// display some hints
-	(_display displayCtrl RscAdminToolkitInfo_IDC) ctrlSetStructuredText parseText (AdminToolkit_Hints select floor random count AdminToolkit_Hints);
+	(_display displayCtrl RscAdminToolkitInfo_IDC) ctrlSetStructuredText parseText (selectRandom AdminToolkit_Hints);
 };
 
 AdminToolkit_Selection = nil;
