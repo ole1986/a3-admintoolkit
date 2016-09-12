@@ -76,9 +76,8 @@ try
 		case 'exile_getmoney': 
 		{
 			// _params = <number> - the amount to be transferred
-			
 			_tmp = _params;
-			_tmp2 = _playerObject getVariable ["ExileMoney", 0];
+			_tmp2 = parseNumber _playerObject getVariable ["ExileMoney", 0];
 			_tmp2 = _tmp2 + _tmp;
 			_playerObject setVariable ["ExileMoney", _tmp2, true];
 			format["setPlayerMoney:%1:%2", _tmp2, _player getVariable ["ExileDatabaseID", 0]] call ExileServer_system_database_query_fireAndForget;
@@ -89,9 +88,10 @@ try
 		case 'exile_getscore':
 		{
 			// _params = <number> - the amount to be transferred
-			_tmp = _playerObject getVariable ["ExileScore", 0];
-			_tmp = floor (_tmp + _params);
-			_playerObject setVariable ["ExileScore", _tmp];
+			_tmp = parseNumber _params;
+			_tmp2 = parseNumber _playerObject getVariable ["ExileScore", 0];
+			_tmp2 =  (_tmp2 + _tmp);
+			_playerObject setVariable ["ExileScore", _tmp2];
 			
 			format["setAccountScore:%1:%2", _tmp, (getPlayerUID _playerObject)] call ExileServer_system_database_query_fireAndForget;
 			[_playerObject, "freeResponse", [str _params]] call ExileServer_system_network_send_to;

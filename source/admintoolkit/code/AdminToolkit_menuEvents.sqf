@@ -33,7 +33,7 @@ lbClear RscAdminToolkitList_IDC;
 // clear the action menu as well
 lbClear RscAdminToolkitActionMenu_IDC;
 
-//[] call AdminToolkit_onExecute;
+missionNamespace setVariable ['AdminToolkit_OnExecute', {AdminToolkit_Params = ctrlText RscAdminToolkitParam_IDC; [] call AdminToolkit_doAction;}];
 
 _menuName = toLower _menuName;
 
@@ -123,8 +123,8 @@ switch (_menuName) do {
 };
 
 // set execute button to di the action
-buttonSetAction [RscAdminToolkitExecute_IDC, AdminToolkit_OnExecute];
+buttonSetAction [RscAdminToolkitExecute_IDC, '[] call AdminToolkit_OnExecute'];
 // allow user to execute action using dbl-click
-(_display displayCtrl RscAdminToolkitActionMenu_IDC) ctrlSetEventHandler ["LBDblClick",AdminToolkit_OnExecute];
+(_display displayCtrl RscAdminToolkitActionMenu_IDC) ctrlSetEventHandler ["LBDblClick",'[] call AdminToolkit_OnExecute'];
 
 true;

@@ -18,7 +18,7 @@ disableSerialization;
 // overwrite the OnExecute code from AdminToolkit_OnExecute
 AdminToolkit_OnExecute = {
     AdminToolkit_Params = ctrlText RscAdminToolkitParam_IDC;
-    systemChat format["Parameters: %1", AdminToolkit_Params];
+    //systemChat format["Parameters: %1", AdminToolkit_Params];
 
     switch (AdminToolkit_Action) do {
         case "exile_repvehicle": {

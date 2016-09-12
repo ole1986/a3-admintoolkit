@@ -30,8 +30,6 @@ missionNamespace setVariable ['AdminToolkit_permissionSet', []];
 
 missionNamespace setVariable ['AdminToolkit_Hints', ["HINT: Use ALT + LMB on the map to teleport", "HINT: Use double-click in action list to run it", "Do not forget to DONATE the author(s)"]];
 
-missionNamespace setVariable ['AdminToolkit_OnExecute', "AdminToolkit_Params = ctrlText RscAdminToolkitParam_IDC; [] call AdminToolkit_doAction"];
-
 {
 	// make all IDC number easily accessible
 	// example "RscAdminToolkitTitle_IDC" returns the IDC of the Title of the dialog (which is 1900)
