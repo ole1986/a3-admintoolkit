@@ -13,4 +13,9 @@ AdminToolkit_IsPersistentSaved = true;
 
 diag_log "[ADMINTOOLKIT] loaded successfully";
 
+// run the mission file "atk\init.sqf" when player connects 
+["atkPlayerConnected", "onPlayerConnected", {
+    { execVM "atk\system\init.sqf"; } remoteExecCall ["call", _owner]; 
+}] call BIS_fnc_addStackedEventHandler;
+
 true;
