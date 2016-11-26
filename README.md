@@ -13,11 +13,11 @@ It also supports an option to overwrite the sections for additional features.
 <img src="images/a3-atk-vehicles.png" width="210" title="Spawn vehicles">
 <img src="images/a3-atk-weapons.png" width="210" title="...and Weapons">
 
-<p align="center">
-Video<br/>
-<a href="https://www.youtube.com/watch?v=Hznh7DSM38E" target="_blank"><img src="http://img.youtube.com/vi/Hznh7DSM38E/0.jpg" /></a>
+<p align="center">Video<br/>
+    <a href="https://www.youtube.com/watch?v=Hznh7DSM38E" target="_blank"><img src="http://img.youtube.com/vi/Hznh7DSM38E/0.jpg" /></a>
 </p>
-**Core Features:**
+
+## Core Features
 
 **Players**
 - Setup administrators or moderators with limited access
@@ -49,7 +49,7 @@ Video<br/>
 + PBO Manager - to setup UIDs and server password in server pbo
 + Notepad++ or any other Text Editor (https://notepad-plus-plus.org/)
 
-### Client
+### Client (**only for Admin/Moderator only**)
 
 + Copy the folder `@AdminToolkit` into your Arma 3 game directory (E.g. `C:\Steam\steamapps\common\Arma 3`) 
 + Load the mod through Arma 3 Launcher when you run the game
@@ -70,7 +70,7 @@ Video<br/>
 class AdminToolkit_network_receiveRequest { allowedTargets = 2; };
 ```
 
-For extension related implementations, please follow their instructions (usually in a readme file). Possible extensions are listed below.
+For extension related implementations, please follow their instructions. Possible extensions are <a href="#extending-the-admintoolkit">listed below</a>
 
 ## Configuration
 
@@ -107,7 +107,7 @@ For more details, please refer to the <a href="%40MissionFile/README.md">@Missio
 | Furniture  | support to build Furniture objects (Menu "Stoll Furniture")                  | Stoll     | <a href="@MissionFile/README.Furniture.md">README</a>
 | VanillaAI  | Experimental extension to support spawning AI units                          | ole       | <a href="@MissionFile/README.VanillaAI.md">README</a>
 
-### Battleye
+## Battleye
 
 Please use the below tool setup all Battleye exceptions:
 
