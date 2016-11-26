@@ -70,12 +70,6 @@ Video<br/>
 class AdminToolkit_network_receiveRequest { allowedTargets = 2; };
 ```
 
-+ Add the below line at the beginning of the file `initPlayerLocal.sqf`
-
-```
-[] execVM "atk\init.sqf"; 
-```
-
 For extension related implementations, please follow their instructions (usually in a readme file). Possible extensions are listed below.
 
 ## Configuration
