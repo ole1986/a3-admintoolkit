@@ -3,7 +3,7 @@
     "name": "PBO Task",
     //...
     "command": "powershell",  
-    "isShellCommand": true, 
+    "isShellCommand": false, 
     "showOutput": "always",
     "args": ["${workspaceRoot}\\githook-precommit.ps1 -Generate -Sign -Install"]
 }

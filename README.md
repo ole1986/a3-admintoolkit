@@ -1,28 +1,28 @@
 ## AdminToolkit for Arma 3
-<sup>**Version 1.8** | Author: ole1986 | This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License</sup>
+<sup>**Version 2.0** | Author: ole1986 | This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License</sup>
 
 This tool is used to administrate Arma3 multiplayer servers. 
 It also supports an option to overwrite the sections for additional features. 
 
-**Also, check out the <a href="#extensions">Extensions</a> avaiable for AdminToolkit**
+**<p align="center"><a href="#installation">Installation</a> <a href="#extending-the-admintoolkit">Extensions</a></p>**
 
 **<p align="center">PRESS THE F2 KEY TO OPEN IN-GAME</p>**
 
-<img src="images/a3-atk-players.jpg" width="210" title="Manage players">
-<img src="images/a3-atk-vehicles.jpg" width="210" title="Spawn vehicles">
-<img src="images/a3-atk-weapons.jpg" width="210" title="Get weapons">
-<img src="images/a3-atk-construct.jpg" width="210" title="Construction">
+<img src="images/a3-atk-players.png" width="210" title="Manage players">
+<img src="images/a3-atk-buildings.png" width="210" title="Manage Buildings">
+<img src="images/a3-atk-vehicles.png" width="210" title="Spawn vehicles">
+<img src="images/a3-atk-weapons.png" width="210" title="...and Weapons">
 
-<p align="center">
-Video<br/>
-<a href="https://www.youtube.com/watch?v=Hznh7DSM38E" target="_blank"><img src="http://img.youtube.com/vi/Hznh7DSM38E/0.jpg" /></a>
+<p align="center">Video<br/>
+    <a href="https://youtu.be/2yfdqvhU5A0" target="_blank"><img src="http://img.youtube.com/vi/2yfdqvhU5A0/0.jpg" /></a>
 </p>
-**Core Features:**
+
+## Core Features
 
 **Players**
 - Setup administrators or moderators with limited access
 - Teleport from/to players and to map position (by using the in-game map - hold ALT key and press LMB)
-- Spectate player
+- Spectate player using WASD plus Q and E keys  <sup>improved since version 1.6</sup>
 - God Mode
 - Kick/Ban players
 
@@ -39,6 +39,9 @@ Video<br/>
 - Place buildings by using **Q, E for rotation**, **PAGEUP/PAGEDOWN and HOME/END for moving** the constructions
 - spawn additional "vehicle items" like Backpacks, GPS, Binocular, etc... (located in Other)
 
+**Extension support**
+- allows you to extend and overwrite features with your own extension file(s)
+
 ## Installation
 
 ### Required Tools
@@ -46,12 +49,20 @@ Video<br/>
 + PBO Manager - to setup UIDs and server password in server pbo
 + Notepad++ or any other Text Editor (https://notepad-plus-plus.org/)
 
-### Client
+### Client (**only for Admin/Moderator only**)
 
 + Copy the folder `@AdminToolkit` into your Arma 3 game directory (E.g. `C:\Steam\steamapps\common\Arma 3`) 
 + Load the mod through Arma 3 Launcher when you run the game
 
-### MissionFile (**since v1.56.134627 - Eden Update**)
+### Server (**UPDATED**)
+
++ Copy the @AdminToolkitServer folder into your servers root directory
++ Unpack the @AdminToolkitServer\addons\admintoolkit_servercfg.pbo and customize the containing config.cpp accordingly - see <a href="#configuration">Configuration</a>
++ Pack the folder @AdminToolkitServer\addons\admintoolkit_servercfg into admintoolkit_servercfg.pbo and overwrite 
++ Copy the `admintoolkit.bikey` server key file into the `keys` folder of your servers root directory
++ **Enable the AdminToolkit using -servermod=@AdminToolkitServer**
+
+### MissionFile
 
 + Open the `description.ext` and add the below line into `class CfgRemoteExec -> class Functions`
 
@@ -59,16 +70,11 @@ Video<br/>
 class AdminToolkit_network_receiveRequest { allowedTargets = 2; };
 ```
 
-### Server
-
-+ Open the `@ExileServer\admintoolkit_server` folder and setup the `config.cpp` accordingly - see <a href="#configuration">Configuration</a>
-+ Pack the `@ExileServer\admintoolkit_server` folder (containing your config.cpp changes) into `admintoolkit_server.pbo`
-+ Copy the `@ExileServer\admintoolkit_server.pbo` into your `@ExileServer\addons` directory from the server.
-+ Copy the `admintoolkit.bikey` server key file into your server `keys` directory
+For extension related implementations, please follow their instructions. Possible extensions are <a href="#extending-the-admintoolkit">listed below</a>
 
 ## Configuration
 
-Before you can use the AdminToolkit it is necessary to add you as administrator.
+Before you can use the AdminToolkit it is necessary to **add you as administrator**.
 Please find the server `config.cpp` in your `@ExileServer\admintoolkit_server` directory and amend it according to your requirements
 
 ```
@@ -79,44 +85,30 @@ ServerCommandPassword = "";
 /**
  * list of allowed admins using its player UID
  */
-AdminList[] = {"76561198088277918"};
+AdminList[] = {"yourPlayerUIDHere"};
 /**
  * list of admins with restricted access only
  */
 ModeratorList[] = {""};
-/**
- * allowed commands for moderators (default: teleport to a player, get a vehicle, get player list, spectate)
- */
-ModeratorCmds[] = {"login","getplayers","tp2player", "getvehicle", "kickplayer", "specplayer", "specstop"};
 ```
 
-Moderators have limited access - The command list can optionally be customized
+Moderators can have restricted access - help yourself and read the config.cpp carefully to customize the permissions
 
-## Extensions
+## Extending the AdminToolkit
 
-The AdminToolkit can be extended with your addon features by using the MissionFile configuration class `CfgAdminToolkitCustomMod`.
-More details can be found in the <a href="%40MissionFile/README.md">@MissionFile/README.md</a>
+The AdminToolkit can be extended by using the MissionFile configuration class `CfgAdminToolkitCustomMod`.
+For more details, please refer to the <a href="%40MissionFile/README.md">@MissionFile/README.md</a>
 
-**List of available extensions**
+**Below is a list of available extensions**
 
-| Name       | Description                                                      | Link
-| ---------- | ---------------------------------------------------------------- | ----
-| ExileMod   | create persistent vehicles, receive ExileMoney and build objects | <a href="@MissionFile/README.exile.md">Installation</a>
-| Furnitures | Example extension on how to overwrite Buildings section with only furnitures | <a href="@MissionFile/README.furniture.md">Installation</a>
+| Name       | Description                                                                  | Autor(s)  | Links                                           
+| ---------- | ---------------------------------------------------------------------------- | --------- | --- 
+| ExileMod   | create persistent vehicles, receive ExileMoney and build objects, etc...     | ole       | <a href="tree/exilemod/@MissionFile/README.ExileMod.md">README</a>
+| Furniture  | support to build Furniture objects (Menu "Stoll Furniture")                  | Stoll     | <a href="@MissionFile/README.Furniture.md">README</a>
+| VanillaAI  | Experimental extension to support spawning AI units                          | ole       | <a href="@MissionFile/README.VanillaAI.md">README</a>
 
-### Battleye
+## Battleye
 
-Highly recommended to use the following Battleye Filter tool to fix all BE exceptions:
+Please use the below tool setup all Battleye exceptions:
 
 http://gp.gamersinc.net/BEF.php
-
-**remoteexec.txt**
-
-+ add `!"AdminToolkit_network_receiveRequest"` to the end of the line
-
-**scripts.txt**
-
-+ add `!="displayAddEventHandler [\"KeyDown\",\"call AdminToolkit_bindEvents;\"]"` at the end of `7 eventHandler [...]`
-+ add `!="remoteExecCall ['AdminToolkit_network_receiveRequest',"` at the end of `7 remoteexec`
-+ add `7 onMapSingleClick !="call admintoolkit_butt"` as a new line if `7 onMapSingleClick` does not exists or add it to the end of the line
-+ add `!="\nAdminToolkit_camera = \"camera\" camCreate"` at the end of line `7 camCreate`

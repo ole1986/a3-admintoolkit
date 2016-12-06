@@ -1,77 +1,141 @@
 # Extending AdminToolkit features
 
-Using the MissionFile you can extend and (partly) overwrite features of the AdminToolkit.<br />
-To achieve this a configuration class `CfgAdminToolkitCustomMod` is required in your `description.ext`
- 
+**PLEASE NOTE: This README is ONLY important for Extension configuration or development**
+
+**PLEASE NOTE: Make sure you have read the README.&lt;ExtensionName&gt;.sqf for extensions installation instruction**
+
+The AdminToolkit takes advantage of the MissionFile concept allowing you to add additional features.
+
+- Extending the Menu Menu
+- adding additional action command (client/server side)
+- customize QuickButton actions
+- (...)
+
+<p align="center">
+	<a href="#build-your-own-extension">Build your own Extension (Guide)</a>
+</p>
+
+To achieve this, the configuration class `CfgAdminToolkitCustomMod` is required in your `config.cpp` located in your MissionFile.
+Below is an excerpt of the current `CfgAdminToolkitCustomMod`.
+
 ```
 class CfgAdminToolkitCustomMod {
-	// Used to replace the top menu button text (optional)
-	//AdminToolkit_MenuTitle[] = {"Players", "Vehicles", "Weapons", "AI", "Buildings", "Items"};
+	/* Exclude some main menu items
+	 * To only show the menus loaded from an extension, use:
+	 * 
+	 * ExcludeMenu[] = {"Players", "Vehicles", "Weapons" , "Other"};
+	 */
+	ExcludeMenu[] = {};
 	
-	// Used for server-side execution (optional)
-	//AdminToolkit_ModEnable = "";
-	
-	//AdminToolkit_Mod_Players = "";
-	AdminToolkit_Mod_Vehicles = "atk\AdminToolkit_Vehicles_Demo.sqf";
-	//AdminToolkit_Mod_Weapons = "";
-	//AdminToolkit_Mod_Custom = "";
-	//AdminToolkit_Mod_Other = "";
-	//AdminToolkit_Mod_Items = "";
+	/* Load an additional sqf file as MOD */
+	Extensions[] = {
+		/**
+		* Usage: {"<Your Mod Title>", "<YourModFile>"}
+		* add a new menu entry called My Extension into main menu */
+		{"My Extension", "MyExtension"}
+	};
+
+	/* 4 Quick buttons allowing to add any action you want - See example below*/
+	QuickButtons[] = {
+		/* send a chat message to selected player containing 'Test 123' */
+		{"Chat", "['message', [AdminToolkit_Player, 'Test 123']] call AdminToolkit_doAction"},
+		/* send a message to everyone using the parameter text field */
+		{"Msg To All", "['messageall', AdminToolkit_Params] call AdminToolkit_doAction"},
+		/* Quickly get a Helicopter */
+		{"Heli", "['getvehicle', 'B_Heli_Light_01_armed_F'] call AdminToolkit_doAction"},
+		/*4 button*/
+		{"Empty", "['Command', 'Variable'] call AdminToolkit_doAction"}
+	};
 };
 ```
 
-This causes the script <a href="atk/AdminToolkit_Vehicles_Demo.sqf">AdminToolkit_Vehicles_Demo.sqf</a> to be executed when user opens the `Vehicles` section.
+**ExcludeMenu[]**
 
-## Authorized server request (bypass battleye)
+This property is used to hide the default menu entries.
+Useful when you only want to display your extension.
 
-Scripts defined above are usually executed from client.
 
-To make it more secure and also make sure only authorized players (Admin/Moderator) are allowed to execute, it is recommended to build an **additional server extension script**.
+**Extensions[]**
 
-To achieve this it is neccessary to define the `AdminToolkit_ModEnable` property located in the `CfgAdminToolkitCustomMod` class
+This property is used to load additional extensions (*.sqf files) located in the MissionFile `atk\extensions` folder.
+On server side it will also include the same file from its `extensions` folder to execute global commands.
 
-**Example**
+**QuickButtons[]**
+
+Allows you to overwrite the four quick buttons with some custom commands
+
+## Build your own extension
+
+This is a Step-by-step guide on how to build your own extension.
+In this guide you will learn how to add a new Menu entry, add new action commands, pass them to the server and finally execute custom code (from server)
+
+- First, make sure you have copied the above mentioned `CfgAdminToolkitCustomMod` into the config.cpp.
+- Now, add the following line into the Extensions[] property: `{"My Extension", "MyExtension"}`
+
 ```
-// define to allow server-side execution of AdminToolkit_server_myExtension.sqf
-AdminToolkit_ModEnable = "myExtension";
+Extensions[] = {
+	/* add a new menu entry called My Extension into main menu */
+	{"My Extension", "MyExtension"}
+};
 ```
 
-Save the below file into server's admintoolkit.pbo
+- Once the menu is selected, it searches for the sqf file "MyExtension.sqf" in `atk\extension\MyExtension.sqf`. So, lets create this now:
 
 ```
-// File: @ExileServer\admintoolkit\code\AdminToolkit_server_myExtension.sqf
+// atk\extension\MyExtension.sqf (located in MissionFile)
+private['_result'];
+disableSerialization;
+
+// add action command 'myext_hellotomyself' with the title 'Hello To Myself'
+// the third parameter "false" skips the permission check - so admin AND moderator is allowed to execute
+// NOTE: every action will be passed to the server with the command as unique identifier
+['Hello To Myself', 'myext_hellotomyself', false] call AdminToolkit_addAction;
+
+// add action to send something to server (REQUIRES SERVER SQF - Read more below!!! )
+['Hello Server', 'myext_helloserver', false] call AdminToolkit_addAction;
+
+
+// the callback, when "Run action" has been pressed
+MyExtensionCallback = {
+	// AdminToolkit_Action is the current selected action
+	// AdminToolkit_Selection is the current selection from the list (either "Item 1" or "Item 2" - defined below)
+	// AdminToolkit_Params is the textbox where admin/moderator can enter addtional "parameters"
+
+	if(AdminToolkit_Action == "myext_hellotomyself") then {
+		// when myext_hellotomyself is the action, show a message to myself
+		[format["Hello %1", name player]] call AdminToolkit_showMessage;
+	};
+
+	if(AdminToolkit_Action == "myext_helloserver") then {
+		// REQUIRES SERVER SQF - Read more below!!!
+		['myext_helloserver', 'some secret text to the server'] call AdminToolkit_doAction;
+	};
+};
+
+// when admin/moderator pressed the "Run action" button call the "MyExtensionCallback" code
+["MyExtensionCallback"] call AdminToolkit_onExecute;
+
+// show two list items when menu is selected
+_result = ["Item 1", "Item 2"];
+_result;
+```
+
+As you can see, we have added to actions- The first (myext_hellotomyself) is a local call to showMessage only.
+The second (and more interesting) action is passed to the server.
+
+- Now we need to setup the server to accept the action "myext_helloserver".
+
+```
+// extension\MyExtension.sqf (located in admintoolkit_servercfg.pbo)
+
 private['_playerObject','_request', '_params'];
 _playerObject = _this select 0;
-_request = _this select 1;
-_params = _this select 2;
+_request = _this select 1; // is supposed to be the action command (myext_helloserver)
+_params = _this select 2; // is the text: "some secret text to the server"
 
-try 
-{
-    switch (_request) do {
-		case 'myExtension_action1': 
-		{
-            // output player name in server log
-			diag_log format["Player: %1", name _playerObject];
-		};
-		case 'myExtension_action2': 
-		{
-			// yet another action
-		};
-    };
-}
-catch
-{
-    diag_log format["[ADMINTOOLKIT-MOD]: EXCEPTION: %1", _exception];
-};
 
-true;
-```
+// to keep it simple output every action and parameter into servers log file (so check the log once you execute your custom action)
 
-To pass the call it uses the arma feature known as "Remote Execution".
-
-**Example call from client**
-```
-// use the below line to call action1 from myExtension which should print out player name in server log
-[player, "myExtension_action1", []] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];
+diag_log format["[ADMINTOOLKIT-MYEXTENSION]: The action is %1 and the parameter is %2", _request, str _params];
 ```
 
