@@ -1,3 +1,12 @@
+2.0
+- stand-alone server mod folder (@AdminToolkitServer)
+- GUI overworked
+- global chat messages
+- more modder friendly (to build own extensions)
+- spectating from vehicles
+- teleport fixees
+- several other improvements and bug fixes
+
 1.8
 - added "Repair", "Destroy", "Heal Self" options in register "Other"
 - show toast message (for Exile) when removing a vehicle
