@@ -104,7 +104,7 @@ For more details, please refer to the <a href="%40MissionFile/README.md">@Missio
 
 | Name       | Description                                                                  | Autor(s)  | Links                                           
 | ---------- | ---------------------------------------------------------------------------- | --------- | --- 
-| ExileMod   | create persistent vehicles, receive ExileMoney and build objects, etc...     | ole       | <a href="tree/exilemod/@MissionFile/README.ExileMod.md">README</a>
+| ExileMod   | create persistent vehicles, receive ExileMoney and build objects, etc...     | ole       | <a href="@MissionFile/README.ExileMod.md">README</a>
 | Furniture  | support to build Furniture objects (Menu "Stoll Furniture")                  | Stoll     | <a href="@MissionFile/README.Furniture.md">README</a>
 | VanillaAI  | Experimental extension to support spawning AI units                          | ole       | <a href="@MissionFile/README.VanillaAI.md">README</a>
 
