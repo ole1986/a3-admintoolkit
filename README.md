@@ -14,7 +14,7 @@ It also supports an option to overwrite the sections for additional features.
 <img src="images/a3-atk-weapons.png" width="210" title="...and Weapons">
 
 <p align="center">Video<br/>
-    <a href="https://www.youtube.com/watch?v=Hznh7DSM38E" target="_blank"><img src="http://img.youtube.com/vi/Hznh7DSM38E/0.jpg" /></a>
+    <a href="https://youtu.be/2yfdqvhU5A0" target="_blank"><img src="http://img.youtube.com/vi/2yfdqvhU5A0/0.jpg" /></a>
 </p>
 
 ## Core Features
