@@ -71,7 +71,7 @@ It also supports an option to overwrite the sections for additional features.
 class AdminToolkit_network_receiveRequest { allowedTargets = 2; };
 ```
 
-For extension related implementations, please follow the <a href="#extending-the-admintoolkit">extension instructions below</a>
+For extension related implementations, please follow the <a href="#extensions">extension instructions below</a>
 
 ## Configuration
 
@@ -95,7 +95,7 @@ ModeratorList[] = {""};
 
 Moderators can have restricted access - help yourself and read the config.cpp carefully to customize the permissions
 
-## Extending the AdminToolkit
+## Extensions
 
 The AdminToolkit can be extended by using the MissionFile configuration class `CfgAdminToolkitCustomMod`.
 For more details, please refer to the <a href="%40MissionFile/README.md">@MissionFile/README.md</a>
@@ -110,6 +110,6 @@ For more details, please refer to the <a href="%40MissionFile/README.md">@Missio
 
 ## Battleye
 
-Please use the below tool setup all Battleye exceptions:
+Please use the below **Battleye Script Filters tool** to setup all Battleye exceptions:
 
-http://gp.gamersinc.net/BEF.php
+http://a3ap.com/BEF.php
