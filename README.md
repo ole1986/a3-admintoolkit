@@ -25,6 +25,7 @@ It also supports an option to overwrite the sections for additional features.
 - Spectate player using WASD plus Q and E keys  <sup>improved since version 1.6</sup>
 - God Mode
 - Kick/Ban players
+- Global chat messages
 
 **Vehicles**
 - Vehicle spawn for yourself or a selected player
@@ -35,7 +36,7 @@ It also supports an option to overwrite the sections for additional features.
 - add ammo to inventory
 
 **Construction & Others**
-- NEW: Building persistence supported (since v1.4)
+- Building persistence supported (since v1.4)
 - Place buildings by using **Q, E for rotation**, **PAGEUP/PAGEDOWN and HOME/END for moving** the constructions
 - spawn additional "vehicle items" like Backpacks, GPS, Binocular, etc... (located in Other)
 
