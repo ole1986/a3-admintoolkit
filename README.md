@@ -71,7 +71,7 @@ It also supports an option to overwrite the sections for additional features.
 class AdminToolkit_network_receiveRequest { allowedTargets = 2; };
 ```
 
-For extension related implementations, please follow their instructions. Possible extensions are <a href="#extending-the-admintoolkit">listed below</a>
+For extension related implementations, please follow the <a href="#extending-the-admintoolkit">extension instructions below</a>
 
 ## Configuration
 
