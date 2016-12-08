@@ -230,7 +230,7 @@ try
             _tmp = objectFromNetId _params;
             if !(isNull _tmp) then { deleteVehicle _tmp; };
         };
-	// used for mod extensions
+		// used for extensions
 		default {
 			// load additional extension entries into the main menu (if available)
 			if(isClass(missionConfigFile >> 'CfgAdminToolkitCustomMod')) then {
