@@ -177,29 +177,6 @@ class RscPictureKeepAspect
 	x = 0;
 	y = 0;
 };
-class RscExileXM8Slide {
-	deletable = 0;
-	fade = 0;
-	shadow = 0;
-	style = 16;
-	type = 15;
-	x = "0 * (0.025)";
-	y = "0 * (0.04)";
-	w = "34 * (0.025)";
-	h = "19 * (0.04)";
-	show = "false";
-	
-	class VScrollbar
-	{
-		color[] = {1,1,1,1};
-		height = 0.028;
-	};
-	class HScrollbar
-	{
-		color[] = {1,1,1,1};
-		height = 0.028;
-	};
-};
 class RscEdit
 {
 	deletable = 0;
