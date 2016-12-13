@@ -1,3 +1,6 @@
+2.0.2
+- EXILEMOD: fixed bug where NEW players (not in DB yet) cannot connect 
+
 2.0.1
 - fixed possible issue with exile money and respect
 - added missing server side Furniture.sqf to skip warnings
