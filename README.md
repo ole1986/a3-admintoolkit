@@ -4,18 +4,19 @@
 This tool is used to administrate Arma3 multiplayer servers. 
 It also supports an option to overwrite the sections for additional features. 
 
-**<p align="center"><a href="#installation">Installation</a> <a href="#extending-the-admintoolkit">Extensions</a></p>**
+**<a href="#installation">Installation</a> <a href="#extending-the-admintoolkit">Extensions</a>**
 
-**<p align="center">PRESS THE F2 KEY TO OPEN IN-GAME</p>**
+**PRESS THE F2 KEY TO OPEN IN-GAME**
 
 <img src="images/a3-atk-players.png" width="210" title="Manage players">
 <img src="images/a3-atk-buildings.png" width="210" title="Manage Buildings">
 <img src="images/a3-atk-vehicles.png" width="210" title="Spawn vehicles">
 <img src="images/a3-atk-weapons.png" width="210" title="...and Weapons">
 
-<p align="center">Video<br/>
-    <a href="https://youtu.be/2yfdqvhU5A0" target="_blank"><img src="http://img.youtube.com/vi/2yfdqvhU5A0/0.jpg" /></a>
-</p>
+**Videos**
+
+<a href="https://www.youtube.com/watch?v=pMwK2d-1Fqg" target="_blank"><img src="http://img.youtube.com/vi/pMwK2d-1Fqg/0.jpg" /></a>
+<a href="https://youtu.be/2yfdqvhU5A0" target="_blank"><img src="http://img.youtube.com/vi/2yfdqvhU5A0/0.jpg" /></a>
 
 ## Core Features
 
