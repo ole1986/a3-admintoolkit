@@ -15,8 +15,8 @@ It also supports an option to overwrite the sections for additional features.
 
 **Videos**
 
-<a href="https://www.youtube.com/watch?v=pMwK2d-1Fqg" target="_blank"><img src="http://img.youtube.com/vi/pMwK2d-1Fqg/0.jpg" /></a>
-<a href="https://youtu.be/2yfdqvhU5A0" target="_blank"><img src="http://img.youtube.com/vi/2yfdqvhU5A0/0.jpg" /></a>
+<a href="https://www.youtube.com/watch?v=pMwK2d-1Fqg" target="_blank"><img src="http://img.youtube.com/vi/pMwK2d-1Fqg/0.jpg" width="410" /></a>
+<a href="https://youtu.be/2yfdqvhU5A0" target="_blank"><img src="http://img.youtube.com/vi/2yfdqvhU5A0/0.jpg" width="410" /></a>
 
 ## Core Features
 
