@@ -1,3 +1,5 @@
-/*.biprivatekey
-/images/*.xcf
-/@ExileServer/admintoolkit_server.pbo
+# ignore the private key
+*.biprivatekey
+
+# ignore gimp files
+*.xcf
