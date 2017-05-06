@@ -4,7 +4,7 @@
     "showOutput": "always",
     "tasks": [
         {
-            "taskName": "ATK Server",
+            "taskName": "Build Server",
             "command": "AddonBuilder",
             "args": [
                 "${workspaceRoot}\\source\\admintoolkit_server", 
@@ -13,7 +13,7 @@
             ]
         },
         {
-            "taskName": "ATK Server Config",
+            "taskName": "Build Server Config",
             "command": "AddonBuilder",
             "args": [
                 "${workspaceRoot}\\source\\admintoolkit_servercfg", 
@@ -22,7 +22,7 @@
             ]
         },
         {
-            "taskName": "ATK Client",
+            "taskName": "Build Client",
             "command": "AddonBuilder",
             "args": [
                 "${workspaceRoot}\\source\\admintoolkit", 
@@ -32,7 +32,7 @@
             ]
         },
         {
-            "taskName": "ATK Client (install)",
+            "taskName": "Install Client",
             "command": "powershell",
             "args": [ "${workspaceRoot}\\install.ps1"]
         }
