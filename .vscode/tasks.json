@@ -1,9 +1,40 @@
 {
     "version": "0.1.0",
     "name": "PBO Task",
-    //...
-    "command": "powershell",  
-    "isShellCommand": false, 
     "showOutput": "always",
-    "args": ["${workspaceRoot}\\githook-precommit.ps1 -Generate -Sign -Install"]
+    "tasks": [
+        {
+            "taskName": "ATK Server",
+            "command": "AddonBuilder",
+            "args": [
+                "${workspaceRoot}\\source\\admintoolkit_server", 
+                "${workspaceRoot}\\@AdminToolkitServer\\addons",
+                "-packonly"
+            ]
+        },
+        {
+            "taskName": "ATK Server Config",
+            "command": "AddonBuilder",
+            "args": [
+                "${workspaceRoot}\\source\\admintoolkit_servercfg", 
+                "${workspaceRoot}\\@AdminToolkitServer\\addons",
+                "-packonly"
+            ]
+        },
+        {
+            "taskName": "ATK Client",
+            "command": "AddonBuilder",
+            "args": [
+                "${workspaceRoot}\\source\\admintoolkit", 
+                "${workspaceRoot}\\@AdminToolkit\\addons",
+                "-packonly",
+                "-sign=${workspaceRoot}\\admintoolkit.biprivatekey"
+            ]
+        },
+        {
+            "taskName": "ATK Client (install)",
+            "command": "powershell",
+            "args": [ "${workspaceRoot}\\install.ps1"]
+        }
+    ]
 }
