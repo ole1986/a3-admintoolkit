@@ -1,4 +1,5 @@
 Param(
+    [switch]$BuildAll = $false,
     [switch]$BuildServer = $false,
     [switch]$BuildClient = $false,
     [switch]$Install = $false,
@@ -20,16 +21,22 @@ if(!(Test-Path $AddonBuilder)) {
     Exit
 }
 
-if($BuildServer) {
+if($BuildServer -or $BuildAll) {
     Write-Host -ForegroundColor DarkYellow "AddonBuilder: Building Server PBO"
     & "$AddonBuilder" "$PSScriptRoot\\source\\admintoolkit_server" "$PSScriptRoot\\@AdminToolkitServer\\addons" -packonly
     Write-Host -ForegroundColor DarkYellow "AddonBuilder: Building Server Config PBO"
     & "$AddonBuilder" "$PSScriptRoot\\source\\admintoolkit_servercfg" "$PSScriptRoot\\@AdminToolkitServer\\addons" -packonly
 }
 
-if($BuildClient) {
+if($BuildClient -or $BuildAll) {
     Write-Host -ForegroundColor DarkYellow "AddonBuilder: Building Client PBO"
     & "$AddonBuilder" "$PSScriptRoot\\source\\admintoolkit" "$PSScriptRoot\\@AdminToolkit\\addons" -packonly -sign="$PSScriptRoot\\admintoolkit.biprivatekey"
+}
+
+if($BuildAll) {
+    Write-Host "###################"
+    Write-Host "# BUILD COMPLETED #"
+    Write-Host "###################"
 }
 
 if($Install) {
