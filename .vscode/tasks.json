@@ -9,7 +9,7 @@
     "tasks": [
         {
             "suppressTaskName": true,
-            "taskName": "Build",
+            "taskName": "Build All",
             "isBuildCommand": true,
             "args": [ "-BuildAll"],
         },
