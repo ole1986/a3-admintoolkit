@@ -1,40 +1,26 @@
 {
     "version": "0.1.0",
     "name": "PBO Task",
-    "showOutput": "always",
+    "command": "powershell",
+    "echoCommand": true,
+    "args": [
+        "${workspaceRoot}\\build.ps1"
+    ],
     "tasks": [
         {
-            "taskName": "Build Server",
-            "command": "AddonBuilder",
-            "args": [
-                "${workspaceRoot}\\source\\admintoolkit_server", 
-                "${workspaceRoot}\\@AdminToolkitServer\\addons",
-                "-packonly"
-            ]
+            "suppressTaskName": true,
+            "taskName": "Server: Build",
+            "args": [ "-BuildServer"]
         },
         {
-            "taskName": "Build Server Config",
-            "command": "AddonBuilder",
-            "args": [
-                "${workspaceRoot}\\source\\admintoolkit_servercfg", 
-                "${workspaceRoot}\\@AdminToolkitServer\\addons",
-                "-packonly"
-            ]
+            "suppressTaskName": true,
+            "taskName": "Client: Build",
+            "args": [ "-BuildClient"]
         },
         {
-            "taskName": "Build Client",
-            "command": "AddonBuilder",
-            "args": [
-                "${workspaceRoot}\\source\\admintoolkit", 
-                "${workspaceRoot}\\@AdminToolkit\\addons",
-                "-packonly",
-                "-sign=${workspaceRoot}\\admintoolkit.biprivatekey"
-            ]
-        },
-        {
-            "taskName": "Install Client",
-            "command": "powershell",
-            "args": [ "${workspaceRoot}\\install.ps1"]
+            "suppressTaskName": true,
+            "taskName": "Client: Install and Run Arma 3",
+            "args": [ "-Install", "-Run"]
         }
     ]
 }
