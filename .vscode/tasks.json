@@ -11,7 +11,7 @@
             "suppressTaskName": true,
             "taskName": "Build All",
             "isBuildCommand": true,
-            "args": [ "-BuildAll"],
+            "args": [ "-BuildAll"]
         },
         {
             "suppressTaskName": true,
