@@ -123,7 +123,7 @@ switch (_menuName) do {
 };
 
 // set execute button to di the action
-buttonSetAction [RscAdminToolkitExecute_IDC, '[] call AdminToolkit_OnExecute'];
+buttonSetAction [RscAdminToolkitRun_IDC, '[] call AdminToolkit_OnExecute'];
 // allow user to execute action using dbl-click
 (_display displayCtrl RscAdminToolkitActionMenu_IDC) ctrlSetEventHandler ["LBDblClick",'[] call AdminToolkit_OnExecute'];
 

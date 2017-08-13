@@ -18,7 +18,7 @@ class AdminToolkitMenu {
 		RscAdminToolkitQuick2,
 		RscAdminToolkitQuick3,
 		RscAdminToolkitQuick4,
-		RscAdminToolkitExecute,
+		RscAdminToolkitRun,
 		RscAdminToolkitRepeat
 		
 	};
@@ -184,7 +184,7 @@ class AdminToolkitMenu {
 		h = 0.04 * safezoneH;
 		colorBackground[] = {0,0,0,0.8};
 	};
-	class RscAdminToolkitExecute: RscButton
+	class RscAdminToolkitRun: RscButton
 	{
 		idc = 1995;
 		action = "";
