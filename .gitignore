@@ -3,3 +3,6 @@
 
 # ignore gimp files
 *.xcf
+
+# ignore update server script
+update-server.sh

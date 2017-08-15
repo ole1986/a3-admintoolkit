@@ -4,7 +4,7 @@
     "command": "powershell",
     "echoCommand": true,
     "args": [
-        "${workspaceRoot}\\build.ps1"
+        "${workspaceRoot}\\setup.ps1"
     ],
     "tasks": [
         {
