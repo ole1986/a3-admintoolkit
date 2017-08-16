@@ -44,29 +44,99 @@ It also supports an option to overwrite the sections for additional features.
 **Extension support**
 - allows you to extend and overwrite features with your own extension file(s)
 
-## Installation
 
-### Required Tools
+## Requirements
 
-+ PBO Manager - to setup UIDs and server password in server pbo
-+ Notepad++ or any other Text Editor (https://notepad-plus-plus.org/)
+* Arma 3 Tools (installed through Steam - https://community.bistudio.com/wiki/Arma_3_Tools_Installation)
 
-### Client (**only for Admin/Moderator only**)
+## Configuration
 
-+ Copy the folder `@AdminToolkit` into your Arma 3 game directory (E.g. `C:\Steam\steamapps\common\Arma 3`) 
-+ Load the mod through Arma 3 Launcher when you run the game
+The AdminToolkit uses a server configuration file (config.cpp) to add administrators.<br />
+So, open the file `source\admintoolkit_servercfg\config.cpp` and add your player uid into `AdminList[]`
 
-### Server (**UPDATED**)
+Example:
 
-+ Copy the @AdminToolkitServer folder into your servers root directory
-+ Unpack the @AdminToolkitServer\addons\admintoolkit_servercfg.pbo and customize the containing config.cpp accordingly - see <a href="#configuration">Configuration</a>
-+ Pack the folder @AdminToolkitServer\addons\admintoolkit_servercfg into admintoolkit_servercfg.pbo and overwrite 
-+ Copy the `admintoolkit.bikey` server key file into the `keys` folder of your servers root directory
-+ **Enable the AdminToolkit using -servermod=@AdminToolkitServer**
+```
+AdminList[] = {"yourPlayerUID"};
+```
 
-### MissionFile
+Optionally you can add the ServerCommandPassword (stored in the config.cfg of your server) to manage kick and bans from the AdminToolkit
 
-+ Open the `description.ext` and add the below line into `class CfgRemoteExec -> class Functions`
+```
+ServerCommandPassword = "yoursecretpassword";
+```
+
+As the AdminToolkit has a moderator mode, those player uids go to
+
+```
+ModeratorList[] = {"playerUID"};
+```
+
+Moderators can have restricted access - Please help yourself and read the config.cpp carefully to customize the permissions
+
+## Build
+
+PLEASE MAKE SURE BEFORE YOU BUILD, THAT YOU ARE LISTED AS ADMIN (SEE <a href="#configuration">CONFIGURATION</a>)
+
+To build the required PBO files you can either use visual Studio Code or the powershell to run the build command
+
+```
+PS> .\setup.ps1 -Build
+```
+
+This will build the following files 
+
+**Client**
+
+* @AdminToolkit\addons\admintoolkit.pbo (Client Mod)
+* @AdminToolkit\addons\admintoolkit.pbo.bisign (sign file)
+
+**Server**
+
+* @AdminToolkitServer\addons\admintoolkit_server.pbo (Server Mod)
+* @AdminToolkitServer\addons\admintoolkit_servercfg.pbo (Server Mod Config)
+
+**MissionFile**
+
+This project is also shipped with a mission file patcher. Simple use the command below to patch you favorite mission.<br />
+A dialog prompt will appear and let you choice your Mission.File.pbo
+
+```
+PS> .\setup.ps1 -PatchMission
+```
+
+This will generate the patche mission file into the folder
+
+* @MissionFile\<Your.Mission.pbo>
+
+## Install
+
+PLEASE MAKE SURE YOU HAVE FOLLOWED THE BUILD INSTRUCTION BEFORE CONTINUE READING
+
+### Client
+
+To install the AdminToolkit Client on your Game PC, please use the command<br />
+**MAKE SURE YOU ENABLED THE MOD WHEN RUNNING THE GAME**
+
+```
+PS> .\setup.ps1 -Install
+```
+
+### Server
+
+PLEASE NOTE: AGAIN, YOU NEED TO BUILD FIRST. READ THE BUILD CHAPTER BEFORE READING THE BELOW
+
+* Copy the @AdminToolkitServer folder into your servers root directory
+* Copy the patched mission file located in @MissionFile into your servers `mpmissions` folder
+* Copy the `admintoolkit.bikey` into your servers `keys` folder
+* Enable the AdminToolkit mod on the server by running the arma3server with parameter `-servermod=@AdminToolkitServer`
+
+### Mission File (manuall editing)
+
+If for some reason the Mission Patcher (see Build -> MissionFile) does not work the below instruction explains the steps to customize the mission file manually
+
+* Unpack your mission file using any PBO Unpacker (FileRev)
+* Open the `description.ext` and add the below line into `class CfgRemoteExec -> class Functions`
 
 ```
 class AdminToolkit_network_receiveRequest { allowedTargets = 2; };
@@ -74,40 +144,18 @@ class AdminToolkit_network_receiveRequest { allowedTargets = 2; };
 
 For extension related implementations, please follow the <a href="#extensions">extension instructions below</a>
 
-## Configuration
-
-Before you can use the AdminToolkit it is necessary to **add you as administrator**.
-Please find the server `config.cpp` in your `@ExileServer\admintoolkit_server` directory and amend it according to your requirements
-
-```
-/**
- * Server command password required to execute kick, ban, etc...
- */
-ServerCommandPassword = "";
-/**
- * list of allowed admins using its player UID
- */
-AdminList[] = {"yourPlayerUIDHere"};
-/**
- * list of admins with restricted access only
- */
-ModeratorList[] = {""};
-```
-
-Moderators can have restricted access - help yourself and read the config.cpp carefully to customize the permissions
-
 ## Extensions
 
 The AdminToolkit can be extended by using the MissionFile configuration class `CfgAdminToolkitCustomMod`.
-For more details, please refer to the <a href="%40MissionFile/README.md">@MissionFile/README.md</a>
+For more details, please refer to the <a href="README.MissionFile.md">/README.MissionFile.md</a>
 
 **Below is a list of available extensions**
 
 | Name       | Description                                                                  | Autor(s)  | Links                                           
 | ---------- | ---------------------------------------------------------------------------- | --------- | --- 
-| ExileMod   | create persistent vehicles, receive ExileMoney and build objects, etc...     | ole       | <a href="@MissionFile/README.ExileMod.md">README</a>
-| Furniture  | support to build Furniture objects (Menu "Stoll Furniture")                  | Stoll     | <a href="@MissionFile/README.Furniture.md">README</a>
-| VanillaAI  | Experimental extension to support spawning AI units                          | ole       | <a href="@MissionFile/README.VanillaAI.md">README</a>
+| ExileMod   | create persistent vehicles, receive ExileMoney and build objects, etc...     | ole       | <a href="source/mission_file/atk/README.ExileMod.md">README</a>
+| Furniture  | support to build Furniture objects (Menu "Stoll Furniture")                  | Stoll     | <a href="source/mission_file/atk/README.Furniture.md">README</a>
+| VanillaAI  | Experimental extension to support spawning AI units                          | ole       | <a href="source/mission_file/atk/README.VanillaAI.md">README</a>
 
 ## Battleye
 

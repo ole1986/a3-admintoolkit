@@ -11,21 +11,11 @@
             "suppressTaskName": true,
             "taskName": "Build All",
             "isBuildCommand": true,
-            "args": [ "-BuildAll"]
+            "args": [ "-Build"]
         },
         {
             "suppressTaskName": true,
-            "taskName": "Server: Build",
-            "args": [ "-BuildServer"]
-        },
-        {
-            "suppressTaskName": true,
-            "taskName": "Client: Build",
-            "args": [ "-BuildClient"]
-        },
-        {
-            "suppressTaskName": true,
-            "taskName": "Client: Install and Run Arma 3",
+            "taskName": "Install and Run Client (Arma 3)",
             "args": [ "-Install", "-Run"]
         }
     ]
