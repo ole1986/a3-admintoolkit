@@ -4,10 +4,6 @@
 This tool is used to administrate Arma3 multiplayer servers. 
 It also supports an option to overwrite the sections for additional features. 
 
-**<a href="#installation">Installation</a> <a href="#extending-the-admintoolkit">Extensions</a>**
-
-**PRESS THE F2 KEY TO OPEN IN-GAME**
-
 <img src="images/a3-atk-players.png" align="left" width="200" title="Manage players">
 <img src="images/a3-atk-buildings.png" align="left" width="200" title="Manage Buildings">
 <img src="images/a3-atk-vehicles.png" align="left" width="200" title="Spawn vehicles">
@@ -121,7 +117,7 @@ To install the AdminToolkit Client on your Game PC, please use the command<br />
 PS> .\setup.ps1 -Install
 ```
 
-After installation succeeded, please make sure you have enabled the mod from the Arma 3 launcher
+After installation succeeded, please make sure you have enabled the mod when you run the game
 
 **Server**
 
@@ -130,9 +126,9 @@ After installation succeeded, please make sure you have enabled the mod from the
 * Copy the `admintoolkit.bikey` into your servers `keys` folder
 * Enable the AdminToolkit mod on the server by running the arma3server with parameter `-servermod=@AdminToolkitServer`
 
-<p align="center">RESTART YOUR SERVER AND ENJOY</p>
+<p align="center"><strong>RESTART THE SERVER, JOIN THE GAME AND PRESS F2 TO OPEN ATK</strong></p>
 
-### Mission File (manuall editing)
+### Mission File (manual editing)
 
 If for some reason the Mission Patcher (see Build -> MissionFile) does not work the below instruction explains the steps to customize the mission file manually
 
