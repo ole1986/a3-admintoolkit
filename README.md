@@ -1,8 +1,7 @@
 ## AdminToolkit for Arma 3
 <sup>**Version 2.0.2** | Author: ole1986 | This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License</sup>
 
-This tool is used to administrate Arma3 multiplayer servers. 
-It also supports an option to overwrite the sections for additional features. 
+The ATK is used to administrate Arma 3 multiplayer servers and be extended with user extensions
 
 <img src="images/a3-atk-players.png" align="left" width="200" title="Manage players">
 <img src="images/a3-atk-buildings.png" align="left" width="200" title="Manage Buildings">
@@ -14,32 +13,9 @@ It also supports an option to overwrite the sections for additional features.
 <a href="https://www.youtube.com/watch?v=pMwK2d-1Fqg" target="_blank"><img src="http://img.youtube.com/vi/pMwK2d-1Fqg/0.jpg" width="410" /></a>
 <a href="https://youtu.be/2yfdqvhU5A0" target="_blank"><img src="http://img.youtube.com/vi/2yfdqvhU5A0/0.jpg" width="410" /></a>
 
-## Core Features
+## Features
 
-**Players**
-- Setup administrators or moderators with limited access
-- Teleport from/to players and to map position (by using the in-game map - hold ALT key and press LMB)
-- Spectate player using WASD plus Q and E keys  <sup>improved since version 1.6</sup>
-- God Mode
-- Kick/Ban players
-- Global chat messages
-
-**Vehicles**
-- Vehicle spawn for yourself or a selected player
-- (Exile Addon) Spawn persistent vehicles with PIN CODE
-
-**Weapons**
-- add weapon to inventory
-- add ammo to inventory
-
-**Construction & Others**
-- Building persistence supported (since v1.4)
-- Place buildings by using **Q, E for rotation**, **PAGEUP/PAGEDOWN and HOME/END for moving** the constructions
-- spawn additional "vehicle items" like Backpacks, GPS, Binocular, etc... (located in Other)
-
-**Extension support**
-- allows you to extend and overwrite features with your own extension file(s)
-
+For a complete list of all features, please refer to <a href="FEATURES.md">FEATURES.md<a>
 
 ## Requirements
 
