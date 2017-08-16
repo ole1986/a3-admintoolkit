@@ -111,25 +111,26 @@ This will generate the patche mission file into the folder
 
 ## Install
 
-PLEASE MAKE SURE YOU HAVE FOLLOWED THE BUILD INSTRUCTION BEFORE CONTINUE READING
+PLEASE MAKE SURE YOU HAVE FOLLOWED THE <a href="#build">BUILD INSTRUCTIONS</a> BEFORE CONTINUE READING
 
-### Client
+**Client**
 
 To install the AdminToolkit Client on your Game PC, please use the command<br />
-**MAKE SURE YOU ENABLED THE MOD WHEN RUNNING THE GAME**
 
 ```
 PS> .\setup.ps1 -Install
 ```
 
-### Server
+After installation succeeded, please make sure you have enabled the mod from the Arma 3 launcher
 
-PLEASE NOTE: AGAIN, YOU NEED TO BUILD FIRST. READ THE BUILD CHAPTER BEFORE READING THE BELOW
+**Server**
 
 * Copy the @AdminToolkitServer folder into your servers root directory
 * Copy the patched mission file located in @MissionFile into your servers `mpmissions` folder
 * Copy the `admintoolkit.bikey` into your servers `keys` folder
 * Enable the AdminToolkit mod on the server by running the arma3server with parameter `-servermod=@AdminToolkitServer`
+
+<p align="center">RESTART YOUR SERVER AND ENJOY</p>
 
 ### Mission File (manuall editing)
 
