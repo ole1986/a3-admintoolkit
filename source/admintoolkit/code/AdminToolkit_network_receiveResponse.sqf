@@ -7,7 +7,7 @@
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
  
-private["_request", "_params", '_tmp'];
+private["_request", "_params", '_tmp', '_tmp2'];
 try 
 {
 	_request = _this select 0; // what to do
@@ -29,8 +29,10 @@ try
 			lbClear RscAdminToolkitList_IDC;
 			
 			{
-				_tmp = lbAdd [RscAdminToolkitList_IDC, _x];
+				_tmp = lbAdd [RscAdminToolkitList_IDC, name (objectFromNetId _x)];
 				lbSetData [RscAdminToolkitList_IDC, _tmp, _x];
+				_tmp2 = getText (configFile >> 'CfgWeapons' >> primaryWeapon (objectFromNetId _x) >> 'picture');
+				lbSetPictureRight [RscAdminToolkitList_IDC, _tmp, _tmp2];
 			} forEach _params;
 		};
 		case 'message': {

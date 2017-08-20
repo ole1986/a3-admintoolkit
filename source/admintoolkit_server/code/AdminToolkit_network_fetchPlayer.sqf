@@ -26,14 +26,10 @@ if(typeName _this == "ARRAY") then {
 
 {
 	if(_match == '' and _nameOnly) then {
-		_result pushBack (name _x);
+		_result pushBack (netId _x);
 	} else {
 		if(name _x isEqualTo _match) exitWith {
-			if(_nameOnly) then {
-				_result pushBack (name _x);
-			} else {
-				_result pushBack _x;
-			};
+			_result pushBack (netId _x);
 		};
 	};
 	

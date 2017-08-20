@@ -51,20 +51,30 @@ try
 			[_request, _tmp] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
 		};
 		// initialize the spectator mode (client callback required)
-		// Example: [player, 'specplayer', <string playname>]
+		// Example: [player, 'specplayer', netId]
 		case "specplayer": {
-			_tmp = [_params] call AdminToolkit_network_fetchPlayer;
+			_tmp = objectFromNetId _params;
 			if(!(isNil "_tmp") && (typeName _tmp == "OBJECT")) then {
 				[_request, netId _tmp] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
 			};
 		};
 		case 'message': {
-			_tmp = [_params select 0] call AdminToolkit_network_fetchPlayer;
+			_tmp = objectFromNetId _params;
 			['message', [_params select 1, format["<t size='1.5'>Sender: %1</t>", name _player]]] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _tmp];
 		};
 		case 'messageall': {
 			diag_log format ["[ADMINTOOLKIT] messageall params: %1 ", str _params];
 			['message', [_params, format["<t size='1.5'>Sender: %1</t>", name _player]]] remoteExecCall ['AdminToolkit_network_receiveResponse', -2];
+		};
+		// Give ammo to selected player
+		case 'giveammo': {
+			_tmp = objectFromNetId _params;
+            if (!(isNil "_tmp") && (typeName _tmp == "OBJECT")) then {
+				diag_log format ["[ADMINTOOLKIT] Giving ammo to %1", name _tmp];
+				_tmp addMagazines  [(getArray (configFile >> 'CfgWeapons' >> primaryWeapon _tmp >> 'magazines') select 0), 1]; 
+			} else {
+				diag_log format ["[ADMINTOOLKIT] Failed to give ammo to player %1", str _params];
+			};
 		};
 		// Kick player from server
 		// Example: [player, 'kickplayer', <string playername>]
@@ -88,7 +98,7 @@ try
 		// Example: [player, 'tp2player', <string playername>]
         case "tp2player": 
         {
-            _tmp = [_params] call AdminToolkit_network_fetchPlayer;
+			_tmp = objectFromNetId _params;
 			if(!isNil "_tmp") then {
 				_player setPosATL (getPosATL _tmp);
 			};
@@ -97,7 +107,7 @@ try
 		// Example: [player, 'tpplayer', <string playername>]
         case "tpplayer": 
         {
-			_tmp = [_params] call AdminToolkit_network_fetchPlayer;
+			_tmp = objectFromNetId _params;
 			if(!isNil "_tmp") then {
 				_tmp setPosATL (position _player);
 			};
@@ -143,7 +153,7 @@ try
 				(_params select 0) createVehicle position _safepos;
 			};
         };
-	//Weapons Ammo
+		//Weapons Ammo
 		// get a weapon for admin who called this command
 		// Example: [player, 'getweapon', [<string weaponClass>, <string magazineClass>]]
         case "getweapon": {
@@ -160,7 +170,7 @@ try
 			_tmp = _params select 0;
             if (_tmp != "") then { _player addMagazines  [_tmp, 1]; };
 		};
-	//Items Others	
+		// Items Others	
 		// add an item to admins inventory
 		// Example: [player, 'getitem', <string ItemClass>]
 		case "getitem": {
@@ -173,7 +183,7 @@ try
 			_mod = _params select 1;
 			createVehicle [_tmp, _mod, [], 0, "CAN_COLLIDE"];
 		};
-	//Building	
+		// Building
         // build a vehicle and callback the object netId to its client for further action
         // Example: [player, 'build', <string className>]
 		case "buildpers";
@@ -195,7 +205,7 @@ try
         };
 		// remoe building which is in player cursor position
 		case "buildremove": {
-            _tmp = objectFromNetId (_params select 0);
+            _tmp = objectFromNetId _params;
             if !(isNull _tmp) then {
 				['BUILDINGS', (_params select 1)] call AdminToolkit_removePersistent;
 				deleteVehicle _tmp;

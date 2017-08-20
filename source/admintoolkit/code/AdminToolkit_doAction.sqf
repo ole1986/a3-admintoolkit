@@ -56,6 +56,12 @@ try {
                     // parameter 1: compatible magazine
                     _selection = [_tmp2];
                 };
+                case 'giveammo': {
+                    _tmp = lbData [_IDC, lbCurSel _IDC];
+
+                    systemChat format["Giving ammo to %1", _tmp];
+                    _selection = _tmp;
+                };
                 case 'spawn': {
                     _tmp = lbData [_IDC, lbCurSel _IDC];
                     _tmp2 = player modelToWorld [0,2, (position player) select 2];
