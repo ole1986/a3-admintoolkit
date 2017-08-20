@@ -38,9 +38,6 @@ function Pack-Pbo($SourcePath, $DestinationPath, $PrivateKeyPath)
     } else {
         $ERR = & "$AddonBuilder" "$SourcePath" "$DestinationPath" -packonly
     }
-    
-
-    $ERR = & "$AddonBuilder" "$SourcePath" "$DestinationPath" -packonly
     Write-Output $ERR
     if($ERR -match "\[FATAL\]") {
         Write-Host -ForegroundColor Red "An error occured while executing the Arma 3 Tools."
