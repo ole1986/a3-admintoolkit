@@ -59,7 +59,7 @@ try
 			};
 		};
 		case 'message': {
-			_tmp = objectFromNetId _params;
+			_tmp = objectFromNetId (_params select 0);
 			['message', [_params select 1, format["<t size='1.5'>Sender: %1</t>", name _player]]] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _tmp];
 		};
 		case 'messageall': {
@@ -146,11 +146,11 @@ try
 		// spawn a vehicle at the position of another player
 		// Example: [player, 'givevehicle', [<string vehicleClass>, <string playername>]]
         case "givevehicle": {
-            _tmp = [_params select 1] call AdminToolkit_network_fetchPlayer;
+            _tmp = objectFromNetId (_params select 1);
 			if(!isNil "_tmp") then {
 				//find save position for the vehicle
-				_safepos = [position _tmp, 1, 20, 5, 1, 0, 0] call BIS_fnc_findSafePos;
-				(_params select 0) createVehicle position _safepos;
+				_safepos = [_tmp, 1, 50, 5, 1, 0, 0] call BIS_fnc_findSafePos;
+				(_params select 0) createVehicle (position _safepos);
 			};
         };
 		//Weapons Ammo

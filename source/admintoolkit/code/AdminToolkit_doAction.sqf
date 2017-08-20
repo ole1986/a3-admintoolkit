@@ -33,13 +33,13 @@ try {
                 {
                     if(isNil "AdminToolkit_Player") then { throw "No player selected"; };
 
-                    _selection = [AdminToolkit_Player, AdminToolkit_Params];
+                    _selection = [netId AdminToolkit_Player, AdminToolkit_Params];
                 };
                 case 'givevehicle':
                 {
                     if(isNil "AdminToolkit_Player") then { throw "No player selected"; };
                     
-                    _selection = [lbData [_IDC, lbCurSel _IDC], AdminToolkit_Player];
+                    _selection = [lbData [_IDC, lbCurSel _IDC], netId AdminToolkit_Player];
                 };
                 case 'getweapon': {
                     _tmp = lbData [_IDC, lbCurSel _IDC];

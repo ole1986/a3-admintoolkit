@@ -24,8 +24,8 @@ AdminToolkit_Selection = _value;
 switch (_menuName) do {
     case 'players': {
         // set the selected player globally to use it in other sections
-        AdminToolkit_Player = _text;
-        (_display displayCtrl RscAdminToolkitInfo_IDC) ctrlSetStructuredText parseText format["Player: <t color='#FF0066'>%1</t> selected", AdminToolkit_Player];
+        AdminToolkit_Player = objectFromNetId _value;
+        (_display displayCtrl RscAdminToolkitInfo_IDC) ctrlSetStructuredText parseText format["Player: <t color='#FF0066'>%1</t> selected", name AdminToolkit_Player];
         (_display displayCtrl RscAdminToolkitActionLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Choice action for selected player</t>";
     };
     case 'buildings': {
