@@ -147,10 +147,11 @@ try
 		// Example: [player, 'givevehicle', [<string vehicleClass>, <string playername>]]
         case "givevehicle": {
             _tmp = objectFromNetId (_params select 1);
-			if(!isNil "_tmp") then {
+			if(!(isNil "_tmp")) then {
+				diag_log format ["[ADMINTOOLKIT] Giving vehicle %1 to %2 ", (_params select 0), name _tmp];
 				//find save position for the vehicle
 				_safepos = [_tmp, 1, 50, 5, 1, 0, 0] call BIS_fnc_findSafePos;
-				(_params select 0) createVehicle (position _safepos);
+				(_params select 0) createVehicle _safepos;
 			};
         };
 		//Weapons Ammo
