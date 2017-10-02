@@ -98,15 +98,15 @@ if(!(Test-Path $GameFolder)) {
 
 if($Build) {
     Write-Host "Building Server PBO"
-    $ok = Pack-Pbo "source\admintoolkit_server" "@AdminToolkitServer\addons"
+    $ok = Pack-Pbo "$PWD\source\admintoolkit_server" "$PWD\@AdminToolkitServer\addons"
     if(!$ok) { Exit }
 
     Write-Host "Building Server Config PBO"
-    $ok = Pack-Pbo "source\admintoolkit_servercfg" "@AdminToolkitServer\addons"
+    $ok = Pack-Pbo "$PWD\source\admintoolkit_servercfg" "$PWD\@AdminToolkitServer\addons"
     if(!$ok) { Exit }
     
     Write-Host "Building Client PBO"
-    $ok = Pack-Pbo "source\admintoolkit" "@AdminToolkit\addons" "admintoolkit.biprivatekey"
+    $ok = Pack-Pbo "$PWD\source\admintoolkit" "$PWD\@AdminToolkit\addons" "$PWD\admintoolkit.biprivatekey"
     if(!$ok) { Exit }
 
     Write-Host -ForegroundColor Green "###################"
@@ -129,7 +129,7 @@ if($Install) {
     Start-Sleep 2
 
     Write-Host -NoNewline "Installing AdminToolkit client into $GameFolder..."
-    Copy-Item -Recurse .\@AdminToolkit -Destination $GameFolder -Force
+    Copy-Item -Recurse $PWD\@AdminToolkit -Destination $GameFolder -Force
     Write-Host -ForegroundColor Green "DONE"
     if($Run) {
         Write-Host -NoNewline "Running Arma 3..."
@@ -140,7 +140,7 @@ if($Install) {
 
 if($PatchMission) {
     Write-Host -ForegroundColor Green "Please select your mission file from the dialog:"
-    $missionFile = Get-FileName($PSScriptRoot)
+    $missionFile = Get-FileName($PWD)
 
     if(!$missionFile) {
         Write-Host "Canceled by user action"
@@ -161,7 +161,7 @@ if($PatchMission) {
     }
 
     Write-Host "Copying mission related files into $extractedPath"
-    Copy-Item "source\mission_file\*" -Destination "$extractedPath" -Recurse -Force
+    Copy-Item "$PWD\source\mission_file\*" -Destination "$extractedPath" -Recurse -Force
 
     Write-Host -NoNewline "Trying to patch file $extractedPath\description.ext..."
 
@@ -179,7 +179,7 @@ if($PatchMission) {
     }
 
     Write-Host "Building mission file '$extractedFolder'..."
-    if(! (Pack-Pbo "$extractedPath" "@MissionFile")) {
+    if(! (Pack-Pbo "$extractedPath" "$PWD\@MissionFile")) {
         Exit
     }
 
