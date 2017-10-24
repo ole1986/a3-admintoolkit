@@ -63,7 +63,7 @@ try
 			['message', [_params select 1, format["<t size='1.5'>Sender: %1</t>", name _player]]] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _tmp];
 		};
 		case 'messageall': {
-			diag_log format ["[ADMINTOOLKIT] messageall params: %1 ", str _params];
+			diag_log format ["[ADMINTOOLKIT] messageall params: %1 ", _params];
 			['message', [_params, format["<t size='1.5'>Sender: %1</t>", name _player]]] remoteExecCall ['AdminToolkit_network_receiveResponse', -2];
 		};
 		// Give ammo to selected player
