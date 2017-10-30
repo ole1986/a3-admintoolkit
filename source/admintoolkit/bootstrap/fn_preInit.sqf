@@ -23,11 +23,11 @@ forEach
 	['AdminToolkit_network_receiveResponse', 'admintoolkit\code\AdminToolkit_network_receiveResponse.sqf'],
 	['AdminToolkit_initMenu','admintoolkit\code\AdminToolkit_initMenu.sqf' ],
 	['AdminToolkit_bindKeyEvents', 'admintoolkit\code\AdminToolkit_bindKeyEvents.sqf'],	
-	['AdminToolkit_menuEvents', 'admintoolkit\code\AdminToolkit_menuEvents.sqf'],
+	['AdminToolkit_loadActions', 'admintoolkit\code\AdminToolkit_loadActions.sqf'],
+	['AdminToolkit_loadDetails', 'admintoolkit\code\AdminToolkit_loadDetails.sqf'],
 	['AdminToolkit_addMenu', 'admintoolkit\code\AdminToolkit_addMenu.sqf'],
 	['AdminToolkit_doAction', 'admintoolkit\code\AdminToolkit_doAction.sqf'],
-	['AdminToolkit_listboxChanged', 'admintoolkit\code\AdminToolkit_listboxChanged.sqf'],
-	['AdminToolkit_actionChanged', 'admintoolkit\code\AdminToolkit_actionChanged.sqf'],
+	['AdminToolkit_onActionChanged', 'admintoolkit\code\AdminToolkit_onActionChanged.sqf'],
 	['AdminToolkit_uiList', 'admintoolkit\code\AdminToolkit_uiList.sqf'],
 	['AdminToolkit_addAction', 'admintoolkit\code\AdminToolkit_addAction.sqf'],
 	['AdminToolkit_hasPermission', 'admintoolkit\code\AdminToolkit_hasPermission.sqf'],
@@ -35,7 +35,8 @@ forEach
     ['AdminToolkit_moveStart', 'admintoolkit\code\AdminToolkit_moveStart.sqf'],
     ['AdminToolkit_moveThread', 'admintoolkit\code\AdminToolkit_moveThread.sqf'],
     ['AdminToolkit_moveStop', 'admintoolkit\code\AdminToolkit_moveStop.sqf'],
-	['AdminToolkit_spectatePlayer', 'admintoolkit\code\AdminToolkit_spectatePlayer.sqf']
+	['AdminToolkit_spectatePlayer', 'admintoolkit\code\AdminToolkit_spectatePlayer.sqf'],
+	['AdminToolkit_toggleDetail', 'admintoolkit\code\AdminToolkit_toggleDetail.sqf']
 ];
 
 diag_log "AdminToolkit preInit";

@@ -18,7 +18,7 @@ try {
 
     if(isNil "_action") throw "NO ACTION SELECTED";
     
-    _IDC = RscAdminToolkitList_IDC;
+    _IDC = RscAdminToolkitDetailList_IDC;
    
     if((count _this) > 1) then {
         _selection = _this select 1;
@@ -31,9 +31,8 @@ try {
                 };
                 case 'message': 
                 {
-                    if(isNil "AdminToolkit_Player") then { throw "No player selected"; };
-
-                    _selection = [netId AdminToolkit_Player, AdminToolkit_Params];
+                    _tmp = lbData [_IDC, lbCurSel _IDC];
+                    _selection = [_tmp, AdminToolkit_Params];
                 };
                 case 'givevehicle':
                 {

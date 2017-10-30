@@ -26,14 +26,7 @@ try
 		};
 	//player	
 		case 'getplayers': {
-			lbClear RscAdminToolkitList_IDC;
-			
-			{
-				_tmp = lbAdd [RscAdminToolkitList_IDC, name (objectFromNetId _x)];
-				lbSetData [RscAdminToolkitList_IDC, _tmp, _x];
-				_tmp2 = getText (configFile >> 'CfgWeapons' >> primaryWeapon (objectFromNetId _x) >> 'picture');
-				lbSetPictureRight [RscAdminToolkitList_IDC, _tmp, _tmp2];
-			} forEach _params;
+			missionNamespace setVariable ['AdminToolkit_Players', _params];
 		};
 		case 'message': {
 			_params call AdminToolkit_showMessage;

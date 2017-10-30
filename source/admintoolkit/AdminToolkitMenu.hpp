@@ -6,12 +6,14 @@ class AdminToolkitMenu {
 	{
 		RscAdminToolkitTitle,
 		RscAdminToolkitMainMenu,
-		RscAdminToolkitInfo,
-		RscAdminToolkitSearch,
-		RscAdminToolkitSearchAction,
-		RscAdminToolkitList,
 		RscAdminToolkitActionLabel,
-		RscAdminToolkitActionMenu,
+		RscAdminToolkitEditAction,
+		RscAdminToolkitSearchAction,
+		RscAdminToolkitActionList,
+		RscAdminToolkitDetailLabel,
+		RscAdminToolkitEditDetail,
+		RscAdminToolkitSearchDetail,
+		RscAdminToolkitDetailList,
 		RscAdminToolkitParamLabel,
 		RscAdminToolkitParam,
 		RscAdminToolkitQuick1,
@@ -20,195 +22,215 @@ class AdminToolkitMenu {
 		RscAdminToolkitQuick4,
 		RscAdminToolkitRun,
 		RscAdminToolkitRepeat
-		
 	};
 	////////////////////////////////////////////////////////
-	// GUI EDITOR OUTPUT START (by ole, v1.063, #Tupyxi)
+	// GUI EDITOR OUTPUT START (by ole, v1.063, #Hosyba)
 	////////////////////////////////////////////////////////
 	
 	class RscAdminToolkitTitle: RscStructuredText
 	{
 		idc = 1900;
-
+	
 		text = "# RscAdminToolkitTitle #"; //--- ToDo: Localize;
-		x = 0.775 * safezoneW + safezoneX;
-		y = 0.02 * safezoneH + safezoneY;
-		w = 0.2125 * safezoneW;
+		x = 0.304062 * safezoneW + safezoneX;
+		y = 0.236 * safezoneH + safezoneY;
+		w = 0.15 * safezoneW;
 		h = 0.02 * safezoneH;
 		colorText[] = {0.8,0.15,0.3,1};
 		colorBackground[] = {-1,-1,-1,0};
 	};
-	class RscAdminToolkitMainMenu: RscListbox
+	class RscAdminToolkitMainMenu: RscListBox
 	{
-		idc = 1910;
-		x = 0.775 * safezoneW + safezoneX;
-		y = 0.06 * safezoneH + safezoneY;
-		w = 0.2125 * safezoneW;
-		h = 0.1 * safezoneH;
+		idc = 1901;
+	
+		x = 0.300041 * safezoneW + safezoneX;
+		y = 0.28 * safezoneH + safezoneY;
+		w = 0.15 * safezoneW;
+		h = 0.0799999 * safezoneH;
 		colorText[] = {0.8,0.15,0.3,1};
 		colorBackground[] = {0,0,0,0.7};
 	};
-	class RscAdminToolkitInfo: RscStructuredText
+	class RscAdminToolkitActionLabel: RscStructuredText
 	{
-		idc = 1920;
-
-		text = "# RscAdminToolkitInfo #"; //--- ToDo: Localize;
-		x = 0.775 * safezoneW + safezoneX;
-		y = 0.18 * safezoneH + safezoneY;
-		w = 0.2125 * safezoneW;
-		h = 0.02 * safezoneH;
+		idc = 1902;
+	
+		text = "# RscAdminToolkitActionLabel #"; //--- ToDo: Localize;
+		x = 0.3 * safezoneW + safezoneX;
+		y = 0.38 * safezoneH + safezoneY;
+		w = 0.15 * safezoneW;
+		h = 0.04 * safezoneH;
 		colorBackground[] = {-1,-1,-1,0};
 	};
-	class RscAdminToolkitSearch: RscEdit
+	class RscAdminToolkitEditAction: RscEdit
 	{
-		idc = 1930;
-		onKeyDown = "if ((_this select 1) == 0x1C or (_this select 1) == 0x9C) then { call AdminToolkit_menuEvents };";
-
-		x = 0.775 * safezoneW + safezoneX;
-		y = 0.22 * safezoneH + safezoneY;
-		w = 0.1625 * safezoneW;
+		idc = 1903;
+	
+		x = 0.300041 * safezoneW + safezoneX;
+		y = 0.43994 * safezoneH + safezoneY;
+		w = 0.1 * safezoneW;
 		h = 0.04 * safezoneH;
 		colorBackground[] = {0,0,0,0.7};
 	};
 	class RscAdminToolkitSearchAction: RscButton
 	{
-		idc = 1940;
-		action = "call AdminToolkit_menuEvents";
-
+		idc = 1904;
+		action = "call AdminToolkit_loadActions";
+	
 		text = "Search"; //--- ToDo: Localize;
-		x = 0.9375 * safezoneW + safezoneX;
-		y = 0.22 * safezoneH + safezoneY;
+		x = 0.399969 * safezoneW + safezoneX;
+		y = 0.43994 * safezoneH + safezoneY;
 		w = 0.05 * safezoneW;
 		h = 0.04 * safezoneH;
 	};
-	class RscAdminToolkitList: RscListBox
+	class RscAdminToolkitActionList: RscListBox
 	{
-		idc = 1950;
-
-		x = 0.775 * safezoneW + safezoneX;
-		y = 0.26 * safezoneH + safezoneY;
-		w = 0.2125 * safezoneW;
-		h = 0.36 * safezoneH;
+		idc = 1905;
+		rowHeight = 0.08;
+	
+		x = 0.300041 * safezoneW + safezoneX;
+		y = 0.47998 * safezoneH + safezoneY;
+		w = 0.15 * safezoneW;
+		h = 0.280001 * safezoneH;
 		colorBackground[] = {0,0,0,0.7};
-		rowHeight = 0.1;
-		/*sizeEx = 4;*/
 	};
-	class RscAdminToolkitActionLabel: RscStructuredText
+	class RscAdminToolkitDetailLabel: RscStructuredText
 	{
-		idc = 1960;
-
-		text = "# RscAdminToolkitActionLabel #"; //--- ToDo: Localize;
-		x = 0.775 * safezoneW + safezoneX;
-		y = 0.64 * safezoneH + safezoneY;
-		w = 0.2125 * safezoneW;
+		idc = 1906;
+	
+		text = "# RscAdminToolkitDetailLabel #"; //--- ToDo: Localize;
+		x = 0.4625 * safezoneW + safezoneX;
+		y = 0.38 * safezoneH + safezoneY;
+		w = 0.15 * safezoneW;
 		h = 0.04 * safezoneH;
 		colorBackground[] = {-1,-1,-1,0};
 	};
-	class RscAdminToolkitActionMenu: RscListbox
+	class RscAdminToolkitEditDetail: RscEdit
 	{
-		idc = 1970;
+		idc = 1907;
+	
+		x = 0.462462 * safezoneW + safezoneX;
+		y = 0.43994 * safezoneH + safezoneY;
+		w = 0.1 * safezoneW;
+		h = 0.04 * safezoneH;
+		colorBackground[] = {0,0,0,0.7};
+	};
+	class RscAdminToolkitSearchDetail: RscButton
+	{
+		idc = 1908;
+		action = "call AdminToolkit_loadDetails";
+	
+		text = "Search"; //--- ToDo: Localize;
+		x = 0.562494 * safezoneW + safezoneX;
+		y = 0.43994 * safezoneH + safezoneY;
+		w = 0.05 * safezoneW;
+		h = 0.04 * safezoneH;
+	};
+	class RscAdminToolkitDetailList: RscListBox
+	{
+		idc = 1909;
+		rowHeight = 0.08;
 
-		x = 0.775 * safezoneW + safezoneX;
-		y = 0.7 * safezoneH + safezoneY;
-		w = 0.2125 * safezoneW;
-		h = 0.1 * safezoneH;
+		x = 0.462462 * safezoneW + safezoneX;
+		y = 0.47998 * safezoneH + safezoneY;
+		w = 0.15 * safezoneW;
+		h = 0.280001 * safezoneH;
 		colorBackground[] = {0,0,0,0.7};
 	};
 	class RscAdminToolkitParamLabel: RscStructuredText
 	{
-		idc = 1980;
-
+		idc = 1910;
+	
 		text = "# RscAdminToolkitParamLabel #"; //--- ToDo: Localize;
-		x = 0.775 * safezoneW + safezoneX;
-		y = 0.80 * safezoneH + safezoneY;
-		w = 0.2125 * safezoneW;
-		h = 0.02 * safezoneH;
+		x = 0.45875 * safezoneW + safezoneX;
+		y = 0.236 * safezoneH + safezoneY;
+		w = 0.15 * safezoneW;
+		h = 0.04 * safezoneH;
 		colorBackground[] = {-1,-1,-1,0};
 	};
 	class RscAdminToolkitParam: RscEdit
 	{
-		idc = 1990;
+		idc = 1911;
 		onKeyDown = "";
-
-		x = 0.775 * safezoneW + safezoneX;
-		y = 0.82 * safezoneH + safezoneY;
-		w = 0.2125 * safezoneW;
+	
+		x = 0.4625 * safezoneW + safezoneX;
+		y = 0.28 * safezoneH + safezoneY;
+		w = 0.15 * safezoneW;
 		h = 0.04 * safezoneH;
 		colorBackground[] = {0,0,0,0.7};
 	};
 	class RscAdminToolkitQuick1: RscButton
 	{
-		idc = 1991;
+		idc = 1912;
 		action = "systemChat 'Not yet implemented'";
-
+	
 		text = "QUICK 1"; //--- ToDo: Localize;
-		x = 0.775 * safezoneW + safezoneX;
-		y = 0.88 * safezoneH + safezoneY;
-		w = 0.05 * safezoneW;
+		x = 0.625 * safezoneW + safezoneX;
+		y = 0.44 * safezoneH + safezoneY;
+		w = 0.075 * safezoneW;
 		h = 0.04 * safezoneH;
 		colorBackground[] = {0,0,0,0.8};
 	};
 	class RscAdminToolkitQuick2: RscButton
 	{
-		idc = 1992;
+		idc = 1913;
 		action = "systemChat 'Not yet implemented'";
-
+	
 		text = "QUICK 2"; //--- ToDo: Localize;
-		x = 0.825 * safezoneW + safezoneX;
-		y = 0.88 * safezoneH + safezoneY;
-		w = 0.05 * safezoneW;
+		x = 0.625 * safezoneW + safezoneX;
+		y = 0.502 * safezoneH + safezoneY;
+		w = 0.075 * safezoneW;
 		h = 0.04 * safezoneH;
 		colorBackground[] = {0,0,0,0.8};
 	};
 	class RscAdminToolkitQuick3: RscButton
 	{
-		idc = 1993;
+		idc = 1914;
 		action = "systemChat 'Not yet implemented'";
-
+	
 		text = "QUICK 3"; //--- ToDo: Localize;
-		x = 0.8875 * safezoneW + safezoneX;
-		y = 0.88 * safezoneH + safezoneY;
-		w = 0.05 * safezoneW;
+		x = 0.625 * safezoneW + safezoneX;
+		y = 0.56 * safezoneH + safezoneY;
+		w = 0.075 * safezoneW;
 		h = 0.04 * safezoneH;
 		colorBackground[] = {0,0,0,0.8};
 	};
 	class RscAdminToolkitQuick4: RscButton
 	{
-		idc = 1994;
+		idc = 1915;
 		action = "systemChat 'Not yet implemented'";
-
+	
 		text = "QUICK 4"; //--- ToDo: Localize;
-		x = 0.9375 * safezoneW + safezoneX;
-		y = 0.88 * safezoneH + safezoneY;
-		w = 0.05 * safezoneW;
+		x = 0.625 * safezoneW + safezoneX;
+		y = 0.62 * safezoneH + safezoneY;
+		w = 0.075 * safezoneW;
 		h = 0.04 * safezoneH;
 		colorBackground[] = {0,0,0,0.8};
 	};
 	class RscAdminToolkitRun: RscButton
 	{
-		idc = 1995;
+		idc = 1916;
 		action = "";
-
+	
 		text = "Run action"; //--- ToDo: Localize;
-		x = 0.8875 * safezoneW + safezoneX;
-		y = 0.94 * safezoneH + safezoneY;
-		w = 0.1 * safezoneW;
+		x = 0.625 * safezoneW + safezoneX;
+		y = 0.28 * safezoneH + safezoneY;
+		w = 0.075 * safezoneW;
 		h = 0.04 * safezoneH;
 		colorBackground[] = {0,0,0,0.8};
 	};
 	class RscAdminToolkitRepeat: RscButton
 	{
-		idc = 1996;
+		idc = 1917;
 		action = "AdminToolkit_LastAction call AdminToolkit_doAction;";
-
+	
 		text = "Repeat action (F5)"; //--- ToDo: Localize;
-		x = 0.775 * safezoneW + safezoneX;
-		y = 0.94 * safezoneH + safezoneY;
-		w = 0.1 * safezoneW;
+		x = 0.625 * safezoneW + safezoneX;
+		y = 0.34 * safezoneH + safezoneY;
+		w = 0.075 * safezoneW;
 		h = 0.04 * safezoneH;
 		colorBackground[] = {0,0,0,0.8};
 	};
 	////////////////////////////////////////////////////////
 	// GUI EDITOR OUTPUT END
-	////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////	
 };

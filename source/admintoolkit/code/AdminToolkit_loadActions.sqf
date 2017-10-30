@@ -7,7 +7,7 @@
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
 
-private['_filter','_display','_menuIndex', '_menuName', '_menuData', '_list'];
+private['_filter','_display','_menuIndex', '_menuName', '_menuData', '_list', '_displayName'];
 disableSerialization;
 _display = findDisplay 40000;
 
@@ -19,19 +19,21 @@ _menuData = lbData [RscAdminToolkitMainMenu_IDC, _menuIndex];
 AdminToolkit_MenuIndex = _menuIndex;
 
 // ### Search filter
-_filter = ctrlText RscAdminToolkitSearch_IDC;
+_filter = ctrlText RscAdminToolkitEditAction_IDC;
 if(_filter != "") then {
 	// search filter is set, so reset the textbox
-	ctrlSetText [RscAdminToolkitSearch_IDC, ""];	
+	ctrlSetText [RscAdminToolkitEditAction_IDC, ""];	
 	// and tell user in systemChat its filtered view
 	systemChat format["Searching for '%1' in %2", _filter, _menuName];	
 };
 
 AdminToolkit_Action = nil;
-// clear listbox and selection event
-lbClear RscAdminToolkitList_IDC;
-// clear the action menu as well
-lbClear RscAdminToolkitActionMenu_IDC;
+
+// clear listbox and selection
+lbClear RscAdminToolkitActionList_IDC;
+lbSetCurSel [RscAdminToolkitActionList_IDC, -1];
+
+false call AdminToolkit_toggleDetail;
 
 missionNamespace setVariable ['AdminToolkit_OnExecute', {AdminToolkit_Params = ctrlText RscAdminToolkitParam_IDC; [] call AdminToolkit_doAction;}];
 
@@ -42,10 +44,9 @@ switch (_menuName) do {
 		// get player list from server while doing a receiveRequest
 		[player, 'getplayers'] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];
 
-		{
-			_x call AdminToolkit_addAction;
-		} forEach [
+		_list = [
 			["Send Message", "message"],
+			["Send Message to ALL", "messageall"],
 			["Give Ammo (primary)", "giveammo"],
 			["TP To Player",'tp2player'],
 			["TP to Me", 'tpplayer'],
@@ -57,31 +58,19 @@ switch (_menuName) do {
 		];
 	};
 	case "vehicles": {
-		{
-			_x call AdminToolkit_addAction;
-		} forEach [
+		_list = [
 			["Spawn at Me",'getvehicle'],
 			["Spawn at Player", 'givevehicle']
 		];
-
-		_list = "((getText(_x >> 'VehicleClass') in ['Car', 'Armored', 'Air']) and (getNumber(_x >> 'scope') == 2))" configClasses (configFile >> "CfgVehicles");
-		[RscAdminToolkitList_IDC, _list, _filter] call AdminToolkit_uiList;
 	};
 	case "weapons": {
-		{
-			_x call AdminToolkit_addAction;
-		} forEach [
+		_list = [
 			["Get Weapon", 'getweapon'],
 			["Get Ammo", 'getammo']
 		];
-
-		_list = "((getNumber(_x >> 'Type') > 0) and (getNumber(_x >> 'Type') <= 4) and (configName _x find '_Base' <= 0) and (configName _x find '_base' <= 0) and (getNumber(_x >> 'scope') == 2))" configClasses (configFile >> "CfgWeapons");
-		[RscAdminToolkitList_IDC, _list, _filter] call AdminToolkit_uiList;
 	};
 	case "buildings": {
-		{
-			_x call AdminToolkit_addAction;
-		} forEach [
+		_list = [
 			["Build (temporary)", 'build'],
 			["Build (persistent)", 'buildpers'],
 			["Remove", "buildremove"],
@@ -89,43 +78,40 @@ switch (_menuName) do {
 			["Save Persistent", 'savepersistent'],
 			["Clear Persistent", 'clearpersistent']
 		];
-
-		_list = "(configName _x isKindOf 'Building') and !(configName _x isKindOf 'ReammoBox') and (getNumber(_x >> 'scope') == 2)" configClasses (configFile>>"CfgVehicles");
-		[RscAdminToolkitList_IDC, _list, _filter] call AdminToolkit_uiList;
 	};
 	case "other": {
-		{
-			_x call AdminToolkit_addAction;
-		} forEach [
+		_list = [
 			["Spawn", 'spawn']
 		];
-
-		_list ="((configName _x isKindOf 'ReammoBox') and (getNumber(_x >> 'scope') == 2))" configClasses (configFile >> "CfgVehicles");
-		[RscAdminToolkitList_IDC, _list, _filter] call AdminToolkit_uiList;
 	};
 	case "items": {
-		{
-			_x call AdminToolkit_addAction;
-		} forEach [
+		_list = [
 			["Get Item", 'getitem']
 		];
-
-		_list = "(getNumber(_x >> 'Type') == 256) and (getNumber(_x >> 'scope') == 2)" configClasses (configFile >> "CfgMagazines");
-		[RscAdminToolkitList_IDC, _list, _filter] call AdminToolkit_uiList;
 	};
 	default {
 		systemChat format["Verifing mod command for %1 (%2)", _menuName, _menuData];
 		if(!(isNil "_menuData")) then {
 			_list = call (missionNamespace getVariable[_menuData, nil]);
-			[RscAdminToolkitList_IDC, _list, _filter] call AdminToolkit_uiList;
+			//[RscAdminToolkitList_IDC, _list, _filter] call AdminToolkit_uiList;
 		};
 		
 	};
 };
 
+{
+	_displayName = _x select 0;
+
+	if((_filter != "") and (toLower _displayName find _filter >= 0)) then {
+		_x call AdminToolkit_addAction;
+	} else {
+		if(_filter == "") then { 
+			_x call AdminToolkit_addAction;
+		};
+	};
+} forEach _list;
+
 // set execute button to di the action
 buttonSetAction [RscAdminToolkitRun_IDC, '[] call AdminToolkit_OnExecute'];
-// allow user to execute action using dbl-click
-(_display displayCtrl RscAdminToolkitActionMenu_IDC) ctrlSetEventHandler ["LBDblClick",'[] call AdminToolkit_OnExecute'];
 
 true;

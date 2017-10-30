@@ -20,6 +20,9 @@ missionNamespace setVariable ['AdminToolkit_Action', nil];
 missionNamespace setVariable ['AdminToolkit_Params', nil];
 // The current selected player (also used in spectator mode)
 missionNamespace setVariable ['AdminToolkit_Player', nil];
+// all player netIds received from server
+missionNamespace setVariable ['AdminToolkit_Players', nil];
+
 // Used to repeat the last action being called by AdminToolkit_doAction
 missionNamespace setVariable ['AdminToolkit_LastAction', []];
 

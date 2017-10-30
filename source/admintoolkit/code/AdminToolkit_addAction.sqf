@@ -23,8 +23,8 @@ if(!(isNil "_check")) then {
 };
 
 if(_hasPerm) then {
-    _index = lbAdd [RscAdminToolkitActionMenu_IDC, _title];
-    lbSetData [RscAdminToolkitActionMenu_IDC, _index, _command];
+    _index = lbAdd [RscAdminToolkitActionList_IDC, _title];
+    lbSetData [RscAdminToolkitActionList_IDC, _index, _command];
 };
 
 _index;

@@ -48,21 +48,33 @@ if(isClass(missionConfigFile >> 'CfgAdminToolkitCustomMod')) then {
 
 if(!isNil "AdminToolkit_MenuIndex") then {
 	lbSetCurSel [RscAdminToolkitMainMenu_IDC, AdminToolkit_MenuIndex];
-	call AdminToolkit_menuEvents;
+	call AdminToolkit_loadActions;
 } else {
 	// display some hints
-	(_display displayCtrl RscAdminToolkitInfo_IDC) ctrlSetStructuredText parseText (selectRandom AdminToolkit_Hints);
+	(_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText (selectRandom AdminToolkit_Hints);
 };
 
 AdminToolkit_Selection = nil;
 AdminToolkit_Player = nil;
 
+// hide the second list initially
+false call AdminToolkit_toggleDetail;
+
+// clear default descriptions
+(_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "";
+(_display displayCtrl RscAdminToolkitDetailLabel_IDC) ctrlSetStructuredText parseText "";
+// hide the parameters edit field by default
+(_display displayCtrl RscAdminToolkitParam_IDC) ctrlShow false;
+
 // add the event handler for the main menu
-(_display displayCtrl RscAdminToolkitMainMenu_IDC) ctrlSetEventHandler ["LBSelChanged","call AdminToolkit_menuEvents"];
-(_display displayCtrl RscAdminToolkitActionMenu_IDC) ctrlSetEventHandler ["LBSelChanged","call AdminToolkit_actionChanged"];
+(_display displayCtrl RscAdminToolkitMainMenu_IDC) ctrlSetEventHandler ["LBSelChanged","call AdminToolkit_loadActions"];
+// add the event handler for the actions menu
+(_display displayCtrl RscAdminToolkitActionList_IDC) ctrlSetEventHandler ["LBSelChanged","call AdminToolkit_onActionChanged"];
+(_display displayCtrl RscAdminToolkitEditAction_IDC) ctrlSetEventHandler ["KeyDown", "if ((_this select 1) == 0x1C or (_this select 1) == 0x9C) then { call AdminToolkit_loadActions };"];
 
 // setup the event onLbSelChanged for the centered listbox
-(_display displayCtrl RscAdminToolkitList_IDC) ctrlSetEventHandler ['LBSelChanged', "call AdminToolkit_listboxChanged"];
+//(_display displayCtrl RscAdminToolkitDetailList_IDC) ctrlSetEventHandler ['LBSelChanged', "call AdminToolkit_onListboxChanged"];
+(_display displayCtrl RscAdminToolkitEditDetail_IDC) ctrlSetEventHandler ["KeyDown", "if ((_this select 1) == 0x1C or (_this select 1) == 0x9C) then { call AdminToolkit_loadDetails };"];
 
 (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "";
 (_display displayCtrl RscAdminToolkitParam_IDC) ctrlSetEventHandler ['KillFocus', "AdminToolkit_Params = ctrlText RscAdminToolkitParam_IDC"];
