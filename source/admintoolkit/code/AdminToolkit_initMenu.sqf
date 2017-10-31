@@ -60,7 +60,13 @@ false call AdminToolkit_toggleDetail;
 // clear default descriptions
 (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "";
 (_display displayCtrl RscAdminToolkitDetailLabel_IDC) ctrlSetStructuredText parseText "";
-(_display displayCtrl RscAdminToolkitActionLabel_IDC) ctrlSetStructuredText parseText "Pick an entry from Main Menu to display the actions";
+
+if(!(isDamageAllowed player)) then {
+	(_display displayCtrl RscAdminToolkitActionLabel_IDC) ctrlSetStructuredText parseText "<t color='#c72651'>Godmode is enabled</t>";
+} else {
+	(_display displayCtrl RscAdminToolkitActionLabel_IDC) ctrlSetStructuredText parseText "Pick an entry from Main Menu to display the actions";	
+};
+
 // hide the parameters edit field by default
 (_display displayCtrl RscAdminToolkitParam_IDC) ctrlShow false;
 

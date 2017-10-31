@@ -128,12 +128,16 @@ try
 		// Enable the god mode (client callback required)
 		// Example: [player, 'godmodeon', null]
 		case "godmodeon": {
-			["godmode", true] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
+			//["godmode", true] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
+			{ player allowDamage false; } remoteExecCall ["call", owner _player];
+			diag_log format["[ADMINTOOLKIT] Godmode enabled for %1", name _player];
 		};
 		// Disable the god mode (client callback required)
 		// Example: [player, 'godmodeoff', null]
 		case "godmodeoff": {
-			["godmode", false] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
+			{ player allowDamage true; } remoteExecCall ["call", owner _player];
+			diag_log format["[ADMINTOOLKIT] Godmode disabled for %1", name _player];
+			//["godmode", false] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
 		};
 		//Vehicles
 		// spawn a vehicle with className defined in parameter 2 near the admin

@@ -37,11 +37,6 @@ try
 			_params = objectFromNetId _params;
 			[_params] call AdminToolkit_spectatePlayer;
 		};
-	//self
-		case 'godmode': {
-			if(_params) then { player allowDamage false; } else { player allowDamage true; };
-			systemChat format["Godmode %1", str _params];
-		};
 	//Building
 		case 'buildpers';
         case 'build': {
