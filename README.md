@@ -3,16 +3,12 @@
 
 The ATK is used to administrate Arma 3 multiplayer servers and be extended with user extensions
 
-<p>
 <img src="images/a3-atk-players.jpg" align="left" width="200" title="Manage players">
 <img src="images/a3-atk-buildings.jpg" align="left" width="200" title="Manage Buildings">
-<img src="images/a3-atk-vehicles.jpg" align="left" width="200" title="Spawn vehicles">
-</p>
-</p>
+<img src="images/a3-atk-vehicles.jpg" align="" width="200" title="Spawn vehicles">
 <img src="images/a3-atk-weapons.jpg" align="left" width="200" title="...and Weapons">
 <img src="images/a3-atk-mod.jpg" align="left" width="200" title="...and Weapons">
-<img src="images/a3-atk-mod-exilemoney.jpg" align="left" width="200" title="...and Weapons">
-</p>
+<img src="images/a3-atk-mod-exilemoney.jpg" align="" width="200" title="...and Weapons">
 
 **Videos**
 
