@@ -1,5 +1,5 @@
 ## AdminToolkit for Arma 3
-<sup>**Version 2.1.0** | Author: ole1986 | This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License</sup>
+<sup>**Version 2.1.1** | Author: ole1986 | This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License</sup>
 
 The ATK is used to administrate Arma 3 multiplayer servers and be extended with user extensions
 
