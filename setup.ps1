@@ -31,7 +31,11 @@ function Pack-Pbo($SourcePath, $DestinationPath, $PrivateKeyPath)
     }
     $SourcePath = [System.IO.Path]::GetFullPath($SourcePath)
     $DestinationPath = [System.IO.Path]::GetFullPath($DestinationPath)
-    
+    $TempPath = "$env:TEMP\$([System.IO.Path]::GetFileName($SourcePath))"
+
+    # Cleanup AddonBuilder temp path
+    Remove-Item $TempPath -Recurse -Force -ErrorAction SilentlyContinue
+
     if(($PrivateKeyPath) -and (Test-Path $PrivateKeyPath)) {
         $PrivateKeyPath = [System.IO.Path]::GetFullPath($PrivateKeyPath)
         $ERR = & "$AddonBuilder" "$SourcePath" "$DestinationPath" -packonly -sign="$PrivateKeyPath"
@@ -52,7 +56,6 @@ function Unpack-Pbo($SourceFile, $DestinationPath)
     $BankRev = "$(Get-SteamPath)/steamapps/common/Arma 3 Tools/BankRev/BankRev.exe"
     & "$BankRev" -f "$DestinationPath" "$SourceFile"
 }
-
 
 function Get-FileName($initialDirectory)
 {
@@ -148,10 +151,15 @@ if($PatchMission) {
     }
 
     $extractedFolder = (Get-Item $missionFile).Basename
-    New-Item "$env:TEMP\atk" -ItemType Directory -Force | Out-Null
-    $extractedPath = "$env:TEMP\atk\$extractedFolder"
+    New-Item "$env:TEMP\build" -ItemType Directory -Force | Out-Null
+    $extractedPath = "$env:TEMP\build\$extractedFolder"
+    
+    # Cleanup existing folder
+    Write-Host "Cleanup previous temp folder.."
+    Remove-Item -Recurse -Force "$extractedPath\*" -ErrorAction SilentlyContinue
+
     # Unpack the mission file
-    Unpack-Pbo "$missionFile" "$env:TEMP\atk"
+    Unpack-Pbo "$missionFile" "$env:TEMP\build"
 
     $content = Get-Content "$extractedPath\description.ext"
     

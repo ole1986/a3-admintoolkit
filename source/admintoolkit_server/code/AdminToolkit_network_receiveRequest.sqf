@@ -135,7 +135,7 @@ try
 		case "godmodeoff": {
 			["godmode", false] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
 		};
-	//Vehicles	
+		//Vehicles
 		// spawn a vehicle with className defined in parameter 2 near the admin
 		// Example: [player, 'getvehicle', <string vehicleClass>]
         case "getvehicle": {
@@ -154,7 +154,14 @@ try
 				(_params select 0) createVehicle _safepos;
 			};
         };
-		//Weapons Ammo
+		// remove a vehicle using its netId as parameter
+		// Example: [player, 'removevehicle', [<netId>]];
+		case "removevehicle": {
+			_tmp = objectFromNetId (_params select 0);
+			diag_log format ["[ADMINTOOLKIT] Deleting vehicle %1 with netId %2 ", str _tmp, (_params select 0)];
+			deleteVehicle _tmp;
+		};
+		// Weapons Ammo
 		// get a weapon for admin who called this command
 		// Example: [player, 'getweapon', [<string weaponClass>, <string magazineClass>]]
         case "getweapon": {

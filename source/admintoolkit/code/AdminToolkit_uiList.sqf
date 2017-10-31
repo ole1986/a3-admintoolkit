@@ -29,8 +29,15 @@ _picture = "";
 			_displayName = _x select 0;
 			_className = _x select 1;
 		} else {
-			_className = str _x;
-			_displayName = _className;
+			if(typeName _x == "OBJECT") then {
+				_displayName = getText(configFile >> "CfgVehicles" >> (typeof _x) >> "displayName");
+				_picture = getText(configFile >> "CfgVehicles" >> (typeof _x) >> "picture");
+				_className = netId _x;
+			} else {
+				_className = str _x;
+				_displayName = _className;
+			}
+			
 		};
 	};
 	

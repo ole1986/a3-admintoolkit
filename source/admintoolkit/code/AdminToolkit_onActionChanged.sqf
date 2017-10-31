@@ -37,6 +37,15 @@ switch (_value) do {
         // show the parameters edit field
         (_display displayCtrl RscAdminToolkitParam_IDC) ctrlShow true;
     };
+    case 'tp2player': {
+        (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Select player to want to teleport to</t>";
+    };
+    case 'tpplayer': {
+        (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Select player to teleport here</t>";
+    };
+    case 'giveammo': {
+        (_display displayCtrl RscAdminToolkitDetailLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Select player you want to give ammo/t>";
+    };
     case 'specplayer': {
         (_display displayCtrl RscAdminToolkitDetailLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Select player you want to spectate</t>";
     };
@@ -51,7 +60,7 @@ switch (_value) do {
         (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Temporary offline</t>";
         (_display displayCtrl RscAdminToolkitRun_IDC) ctrlShow false;
         (_display displayCtrl RscAdminToolkitRepeat_IDC) ctrlShow false;
-    };
+    };       
 };
 
 call AdminToolkit_loadDetails;

@@ -34,11 +34,17 @@ try {
                     _tmp = lbData [_IDC, lbCurSel _IDC];
                     _selection = [_tmp, AdminToolkit_Params];
                 };
+                case 'messageall': {
+                    _selection = AdminToolkit_Params;
+                };
                 case 'givevehicle':
                 {
                     if(isNil "AdminToolkit_Player") then { throw "No player selected"; };
                     
                     _selection = [lbData [_IDC, lbCurSel _IDC], netId AdminToolkit_Player];
+                };
+                case 'removevehicle': {
+                    _selection = [lbData [_IDC, lbCurSel _IDC]];
                 };
                 case 'getweapon': {
                     _tmp = lbData [_IDC, lbCurSel _IDC];

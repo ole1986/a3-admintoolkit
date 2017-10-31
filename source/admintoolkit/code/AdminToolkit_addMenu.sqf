@@ -15,13 +15,13 @@ _title = _this select 0;
 _index = lbAdd [RscAdminToolkitMainMenu_IDC, _title];
 // if extension parameter is set, load the file!
 if(count _this > 1) then {
-    _size = lbSize RscAdminToolkitMainMenu_IDC;
     _ext = _this select 1;
     // initialize the extension from atk folder
     _code = compileFinal preprocessFileLineNumbers format["atk\extension\%1.sqf", _ext];
-    missionNamespace setVariable [format["AdminToolkit_mod%1",str _size], _code];
+    missionNamespace setVariable [format["AdminToolkit_%1", _ext], _code];
+    missionNamespace setVariable [format["AdminToolkit_%1_loadDetails", _ext], ""];
 
-    lbSetData [RscAdminToolkitMainMenu_IDC, _index, format["AdminToolkit_mod%1",str _size]];
+    lbSetData [RscAdminToolkitMainMenu_IDC, _index, format["AdminToolkit_%1",_ext]];
 };
 
 _index;

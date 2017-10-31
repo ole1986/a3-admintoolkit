@@ -49,9 +49,6 @@ if(isClass(missionConfigFile >> 'CfgAdminToolkitCustomMod')) then {
 if(!isNil "AdminToolkit_MenuIndex") then {
 	lbSetCurSel [RscAdminToolkitMainMenu_IDC, AdminToolkit_MenuIndex];
 	call AdminToolkit_loadActions;
-} else {
-	// display some hints
-	(_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText (selectRandom AdminToolkit_Hints);
 };
 
 AdminToolkit_Selection = nil;
@@ -63,6 +60,7 @@ false call AdminToolkit_toggleDetail;
 // clear default descriptions
 (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "";
 (_display displayCtrl RscAdminToolkitDetailLabel_IDC) ctrlSetStructuredText parseText "";
+(_display displayCtrl RscAdminToolkitActionLabel_IDC) ctrlSetStructuredText parseText "Pick an entry from Main Menu to display the actions";
 // hide the parameters edit field by default
 (_display displayCtrl RscAdminToolkitParam_IDC) ctrlShow false;
 

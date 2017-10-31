@@ -7,7 +7,7 @@
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
 
-private['_filter','_display', '_list', '_show'];
+private['_filter','_display', '_list', '_tmp', '_tmp2', '_show', '_menuData', '_extCode'];
 disableSerialization;
 _display = findDisplay 40000;
 
@@ -46,6 +46,11 @@ switch (AdminToolkit_Action) do {
 		[RscAdminToolkitDetailList_IDC, _list, _filter] call AdminToolkit_uiList;
 		_show = true;
 	};
+	case "removevehicle": {
+		_list = nearestObjects [player, ["Car", "Tank", "Helicopter", "Plane"], 50];
+		[RscAdminToolkitDetailList_IDC, _list, _filter] call AdminToolkit_uiList;
+		_show = true;
+	};
 	case "getammo";
 	case "getweapon": {
 		_list = "((getNumber(_x >> 'Type') > 0) and (getNumber(_x >> 'Type') <= 4) and (configName _x find '_Base' <= 0) and (configName _x find '_base' <= 0) and (getNumber(_x >> 'scope') == 2))" configClasses (configFile >> "CfgWeapons");
@@ -68,19 +73,26 @@ switch (AdminToolkit_Action) do {
 		[RscAdminToolkitDetailList_IDC, _list, _filter] call AdminToolkit_uiList;
 		_show = true;
 	};
-	case "godmodeon";
 	case "messageall";
+	case "godmodeoff";
 	case "givevehicle";
 	case "buildremove";
 	case "buildinfopersistent";
 	case "savepersistent";
 	case "clearpersistent";
-	case "godmodeoff": {
-		_show = false;
+	case "godmodeon": {
+		/* manage all non extension actions not listed above */	
 	};
 	default {
-		_show = true;
-	};
+		_menuData = lbData [RscAdminToolkitMainMenu_IDC, AdminToolkit_MenuIndex];
+        _extCode = missionNamespace getVariable [format["%1_loadDetails", _menuData], ""];
+        if(typeName _extCode == "CODE") then {
+            systemChat format["Calling %1 action %2", _menuData, _value];
+            _show = [_filter] call _extCode;
+        } else {
+            systemChat format["ERROR: Failed to call action %1", _value];
+        };
+    };
 };
 
 _show call AdminToolkit_toggleDetail;

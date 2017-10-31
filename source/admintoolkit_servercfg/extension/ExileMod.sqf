@@ -41,23 +41,24 @@ try
 		};
 		case 'exile_repvehicle':
 		{
-			// _params =vehicle class name
-			_params setDamage 0;
+			_tmp = objectFromNetId _params;
+			_tmp setDamage 0;
 			
 			[_playerObject, "toastRequest", ["SuccessTitleOnly", [format["%1 Repaired!", _params]  ]]] call ExileServer_system_network_send_to;
 		};
 		case 'exile_destvehicle':
 		{
-			// _params =vehicle class name
-			_params setDamage 100;
+			_tmp = objectFromNetId _params;
+			_tmp setDamage 100;
 			
 			[_playerObject, "toastRequest", ["SuccessTitleOnly", [format["%1 Destroyed!", _params]  ]]] call ExileServer_system_network_send_to;	
 		};
 		case 'exile_delvehicle':
 		{
+			_tmp = objectFromNetId _params;
 			// _params =vehicle class name
-			_params call ExileServer_object_vehicle_remove;
-			deleteVehicle _params;
+			_tmp call ExileServer_object_vehicle_remove;
+			deleteVehicle _tmp;
 			
 			[_playerObject, "toastRequest", ["SuccessTitleOnly", [format["%1 Deleted!", _params]  ]]] call ExileServer_system_network_send_to;	
 		};

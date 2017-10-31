@@ -60,7 +60,8 @@ switch (_menuName) do {
 	case "vehicles": {
 		_list = [
 			["Spawn at Me",'getvehicle'],
-			["Spawn at Player", 'givevehicle']
+			["Spawn at Player", 'givevehicle'],
+			["Remove Nearby", 'removevehicle']
 		];
 	};
 	case "weapons": {
@@ -93,7 +94,6 @@ switch (_menuName) do {
 		systemChat format["Verifing mod command for %1 (%2)", _menuName, _menuData];
 		if(!(isNil "_menuData")) then {
 			_list = call (missionNamespace getVariable[_menuData, nil]);
-			//[RscAdminToolkitList_IDC, _list, _filter] call AdminToolkit_uiList;
 		};
 		
 	};
