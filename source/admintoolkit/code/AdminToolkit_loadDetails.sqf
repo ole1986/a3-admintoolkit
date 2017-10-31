@@ -80,7 +80,8 @@ switch (AdminToolkit_Action) do {
 	case "buildinfopersistent";
 	case "savepersistent";
 	case "clearpersistent";
-	case "godmodeon": {
+	case "godmodeon";
+	case "": {
 		/* manage all non extension actions not listed above */	
 	};
 	default {

@@ -1,16 +1,6 @@
 private['_result', '_object', '_tmp'];
 disableSerialization;
 
-// Use the foreach to add some actions into the action list, once EXTENSION is selected
-{
-    _x call AdminToolkit_addAction;
-} forEach [
-    ['New Enemy AI', 'vai_enemy'],
-    ['New Friendly AI', 'vai_friend'],
-    ['Attack Target', 'vai_attack'],
-    ['Delete selected AI', 'vai_delete']
-];
-
 // overwrite the OnExecute code from AdminToolkit_OnExecute
 AdminToolkit_OnExecute = {
     switch (AdminToolkit_Action) do {
@@ -32,8 +22,19 @@ AdminToolkit_OnExecute = {
             systemChat format["Unknown action %1", AdminToolkit_Action];
          };
     };
-
 };
+
+AdminToolkit_VanillaAI_loadDetails = {
+    private ["_filter","_list", "_show"];
+
+    _filter = _this select 0;
+    _show = false;
+
+    (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Sorry, not fully implemented yet:</t>";
+
+    _show;
+};
+
 
 VanillaAI_UnitList = {
     private['_names', '_object'];
@@ -53,5 +54,10 @@ VanillaAI_UnitList = {
     [RscAdminToolkitList_IDC, _names, ""] call AdminToolkit_uiList;
 };
 
-_result = [VanillaAI_Units] call VanillaAI_UnitList;
+_result = [
+    ['New Enemy AI', 'vai_enemy'],
+    ['New Friendly AI', 'vai_friend'],
+    ['Attack Target', 'vai_attack'],
+    ['Delete selected AI', 'vai_delete']
+];
 _result;
