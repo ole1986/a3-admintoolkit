@@ -10,14 +10,13 @@ AdminToolkit_OnExecute = {
     _data = lbData [RscAdminToolkitDetailList_IDC, lbCurSel RscAdminToolkitDetailList_IDC];
 
     switch (AdminToolkit_Action) do {
-        case "exile_repvehicle": {
-            ['exile_repvehicle', _data] call AdminToolkit_doAction;
-        };
-        case "exile_destvehicle": {
-            ['exile_destvehicle', _data] call AdminToolkit_doAction;
-        };
+        case "exile_repvehicle";
+        case "exile_destvehicle";
         case "exile_delvehicle": {
-            ['exile_delvehicle', _data] call AdminToolkit_doAction;
+            [AdminToolkit_Action, _data] call AdminToolkit_doAction;
+        };
+        case "exile_setvehiclepin": {
+            [AdminToolkit_Action, [_data, AdminToolkit_Params]] call AdminToolkit_doAction;
         };
         case "exile_getvehicle": {
             [AdminToolkit_Action] call AdminToolkit_doAction;
@@ -56,6 +55,14 @@ AdminToolkit_ExileMod_loadDetails = {
             [RscAdminToolkitDetailList_IDC, _list, _filter] call AdminToolkit_uiList;
             _show = true;
         };
+        case "exile_setvehiclepin": {
+            _list = nearestObjects [player, ["Car", "Tank", "Helicopter", "Plane"], 50];
+		    [RscAdminToolkitDetailList_IDC, _list, _filter] call AdminToolkit_uiList;
+
+            (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Enter a valid PIN here (E.g. 1234):</t>";
+            (_display displayCtrl RscAdminToolkitParam_IDC) ctrlShow true;
+            _show = true;
+        };
         case "exile_getmoney": {
             (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>How much Money, Sir? (E.g. 10000):</t>";
             (_display displayCtrl RscAdminToolkitParam_IDC) ctrlShow true;
@@ -72,6 +79,7 @@ _result = [
     ['Repair (nearby)', 'exile_repvehicle'],
     ['Destroy (nearby)', 'exile_destvehicle'],
     ['Remove (nearby)', 'exile_delvehicle'],
+    ['Set Vehicle PIN (nearby)', 'exile_setvehiclepin'],
     ['Perm Spawn', 'exile_getvehicle'],
     ['Get Money', 'exile_getmoney'],
     ['Get Respect', 'exile_getscore'],

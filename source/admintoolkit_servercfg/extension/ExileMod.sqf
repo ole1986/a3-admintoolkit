@@ -36,29 +36,39 @@ try
 			_object call ExileServer_object_vehicle_database_insert;
 			_object call ExileServer_object_vehicle_database_update;
 			
-			[_playerObject, "toastRequest", ["SuccessTitleOnly", [format["%1 Spawned!", _params]  ]]] call ExileServer_system_network_send_to;	
+			[_playerObject, "toastRequest", ["SuccessTitleOnly", [format["%1 Spawned!", _params]  ]]] call ExileServer_system_network_send_to;
 			[_playerObject, "dynamicTextRequest", [format ["UNLOCK PIN: %1", _tmp2], 0, 2, "#ffffff"]] call ExileServer_system_network_send_to;
+		};
+		case 'exile_setvehiclepin': {
+			_tmp = _params select 1;
+			_object = objectFromNetId (_params select 0);
+			_object setVariable ["ExileAccessCode", _tmp];
+			_object call ExileServer_object_vehicle_database_update;
+
+			_tmp2 = typeof _object;
+
+			[_playerObject, "toastRequest", ["SuccessTitleOnly", [format["PIN %1 set to %2", _tmp, _tmp2]  ]]] call ExileServer_system_network_send_to;	
 		};
 		case 'exile_repvehicle':
 		{
-			_tmp = objectFromNetId _params;
-			_tmp setDamage 0;
+			_object = objectFromNetId _params;
+			_object setDamage 0;
 			
 			[_playerObject, "toastRequest", ["SuccessTitleOnly", [format["%1 Repaired!", _params]  ]]] call ExileServer_system_network_send_to;
 		};
 		case 'exile_destvehicle':
 		{
-			_tmp = objectFromNetId _params;
-			_tmp setDamage 100;
+			_object = objectFromNetId _params;
+			_object setDamage 100;
 			
 			[_playerObject, "toastRequest", ["SuccessTitleOnly", [format["%1 Destroyed!", _params]  ]]] call ExileServer_system_network_send_to;	
 		};
 		case 'exile_delvehicle':
 		{
-			_tmp = objectFromNetId _params;
+			_object = objectFromNetId _params;
 			// _params =vehicle class name
-			_tmp call ExileServer_object_vehicle_remove;
-			deleteVehicle _tmp;
+			_object call ExileServer_object_vehicle_remove;
+			deleteVehicle _object;
 			
 			[_playerObject, "toastRequest", ["SuccessTitleOnly", [format["%1 Deleted!", _params]  ]]] call ExileServer_system_network_send_to;	
 		};
