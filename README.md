@@ -1,6 +1,8 @@
 ## AdminToolkit for Arma 3
 <sup>**Version 2.1.1** | Author: ole1986 | This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License</sup>
 
+[![Arma 1.76](https://img.shields.io/badge/Arma-1.76-blue.svg)](https://dev.arma3.com/post/sitrep-00203) [![Exile 1.0.3 Lemon](https://img.shields.io/badge/Exile-1.0.3%20Lemon-C72651.svg)](http://www.exilemod.com/devblog/103-update-lemon-r34/)
+
 The ATK is used to administrate Arma 3 multiplayer servers and be extended with user extensions
 
 <img src="images/a3-atk-players.jpg" align="left" width="200" title="Manage players">
