@@ -10,9 +10,9 @@
     _code = compileFinal preprocessFileLineNumbers 'atk\system\AdminToolkit_showMessage.sqf';
     missionNamespace setVariable ['AdminToolkit_showMessage', _code];
 
-    if(isNil "AdminToolkit_receiveResponse") then {
+    if(isNil "AdminToolkit_network_receiveResponse") then {
         _code = compileFinal preprocessFileLineNumbers 'atk\system\AdminToolkit_receiveResponse.sqf';
-        missionNamespace setVariable ['AdminToolkit_receiveResponse', _code];
+        missionNamespace setVariable ['AdminToolkit_network_receiveResponse', _code];
     };
 
     disableSerialization;
