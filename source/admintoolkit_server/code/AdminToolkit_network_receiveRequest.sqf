@@ -82,7 +82,7 @@ try
 		{
 			_tmp = getText(configFile >> "CfgSettings" >> "AdminToolkit" >> "ServerCommandPassword");
 			if(_tmp != "") then {
-				_tmp serverCommand format["#exec kick ""%1""", _params];
+				_tmp serverCommand format["#kick %1", name (objectFromNetId _params)];
 			};
 		};
 		// Ban player from server
@@ -91,7 +91,7 @@ try
 		{
 			_tmp = getText(configFile >> "CfgSettings" >> "AdminToolkit" >> "ServerCommandPassword");
 			if(_tmp != "") then {
-				_tmp serverCommand format["#exec ban ""%1""", _params];
+				_tmp serverCommand format["#ban %1", name (objectFromNetId _params)];
 			};
 		};
 		// Teleport the player defined in parameter 0 to players position defined in parameter 2
