@@ -1,7 +1,9 @@
 ## AdminToolkit for Arma 3
-<sup>**Version 2.1.1** | Author: ole1986 | This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License</sup>
-
-[![Arma 1.76](https://img.shields.io/badge/Arma-1.76-blue.svg)](https://dev.arma3.com/post/sitrep-00203) [![Exile 1.0.3 Lemon](https://img.shields.io/badge/Exile-1.0.3%20Lemon-C72651.svg)](http://www.exilemod.com/devblog/103-update-lemon-r34/)
+[![Version](https://img.shields.io/badge/Version-2.1.1-green.svg)](https://github.com/ole1986/a3-admintoolkit/releasese)
+[![Author](https://img.shields.io/badge/Author-ole1986-green.svg)](https://github.com/ole1986)
+[![Exile 1.0.3 Lemon](https://img.shields.io/badge/Exile-1.0.3%20Lemon-C72651.svg)](http://www.exilemod.com/devblog/103-update-lemon-r34/)
+[![Arma 1.76](https://img.shields.io/badge/Arma-1.76-blue.svg)](https://dev.arma3.com/post/sitrep-00203)
+[![License](https://img.shields.io/badge/License-APL-blue.svg)](https://www.bistudio.com/community/licenses/arma-public-license)
 
 The ATK is used to administrate Arma 3 multiplayer servers and be extended with user extensions
 
