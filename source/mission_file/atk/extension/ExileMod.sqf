@@ -21,14 +21,18 @@ AdminToolkit_OnExecute = {
         case "exile_getvehicle": {
             [AdminToolkit_Action] call AdminToolkit_doAction;
         };
+        case 'exile_sendmoney';
+		case 'exile_sendscore': {
+            [AdminToolkit_Action, [_data, parseNumber AdminToolkit_Params]] call AdminToolkit_doAction;
+		};
         case "exile_getmoney": {
             ['exile_getmoney', parseNumber AdminToolkit_Params] call AdminToolkit_doAction;
         };
-        case "exile_getheal": {
-            ['exile_getheal', ""] call AdminToolkit_doAction;
-        };
         case "exile_getscore": {
             ['exile_getscore', parseNumber AdminToolkit_Params] call AdminToolkit_doAction;
+        };
+        case "exile_getheal": {
+            ['exile_getheal', ""] call AdminToolkit_doAction;
         };
         default {
             systemChat format["Unknown action %1", AdminToolkit_Action];
@@ -37,7 +41,7 @@ AdminToolkit_OnExecute = {
 };
 
 AdminToolkit_ExileMod_loadDetails = {
-    private ["_filter","_list", "_show"];
+    private ["_filter","_list", "_show", '_tmp'];
 
     _filter = _this select 0;
     _show = false;
@@ -71,6 +75,28 @@ AdminToolkit_ExileMod_loadDetails = {
             (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Its all about Respect, How many?<br />(E.g. 100):</t>";
             (_display displayCtrl RscAdminToolkitParam_IDC) ctrlShow true;
         };
+        case "exile_sendmoney": {
+            {
+                _tmp = lbAdd [RscAdminToolkitDetailList_IDC, name (objectFromNetId _x)];
+                lbSetData [RscAdminToolkitDetailList_IDC, _tmp, _x];
+            } forEach AdminToolkit_Players;
+            _show = true;
+
+            (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Enter the amount of money here <br />(E.g. 1000):</t>";
+            (_display displayCtrl RscAdminToolkitDetailLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Select player you want to give money</t>";
+            (_display displayCtrl RscAdminToolkitParam_IDC) ctrlShow true;
+        };
+        case "exile_sendscore": {
+            {
+                _tmp = lbAdd [RscAdminToolkitDetailList_IDC, name (objectFromNetId _x)];
+                lbSetData [RscAdminToolkitDetailList_IDC, _tmp, _x];
+            } forEach AdminToolkit_Players;
+            _show = true;
+
+            (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Enter the amount of points here <br />(E.g. 1000):</t>";
+            (_display displayCtrl RscAdminToolkitDetailLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Select player you want to give respect points</t>";
+            (_display displayCtrl RscAdminToolkitParam_IDC) ctrlShow true;
+        };
     };
     _show;
 };
@@ -83,6 +109,8 @@ _result = [
     ['Perm Spawn', 'exile_getvehicle'],
     ['Get Money', 'exile_getmoney'],
     ['Get Respect', 'exile_getscore'],
+    ['Send Money to Player', 'exile_sendmoney'],
+    ['Send Respect to Player', 'exile_sendscore'],
     ['Heal Me', 'exile_getheal']
 ];
 

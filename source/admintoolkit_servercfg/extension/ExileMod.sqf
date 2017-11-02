@@ -91,7 +91,7 @@ try
 			_tmp2 = _playerObject getVariable ["ExileMoney", 0];
 			_tmp2 = _tmp2 + _tmp;
 			_playerObject setVariable ["ExileMoney", _tmp2, true];
-			format["setPlayerMoney:%1:%2", _tmp2, _player getVariable ["ExileDatabaseID", 0]] call ExileServer_system_database_query_fireAndForget;
+			format["setPlayerMoney:%1:%2", _tmp2, _playerObject getVariable ["ExileDatabaseID", 0]] call ExileServer_system_database_query_fireAndForget;
 			
 			[_playerObject, "toastRequest", ["SuccessTitleOnly", [format["Money %1 added!", _tmp]  ]]] call ExileServer_system_network_send_to;
 			[_playerObject, "lockerResponse", []] call ExileServer_system_network_send_to;
@@ -105,6 +105,28 @@ try
 			
 			format["setAccountScore:%1:%2", _tmp, (getPlayerUID _playerObject)] call ExileServer_system_database_query_fireAndForget;
 			[_playerObject, "freeResponse", [str _params]] call ExileServer_system_network_send_to;
+		};
+		case 'exile_sendmoney': {
+			_object = objectFromNetId (_params select 0);
+			_tmp = _object getVariable ["ExileMoney", 0];
+			_tmp = floor (_tmp + (_params select 1));
+
+			_object setVariable ["ExileMoney", _tmp, true];
+
+			format["setPlayerMoney:%1:%2", _tmp, _object getVariable ["ExileDatabaseID", 0]] call ExileServer_system_database_query_fireAndForget;
+			[_playerObject, "toastRequest", ["SuccessTitleOnly", [format["Money sent to %1", name _object]  ]]] call ExileServer_system_network_send_to;
+			[_object, "lockerResponse", []] call ExileServer_system_network_send_to;
+		};
+		case 'exile_sendscore': {
+			_object = objectFromNetId (_params select 0);
+			_tmp = _object getVariable ["ExileScore", 0];
+			_tmp = floor (_tmp + (_params select 1));
+
+			_object setVariable ["ExileScore", _tmp, true];
+			
+			format["setAccountScore:%1:%2", _tmp, (getPlayerUID _object)] call ExileServer_system_database_query_fireAndForget;
+			[_playerObject, "toastRequest", ["SuccessTitleOnly", [format["Respect sent to %1", name _object]  ]]] call ExileServer_system_network_send_to;
+			[_object, "freeResponse", [str (_params select 1)]] call ExileServer_system_network_send_to;
 		};
     }; 
 }
