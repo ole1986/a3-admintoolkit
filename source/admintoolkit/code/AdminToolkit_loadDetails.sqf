@@ -7,11 +7,17 @@
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
 
-private['_filter','_display', '_list', '_tmp', '_tmp2', '_show', '_menuData', '_extCode'];
+private['_which', '_filter','_display', '_list', '_tmp', '_tmp2', '_show', '_menuData', '_extCode'];
 disableSerialization;
 _display = findDisplay 40000;
 
 _show = false;
+
+if(typeName _this == "STRING") then {
+	_which = _this;
+} else {
+	_which = AdminToolkit_Action;
+};
 
 // ### Search filter
 _filter = ctrlText RscAdminToolkitEditDetail_IDC;
@@ -25,7 +31,8 @@ if(_filter != "") then {
 // clear details list
 lbClear RscAdminToolkitDetailList_IDC;
 
-switch (AdminToolkit_Action) do {
+switch (_which) do {
+	case "_players";
 	case "message";
 	case "tp2player";
 	case "tpplayer";
@@ -41,6 +48,7 @@ switch (AdminToolkit_Action) do {
 		} forEach AdminToolkit_Players;
 		_show = true;
 	};
+	case "givevehicle";
 	case "getvehicle": {
 		_list = "((getText(_x >> 'VehicleClass') in ['Car', 'Armored', 'Air']) and (getNumber(_x >> 'scope') == 2))" configClasses (configFile >> "CfgVehicles");
 		[RscAdminToolkitDetailList_IDC, _list, _filter] call AdminToolkit_uiList;
@@ -75,7 +83,6 @@ switch (AdminToolkit_Action) do {
 	};
 	case "messageall";
 	case "godmodeoff";
-	case "givevehicle";
 	case "buildremove";
 	case "buildinfopersistent";
 	case "savepersistent";

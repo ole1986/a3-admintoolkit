@@ -24,7 +24,7 @@ try
         throw format ["Player %1 with UID %2 does not have access", name _player, getPlayerUID _player];
     };
     
-    diag_log format ["[ADMINTOOLKIT] Calling %1 from player %2", _request, name _player];
+    diag_log format ["[ADMINTOOLKIT] Calling %1 from player %2, params: %3", _request, name _player, str _params];
 
     // if its a moderator, check if commands is allowed
     if ( getPlayerUID _player in _moderatorList ) then {
@@ -53,7 +53,7 @@ try
 		// initialize the spectator mode (client callback required)
 		// Example: [player, 'specplayer', netId]
 		case "specplayer": {
-			_tmp = objectFromNetId _params;
+			_tmp = objectFromNetId (_params select 0);
 			if(!(isNil "_tmp") && (typeName _tmp == "OBJECT")) then {
 				[_request, netId _tmp] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
 			};
@@ -63,12 +63,12 @@ try
 			['message', [_params select 1, format["<t size='1.5'>Sender: %1</t>", name _player]]] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _tmp];
 		};
 		case 'messageall': {
-			diag_log format ["[ADMINTOOLKIT] messageall params: %1 ", _params];
+			diag_log format ["[ADMINTOOLKIT] messageall params: %1 ", (_params select 0)];
 			['message', [_params, format["<t size='1.5'>Sender: %1</t>", name _player]]] remoteExecCall ['AdminToolkit_network_receiveResponse', -2];
 		};
 		// Give ammo to selected player
 		case 'giveammo': {
-			_tmp = objectFromNetId _params;
+			_tmp = objectFromNetId (_params select 0);
             if (!(isNil "_tmp") && (typeName _tmp == "OBJECT")) then {
 				diag_log format ["[ADMINTOOLKIT] Giving ammo to %1", name _tmp];
 				_tmp addMagazines  [(getArray (configFile >> 'CfgWeapons' >> primaryWeapon _tmp >> 'magazines') select 0), 1]; 
@@ -82,7 +82,7 @@ try
 		{
 			_tmp = getText(configFile >> "CfgSettings" >> "AdminToolkit" >> "ServerCommandPassword");
 			if(_tmp != "") then {
-				_tmp serverCommand format["#kick %1", name (objectFromNetId _params)];
+				_tmp serverCommand format["#kick %1", name (objectFromNetId (_params select 0))];
 			};
 		};
 		// Ban player from server
@@ -91,14 +91,14 @@ try
 		{
 			_tmp = getText(configFile >> "CfgSettings" >> "AdminToolkit" >> "ServerCommandPassword");
 			if(_tmp != "") then {
-				_tmp serverCommand format["#ban %1", name (objectFromNetId _params)];
+				_tmp serverCommand format["#ban %1", name (objectFromNetId (_params select 0))];
 			};
 		};
 		// Teleport the player defined in parameter 0 to players position defined in parameter 2
 		// Example: [player, 'tp2player', <string playername>]
         case "tp2player": 
         {
-			_tmp = objectFromNetId _params;
+			_tmp = objectFromNetId (_params select 0);
 			if(!isNil "_tmp") then {
 				_player setPosATL (getPosATL _tmp);
 			};
@@ -107,7 +107,7 @@ try
 		// Example: [player, 'tpplayer', <string playername>]
         case "tpplayer": 
         {
-			_tmp = objectFromNetId _params;
+			_tmp = objectFromNetId (_params select 0);
 			if(!isNil "_tmp") then {
 				_tmp setPosATL (position _player);
 			};
@@ -145,10 +145,10 @@ try
         case "getvehicle": {
             //find save position for the vehicle
 			_safepos = [position _player, 1, 20, 5, 1, 0, 0] call BIS_fnc_findSafePos;
-             _result = _params createVehicle _safepos;
+             _result = (_params select 0) createVehicle _safepos;
         };
 		// spawn a vehicle at the position of another player
-		// Example: [player, 'givevehicle', [<string vehicleClass>, <string playername>]]
+		// Example: [player, 'givevehicle', [<string vehicleClass>, <netId>]]
         case "givevehicle": {
             _tmp = objectFromNetId (_params select 1);
 			if(!(isNil "_tmp")) then {
@@ -186,7 +186,7 @@ try
 		// add an item to admins inventory
 		// Example: [player, 'getitem', <string ItemClass>]
 		case "getitem": {
-			if (_params != "") then { _player addItem _params; };
+			if (_params != "") then { _player addItem (_params select 0); };
 		};
 		// spawn an object at a position defined in parameter 2
 		// Example: [player, 'spawn', [<string className>, <array position>]]
@@ -217,7 +217,7 @@ try
         };
 		// remoe building which is in player cursor position
 		case "buildremove": {
-            _tmp = objectFromNetId _params;
+            _tmp = objectFromNetId (_params select 0);
             if !(isNull _tmp) then {
 				['BUILDINGS', (_params select 1)] call AdminToolkit_removePersistent;
 				deleteVehicle _tmp;
@@ -226,7 +226,7 @@ try
         };
 		
 		case "buildpersistent": {
-			['BUILDINGS', _params] call AdminToolkit_savePersistent;
+			['BUILDINGS', (_params select 0)] call AdminToolkit_savePersistent;
 			AdminToolkit_IsPersistentSaved = nil;
 		};
 		case "buildinfopersistent": {
@@ -249,7 +249,7 @@ try
 		};
         // abort the build progress by deleting the vehicle just created
         case "buildabort": {
-            _tmp = objectFromNetId _params;
+            _tmp = objectFromNetId (_params select 0);
             if !(isNull _tmp) then { deleteVehicle _tmp; };
         };
 		// used for extensions

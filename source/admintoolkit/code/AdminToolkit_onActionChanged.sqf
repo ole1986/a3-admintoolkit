@@ -15,9 +15,11 @@ _text = lbText [RscAdminToolkitActionList_IDC, _index];
 _value = lbData [RscAdminToolkitActionList_IDC, _index];
 
 AdminToolkit_Action = _value;
+AdminToolkit_Params = [];
 
 // hide the parameters edit field by default
 (_display displayCtrl RscAdminToolkitParam_IDC) ctrlShow false;
+(_display displayCtrl RscAdminToolkitParam_IDC) ctrlSetText "";
 
 (_display displayCtrl RscAdminToolkitRun_IDC) ctrlShow true;
 (_display displayCtrl RscAdminToolkitRepeat_IDC) ctrlShow true;
@@ -55,8 +57,10 @@ switch (_value) do {
     case 'godmodeoff': {
         (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>IMPORTANT: Godmode works only for you</t>";
     };
-    case 'buildremove';
     case 'givevehicle': {
+        (_display displayCtrl RscAdminToolkitDetailLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Step 1: Select vehicle</t>";
+    };
+    case 'buildremove': {
         (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Temporary offline</t>";
         (_display displayCtrl RscAdminToolkitRun_IDC) ctrlShow false;
         (_display displayCtrl RscAdminToolkitRepeat_IDC) ctrlShow false;

@@ -35,7 +35,8 @@ lbSetCurSel [RscAdminToolkitActionList_IDC, -1];
 
 false call AdminToolkit_toggleDetail;
 
-missionNamespace setVariable ['AdminToolkit_OnExecute', {AdminToolkit_Params = ctrlText RscAdminToolkitParam_IDC; [] call AdminToolkit_doAction;}];
+// Prepare the execution event used by the Run button event - overwritable by extensions
+missionNamespace setVariable ['AdminToolkit_OnExecute', { [AdminToolkit_Action, AdminToolkit_Params] call AdminToolkit_doAction; }];
 
 _menuName = toLower _menuName;
 
@@ -110,8 +111,5 @@ switch (_menuName) do {
 		};
 	};
 } forEach _list;
-
-// set execute button to di the action
-buttonSetAction [RscAdminToolkitRun_IDC, '[] call AdminToolkit_OnExecute'];
 
 true;

@@ -77,8 +77,10 @@ if(!(isDamageAllowed player)) then {
 (_display displayCtrl RscAdminToolkitEditAction_IDC) ctrlSetEventHandler ["KeyDown", "if ((_this select 1) == 0x1C or (_this select 1) == 0x9C) then { call AdminToolkit_loadActions };"];
 
 // setup the event onLbSelChanged for the centered listbox
-//(_display displayCtrl RscAdminToolkitDetailList_IDC) ctrlSetEventHandler ['LBSelChanged', "call AdminToolkit_onListboxChanged"];
+(_display displayCtrl RscAdminToolkitDetailList_IDC) ctrlSetEventHandler ['LBSelChanged', "call AdminToolkit_onDetailChanged"];
 (_display displayCtrl RscAdminToolkitEditDetail_IDC) ctrlSetEventHandler ["KeyDown", "if ((_this select 1) == 0x1C or (_this select 1) == 0x9C) then { call AdminToolkit_loadDetails };"];
 
 (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "";
-(_display displayCtrl RscAdminToolkitParam_IDC) ctrlSetEventHandler ['KillFocus', "AdminToolkit_Params = ctrlText RscAdminToolkitParam_IDC"];
+
+// define the AdminToolkit_OnExecute event used by the Run button - overwritable by extensions
+buttonSetAction [RscAdminToolkitRun_IDC, 'call AdminToolkit_OnExecute'];
