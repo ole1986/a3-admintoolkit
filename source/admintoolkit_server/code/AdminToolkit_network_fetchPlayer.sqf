@@ -15,10 +15,10 @@
  * Usage: [nil, true] call admintoolkit_fetchPlayer; // returns the player name only matching "playername" or nil
  * Usage: call admintoolkit_fetchPlayer; // returns the array of all player units or nil if no player is available
  */
-private['_match', '_nameOnly', '_result'];
-_nameOnly = false;
-_match = '';
-_result = [];
+private _nameOnly = false;
+private _match = '';
+private _result = [];
+
 if(typeName _this == "ARRAY") then {
 	_match = _this select 0;
 	if(count _this > 1) then { _nameOnly = _this select 1; };

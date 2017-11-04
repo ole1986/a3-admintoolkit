@@ -136,7 +136,8 @@ if($Install) {
     Write-Host -ForegroundColor Green "DONE"
     if($Run) {
         Write-Host -NoNewline "Running Arma 3..."
-        & "$GameFolder/arma3battleye.exe" 2 1 0 -exe arma3_x64.exe -nosplash -world=empty -skipIntro
+        Start-Process "$GameFolder/arma3battleye.exe" -ArgumentList '2','1','0','-exe arma3_x64.exe', '-mod="@Exile;@AdminToolkit"', '-nosplash', '-world empty', '-skipIntro'
+        #& "$GameFolder/arma3battleye.exe" 2 1 0 -exe arma3_x64.exe -mod="@Exile;@AdminToolkit" -nosplash -world=empty -skipIntro
         Write-Host -ForegroundColor Green "DONE"
     }
 }

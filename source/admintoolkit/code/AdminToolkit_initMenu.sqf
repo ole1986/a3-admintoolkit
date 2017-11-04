@@ -7,14 +7,12 @@
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
  
-private['_display', '_extensions', '_IDC', '_i'];
 disableSerialization;
-_display = findDisplay 40000;
+private _display = findDisplay 40000;
+private _extensions = getArray(missionConfigFile >> 'CfgAdminToolkitCustomMod' >> 'ExcludeMenu');
 
 // show the title of its tool
 (_display displayCtrl RscAdminToolkitTitle_IDC) ctrlSetStructuredText parseText "<t color='#c72651'>AdminToolkit Main Menu</t>";
-
-_extensions = getArray(missionConfigFile >> 'CfgAdminToolkitCustomMod' >> 'ExcludeMenu');
 
 // load the default menu into main menu combo box
 {
@@ -35,10 +33,10 @@ if(isClass(missionConfigFile >> 'CfgAdminToolkitCustomMod')) then {
 
 	// quick access buttons QUICK 1 - 4 ( RscAdminToolkitQuickX_IDC )
 	if(isArray(missionConfigFile >> 'CfgAdminToolkitCustomMod' >> 'QuickButtons')) then {
-		_i = 1;
+		private _i = 1;
 		_extensions = getArray(missionConfigFile >> 'CfgAdminToolkitCustomMod' >> 'QuickButtons');
 		{
-			_IDC = missionNamespace getVariable format["RscAdminToolkitQuick%1_IDC", _i];
+			private _IDC = missionNamespace getVariable format["RscAdminToolkitQuick%1_IDC", _i];
 			ctrlSetText [_IDC, _x select 0];
 			buttonSetAction [_IDC, _x select 1];	
 			_i = _i + 1;
@@ -50,9 +48,6 @@ if(!isNil "AdminToolkit_MenuIndex") then {
 	lbSetCurSel [RscAdminToolkitMainMenu_IDC, AdminToolkit_MenuIndex];
 	call AdminToolkit_loadActions;
 };
-
-AdminToolkit_Selection = nil;
-AdminToolkit_Player = nil;
 
 // hide the second list initially
 false call AdminToolkit_toggleDetail;
@@ -67,6 +62,12 @@ if(!(isDamageAllowed player)) then {
 	(_display displayCtrl RscAdminToolkitActionLabel_IDC) ctrlSetStructuredText parseText "Pick an entry from Main Menu to display the actions";	
 };
 
+// Requesting players list
+[] spawn {
+	systemChat "Loading players...";
+	[player, 'getplayers'] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];
+};
+
 // hide the parameters edit field by default
 (_display displayCtrl RscAdminToolkitParam_IDC) ctrlShow false;
 
@@ -77,8 +78,10 @@ if(!(isDamageAllowed player)) then {
 (_display displayCtrl RscAdminToolkitEditAction_IDC) ctrlSetEventHandler ["KeyDown", "if ((_this select 1) == 0x1C or (_this select 1) == 0x9C) then { call AdminToolkit_loadActions };"];
 
 // setup the event onLbSelChanged for the centered listbox
-//(_display displayCtrl RscAdminToolkitDetailList_IDC) ctrlSetEventHandler ['LBSelChanged', "call AdminToolkit_onListboxChanged"];
+(_display displayCtrl RscAdminToolkitDetailList_IDC) ctrlSetEventHandler ['LBSelChanged', "call AdminToolkit_onDetailChanged"];
 (_display displayCtrl RscAdminToolkitEditDetail_IDC) ctrlSetEventHandler ["KeyDown", "if ((_this select 1) == 0x1C or (_this select 1) == 0x9C) then { call AdminToolkit_loadDetails };"];
 
 (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "";
-(_display displayCtrl RscAdminToolkitParam_IDC) ctrlSetEventHandler ['KillFocus', "AdminToolkit_Params = ctrlText RscAdminToolkitParam_IDC"];
+
+// define the AdminToolkit_OnExecute event used by the Run button - overwritable by extensions
+buttonSetAction [RscAdminToolkitRun_IDC, 'call AdminToolkit_OnExecute'];

@@ -1,5 +1,5 @@
 ## AdminToolkit for Arma 3
-[![Version](https://img.shields.io/badge/Version-2.1.3-green.svg)](https://github.com/ole1986/a3-admintoolkit/releases)
+[![Version](https://img.shields.io/badge/Version-2.2.0-green.svg)](https://github.com/ole1986/a3-admintoolkit/releases)
 [![Author](https://img.shields.io/badge/Author-ole1986-green.svg)](https://github.com/ole1986)
 [![Exile 1.0.3 Lemon](https://img.shields.io/badge/Exile-1.0.3%20Lemon-C72651.svg)](http://www.exilemod.com/devblog/103-update-lemon-r34/)
 [![Arma 1.76](https://img.shields.io/badge/Arma-1.76-blue.svg)](https://dev.arma3.com/post/sitrep-00203)

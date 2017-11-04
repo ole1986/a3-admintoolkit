@@ -7,13 +7,15 @@
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
  
-private['_playerObject','_request', '_params', '_position', '_tmp', '_tmp2', '_object'];
-_playerObject = _this select 0;
-_request = _this select 1;
-_params = _this select 2;
+params['_playerObject','_request', '_params'];
 
-_result = true;
-try 
+private _result = true;
+private _position = [];
+private _tmp = '';
+private _tmp2 = '';
+private _object = objNull;
+
+try
 {
     switch (_request) do {
 		case 'exile_getvehicle': 
@@ -40,14 +42,12 @@ try
 			[_playerObject, "dynamicTextRequest", [format ["UNLOCK PIN: %1", _tmp2], 0, 2, "#ffffff"]] call ExileServer_system_network_send_to;
 		};
 		case 'exile_setvehiclepin': {
-			_tmp = _params select 1;
 			_object = objectFromNetId (_params select 0);
-			_object setVariable ["ExileAccessCode", _tmp];
-			_object call ExileServer_object_vehicle_database_update;
-
-			_tmp2 = typeof _object;
-
-			[_playerObject, "toastRequest", ["SuccessTitleOnly", [format["PIN %1 set to %2", _tmp, _tmp2]  ]]] call ExileServer_system_network_send_to;	
+			_tmp = _params select 1;
+			
+			_object setVariable ["ExileAccessCode",_tmp];
+			[_playerObject, "resetCodeResponse", [["SuccessTitleOnly", ["PIN changed successfully!"]], netId _object,_tmp]] call ExileServer_system_network_send_to;
+			[_object,_tmp] call ExileServer_object_vehicle_database_resetCode;
 		};
 		case 'exile_repvehicle':
 		{

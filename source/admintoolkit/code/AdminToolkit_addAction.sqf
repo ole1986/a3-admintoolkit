@@ -7,12 +7,11 @@
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
  
-private['_title', '_command', '_check', '_hasPerm', '_index'];
+params['_title', '_command', '_check'];
 disableSerialization;
 
-_title = _this select 0;
-_command = _this select 1;
-_check = _this select 2;
+private _hasPerm = false;
+private _index = 0;
 
 if(!(isNil "_check")) then {
     // skip the permission check

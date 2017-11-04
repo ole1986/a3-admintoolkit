@@ -6,11 +6,10 @@
  *
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
- 
-private['_position', '_vectorUp', '_rotation', '_vectorDirection'];
-
-_position = [0, 0, 0];
-_vectorUp = [0, 0, 1];
+private _position = [0, 0, 0];
+private _vectorUp = [0, 0, 1];
+private _rotation = 0;
+private _vectorDirection = [0,0,0];
 
 while {AdminToolkitIsBuilding isEqualTo 1} do
 {
@@ -27,10 +26,10 @@ while {AdminToolkitIsBuilding isEqualTo 1} do
 // destroy the object when AdminToolkitBuildingObject is set to -1
 if(AdminToolkitIsBuilding isEqualTo -1) then {
     hint parseText "<t size='1.5' color='#FF6060'>Construction aborted</t>";
-    [player, "buildabort", netId AdminToolkitBuildingObject] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];
+    ['buildabort', [netId AdminToolkitBuildingObject]] call AdminToolkit_doAction;
 } else {
-    if (AdminToolkitIsBuildingPersistent) then {
-        [player, "buildpersistent", [typeOf AdminToolkitBuildingObject, getPosASL AdminToolkitBuildingObject, getDir AdminToolkitBuildingObject]] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];
+    if (!isNil "AdminToolkitIsBuildingPersistent") then {
+        ['buildpersistent', [netId AdminToolkitBuildingObject, _position, getDir AdminToolkitBuildingObject]] call AdminToolkit_doAction;
         AdminToolkitIsBuildingPersistent = nil;
     };
     hint parseText "<t size='1.5' color='#A4FF6A'>Construction placed</t>";

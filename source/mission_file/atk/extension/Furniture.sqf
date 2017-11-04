@@ -5,33 +5,30 @@
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
 
-private['_result'];
 disableSerialization;
 
 // overwrite the OnExecute code from AdminToolkit_OnExecute
-AdminToolkit_OnExecute = {
-    private ["_data"];
-    
-    _data = lbData [RscAdminToolkitDetailList_IDC, lbCurSel RscAdminToolkitDetailList_IDC];
+AdminToolkit_OnExecute = {   
+    private _data = lbData [RscAdminToolkitDetailList_IDC, lbCurSel RscAdminToolkitDetailList_IDC];
 
     switch (AdminToolkit_Action) do {
         case "fu_build": {
-            ['build', _data] call AdminToolkit_doAction;
+            ['build', [_data]] call AdminToolkit_doAction;
         };
         case "fu_buildpers": {
-            ['buildpers', _data] call AdminToolkit_doAction;
+            ['buildpers', [_data]] call AdminToolkit_doAction;
         };
         default {
-            [AdminToolkit_Action] call AdminToolkit_doAction;
+            [AdminToolkit_Action, AdminToolkit_Params] call AdminToolkit_doAction;
          };
     };
 };
 
 AdminToolkit_Furniture_loadDetails = {
-    private ["_filter","_list", "_show"];
+    params["_filter"];
 
-    _filter = _this select 0;
-    _show = false;
+    private _show = false;
+    private _list = [];
 
     switch (AdminToolkit_Action) do {
         case "fu_build";
@@ -44,13 +41,11 @@ AdminToolkit_Furniture_loadDetails = {
     _show;
 };
 
-_result = [
+[
     ["Build (temporary)", 'fu_build'],
     ["Build (persistent)", 'fu_buildpers'],
-    ["Remove (Target)", "buildremove"],
+    ["Remove (nearby)", "buildremove"],
     ["Status", 'buildinfopersistent'],
     ["Save Persistent", 'savepersistent'],
     ["Clear Persistent", 'clearpersistent']
 ];
-
-_result;

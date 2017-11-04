@@ -7,17 +7,15 @@
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
 
-private['_name'];
-
-missionNamespace setVariable ['AdminToolkit_MainMenu', ['Players', 'Vehicles', 'Weapons', 'Buildings', 'Other', 'Items']];
+missionNamespace setVariable ['AdminToolkit_MainMenu', ['Players', 'Weapons', 'Vehicles', 'Buildings', 'Items']];
 // The current Menu selection
 missionNamespace setVariable ['AdminToolkit_MenuIndex', nil];
-// take the selection from list
-missionNamespace setVariable ['AdminToolkit_Selection', nil];
 // The current selected action
 missionNamespace setVariable ['AdminToolkit_Action', nil];
+// The current detail view
+missionNamespace setVariable ['AdminToolkit_Detail', nil];
 // the current parameters being executed (dependent on the action)
-missionNamespace setVariable ['AdminToolkit_Params', nil];
+missionNamespace setVariable ['AdminToolkit_Params', []];
 // The current selected player (also used in spectator mode)
 missionNamespace setVariable ['AdminToolkit_Player', nil];
 // all player netIds received from server
@@ -34,7 +32,7 @@ missionNamespace setVariable ['AdminToolkit_permissionSet', []];
 {
 	// make all IDC number easily accessible
 	// example "RscAdminToolkitTitle_IDC" returns the IDC of the Title of the dialog (which is 1900)
-	_name = format["%1_IDC", configName _x];
+	private _name = format["%1_IDC", configName _x];
 	missionNamespace setVariable [_name , getNumber(_x >> "IDC")];
 } forEach ("true" configClasses (configFile >> "AdminToolkitMenu"));
 
@@ -51,7 +49,7 @@ missionNamespace setVariable ['AdminToolkit_permissionSet', []];
 	(findDisplay 46) displayAddEventHandler ["KeyDown","call AdminToolkit_bindKeyEvents;"];
 	
 	systemChat "Logging into AdminToolkit...";
-	['login'] call AdminToolkit_doAction;
+	['login', "someRandomStuff1231"] call AdminToolkit_doAction;
 };
 
 diag_log "AdminToolkit postInit";

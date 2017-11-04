@@ -7,10 +7,11 @@
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
  
-private['_title', '_ext', '_index', '_code', '_size'];
+params['_title', '_ext'];
 disableSerialization;
 
-_title = _this select 0;
+private _index = 0;
+private _code = {};
 
 _index = lbAdd [RscAdminToolkitMainMenu_IDC, _title];
 // if extension parameter is set, load the file!

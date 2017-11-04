@@ -7,12 +7,10 @@
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
  
-private ['_code', '_function', '_file'];
-
 {
-    _code = '';
-    _function = _x select 0;
-    _file = _x select 1;
+    private _code = '';
+    private _function = _x select 0;
+    private _file = _x select 1;
 
     _code = compileFinal preprocessFileLineNumbers _file;
 
@@ -26,8 +24,10 @@ forEach
 	['AdminToolkit_loadActions', 'admintoolkit\code\AdminToolkit_loadActions.sqf'],
 	['AdminToolkit_loadDetails', 'admintoolkit\code\AdminToolkit_loadDetails.sqf'],
 	['AdminToolkit_addMenu', 'admintoolkit\code\AdminToolkit_addMenu.sqf'],
+	['AdminToolkit_addParam', 'admintoolkit\code\AdminToolkit_addParam.sqf'],
 	['AdminToolkit_doAction', 'admintoolkit\code\AdminToolkit_doAction.sqf'],
 	['AdminToolkit_onActionChanged', 'admintoolkit\code\AdminToolkit_onActionChanged.sqf'],
+	['AdminToolkit_onDetailChanged', 'admintoolkit\code\AdminToolkit_onDetailChanged.sqf'],
 	['AdminToolkit_uiList', 'admintoolkit\code\AdminToolkit_uiList.sqf'],
 	['AdminToolkit_addAction', 'admintoolkit\code\AdminToolkit_addAction.sqf'],
 	['AdminToolkit_hasPermission', 'admintoolkit\code\AdminToolkit_hasPermission.sqf'],

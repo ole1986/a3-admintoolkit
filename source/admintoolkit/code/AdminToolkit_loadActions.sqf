@@ -7,19 +7,21 @@
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
 
-private['_filter','_display','_menuIndex', '_menuName', '_menuData', '_list', '_displayName'];
 disableSerialization;
-_display = findDisplay 40000;
+
+private _display = findDisplay 40000;
+private _list = [];
+private _displayName = '(unknown)';
 
 // receive the selected index and name from the Main Menu combobox
-_menuIndex = lbCurSel RscAdminToolkitMainMenu_IDC;
-_menuName = lbText [RscAdminToolkitMainMenu_IDC, _menuIndex];
-_menuData = lbData [RscAdminToolkitMainMenu_IDC, _menuIndex];
+private _menuIndex = lbCurSel RscAdminToolkitMainMenu_IDC;
+private _menuName = lbText [RscAdminToolkitMainMenu_IDC, _menuIndex];
+private _menuData = lbData [RscAdminToolkitMainMenu_IDC, _menuIndex];
 
 AdminToolkit_MenuIndex = _menuIndex;
 
 // ### Search filter
-_filter = ctrlText RscAdminToolkitEditAction_IDC;
+private _filter = ctrlText RscAdminToolkitEditAction_IDC;
 if(_filter != "") then {
 	// search filter is set, so reset the textbox
 	ctrlSetText [RscAdminToolkitEditAction_IDC, ""];	
@@ -35,15 +37,13 @@ lbSetCurSel [RscAdminToolkitActionList_IDC, -1];
 
 false call AdminToolkit_toggleDetail;
 
-missionNamespace setVariable ['AdminToolkit_OnExecute', {AdminToolkit_Params = ctrlText RscAdminToolkitParam_IDC; [] call AdminToolkit_doAction;}];
+// Prepare the execution event used by the Run button event - overwritable by extensions
+missionNamespace setVariable ['AdminToolkit_OnExecute', { [AdminToolkit_Action, AdminToolkit_Params] call AdminToolkit_doAction; }];
 
 _menuName = toLower _menuName;
 
 switch (_menuName) do {
 	case "players": {
-		// get player list from server while doing a receiveRequest
-		[player, 'getplayers'] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];
-
 		_list = [
 			["Send Message", "message"],
 			["Send Message to ALL", "messageall"],
@@ -74,20 +74,16 @@ switch (_menuName) do {
 		_list = [
 			["Build (temporary)", 'build'],
 			["Build (persistent)", 'buildpers'],
-			["Remove", "buildremove"],
+			["Remove (nearby)", "buildremove"],
 			["Status", 'buildinfopersistent'],
 			["Save Persistent", 'savepersistent'],
 			["Clear Persistent", 'clearpersistent']
 		];
 	};
-	case "other": {
-		_list = [
-			["Spawn", 'spawn']
-		];
-	};
 	case "items": {
 		_list = [
-			["Get Item", 'getitem']
+			["Get Item", 'getitem'],
+			["Spawn", 'spawn']
 		];
 	};
 	default {
@@ -110,8 +106,5 @@ switch (_menuName) do {
 		};
 	};
 } forEach _list;
-
-// set execute button to di the action
-buttonSetAction [RscAdminToolkitRun_IDC, '[] call AdminToolkit_OnExecute'];
 
 true;

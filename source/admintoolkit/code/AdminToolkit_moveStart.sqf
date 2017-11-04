@@ -6,12 +6,14 @@
  *
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
- 
-private['_position', '_objectDistance', '_playerDir'];
+/**
+ * _netId STRING the netId of an object to be moved
+ */
+params['_netId'];
 
 try {
     // gather the object created from server through the netId
-    AdminToolkitBuildingObject = objectFromNetId (_this select 0);
+    AdminToolkitBuildingObject = objectFromNetId _netId;
     // if the object is null throw an exception before starting build progress
     if (isNull AdminToolkitBuildingObject) then { throw "No object received from server"; };
     

@@ -7,14 +7,14 @@
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
  
-private['_playerObject','_request', '_params', '_object', '_tmp'];
-_playerObject = _this select 0;
-_request = _this select 1;
-_params = _this select 2;
+params['_playerObject','_request', '_params'];
+
+private _object = objNull;
+private _tmp = '';
+private _result = true;
 
 if(isNil "VanillaAI_Units") then {  missionNamespace setVariable["VanillaAI_Units", []] };
 
-_result = true;
 try 
 {
     switch (_request) do {

@@ -7,9 +7,7 @@
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
  
-private['_canceled'];
-
-_canceled = _this select 0;
+params['_canceled'];
 
 if !(isNil "_canceled") then {
     AdminToolkitIsBuilding = -1;

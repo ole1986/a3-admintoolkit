@@ -7,9 +7,9 @@
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
  
-private['_section','_objectPos', '_pos', '_vectorDiff', '_index'];
-_section = _this select 0;
-_objectPos = _this select 1;
+params['_section','_objectPos'];
+
+private _index = 0;
 
 switch (_section) do {
     case "BUILDINGS": {
@@ -18,12 +18,12 @@ switch (_section) do {
         } else {
             _index = 0;
             {
-                _pos = _x select 1;
-                _vectorDiff = _pos vectorDistance  _objectPos;
+                private _pos = _x select 1;
+                private _vectorDiff = _pos vectorDistance  _objectPos;
                 
                 if(_vectorDiff < 0.3) exitWith {
                     // remove object where difference is less than 0.3
-                    diag_log format["[ADMINTOOLKIT]: '%1' removed from persistence", _x select 0];
+                    diag_log format["[ADMINTOOLKIT]: Removed '%1' removed from persistence", str _x];
                     AdminToolkit_Buildings deleteAt _index;
                 };
                 

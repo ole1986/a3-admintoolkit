@@ -7,14 +7,16 @@
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
 
-private['_filter','_display', '_list', '_tmp', '_tmp2', '_show', '_menuData', '_extCode'];
 disableSerialization;
-_display = findDisplay 40000;
 
-_show = false;
+private _display = findDisplay 40000;
+private _show = false;
+private _list = [];
+private _tmp = '';
+private _tmp2 = '';
 
 // ### Search filter
-_filter = ctrlText RscAdminToolkitEditDetail_IDC;
+private _filter = ctrlText RscAdminToolkitEditDetail_IDC;
 if(_filter != "") then {
 	// search filter is set, so reset the textbox
 	ctrlSetText [RscAdminToolkitEditDetail_IDC, ""];	
@@ -24,8 +26,10 @@ if(_filter != "") then {
 
 // clear details list
 lbClear RscAdminToolkitDetailList_IDC;
+lbSetCurSel [RscAdminToolkitDetailList_IDC, -1];
 
-switch (AdminToolkit_Action) do {
+switch (AdminToolkit_Detail) do {
+	case "_players";
 	case "message";
 	case "tp2player";
 	case "tpplayer";
@@ -41,6 +45,7 @@ switch (AdminToolkit_Action) do {
 		} forEach AdminToolkit_Players;
 		_show = true;
 	};
+	case "givevehicle";
 	case "getvehicle": {
 		_list = "((getText(_x >> 'VehicleClass') in ['Car', 'Armored', 'Air']) and (getNumber(_x >> 'scope') == 2))" configClasses (configFile >> "CfgVehicles");
 		[RscAdminToolkitDetailList_IDC, _list, _filter] call AdminToolkit_uiList;
@@ -63,6 +68,11 @@ switch (AdminToolkit_Action) do {
 		[RscAdminToolkitDetailList_IDC, _list, _filter] call AdminToolkit_uiList;
 		_show = true;
 	};
+	case "buildremove": {
+		_list = nearestObjects [player, ["House", "Building"], 50];
+		[RscAdminToolkitDetailList_IDC, _list, _filter] call AdminToolkit_uiList;
+		_show = true;
+	};
 	case "spawn": {
 		_list ="((configName _x isKindOf 'ReammoBox') and (getNumber(_x >> 'scope') == 2))" configClasses (configFile >> "CfgVehicles");
 		[RscAdminToolkitDetailList_IDC, _list, _filter] call AdminToolkit_uiList;
@@ -75,7 +85,6 @@ switch (AdminToolkit_Action) do {
 	};
 	case "messageall";
 	case "godmodeoff";
-	case "givevehicle";
 	case "buildremove";
 	case "buildinfopersistent";
 	case "savepersistent";
@@ -85,8 +94,8 @@ switch (AdminToolkit_Action) do {
 		/* manage all non extension actions not listed above */	
 	};
 	default {
-		_menuData = lbData [RscAdminToolkitMainMenu_IDC, AdminToolkit_MenuIndex];
-        _extCode = missionNamespace getVariable [format["%1_loadDetails", _menuData], ""];
+		private _menuData = lbData [RscAdminToolkitMainMenu_IDC, AdminToolkit_MenuIndex];
+        private _extCode = missionNamespace getVariable [format["%1_loadDetails", _menuData], ""];
         if(typeName _extCode == "CODE") then {
             systemChat format["Calling %1 action %2", _menuData, _value];
             _show = [_filter] call _extCode;
