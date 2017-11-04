@@ -7,7 +7,7 @@
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
 
-missionNamespace setVariable ['AdminToolkit_MainMenu', ['Players', 'Vehicles', 'Weapons', 'Buildings', 'Other', 'Items']];
+missionNamespace setVariable ['AdminToolkit_MainMenu', ['Players', 'Weapons', 'Vehicles', 'Buildings', 'Items']];
 // The current Menu selection
 missionNamespace setVariable ['AdminToolkit_MenuIndex', nil];
 // The current selected action

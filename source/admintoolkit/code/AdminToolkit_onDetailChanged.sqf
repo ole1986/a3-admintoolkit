@@ -6,10 +6,19 @@
  *
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
+
+/**
+ * _control CONTROL the listbox
+ * _index NUMBER the current selected index of the listbox
+ */
+params['_control', '_index'];
+
 private _display = findDisplay 40000;
-private _index = lbCurSel RscAdminToolkitDetailList_IDC;
+
 private _text = lbText [RscAdminToolkitDetailList_IDC, _index];
 private _value = lbData [RscAdminToolkitDetailList_IDC, _index];
+
+if(_index < 0) exitWith {};
 
 switch (AdminToolkit_Action) do {
     case "givevehicle": {

@@ -44,9 +44,6 @@ _menuName = toLower _menuName;
 
 switch (_menuName) do {
 	case "players": {
-		// get player list from server while doing a receiveRequest
-		[player, 'getplayers'] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];
-
 		_list = [
 			["Send Message", "message"],
 			["Send Message to ALL", "messageall"],
@@ -83,14 +80,10 @@ switch (_menuName) do {
 			["Clear Persistent", 'clearpersistent']
 		];
 	};
-	case "other": {
-		_list = [
-			["Spawn", 'spawn']
-		];
-	};
 	case "items": {
 		_list = [
-			["Get Item", 'getitem']
+			["Get Item", 'getitem'],
+			["Spawn", 'spawn']
 		];
 	};
 	default {

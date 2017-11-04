@@ -6,11 +6,18 @@
  *
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
+
+/**
+ * _control CONTROL the listbox
+ * _index NUMBER the current selected index of the listbox
+ */
+params['_control', '_index'];
 private _display = findDisplay 40000;
 
-private _index = lbCurSel RscAdminToolkitActionList_IDC;
 private _text = lbText [RscAdminToolkitActionList_IDC, _index];
 private _value = lbData [RscAdminToolkitActionList_IDC, _index];
+
+if(_index < 0) exitWith {};
 
 AdminToolkit_Action = _value;
 AdminToolkit_Detail = _value;
@@ -59,9 +66,23 @@ switch (_value) do {
     case 'givevehicle': {
         (_display displayCtrl RscAdminToolkitDetailLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Step 1: Select vehicle</t>";
     };
+    case 'build': {
+        (_display displayCtrl RscAdminToolkitDetailLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Select a building</t>";
+        (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Tempoary buildings are gone after server restart</t>";
+    };
+    case 'buildpers': {
+        (_display displayCtrl RscAdminToolkitDetailLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Select a building</t>";
+        (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>These buildings are stored in serverProfie</t>";
+    };
     case 'buildremove': {       
         (_display displayCtrl RscAdminToolkitDetailLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Select a nearby building</t>";
         (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>PLEASE NOTE: Map related objects cannot be removed</t>";
+    };
+    case 'buildinfopersistent': {
+        (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Show information about persistent buildings</t>";
+    };
+    case 'savepersistent': {
+        (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Stores the buildings to keep after server restart</t>";
     };
     case 'clearpersistent': {
         (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>THIS WILL REMOVE ALL PERSISTENT BUILDINGS FROM ATK</t>";

@@ -62,6 +62,12 @@ if(!(isDamageAllowed player)) then {
 	(_display displayCtrl RscAdminToolkitActionLabel_IDC) ctrlSetStructuredText parseText "Pick an entry from Main Menu to display the actions";	
 };
 
+// Requesting players list
+[] spawn {
+	systemChat "Loading players...";
+	[player, 'getplayers'] remoteExecCall ['AdminToolkit_network_receiveRequest', 2];
+};
+
 // hide the parameters edit field by default
 (_display displayCtrl RscAdminToolkitParam_IDC) ctrlShow false;
 

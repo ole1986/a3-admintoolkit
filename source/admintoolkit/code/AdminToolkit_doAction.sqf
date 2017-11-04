@@ -31,7 +31,7 @@ try {
             _params pushBack _tmp;
         };
         case 'spawn': {
-            tmp = player modelToWorld [0,2, (position player) select 2];
+            _tmp = player modelToWorld [0,2, (position player) select 2];
             _params pushBack _tmp;
         };
         case 'getweapon': {

@@ -26,6 +26,7 @@ try
 	//player	
 		case 'getplayers': {
 			missionNamespace setVariable ['AdminToolkit_Players', _params];
+			systemChat "Players loaded!";
 		};
 		case 'message': {
 			_params call AdminToolkit_showMessage;
