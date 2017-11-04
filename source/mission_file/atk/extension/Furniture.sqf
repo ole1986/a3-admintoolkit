@@ -13,13 +13,13 @@ AdminToolkit_OnExecute = {
 
     switch (AdminToolkit_Action) do {
         case "fu_build": {
-            ['build', _data] call AdminToolkit_doAction;
+            ['build', [_data]] call AdminToolkit_doAction;
         };
         case "fu_buildpers": {
-            ['buildpers', _data] call AdminToolkit_doAction;
+            ['buildpers', [_data]] call AdminToolkit_doAction;
         };
         default {
-            [AdminToolkit_Action] call AdminToolkit_doAction;
+            [AdminToolkit_Action, AdminToolkit_Params] call AdminToolkit_doAction;
          };
     };
 };
@@ -44,7 +44,7 @@ AdminToolkit_Furniture_loadDetails = {
 [
     ["Build (temporary)", 'fu_build'],
     ["Build (persistent)", 'fu_buildpers'],
-    ["Remove (Target)", "buildremove"],
+    ["Remove (nearby)", "buildremove"],
     ["Status", 'buildinfopersistent'],
     ["Save Persistent", 'savepersistent'],
     ["Clear Persistent", 'clearpersistent']

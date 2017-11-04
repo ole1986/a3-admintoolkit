@@ -26,6 +26,7 @@ if(_filter != "") then {
 
 // clear details list
 lbClear RscAdminToolkitDetailList_IDC;
+lbSetCurSel [RscAdminToolkitDetailList_IDC, -1];
 
 switch (AdminToolkit_Detail) do {
 	case "_players";

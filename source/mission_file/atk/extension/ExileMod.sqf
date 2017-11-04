@@ -2,7 +2,7 @@ disableSerialization;
 
 // overwrite the OnExecute code from AdminToolkit_OnExecute
 AdminToolkit_OnExecute = {
-    
+    private _object = objNull;
     private _data = lbData [RscAdminToolkitDetailList_IDC, lbCurSel RscAdminToolkitDetailList_IDC];
     private _userInput = ctrlText RscAdminToolkitParam_IDC;
 

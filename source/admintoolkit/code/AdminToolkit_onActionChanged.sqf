@@ -60,7 +60,8 @@ switch (_value) do {
         (_display displayCtrl RscAdminToolkitDetailLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Step 1: Select vehicle</t>";
     };
     case 'buildremove': {       
-        (_display displayCtrl RscAdminToolkitDetailLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Select nearby building<br />PLEASE NOTE: Map related objects cannot be removed</t>";
+        (_display displayCtrl RscAdminToolkitDetailLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Select a nearby building</t>";
+        (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>PLEASE NOTE: Map related objects cannot be removed</t>";
     };
     case 'clearpersistent': {
         (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>THIS WILL REMOVE ALL PERSISTENT BUILDINGS FROM ATK</t>";
