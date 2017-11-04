@@ -7,20 +7,16 @@
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
 
-private['_which', '_filter','_display', '_list', '_tmp', '_tmp2', '_show', '_menuData', '_extCode'];
 disableSerialization;
-_display = findDisplay 40000;
 
-_show = false;
-
-if(typeName _this == "STRING") then {
-	_which = _this;
-} else {
-	_which = AdminToolkit_Action;
-};
+private _display = findDisplay 40000;
+private _show = false;
+private _list = [];
+private _tmp = '';
+private _tmp2 = '';
 
 // ### Search filter
-_filter = ctrlText RscAdminToolkitEditDetail_IDC;
+private _filter = ctrlText RscAdminToolkitEditDetail_IDC;
 if(_filter != "") then {
 	// search filter is set, so reset the textbox
 	ctrlSetText [RscAdminToolkitEditDetail_IDC, ""];	
@@ -31,7 +27,7 @@ if(_filter != "") then {
 // clear details list
 lbClear RscAdminToolkitDetailList_IDC;
 
-switch (_which) do {
+switch (AdminToolkit_Detail) do {
 	case "_players";
 	case "message";
 	case "tp2player";
@@ -71,6 +67,11 @@ switch (_which) do {
 		[RscAdminToolkitDetailList_IDC, _list, _filter] call AdminToolkit_uiList;
 		_show = true;
 	};
+	case "buildremove": {
+		_list = nearestObjects [player, ["House", "Building"], 50];
+		[RscAdminToolkitDetailList_IDC, _list, _filter] call AdminToolkit_uiList;
+		_show = true;
+	};
 	case "spawn": {
 		_list ="((configName _x isKindOf 'ReammoBox') and (getNumber(_x >> 'scope') == 2))" configClasses (configFile >> "CfgVehicles");
 		[RscAdminToolkitDetailList_IDC, _list, _filter] call AdminToolkit_uiList;
@@ -92,8 +93,8 @@ switch (_which) do {
 		/* manage all non extension actions not listed above */	
 	};
 	default {
-		_menuData = lbData [RscAdminToolkitMainMenu_IDC, AdminToolkit_MenuIndex];
-        _extCode = missionNamespace getVariable [format["%1_loadDetails", _menuData], ""];
+		private _menuData = lbData [RscAdminToolkitMainMenu_IDC, AdminToolkit_MenuIndex];
+        private _extCode = missionNamespace getVariable [format["%1_loadDetails", _menuData], ""];
         if(typeName _extCode == "CODE") then {
             systemChat format["Calling %1 action %2", _menuData, _value];
             _show = [_filter] call _extCode;

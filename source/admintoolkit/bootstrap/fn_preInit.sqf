@@ -7,12 +7,10 @@
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
  
-private ['_code', '_function', '_file'];
-
 {
-    _code = '';
-    _function = _x select 0;
-    _file = _x select 1;
+    private _code = '';
+    private _function = _x select 0;
+    private _file = _x select 1;
 
     _code = compileFinal preprocessFileLineNumbers _file;
 

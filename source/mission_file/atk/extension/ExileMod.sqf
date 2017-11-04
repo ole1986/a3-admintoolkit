@@ -1,13 +1,10 @@
-private['_result'];
 disableSerialization;
 
 // overwrite the OnExecute code from AdminToolkit_OnExecute
 AdminToolkit_OnExecute = {
-    private ["_data"];
-
-    AdminToolkit_Params = ctrlText RscAdminToolkitParam_IDC;
     
-    _data = lbData [RscAdminToolkitDetailList_IDC, lbCurSel RscAdminToolkitDetailList_IDC];
+    private _data = lbData [RscAdminToolkitDetailList_IDC, lbCurSel RscAdminToolkitDetailList_IDC];
+    private _userInput = ctrlText RscAdminToolkitParam_IDC;
 
     switch (AdminToolkit_Action) do {
         case "exile_repvehicle";
@@ -16,20 +13,20 @@ AdminToolkit_OnExecute = {
             [AdminToolkit_Action, _data] call AdminToolkit_doAction;
         };
         case "exile_setvehiclepin": {
-            [AdminToolkit_Action, [_data, AdminToolkit_Params]] call AdminToolkit_doAction;
+            [AdminToolkit_Action, [_data, _userInput]] call AdminToolkit_doAction;
         };
         case "exile_getvehicle": {
-            [AdminToolkit_Action] call AdminToolkit_doAction;
+            [AdminToolkit_Action, _data] call AdminToolkit_doAction;
         };
         case 'exile_sendmoney';
 		case 'exile_sendscore': {
-            [AdminToolkit_Action, [_data, parseNumber AdminToolkit_Params]] call AdminToolkit_doAction;
+            [AdminToolkit_Action, [_data, parseNumber _userInput]] call AdminToolkit_doAction;
 		};
         case "exile_getmoney": {
-            ['exile_getmoney', parseNumber AdminToolkit_Params] call AdminToolkit_doAction;
+            ['exile_getmoney', parseNumber _userInput] call AdminToolkit_doAction;
         };
         case "exile_getscore": {
-            ['exile_getscore', parseNumber AdminToolkit_Params] call AdminToolkit_doAction;
+            ['exile_getscore', parseNumber _userInput] call AdminToolkit_doAction;
         };
         case "exile_getheal": {
             ['exile_getheal', ""] call AdminToolkit_doAction;
@@ -41,10 +38,11 @@ AdminToolkit_OnExecute = {
 };
 
 AdminToolkit_ExileMod_loadDetails = {
-    private ["_filter","_list", "_show", '_tmp'];
+    params["_filter"];
 
-    _filter = _this select 0;
-    _show = false;
+    private _show = false;
+    private _list = [];
+    private _player = objNull;
 
     switch (AdminToolkit_Action) do {
         case "exile_destvehicle";
@@ -101,7 +99,7 @@ AdminToolkit_ExileMod_loadDetails = {
     _show;
 };
 
-_result = [
+[
     ['Repair (nearby)', 'exile_repvehicle'],
     ['Destroy (nearby)', 'exile_destvehicle'],
     ['Remove (nearby)', 'exile_delvehicle'],
@@ -113,5 +111,3 @@ _result = [
     ['Send Respect to Player', 'exile_sendscore'],
     ['Heal Me', 'exile_getheal']
 ];
-
-_result;

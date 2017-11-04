@@ -7,19 +7,21 @@
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
 
-private['_filter','_display','_menuIndex', '_menuName', '_menuData', '_list', '_displayName'];
 disableSerialization;
-_display = findDisplay 40000;
+
+private _display = findDisplay 40000;
+private _list = [];
+private _displayName = '(unknown)';
 
 // receive the selected index and name from the Main Menu combobox
-_menuIndex = lbCurSel RscAdminToolkitMainMenu_IDC;
-_menuName = lbText [RscAdminToolkitMainMenu_IDC, _menuIndex];
-_menuData = lbData [RscAdminToolkitMainMenu_IDC, _menuIndex];
+private _menuIndex = lbCurSel RscAdminToolkitMainMenu_IDC;
+private _menuName = lbText [RscAdminToolkitMainMenu_IDC, _menuIndex];
+private _menuData = lbData [RscAdminToolkitMainMenu_IDC, _menuIndex];
 
 AdminToolkit_MenuIndex = _menuIndex;
 
 // ### Search filter
-_filter = ctrlText RscAdminToolkitEditAction_IDC;
+private _filter = ctrlText RscAdminToolkitEditAction_IDC;
 if(_filter != "") then {
 	// search filter is set, so reset the textbox
 	ctrlSetText [RscAdminToolkitEditAction_IDC, ""];	
@@ -75,7 +77,7 @@ switch (_menuName) do {
 		_list = [
 			["Build (temporary)", 'build'],
 			["Build (persistent)", 'buildpers'],
-			["Remove", "buildremove"],
+			["Remove (nearby)", "buildremove"],
 			["Status", 'buildinfopersistent'],
 			["Save Persistent", 'savepersistent'],
 			["Clear Persistent", 'clearpersistent']

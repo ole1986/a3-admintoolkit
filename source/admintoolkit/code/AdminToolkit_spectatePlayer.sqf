@@ -7,7 +7,7 @@
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
 
-private['_player', '_info'];
+params['_player'];
 
 if (!isNil "AdminToolkit_camera") then {
     (findDisplay 46) displayRemoveEventHandler ["KeyDown", AdminToolkit_cameraKeyDownId];
@@ -19,10 +19,10 @@ if (!isNil "AdminToolkit_camera") then {
     
     systemChat "Spectating stopped";
  } else {
-    AdminToolkit_Player = vehicle (_this select 0);
+    AdminToolkit_Player = vehicle _player;
 
     // show user friendly message
-    _info = "<t size='1.1'>The following keyboard keys can be used<br /><br />Q/E = first/3rd person, W/A/S/D = Change camera perspective, ESC = Stop spectating</t>";
+    private _info = "<t size='1.1'>The following keyboard keys can be used<br /><br />Q/E = first/3rd person, W/A/S/D = Change camera perspective, ESC = Stop spectating</t>";
     [format["Spectating %1", name AdminToolkit_Player], _info] call AdminToolkit_showMessage;
     
     systemChat format["Spectating %1", name AdminToolkit_Player];

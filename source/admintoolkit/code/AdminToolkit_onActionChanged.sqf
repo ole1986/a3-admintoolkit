@@ -6,15 +6,14 @@
  *
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
+private _display = findDisplay 40000;
 
-private['_display','_index','_text', '_value'];
-_display = findDisplay 40000;
-
-_index = lbCurSel RscAdminToolkitActionList_IDC;
-_text = lbText [RscAdminToolkitActionList_IDC, _index];
-_value = lbData [RscAdminToolkitActionList_IDC, _index];
+private _index = lbCurSel RscAdminToolkitActionList_IDC;
+private _text = lbText [RscAdminToolkitActionList_IDC, _index];
+private _value = lbData [RscAdminToolkitActionList_IDC, _index];
 
 AdminToolkit_Action = _value;
+AdminToolkit_Detail = _value;
 AdminToolkit_Params = [];
 
 // hide the parameters edit field by default
@@ -60,11 +59,12 @@ switch (_value) do {
     case 'givevehicle': {
         (_display displayCtrl RscAdminToolkitDetailLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Step 1: Select vehicle</t>";
     };
-    case 'buildremove': {
-        (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Temporary offline</t>";
-        (_display displayCtrl RscAdminToolkitRun_IDC) ctrlShow false;
-        (_display displayCtrl RscAdminToolkitRepeat_IDC) ctrlShow false;
-    };       
+    case 'buildremove': {       
+        (_display displayCtrl RscAdminToolkitDetailLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Select nearby building<br />PLEASE NOTE: Map related objects cannot be removed</t>";
+    };
+    case 'clearpersistent': {
+        (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>THIS WILL REMOVE ALL PERSISTENT BUILDINGS FROM ATK</t>";
+    };
 };
 
 call AdminToolkit_loadDetails;

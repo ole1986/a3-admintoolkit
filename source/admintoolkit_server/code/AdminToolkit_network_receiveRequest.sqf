@@ -6,18 +6,23 @@
  *
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
- 
-private["_safepos","_payload","_adminList", "_moderatorList", "_moderatorCmds","_player","_request", "_params","_result", "_tmp", "_mod"];
-_payload = _this;
-_adminList = getArray(configFile >> "CfgSettings" >> "AdminToolkit" >> "AdminList");
-_moderatorList = getArray(configFile >> "CfgSettings" >> "AdminToolkit" >> "ModeratorList");
-_moderatorCmds = [];
-_result = true;
+
+/**
+ * _player OBJECT player
+ * _request STRING request
+ * _params ARRAY additional parameters
+ */ 
+params['_player', '_request', '_params'];
+
+private _adminList = getArray(configFile >> "CfgSettings" >> "AdminToolkit" >> "AdminList");
+private _moderatorList = getArray(configFile >> "CfgSettings" >> "AdminToolkit" >> "ModeratorList");
+private _moderatorCmds = [];
+private _result = true;
+private _tmp = '';
+private _mod = '';
+
 try 
 {
-    _player = _payload select 0;
-    _request = _payload select 1; // what to do
-    _params = _payload select 2; // an array of parameters
     
     if !( getPlayerUID _player in (_adminList + _moderatorList) ) then {
 		['loginfailed', ''] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];
@@ -63,8 +68,7 @@ try
 			['message', [_params select 1, format["<t size='1.5'>Sender: %1</t>", name _player]]] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _tmp];
 		};
 		case 'messageall': {
-			diag_log format ["[ADMINTOOLKIT] messageall params: %1 ", (_params select 0)];
-			['message', [_params, format["<t size='1.5'>Sender: %1</t>", name _player]]] remoteExecCall ['AdminToolkit_network_receiveResponse', -2];
+			['message', [(_params select 0), format["<t size='1.5'>Sender: %1</t>", name _player]]] remoteExecCall ['AdminToolkit_network_receiveResponse', -2];
 		};
 		// Give ammo to selected player
 		case 'giveammo': {
@@ -119,8 +123,8 @@ try
 			//search safe Position for Vehicle Teleport
 			if (vehicle _player != _player) then 
 			{
-				_safepos = [_params, 1, 20, 5, 1, 0, 0] call BIS_fnc_findSafePos;
-				vehicle _player setPos _safepos;
+				_tmp = [_params, 1, 20, 5, 1, 0, 0] call BIS_fnc_findSafePos;
+				vehicle _player setPos _tmp;
 			} else {
 				_player setPos _params;
 			};
@@ -144,8 +148,8 @@ try
 		// Example: [player, 'getvehicle', <string vehicleClass>]
         case "getvehicle": {
             //find save position for the vehicle
-			_safepos = [position _player, 1, 20, 5, 1, 0, 0] call BIS_fnc_findSafePos;
-             _result = (_params select 0) createVehicle _safepos;
+			_tmp = [position _player, 1, 20, 5, 1, 0, 0] call BIS_fnc_findSafePos;
+             _result = (_params select 0) createVehicle _tmp;
         };
 		// spawn a vehicle at the position of another player
 		// Example: [player, 'givevehicle', [<string vehicleClass>, <netId>]]
@@ -154,8 +158,8 @@ try
 			if(!(isNil "_tmp")) then {
 				diag_log format ["[ADMINTOOLKIT] Giving vehicle %1 to %2 ", (_params select 0), name _tmp];
 				//find save position for the vehicle
-				_safepos = [_tmp, 1, 50, 5, 1, 0, 0] call BIS_fnc_findSafePos;
-				(_params select 0) createVehicle _safepos;
+				_mod = [_tmp, 1, 50, 5, 1, 0, 0] call BIS_fnc_findSafePos;
+				(_params select 0) createVehicle _mod;
 			};
         };
 		// remove a vehicle using its netId as parameter
@@ -186,7 +190,8 @@ try
 		// add an item to admins inventory
 		// Example: [player, 'getitem', <string ItemClass>]
 		case "getitem": {
-			if (_params != "") then { _player addItem (_params select 0); };
+			_tmp = _params select 0;
+			if (typeName _params == "STRING") then { _player addItem _tmp; };
 		};
 		// spawn an object at a position defined in parameter 2
 		// Example: [player, 'spawn', [<string className>, <array position>]]
@@ -200,15 +205,14 @@ try
         // Example: [player, 'build', <string className>]
 		case "buildpers";
         case "build": {
-            _tmp = createVehicle [_params, [0,0,1000], [], 0, "CAN_COLLIDE"];
+            _tmp = createVehicle [(_params select 0), [0,0,1000], [], 0, "CAN_COLLIDE"];
             _tmp setVariable ["BIS_enableRandomization", false];
 	        _tmp enableSimulationGlobal false;
             _tmp allowDamage false;
+
             _tmp removeAllEventHandlers "HandleDamage";
             [_tmp, owner _player] spawn {
-                private['_vehicle', '_owner'];
-                _vehicle = _this select 0;
-                _owner = _this select 1;
+                params['_vehicle', '_owner'];
                 _vehicle setOwner _owner; 
                 diag_log format["[ADMINTOOLKIT] Setting owner %1 on vehicle %2", str _owner, str _vehicle]; 
             };
@@ -218,16 +222,25 @@ try
 		// remoe building which is in player cursor position
 		case "buildremove": {
             _tmp = objectFromNetId (_params select 0);
-            if !(isNull _tmp) then {
-				['BUILDINGS', (_params select 1)] call AdminToolkit_removePersistent;
-				deleteVehicle _tmp;
-				AdminToolkit_IsPersistentSaved = nil;
+			_mod = _tmp getVariable ["ATK_IsPersistent", false];
+
+            if (_mod) then {
+				['BUILDINGS', (getPosASL _tmp)] call AdminToolkit_removePersistent;
+				AdminToolkit_IsPersistentSaved = false;
 			};
+
+			deleteVehicle _tmp;
         };
-		
 		case "buildpersistent": {
-			['BUILDINGS', (_params select 0)] call AdminToolkit_savePersistent;
-			AdminToolkit_IsPersistentSaved = nil;
+			_mod = objectFromNetId (_params select 0);
+			_mod setDir (_params select 2);
+			_mod setVectorUp [0,0,1];
+			_mod setPosASL (_params select 1);
+			_mod setVariable ["ATK_IsPersistent", true, true];
+			_mod setOwner 2;
+
+			['BUILDINGS', [typeOf _mod, (_params select 1), (_params select 2)] ] call AdminToolkit_savePersistent;
+			AdminToolkit_IsPersistentSaved = false;
 		};
 		case "buildinfopersistent": {
 			[_request, [count AdminToolkit_Buildings, AdminToolkit_IsPersistentSaved]] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _player];

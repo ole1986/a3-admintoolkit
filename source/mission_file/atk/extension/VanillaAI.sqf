@@ -1,8 +1,9 @@
-private['_result', '_object', '_tmp'];
 disableSerialization;
 
 // overwrite the OnExecute code from AdminToolkit_OnExecute
 AdminToolkit_OnExecute = {
+    private _object = objNull;
+
     switch (AdminToolkit_Action) do {
         case "vai_enemy": {
             ['vai_enemy', ""] call AdminToolkit_doAction;
@@ -25,10 +26,10 @@ AdminToolkit_OnExecute = {
 };
 
 AdminToolkit_VanillaAI_loadDetails = {
-    private ["_filter","_list", "_show"];
+    params['_filter'];
 
-    _filter = _this select 0;
-    _show = false;
+    private _show = false;
+    private _list = [];
 
     (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Sorry, not fully implemented yet:</t>";
 
@@ -37,27 +38,30 @@ AdminToolkit_VanillaAI_loadDetails = {
 
 
 VanillaAI_UnitList = {
-    private['_names', '_object'];
-    _names = [];
+    params['_units'];
+
+    private _object = objNull;
+    private _names = [];
+
     {
         _object = objectFromNetId _x;
         _names pushBack [name _object, _x];
-    } forEach (_this select 0);
+    } forEach (_units);
 
     _names;
 };
 
 "VanillaAI_Units" addPublicVariableEventHandler {
-    private['_names'];
-    _names = [_this select 1] call VanillaAI_UnitList;
+    params['_id','_unit'];
+
+    private _names = [_unit] call VanillaAI_UnitList;
     lbClear RscAdminToolkitList_IDC;
     [RscAdminToolkitList_IDC, _names, ""] call AdminToolkit_uiList;
 };
 
-_result = [
+[
     ['New Enemy AI', 'vai_enemy'],
     ['New Friendly AI', 'vai_friend'],
     ['Attack Target', 'vai_attack'],
     ['Delete selected AI', 'vai_delete']
 ];
-_result;

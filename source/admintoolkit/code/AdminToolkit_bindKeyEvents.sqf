@@ -6,11 +6,12 @@
  *
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
- 
-private['_handled'];
-_handled = false;
 
-switch (_this select 1) do
+params['_control','_keydown'];
+
+private _handled = false;
+
+switch (_keydown) do
 {
 	// Function Key 2 (F2)
 	case 0x3C: 

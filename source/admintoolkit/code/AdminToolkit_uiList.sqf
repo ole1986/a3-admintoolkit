@@ -7,17 +7,17 @@
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
  
-private['_listboxId','_list', '_filter','_index', '_className', '_displayName', '_picture'];
+params['_listboxId','_list', '_filter'];
 disableSerialization;
-// listbox IDC
-_listboxId = _this select 0;
-// array of config classes
-_list = _this select 1;
 // string filter expression
-_filter = toLower (_this select 2);
-_picture = "";
+_filter = toLower _filter;
+
+private _index = nil;
+private _className = '';
+private _displayName = '';
+private _picture = '';
+
 {
-	_index = nil;
 	// get the weapon, vehicle, item CLASS name, like "B_Heli_Light_01_F"
 	if(typeName _x == "CONFIG") then {
 		_className = configName _x;

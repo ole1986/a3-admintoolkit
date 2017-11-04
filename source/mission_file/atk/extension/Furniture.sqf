@@ -5,14 +5,11 @@
  * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
  */
 
-private['_result'];
 disableSerialization;
 
 // overwrite the OnExecute code from AdminToolkit_OnExecute
-AdminToolkit_OnExecute = {
-    private ["_data"];
-    
-    _data = lbData [RscAdminToolkitDetailList_IDC, lbCurSel RscAdminToolkitDetailList_IDC];
+AdminToolkit_OnExecute = {   
+    private _data = lbData [RscAdminToolkitDetailList_IDC, lbCurSel RscAdminToolkitDetailList_IDC];
 
     switch (AdminToolkit_Action) do {
         case "fu_build": {
@@ -28,10 +25,10 @@ AdminToolkit_OnExecute = {
 };
 
 AdminToolkit_Furniture_loadDetails = {
-    private ["_filter","_list", "_show"];
+    params["_filter"];
 
-    _filter = _this select 0;
-    _show = false;
+    private _show = false;
+    private _list = [];
 
     switch (AdminToolkit_Action) do {
         case "fu_build";
@@ -44,7 +41,7 @@ AdminToolkit_Furniture_loadDetails = {
     _show;
 };
 
-_result = [
+[
     ["Build (temporary)", 'fu_build'],
     ["Build (persistent)", 'fu_buildpers'],
     ["Remove (Target)", "buildremove"],
@@ -52,5 +49,3 @@ _result = [
     ["Save Persistent", 'savepersistent'],
     ["Clear Persistent", 'clearpersistent']
 ];
-
-_result;
