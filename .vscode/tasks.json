@@ -15,6 +15,12 @@
         },
         {
             "suppressTaskName": true,
+            "taskName": "Build All, Install and Run",
+            "isBuildCommand": true,
+            "args": [ "-Build", "-Install", "-Run"]
+        },
+        {
+            "suppressTaskName": true,
             "taskName": "Install and Run Client (Arma 3)",
             "args": [ "-Install", "-Run"]
         },
