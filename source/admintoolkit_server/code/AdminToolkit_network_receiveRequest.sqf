@@ -191,7 +191,7 @@ try
 		// Example: [player, 'getitem', <string ItemClass>]
 		case "getitem": {
 			_tmp = _params select 0;
-			if (typeName _params == "STRING") then { _player addItem _tmp; };
+			if (typeName _tmp == "STRING") then { _player addItem _tmp; };
 		};
 		// spawn an object at a position defined in parameter 2
 		// Example: [player, 'spawn', [<string className>, <array position>]]
