@@ -225,7 +225,7 @@ try
 			_mod = _tmp getVariable ["ATK_IsPersistent", false];
 
             if (_mod) then {
-				['BUILDINGS', (getPosASL _tmp)] call AdminToolkit_removePersistent;
+				['BUILDINGS', (getPosATL _tmp)] call AdminToolkit_removePersistent;
 				AdminToolkit_IsPersistentSaved = false;
 			};
 
@@ -235,7 +235,7 @@ try
 			_mod = objectFromNetId (_params select 0);
 			_mod setDir (_params select 2);
 			_mod setVectorUp [0,0,1];
-			_mod setPosASL (_params select 1);
+			_mod setPosATL (_params select 1);
 			_mod setVariable ["ATK_IsPersistent", true, true];
 			_mod setOwner 2;
 

@@ -13,12 +13,12 @@ private _vectorDirection = [0,0,0];
 
 while {AdminToolkitIsBuilding isEqualTo 1} do
 {
-    _position = AGLtoASL (player modelToWorld AdminToolkitBuildingOffset);
+    _position = ASLtoATL (AGLtoASL (player modelToWorld AdminToolkitBuildingOffset));
 	_rotation = (AdminToolkitBuildingRotation + (getDir player) + 360) % 360;
     _vectorDirection = [sin(_rotation), cos(_rotation), 0];
     
     AdminToolkitBuildingObject setVectorDirAndUp [_vectorDirection, _vectorUp];
-    AdminToolkitBuildingObject setPosASL _position;
+    AdminToolkitBuildingObject setPosATL _position;
     
     uiSleep 0.033;   
 };

@@ -24,7 +24,7 @@ if(_create) then {
                 _obj setVariable ["ATK_IsPersistent", true];
                 _obj setVariable ["BIS_enableRandomization", false];
                 _obj setDir _rot;
-                _obj setPosASL _pos;
+                _obj setPosATL _pos;
             } forEach _result; 
         };
         default { };
