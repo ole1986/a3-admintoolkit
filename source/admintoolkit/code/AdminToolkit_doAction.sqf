@@ -44,7 +44,7 @@ try {
             _tmp = _params select 0;
             _tmp = [_tmp] call AdminToolkit_weaponMagazine;
 
-            _params = [_tmp];
+            _params pushBack [_tmp];
         };
     };
     
