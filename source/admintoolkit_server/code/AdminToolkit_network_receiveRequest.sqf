@@ -183,7 +183,7 @@ try
 		// get magazines defined in parameter 2
 		// Example: [player, 'getammo', [<string magazineClass>]]
 		case "getammo": {
-			_tmp = _params select 0;
+			_tmp = _params select 1;
             if (_tmp != "") then { _player addMagazines  [_tmp, 1]; };
 		};
 		// Items Others	
