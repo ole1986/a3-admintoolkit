@@ -1,0 +1,16 @@
+{
+	"title": "Admin Toolkit",
+	"name": "AdminToolkit",
+	"website": "https://github.com/ole1986/a3-admintoolkit",
+	"version": "2.2.1",
+	"buildPath": "./",
+	"privateKey": "AdminToolkit.biprivatekey",
+	"serverDirs": [
+		"source\\admintoolkit_server",
+		"source\\admintoolkit_servercfg"
+	],
+	"clientDirs": [
+		"source\\admintoolkit"
+	],
+	"clientMods": ["@Exile", "@Zombies and Demons"]
+}
