@@ -1,6 +1,7 @@
 {
 	"title": "Admin Toolkit",
 	"name": "AdminToolkit",
+	"author": "ole",
 	"website": "https://github.com/ole1986/a3-admintoolkit",
 	"version": "2.2.1",
 	"buildPath": "./",
