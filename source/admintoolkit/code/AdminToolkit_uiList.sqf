@@ -16,6 +16,7 @@ private _index = nil;
 private _className = '';
 private _displayName = '';
 private _picture = '';
+private _add = false;
 
 {
 	// get the weapon, vehicle, item CLASS name, like "B_Heli_Light_01_F"
@@ -41,27 +42,28 @@ private _picture = '';
 		};
 	};
 	
-	if(_displayName == "") then {
+	if (_displayName == "") then {
 		_displayName = _className;
 	};
-	
-	if((_filter != "") and (toLower _displayName find _filter >= 0)) then {
-		_index = lbAdd [_listboxId, _displayName];
-	} else {
-		if(_filter == "") then { 
-			_index = lbAdd [_listboxId, _displayName];
+
+	if (_filter != '') then {
+		// use filtered mode
+		if(toLower _displayName find _filter >= 0) then {
+			_add = true;
+		} else {
+			_add = false;
 		};
+	} else {
+		_add = true;
 	};
 
-	if(!isNil "_index") then {
+	if (_add) then {
+		_index = lbAdd [_listboxId, _displayName];
 		lbSetData [_listboxId, _index, _className];
-
 		if((_picture != "") and (_picture != "picturestaticobject") and (_picture != "picturething")) then {
 			lbSetPictureRight [_listboxId, _index, _picture];
 		};
 	};
-
-	
 } forEach _list;
 
 true;

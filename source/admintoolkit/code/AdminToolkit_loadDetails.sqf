@@ -17,11 +17,12 @@ private _tmp2 = '';
 
 // ### Search filter
 private _filter = ctrlText RscAdminToolkitEditDetail_IDC;
+
 if(_filter != "") then {
 	// search filter is set, so reset the textbox
 	ctrlSetText [RscAdminToolkitEditDetail_IDC, ""];	
 	// and tell user in systemChat its filtered view
-	systemChat format["Searching for '%1' in details list", _filter];	
+	systemChat format["Searching for '%1' in details list", _filter];
 };
 
 // clear details list
@@ -58,7 +59,7 @@ switch (AdminToolkit_Detail) do {
 	};
 	case "getammo";
 	case "getweapon": {
-		_list = "((getNumber(_x >> 'Type') > 0) and (getNumber(_x >> 'Type') <= 4) and (configName _x find '_Base' <= 0) and (configName _x find '_base' <= 0) and (getNumber(_x >> 'scope') == 2))" configClasses (configFile >> "CfgWeapons");
+		_list = "(getNumber(_x >> 'scope')) == 2 and getNumber(_x >> 'type') <= 4)" configClasses (configFile >> "CfgWeapons");
 		[RscAdminToolkitDetailList_IDC, _list, _filter] call AdminToolkit_uiList;
 		_show = true;
 	};
