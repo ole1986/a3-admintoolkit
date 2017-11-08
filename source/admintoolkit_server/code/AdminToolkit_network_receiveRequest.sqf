@@ -175,7 +175,7 @@ try
         case "getweapon": {
             // add magazine first to make sure weapon is being loaded
             _tmp = _params select 1;
-            if (_tmp != "") then { _player addMagazines  [_tmp, 1]; };
+            if (_tmp != "") then { _player addMagazineGlobal _tmp; };
             // add the weapon
             _tmp = _params select 0;
             if (_tmp != "") then { _player addWeaponGlobal _tmp; };
