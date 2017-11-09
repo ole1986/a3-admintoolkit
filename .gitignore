@@ -11,3 +11,6 @@ update-server.sh
 @AdminToolkit/addons/*/*
 @AdminToolkitServer/addons/*/*
 @MissionFile/*/*
+
+# skip arma-dev ftp settiings
+.vscode/arma-dev.ftp.json

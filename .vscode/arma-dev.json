@@ -13,5 +13,6 @@
 	"clientDirs": [
 		"source\\admintoolkit"
 	],
-	"clientMods": ["@Exile", "@Zombies and Demons"]
+	"clientMods": ["@Exile", "@Zombies and Demons"],
+	"ftpConnectionFile": "arma-dev.ftp.json"
 }
