@@ -1,7 +1,4 @@
 Param(
-    [switch]$Build = $false,
-    [switch]$Install = $false,
-    [switch]$Run = $false,
     [switch]$PatchMission = $false
 )
 
@@ -92,55 +89,10 @@ function Get-CodeBlockLastLineNumber($content, $FuncName)
     return $i - 1
 }
 
-$GameFolder = "$(Get-SteamPath)/steamapps/common/Arma 3"
-
-if(!(Test-Path $GameFolder)) {
-    Write-Host -ForegroundColor Red "Game not found"
-    Exit
-}
-
-if($Build) {
-    Write-Host "Building Server PBO"
-    $ok = Pack-Pbo "$PWD\source\admintoolkit_server" "$PWD\@AdminToolkitServer\addons"
-    if(!$ok) { Exit }
-
-    Write-Host "Building Server Config PBO"
-    $ok = Pack-Pbo "$PWD\source\admintoolkit_servercfg" "$PWD\@AdminToolkitServer\addons"
-    if(!$ok) { Exit }
-    
-    Write-Host "Building Client PBO"
-    $ok = Pack-Pbo "$PWD\source\admintoolkit" "$PWD\@AdminToolkit\addons" "$PWD\admintoolkit.biprivatekey"
-    if(!$ok) { Exit }
-
-    Write-Host -ForegroundColor Green "###################"
-    Write-Host -ForegroundColor Green "# BUILD COMPLETED #"
-    Write-Host -ForegroundColor Green "###################"
-}
-
-if($Install) {
-    Write-Host -NoNewline "Shutting down arma3 instance..."
-    # End the arma3 instance firsrt
-    $found = Get-Process | Where-Object { ($_.Name -eq "arma3_x64") -or ($_.Name -eq "arma3") } | Select-Object -First 1
-    if($found) {
-        $found | Stop-Process
-        Write-Host -ForegroundColor Green "DONE"
-    } else {
-        Write-Host "NOT RUNNING"
-    }
-
-    Write-Host "Wait some seconds until all is released..."
-    Start-Sleep 2
-
-    Write-Host -NoNewline "Installing AdminToolkit client into $GameFolder..."
-    Copy-Item -Recurse $PWD\@AdminToolkit -Destination $GameFolder -Force
-    Write-Host -ForegroundColor Green "DONE"
-    if($Run) {
-        Write-Host -NoNewline "Running Arma 3..."
-        Start-Process "$GameFolder/arma3battleye.exe" -ArgumentList '2','1','0','-exe arma3_x64.exe', '-mod="@Exile;@AdminToolkit"', '-nosplash', '-world empty', '-skipIntro'
-        #& "$GameFolder/arma3battleye.exe" 2 1 0 -exe arma3_x64.exe -mod="@Exile;@AdminToolkit" -nosplash -world=empty -skipIntro
-        Write-Host -ForegroundColor Green "DONE"
-    }
-}
+Write-Host ("#" * 90)
+Write-Host "# PLEASE NOTE: Packing the PBO's is moved to arma-dev extension using Visual Studio Code #"
+Write-Host "#              https://marketplace.visualstudio.com/items?itemName=ole1986.arma-dev      #"
+Write-Host ("#" * 90)
 
 if($PatchMission) {
     Write-Host -ForegroundColor Green "Please select your mission file from the dialog:"
