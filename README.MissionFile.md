@@ -37,14 +37,12 @@ class CfgAdminToolkitCustomMod {
 
 	/* 4 Quick buttons allowing to add any action you want - See example below*/
 	QuickButtons[] = {
-		/* send a chat message to selected player containing 'Test 123' */
-		{"Chat", "['message', [netid AdminToolkit_Player, AdminToolkit_Params]] call AdminToolkit_doAction"},
 		/* send a message to everyone using the parameter text field */
-		{"Msg To All", "['messageall', AdminToolkit_Params] call AdminToolkit_doAction"},
+		{"Restart Msg", "['messageall', ['Server Restart in X minutes']] call AdminToolkit_doAction"},
 		/* Quickly get a Helicopter */
-		{"Heli", "['getvehicle', 'B_Heli_Light_01_armed_F'] call AdminToolkit_doAction"},
+		{"Heli", "['getvehicle', ['B_Heli_Light_01_armed_F']] call AdminToolkit_doAction"},
 		/*4 button*/
-		{"Empty", "['Command', 'Variable'] call AdminToolkit_doAction"}
+		{"Empty", "['Command', ['Variable #1', 'Variable #2']] call AdminToolkit_doAction"}
 	};
 };
 ```
