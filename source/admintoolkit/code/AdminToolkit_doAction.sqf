@@ -43,8 +43,7 @@ try {
         case 'getammo': {
             _tmp = _params select 0;
             _tmp = [_tmp] call AdminToolkit_weaponMagazine;
-
-            _params pushBack _tmp;
+            _params = [_tmp];
         };
     };
     
