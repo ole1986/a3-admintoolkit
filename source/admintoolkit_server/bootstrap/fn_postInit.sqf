@@ -10,6 +10,7 @@
 diag_log "[ADMINTOOLKIT] Loading 'BUILDINGS'..";
 AdminToolkit_Buildings = ['BUILDINGS', true] call AdminToolkit_loadProfile;
 AdminToolkit_IsPersistentSaved = true;
+AdminToolkit_GodPlayers = [];
 
 diag_log "[ADMINTOOLKIT] loaded successfully";
 
@@ -21,5 +22,8 @@ addMissionEventHandler ["PlayerConnected", {
         {execVM "atk\system\init.sqf"; } remoteExecCall ["call", _this select 4];
     }
 ];
+
+[] spawn AdminToolkit_godLoop;
+diag_log "[ADMINTOOLKIT] God loop initialized";
 
 true;
