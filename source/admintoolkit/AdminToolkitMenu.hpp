@@ -32,7 +32,7 @@ class AdminToolkitMenu {
 		idc = 1900;
 	
 		text = "# RscAdminToolkitTitle #"; //--- ToDo: Localize;
-		x = 0.304062 * safezoneW + safezoneX;
+		x = 0.300062 * safezoneW + safezoneX;
 		y = 0.236 * safezoneH + safezoneY;
 		w = 0.15 * safezoneW;
 		h = 0.02 * safezoneH;
@@ -141,7 +141,7 @@ class AdminToolkitMenu {
 		idc = 1910;
 	
 		text = "# RscAdminToolkitParamLabel #"; //--- ToDo: Localize;
-		x = 0.45875 * safezoneW + safezoneX;
+		x = 0.4625 * safezoneW + safezoneX;
 		y = 0.236 * safezoneH + safezoneY;
 		w = 0.15 * safezoneW;
 		h = 0.04 * safezoneH;
