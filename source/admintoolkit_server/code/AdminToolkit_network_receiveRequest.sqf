@@ -273,7 +273,7 @@ try
 					_extensions = getArray(missionConfigFile >> 'CfgAdminToolkitCustomMod' >> 'Extensions');
 					{
 						_tmp = _x select 1;
-						_mod = compileFinal preprocessFileLineNumbers format["admintoolkit_servercfg\extension\%1.sqf", _tmp];
+						_mod = compileFinal preprocessFileLineNumbers format["x\admintoolkit_servercfg\extension\%1.sqf", _tmp];
 						[_player, _request, _params] call _mod;
 					} forEach _extensions;
 				};

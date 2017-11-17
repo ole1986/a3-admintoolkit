@@ -20,7 +20,7 @@ class CfgPatches {
 class CfgFunctions {
     class AdminToolkit {
         class main {
-            file="admintoolkit_server\bootstrap";
+            file="x\admintoolkit_server\bootstrap";
             class preInit { 
                 preInit = 1;
             };

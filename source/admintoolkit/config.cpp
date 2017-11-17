@@ -20,8 +20,8 @@ class CfgPatches
 	};
 };
 
-#include <\admintoolkit\defines.hpp>
-#include <\admintoolkit\AdminToolkitMenu.hpp>
+#include <defines.hpp>
+#include <AdminToolkitMenu.hpp>
 
 class CfgFunctions
 {
@@ -29,7 +29,7 @@ class CfgFunctions
 	{
 		class Bootstrap
 		{
-			file="admintoolkit\bootstrap";
+			file="x\admintoolkit\bootstrap";
 			class preInit
 			{
 				preInit=1;

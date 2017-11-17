@@ -19,13 +19,13 @@ private _code = '';
 }
 forEach 
 [
-	['AdminToolkit_network_receiveRequest', 'admintoolkit_server\code\AdminToolkit_network_receiveRequest.sqf'],
-	['AdminToolkit_network_fetchPlayer', 'admintoolkit_server\code\AdminToolkit_network_fetchPlayer.sqf'],
-    ['AdminToolkit_saveProfile', 'admintoolkit_server\code\AdminToolkit_saveProfile.sqf'],
-    ['AdminToolkit_savePersistent', 'admintoolkit_server\code\AdminToolkit_savePersistent.sqf'],
-    ['AdminToolkit_removePersistent', 'admintoolkit_server\code\AdminToolkit_removePersistent.sqf'],
-    ['AdminToolkit_loadProfile', 'admintoolkit_server\code\AdminToolkit_loadProfile.sqf'],
-    ['AdminToolkit_godLoop', 'admintoolkit_server\code\AdminToolkit_godLoop.sqf']
+	['AdminToolkit_network_receiveRequest', 'x\admintoolkit_server\code\AdminToolkit_network_receiveRequest.sqf'],
+	['AdminToolkit_network_fetchPlayer', 'x\admintoolkit_server\code\AdminToolkit_network_fetchPlayer.sqf'],
+    ['AdminToolkit_saveProfile', 'x\admintoolkit_server\code\AdminToolkit_saveProfile.sqf'],
+    ['AdminToolkit_savePersistent', 'x\admintoolkit_server\code\AdminToolkit_savePersistent.sqf'],
+    ['AdminToolkit_removePersistent', 'x\admintoolkit_server\code\AdminToolkit_removePersistent.sqf'],
+    ['AdminToolkit_loadProfile', 'x\admintoolkit_server\code\AdminToolkit_loadProfile.sqf'],
+    ['AdminToolkit_godLoop', 'x\admintoolkit_server\code\AdminToolkit_godLoop.sqf']
 ];
 
 diag_log "[ADMINTOOLKIT] Initializing";
