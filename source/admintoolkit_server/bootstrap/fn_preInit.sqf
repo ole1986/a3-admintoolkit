@@ -25,7 +25,8 @@ forEach
     ['AdminToolkit_savePersistent', 'x\admintoolkit_server\code\AdminToolkit_savePersistent.sqf'],
     ['AdminToolkit_removePersistent', 'x\admintoolkit_server\code\AdminToolkit_removePersistent.sqf'],
     ['AdminToolkit_loadProfile', 'x\admintoolkit_server\code\AdminToolkit_loadProfile.sqf'],
-    ['AdminToolkit_godLoop', 'x\admintoolkit_server\code\AdminToolkit_godLoop.sqf']
+    ['AdminToolkit_godLoop', 'x\admintoolkit_server\code\AdminToolkit_godLoop.sqf'],
+    ['AdminToolkit_showAAN', 'x\admintoolkit_server\code\AdminToolkit_showAAN.sqf']
 ];
 
 diag_log "[ADMINTOOLKIT] Initializing";

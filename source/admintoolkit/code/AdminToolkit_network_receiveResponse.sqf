@@ -28,9 +28,6 @@ try
 			missionNamespace setVariable ['AdminToolkit_Players', _params];
 			systemChat "Players loaded!";
 		};
-		case 'message': {
-			_params call AdminToolkit_showMessage;
-		};
 		case 'specplayer': {
 			// get the real player object from its netId
 			closeDialog 0;

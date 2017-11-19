@@ -14,14 +14,11 @@ AdminToolkit_GodPlayers = [];
 
 diag_log "[ADMINTOOLKIT] loaded successfully";
 
-// run the mission file "atk\init.sqf" when player connects
-// onPlayerConnected AND BIS_fnc_addStackedEventHandler FAILED
-// So, let us use the addMissionEventHandler
+// lets add a banner to notify connecting player about ATK
 addMissionEventHandler ["PlayerConnected", {
     // _this = [1.81782e+08,_uid,_name, bool, _owner]"
-        {execVM "atk\system\init.sqf"; } remoteExecCall ["call", _this select 4];
-    }
-];
+    [_this select 4, "", "This server is using the AdminToolkit", "for further info please visit github.com/ole1986/a3-admintoolkit", 30] call AdminToolkit_showAAN;
+}];
 
 [] spawn AdminToolkit_godLoop;
 diag_log "[ADMINTOOLKIT] God loop initialized";

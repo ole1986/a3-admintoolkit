@@ -30,6 +30,10 @@ try {
             _tmp = ctrlText RscAdminToolkitParam_IDC;
             _params pushBack _tmp;
         };
+        case 'messageperm': {
+            _tmp = ctrlText RscAdminToolkitParam_IDC;
+            _params pushBack _tmp;
+        };
         case 'spawn': {
             _tmp = player modelToWorld [0,2, (position player) select 2];
             _params pushBack _tmp;

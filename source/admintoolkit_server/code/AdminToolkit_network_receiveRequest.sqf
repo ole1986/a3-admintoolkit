@@ -65,10 +65,13 @@ try
 		};
 		case 'message': {
 			_tmp = objectFromNetId (_params select 0);
-			['message', [_params select 1, format["<t size='1.5'>Sender: %1</t>", name _player]]] remoteExecCall ['AdminToolkit_network_receiveResponse', owner _tmp];
+			[owner _tmp, format["Sender: %1", name _player], _params select 1, "", 30] call AdminToolkit_showAAN;
 		};
 		case 'messageall': {
-			['message', [(_params select 0), format["<t size='1.5'>Sender: %1</t>", name _player]]] remoteExecCall ['AdminToolkit_network_receiveResponse', -2];
+			[-2, format["Sender: %1", name _player], _params select 0, "", 30] call AdminToolkit_showAAN;
+		};
+		case 'messageperm': {
+			[-2, format["Sender: %1", name _player], _params select 0, ""] call AdminToolkit_showAAN;
 		};
 		// Give ammo to selected player
 		case 'giveammo': {

@@ -37,6 +37,7 @@ class CfgSettings
         ModeratorCmds[] = { "login", /* Login as moderator  - required */
                             "message", /* send single messages to a player */
                             "messageall", /* send global messages */
+                            "messageperm", /* Permanent message to all */
                             "kickplayer", /* kick a player */
                             "banplayer", /* kick and ban a player */
                             "getplayers", /* get player list - required for player actions */

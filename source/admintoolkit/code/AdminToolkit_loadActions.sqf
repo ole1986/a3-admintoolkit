@@ -47,6 +47,7 @@ switch (_menuName) do {
 		_list = [
 			["Send Message", "message"],
 			["Send Message to ALL", "messageall"],
+			["Permanent Msg. to ALL", "messageperm"],
 			["Give Ammo (primary)", "giveammo"],
 			["TP To Player",'tp2player'],
 			["TP to Me", 'tpplayer'],

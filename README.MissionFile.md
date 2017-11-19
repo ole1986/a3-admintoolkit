@@ -38,7 +38,7 @@ class CfgAdminToolkitCustomMod {
 	/* 4 Quick buttons allowing to add any action you want - See example below*/
 	QuickButtons[] = {
 		/* send a message to everyone using the parameter text field */
-		{"Restart Msg", "['messageall', ['Server Restart in X minutes']] call AdminToolkit_doAction"},
+		{"Restart Msg", "['messageperm', ['Server Restart in X minutes']] call AdminToolkit_doAction"},
 		/* Quickly get a Helicopter */
 		{"Heli", "['getvehicle', ['B_Heli_Light_01_armed_F']] call AdminToolkit_doAction"},
 		/*4 button*/

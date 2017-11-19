@@ -40,6 +40,7 @@ switch (_value) do {
         // show the parameters edit field
         (_display displayCtrl RscAdminToolkitParam_IDC) ctrlShow true;
     };
+    case 'messageperm';
     case 'messageall': {
         (_display displayCtrl RscAdminToolkitParamLabel_IDC) ctrlSetStructuredText parseText "<t color='#FF0066'>Enter message (sent to all)</t>";
         // show the parameters edit field
