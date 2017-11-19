@@ -31,14 +31,14 @@ For a complete list of all features, please refer to <a href="FEATURES.md">FEATU
 
 ## Installation
 
-Before you start, please download and install the software mentioned in the <a href="#Requirements">Requirements</a> section.
+Before you start, please download and install the software mentioned in the <a href="#requirements">Requirements</a> section.
 
 * Download and extract a3-admintoolkit
 * Open the folder `a3-admintoolkit-master` with Visual Studio code (vscode)
-* Add your player UID into the `source\admintoolkit_servercfg\config.cpp`, see <a href="#Configuration">Configuration</a>
+* Add your player UID into the `source\admintoolkit_servercfg\config.cpp`, see <a href="#configuration">Configuration</a>
 * Press `F1` in vscode and run the command `Arma 3: Pack` to build all pbo files
-* Use `.\setup.ps1 -PatchMission` to patch your favorite mission file, see <a href="#MissionFile">Mission File</a>
-* Copy all pbo files to the client and server, see <a href="#CopyFiles">Copy Files</a>
+* Use `.\setup.ps1 -PatchMission` to patch your favorite mission file, see <a href="#mission-file">Mission File</a>
+* Copy all pbo files to the client and server, see <a href="#copy-files">Copy Files</a>
 
 ### Configuration
 
