@@ -3,7 +3,7 @@
 	"name": "AdminToolkit",
 	"author": "ole1986",
 	"website": "https://github.com/ole1986/a3-admintoolkit",
-	"version": "2.2.1",
+	"version": "2.2.2",
 	"buildPath": "./",
 	"privateKey": "AdminToolkit.biprivatekey",
 	"serverDirs": [
