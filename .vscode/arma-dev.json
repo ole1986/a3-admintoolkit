@@ -10,9 +10,8 @@
 		"source\\admintoolkit_server",
 		"source\\admintoolkit_servercfg"
 	],
+	"serverUse32bit": true,
 	"clientDirs": [
 		"source\\admintoolkit"
-	],
-	"clientMods": ["@Exile", "@Zombies and Demons"],
-	"ftpConnectionFile": "arma-dev.ftp.json"
+	]
 }

@@ -14,3 +14,6 @@ update-server.sh
 
 # skip arma-dev ftp settiings
 .vscode/arma-dev.ftp.json
+
+# skip vscode workspace
+*.code-workspace
