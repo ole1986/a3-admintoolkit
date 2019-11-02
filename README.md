@@ -104,9 +104,3 @@ For more details, please refer to the <a href="README.MissionFile.md">/README.Mi
 | ExileMod   | create persistent vehicles, receive ExileMoney and build objects, etc...     | ole       | <a href="source/mission_file/atk/README.ExileMod.md">README</a>
 | Furniture  | support to build Furniture objects (Menu "Stoll Furniture")                  | Stoll     | <a href="source/mission_file/atk/README.Furniture.md">README</a>
 | VanillaAI  | Experimental extension to support spawning AI units                          | ole       | <a href="source/mission_file/atk/README.VanillaAI.md">README</a>
-
-## Battleye
-
-Please use the below **Battleye Script Filters tool** to setup all Battleye exceptions:
-
-http://a3ap.com/BEF.php
